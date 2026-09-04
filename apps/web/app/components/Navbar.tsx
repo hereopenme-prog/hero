@@ -8,10 +8,9 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/how-it-works', label: 'How It Works' },
-  { href: '/for-businesses', label: 'For Businesses' },
-  { href: '/for-customers', label: 'For Customers' },
   { href: '/security', label: 'Security' },
   { href: '/technology', label: 'Technology' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Navbar() {
@@ -72,7 +71,7 @@ export function Navbar() {
                     className={`px-3.5 py-2 rounded-lg text-[13px] font-medium transition-all duration-200 ${
                       isActive
                         ? 'text-green-action bg-green-action/[0.08]'
-                        : 'text-neutral-500 hover:text-black hover:bg-green-light'
+                        : 'text-neutral-700 hover:text-black hover:bg-green-light'
                     }`}
                   >
                     {link.label}
@@ -94,7 +93,7 @@ export function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="lg:hidden p-2 text-neutral-500 hover:text-black transition-colors"
+              className="lg:hidden p-2 text-neutral-700 hover:text-black transition-colors"
               aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileOpen}
             >
@@ -120,7 +119,7 @@ export function Navbar() {
             <span className="font-bold text-sm text-black">Menu</span>
             <button
               onClick={() => setIsMobileOpen(false)}
-              className="p-2 text-neutral-500 hover:text-black"
+              className="p-2 text-neutral-700 hover:text-black"
               aria-label="Close menu"
             >
               <X size={20} />
@@ -136,7 +135,7 @@ export function Navbar() {
                   className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                     isActive
                       ? 'text-green-action bg-green-action/[0.08]'
-                      : 'text-neutral-500 hover:text-black hover:bg-green-light'
+                      : 'text-neutral-700 hover:text-black hover:bg-green-light'
                   }`}
                 >
                   {link.label}

@@ -32,7 +32,7 @@ export function SectionHeader({
         )}
       </h2>
       {description && (
-        <p className="mt-5 text-body-lg text-neutral-500 max-w-content leading-relaxed">
+        <p className="mt-5 text-body-lg text-black max-w-content leading-relaxed">
           {description}
         </p>
       )}

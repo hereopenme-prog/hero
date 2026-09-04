@@ -34,18 +34,18 @@ export function Footer() {
               </div>
               <span className="font-bold text-sm tracking-tight text-black">HERE OPEN</span>
             </Link>
-            <p className="text-body-sm text-neutral-500 leading-relaxed max-w-[280px]">
+            <p className="text-body-sm text-black leading-relaxed max-w-[280px]">
               One Tap. Know Every Shop Status Instantly. Real-time IoT visibility for every shop.
             </p>
           </div>
 
           {/* Platform */}
           <div>
-            <h4 className="text-caption text-neutral-500 uppercase tracking-widest mb-5">Platform</h4>
+            <h4 className="text-caption text-black uppercase tracking-widest mb-5">Platform</h4>
             <ul className="space-y-3">
               {footerLinks.platform.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-neutral-500 hover:text-black transition-colors duration-200">
+                  <Link href={link.href} className="text-body-sm text-black hover:text-black transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -55,11 +55,11 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-caption text-neutral-500 uppercase tracking-widest mb-5">Company</h4>
+            <h4 className="text-caption text-black uppercase tracking-widest mb-5">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-neutral-500 hover:text-black transition-colors duration-200">
+                  <Link href={link.href} className="text-body-sm text-black hover:text-black transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -69,11 +69,11 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-caption text-neutral-500 uppercase tracking-widest mb-5">Legal</h4>
+            <h4 className="text-caption text-black uppercase tracking-widest mb-5">Legal</h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-neutral-500 hover:text-black transition-colors duration-200">
+                  <Link href={link.href} className="text-body-sm text-black hover:text-black transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -84,14 +84,14 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-neutral-200 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-caption text-neutral-500">
+          <p className="text-caption text-black">
             &copy; {new Date().getFullYear()} HERE OPEN. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/download" className="text-caption text-neutral-500 hover:text-black transition-colors">
+            <Link href="/download" className="text-caption text-black hover:text-black transition-colors">
               Download App
             </Link>
-            <Link href="/contact" className="text-caption text-neutral-500 hover:text-black transition-colors">
+            <Link href="/contact" className="text-caption text-black hover:text-black transition-colors">
               Contact
             </Link>
           </div>

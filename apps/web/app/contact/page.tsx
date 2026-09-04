@@ -58,7 +58,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-[14px] font-medium text-black">{item.title}</p>
-                      <p className="text-[14px] text-neutral-500">{item.value}</p>
+                      <p className="text-[14px] text-black">{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -72,27 +72,27 @@ export default function ContactPage() {
               </h2>
               <form className="space-y-6">
                 <div>
-                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
+                  <label className="text-[13px] font-medium text-black mb-2 block">
                     Name
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
+                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-black focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
+                  <label className="text-[13px] font-medium text-black mb-2 block">
                     Email
                   </label>
                   <input
                     type="email"
-                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
+                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-black focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
                     placeholder="your@email.com"
                   />
                 </div>
                 <div>
-                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
+                  <label className="text-[13px] font-medium text-black mb-2 block">
                     Subject
                   </label>
                   <select className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20">
@@ -103,12 +103,12 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
+                  <label className="text-[13px] font-medium text-black mb-2 block">
                     Message
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
+                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-black focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
                     placeholder="Your message..."
                   />
                 </div>

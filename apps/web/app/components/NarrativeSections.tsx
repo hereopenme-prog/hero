@@ -58,7 +58,7 @@ export function ProblemsSection() {
                     <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <span className="text-[10px] font-bold">✕</span>
                     </div>
-                    <span className="text-body-sm text-neutral-500 leading-relaxed">{item}</span>
+                    <span className="text-body-sm text-black leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -79,7 +79,7 @@ export function ProblemsSection() {
                     <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mt-0.5 flex-shrink-0">
                       <span className="text-[10px] font-bold">✕</span>
                     </div>
-                    <span className="text-body-sm text-neutral-500 leading-relaxed">{item}</span>
+                    <span className="text-body-sm text-black leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -128,7 +128,7 @@ export function SolutionSection() {
                 </div>
                 <div>
                   <p className="text-[15px] font-bold text-green-forest">{n.label}</p>
-                  <p className="text-[12px] text-neutral-500">{n.sub}</p>
+                  <p className="text-[12px] text-black">{n.sub}</p>
                 </div>
               </div>
             ))}
@@ -149,7 +149,7 @@ export function SolutionSection() {
                 <span key={i} className={`h-1.5 rounded-full ${i < 4 ? 'bg-green-action' : 'bg-neutral-200'}`} style={{ width: i < 4 ? '24px' : '12px' }} />
               ))}
             </div>
-            <p className="text-[12px] text-neutral-500 text-center max-w-[640px] mx-auto leading-relaxed">
+            <p className="text-[12px] text-black text-center max-w-[640px] mx-auto leading-relaxed">
               One connected flow: your business truth flows from the shop, through the HERE OPEN platform and IoT infrastructure, to your customers in real time.
             </p>
           </div>
@@ -207,7 +207,7 @@ export function HowItWorksSection() {
                   <span className="text-display-sm font-extrabold text-neutral-200">{String(i + 1).padStart(2, '0')}</span>
                 </div>
                 <h3 className="text-[15px] font-bold text-green-forest mb-2">{s.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed">{s.desc}</p>
+                <p className="text-body-sm text-black leading-relaxed">{s.desc}</p>
                 {i < steps.length - 1 && (
                   <div className="hidden xl:block absolute top-1/2 -right-4 -translate-y-1/2 z-10">
                     <ArrowRight className="w-4 h-4 text-neutral-300" />
@@ -221,7 +221,7 @@ export function HowItWorksSection() {
         <Reveal className="mt-8">
           <div className="inline-flex items-start gap-2.5 bg-green-action/8 border border-green-action/15 rounded-xl px-5 py-3.5 text-left">
             <AlertTriangle className="w-4 h-4 text-green-action mt-0.5 flex-shrink-0" />
-            <p className="text-[12px] text-neutral-500 leading-relaxed">
+            <p className="text-[12px] text-black leading-relaxed">
               Platform demonstrations may use simulated IoT data. Production hardware integrations will be connected through the HERE OPEN IoT abstraction layer.
             </p>
           </div>
@@ -271,7 +271,7 @@ export function FeaturesSection() {
                   {f.icon}
                 </div>
                 <h3 className="text-[14px] font-bold text-green-forest mb-1.5 leading-snug">{f.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed">{f.desc}</p>
+                <p className="text-body-sm text-black leading-relaxed">{f.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -314,7 +314,7 @@ export function OwnerBenefitsSection() {
                   {b.icon}
                 </div>
                 <h3 className="text-[15px] font-bold text-green-forest mb-2">{b.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed">{b.desc}</p>
+                <p className="text-body-sm text-black leading-relaxed">{b.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -357,7 +357,7 @@ export function CustomerBenefitsSection() {
                   {b.icon}
                 </div>
                 <h3 className="text-[14px] font-bold text-green-forest mb-1.5 leading-snug">{b.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed">{b.desc}</p>
+                <p className="text-body-sm text-black leading-relaxed">{b.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -400,7 +400,7 @@ export function MarketSection() {
 
         <Reveal>
           <div className="max-w-3xl mx-auto mb-12">
-            <p className="text-body-lg text-neutral-500 leading-relaxed text-center">
+            <p className="text-body-lg text-black leading-relaxed text-center">
               The market opportunity lies in connecting large, established industries — retail, food, healthcare, services, hospitality, warehousing, and education — to a real-time digital awareness layer. Wherever people visit a physical location, the need for live status, safety, and direct communication exists. HERE OPEN is positioned to serve this infrastructure across every vertical, without relying on a single geography or industry.
             </p>
           </div>
@@ -466,7 +466,7 @@ export function GrowthSection() {
                     {p.status === 'current' && <span className="ml-2 bg-green-action/10 text-green-action px-2 py-0.5 rounded-full text-[10px]">Current Focus</span>}
                   </p>
                   <h3 className="text-display-sm font-bold text-green-forest mb-1.5">{p.title}</h3>
-                  <p className="text-body-sm text-neutral-500 leading-relaxed">{p.desc}</p>
+                  <p className="text-body-sm text-black leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             </Reveal>
@@ -508,7 +508,7 @@ export function IPSection() {
                   {p.icon}
                 </div>
                 <h3 className="text-[14px] font-bold text-green-forest mb-1.5 leading-snug">{p.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed">{p.desc}</p>
+                <p className="text-body-sm text-black leading-relaxed">{p.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -517,7 +517,7 @@ export function IPSection() {
         <Reveal className="mt-8">
           <div className="inline-flex items-start gap-2.5 bg-white border border-neutral-200 rounded-xl px-5 py-3.5 text-left max-w-[820px]">
             <Award className="w-4 h-4 text-green-action mt-0.5 flex-shrink-0" />
-            <p className="text-[12px] text-neutral-500 leading-relaxed">
+            <p className="text-[12px] text-black leading-relaxed">
               HERE OPEN\u2019s proprietary architecture, workflows, software systems, and IoT integration approaches may be evaluated for appropriate intellectual-property protection as the platform evolves.
             </p>
           </div>
@@ -553,12 +553,12 @@ export function WhySection() {
         <Reveal className="max-w-3xl mx-auto">
           <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
             <div className="grid grid-cols-2 divide-x divide-neutral-200 bg-neutral-50">
-              <div className="px-5 py-4 text-[12px] font-bold text-neutral-500 uppercase tracking-wider">Traditional Business</div>
+              <div className="px-5 py-4 text-[12px] font-bold text-black uppercase tracking-wider">Traditional Business</div>
               <div className="px-5 py-4 text-[12px] font-bold text-green-action uppercase tracking-wider">With HERE OPEN</div>
             </div>
             {comparisonRows.map((row, i) => (
               <div key={i} className={`grid grid-cols-2 divide-x divide-neutral-200 ${i < comparisonRows.length - 1 ? 'border-b border-neutral-200' : ''}`}>
-                <div className="px-5 py-4 text-[13px] text-neutral-500 flex items-start gap-2">
+                <div className="px-5 py-4 text-[13px] text-black flex items-start gap-2">
                   <span className="text-red-400 mt-0.5 text-[12px]">✕</span> {row.traditional}
                 </div>
                 <div className="px-5 py-4 text-[13px] text-black flex items-start gap-2">
@@ -596,7 +596,7 @@ export function VisionSection() {
             <br />
             <span className="text-green-action">For Physical Commerce</span>
           </h2>
-          <p className="text-body-lg text-neutral-500 max-w-[560px] mx-auto leading-relaxed">
+          <p className="text-body-lg text-black max-w-[560px] mx-auto leading-relaxed">
             HERE OPEN is building a connected layer where physical businesses, IoT infrastructure, and customers move on the same real-time signal — making every shop discoverable, safe, and reachable.
           </p>
         </div>
@@ -618,7 +618,7 @@ export function VisionSection() {
         </Reveal>
 
         <Reveal className="mt-10">
-          <p className="text-center text-body-md text-neutral-500 max-w-[640px] mx-auto leading-relaxed">
+          <p className="text-center text-body-md text-black max-w-[640px] mx-auto leading-relaxed">
             From a single shop to entire markets, every physical business has the right to be seen, safe, and connected — in real time, everywhere.
           </p>
         </Reveal>
@@ -641,7 +641,7 @@ export function FinalCTASection() {
             <br />
             <span className="text-green-action">Visible. Connected. Ready.</span>
           </h2>
-          <p className="text-body-lg text-neutral-500 max-w-[520px] mx-auto mb-10 leading-relaxed">
+          <p className="text-body-lg text-black max-w-[520px] mx-auto mb-10 leading-relaxed">
             Whether you own a business or love supporting local shops, HERE OPEN keeps you connected to what's open, safe, and ready.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
