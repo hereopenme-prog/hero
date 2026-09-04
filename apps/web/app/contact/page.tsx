@@ -33,7 +33,7 @@ const contactItems = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       {/* Hero */}
       <section className="section">
         <Container>
@@ -47,18 +47,18 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div>
-              <h2 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-8">
+              <h2 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-8">
                 Get in Touch
               </h2>
               <div className="space-y-6">
                 {contactItems.map((item, i) => (
                   <div key={i} className="flex items-start space-x-4">
-                    <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl text-neon flex items-center justify-center flex-shrink-0">
+                    <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl text-green-action flex items-center justify-center flex-shrink-0">
                       {item.icon}
                     </div>
                     <div>
-                      <p className="text-[14px] font-medium text-white">{item.title}</p>
-                      <p className="text-[14px] text-muted-light">{item.value}</p>
+                      <p className="text-[14px] font-medium text-black">{item.title}</p>
+                      <p className="text-[14px] text-neutral-500">{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -67,35 +67,35 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="card-static">
-              <h2 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-6">
+              <h2 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-6">
                 Send a Message
               </h2>
               <form className="space-y-6">
                 <div>
-                  <label className="text-[13px] font-medium text-muted-light mb-2 block">
+                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
                     Name
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-white placeholder:text-muted focus:outline-none focus:border-neon/30 focus:ring-1 focus:ring-neon/20"
+                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label className="text-[13px] font-medium text-muted-light mb-2 block">
+                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
                     Email
                   </label>
                   <input
                     type="email"
-                    className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-white placeholder:text-muted focus:outline-none focus:border-neon/30 focus:ring-1 focus:ring-neon/20"
+                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
                     placeholder="your@email.com"
                   />
                 </div>
                 <div>
-                  <label className="text-[13px] font-medium text-muted-light mb-2 block">
+                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
                     Subject
                   </label>
-                  <select className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-white focus:outline-none focus:border-neon/30 focus:ring-1 focus:ring-neon/20">
+                  <select className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20">
                     <option>General Inquiry</option>
                     <option>Business Partnership</option>
                     <option>Technical Support</option>
@@ -103,18 +103,18 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-[13px] font-medium text-muted-light mb-2 block">
+                  <label className="text-[13px] font-medium text-neutral-500 mb-2 block">
                     Message
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-white placeholder:text-muted focus:outline-none focus:border-neon/30 focus:ring-1 focus:ring-neon/20"
+                    className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-[14px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20"
                     placeholder="Your message..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-neon text-surface-0 py-3 rounded-xl font-bold text-[14px] hover:bg-neon-600 transition-all"
+                  className="w-full bg-green-action text-white py-3 rounded-xl font-bold text-[14px] hover:bg-green-forest transition-all"
                 >
                   Send Message
                 </button>

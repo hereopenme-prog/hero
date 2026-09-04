@@ -8,60 +8,60 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       <section className="section">
         <Container>
           <div className="max-w-content mx-auto">
-            <h1 className="font-display font-extrabold text-white text-display-lg tracking-tight">
+            <h1 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight">
               Privacy Policy
             </h1>
-            <p className="text-[13px] text-muted mb-8">Last updated: January 2024</p>
+            <p className="text-[13px] text-neutral-500 mb-8">Last updated: January 2024</p>
 
             <section className="section">
-              <h2 className="text-display-sm font-bold text-white mb-4">1. Information We Collect</h2>
-              <p className="text-body-md text-muted-light leading-relaxed">
+              <h2 className="text-display-sm font-bold text-green-forest mb-4">1. Information We Collect</h2>
+              <p className="text-body-md text-neutral-500 leading-relaxed">
                 We collect information you provide directly, such as your name, email, phone number,
                 and shop details when you register for HERE OPEN.
               </p>
             </section>
 
             <section className="section">
-              <h2 className="text-display-sm font-bold text-white mb-4">2. How We Use Your Information</h2>
-              <p className="text-body-md text-muted-light leading-relaxed">
+              <h2 className="text-display-sm font-bold text-green-forest mb-4">2. How We Use Your Information</h2>
+              <p className="text-body-md text-neutral-500 leading-relaxed">
                 We use your information to provide and improve our services, send notifications,
                 and communicate with you about your account.
               </p>
             </section>
 
             <section className="section">
-              <h2 className="text-display-sm font-bold text-white mb-4">3. Information Sharing</h2>
-              <p className="text-body-md text-muted-light leading-relaxed">
+              <h2 className="text-display-sm font-bold text-green-forest mb-4">3. Information Sharing</h2>
+              <p className="text-body-md text-neutral-500 leading-relaxed">
                 We do not sell your personal information. We may share data with service providers
                 who assist in operating our platform.
               </p>
             </section>
 
             <section className="section">
-              <h2 className="text-display-sm font-bold text-white mb-4">4. Data Security</h2>
-              <p className="text-body-md text-muted-light leading-relaxed">
+              <h2 className="text-display-sm font-bold text-green-forest mb-4">4. Data Security</h2>
+              <p className="text-body-md text-neutral-500 leading-relaxed">
                 We implement appropriate security measures to protect your personal information
                 against unauthorized access or disclosure.
               </p>
             </section>
 
             <section className="section">
-              <h2 className="text-display-sm font-bold text-white mb-4">5. Your Rights</h2>
-              <p className="text-body-md text-muted-light leading-relaxed">
+              <h2 className="text-display-sm font-bold text-green-forest mb-4">5. Your Rights</h2>
+              <p className="text-body-md text-neutral-500 leading-relaxed">
                 You can access, update, or delete your personal information through your account
                 settings or by contacting us.
               </p>
             </section>
 
             <section className="section">
-              <h2 className="text-display-sm font-bold text-white mb-4">6. Contact Us</h2>
-              <p className="text-body-md text-muted-light leading-relaxed">
+              <h2 className="text-display-sm font-bold text-green-forest mb-4">6. Contact Us</h2>
+              <p className="text-body-md text-neutral-500 leading-relaxed">
                 If you have questions about this Privacy Policy, please contact us at{' '}
-                <span className="text-neon bg-neon/10 px-1 rounded">privacy@hereopen.in</span>.
+                <span className="text-green-action bg-green-action/10 px-1 rounded">privacy@hereopen.in</span>.
               </p>
             </section>
           </div>

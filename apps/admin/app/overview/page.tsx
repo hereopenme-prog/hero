@@ -58,11 +58,11 @@ export default function OverviewPage() {
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl">
+        <div className="bg-white border border-neutral-200 rounded-2xl">
           <div className="p-6 border-b">
             <h2 className="text-lg font-semibold">Recent Events</h2>
           </div>
-          <div className="divide-y divide-white/[0.06]">
+          <div className="divide-y divide-neutral-200">
             {mockEvents.map((event, index) => (
               <div key={index} className="flex items-center gap-3 px-6 py-4">
                 <div className="flex items-center gap-3">
@@ -82,39 +82,39 @@ export default function OverviewPage() {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm truncate">{event.message}</p>
                 </div>
-                <span className="text-xs text-white/40 shrink-0">{event.time}</span>
+                <span className="text-xs text-neutral-400 shrink-0">{event.time}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-6">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-6">
           <h2 className="text-lg font-semibold mb-6">Quick Actions</h2>
           <div className="grid grid-cols-2 gap-4">
             <a
               href="/businesses"
-              className="bg-neon/[0.06] text-neon border border-neon/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-neon/[0.12] transition-colors"
+              className="bg-green-action/[0.06] text-green-action border border-green-action/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-green-action/10 transition-colors"
             >
               <Building2 className="mx-auto mb-2 h-5 w-5" />
               Manage Businesses
             </a>
             <a
               href="/devices"
-              className="bg-neon/[0.06] text-neon border border-neon/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-neon/[0.12] transition-colors"
+              className="bg-green-action/[0.06] text-green-action border border-green-action/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-green-action/10 transition-colors"
             >
               <Cpu className="mx-auto mb-2 h-5 w-5" />
               View Devices
             </a>
             <a
               href="/security"
-              className="bg-neon/[0.06] text-neon border border-neon/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-neon/[0.12] transition-colors"
+              className="bg-green-action/[0.06] text-green-action border border-green-action/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-green-action/10 transition-colors"
             >
               <Shield className="mx-auto mb-2 h-5 w-5" />
               Security Center
             </a>
             <a
               href="/settings"
-              className="bg-neon/[0.06] text-neon border border-neon/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-neon/[0.12] transition-colors"
+              className="bg-green-action/[0.06] text-green-action border border-green-action/15 rounded-xl p-4 text-center text-sm font-medium hover:bg-green-action/10 transition-colors"
             >
               <TrendingUp className="mx-auto mb-2 h-5 w-5" />
               Settings

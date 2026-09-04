@@ -10,39 +10,39 @@ export const metadata: Metadata = {
 
 export default function DownloadPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       {/* Hero */}
       <section className="section">
         <Container>
           <div className="max-w-3xl text-center mx-auto">
-            <div className="w-20 h-20 bg-neon rounded-2xl flex items-center justify-center shadow-glow mx-auto mb-8">
+            <div className="w-20 h-20 bg-green-action rounded-2xl flex items-center justify-center shadow-green mx-auto mb-8">
               <Smartphone className="w-10 h-10 text-bg" />
             </div>
-            <h1 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-6">
+            <h1 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-6">
               Download HERE OPEN
             </h1>
-            <p className="text-body-lg text-muted-light mb-8">
+            <p className="text-body-lg text-neutral-500 mb-8">
               Available on iOS and Android. Start discovering local shops today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#"
-                className="card-static px-8 py-4 font-semibold hover:bg-card/80 transition-colors inline-flex items-center justify-center"
+                className="card-static px-8 py-4 font-semibold hover:bg-neutral-100 transition-colors inline-flex items-center justify-center"
               >
                 <span className="mr-3 text-2xl">📱</span>
                 <div className="text-left">
-                  <p className="text-xs text-muted-light">Download on the</p>
-                  <p className="text-lg text-white">App Store</p>
+                  <p className="text-xs text-neutral-500">Download on the</p>
+                  <p className="text-lg text-black">App Store</p>
                 </div>
               </a>
               <a
                 href="#"
-                className="card-static px-8 py-4 font-semibold hover:bg-card/80 transition-colors inline-flex items-center justify-center"
+                className="card-static px-8 py-4 font-semibold hover:bg-neutral-100 transition-colors inline-flex items-center justify-center"
               >
                 <span className="mr-3 text-2xl">▶️</span>
                 <div className="text-left">
-                  <p className="text-xs text-muted-light">Get it on</p>
-                  <p className="text-lg text-white">Google Play</p>
+                  <p className="text-xs text-neutral-500">Get it on</p>
+                  <p className="text-lg text-black">Google Play</p>
                 </div>
               </a>
             </div>
@@ -68,8 +68,8 @@ export default function DownloadPage() {
               'Shop announcements',
             ].map((feature, i) => (
               <div key={i} className="flex items-center space-x-4">
-                <CheckCircle className="w-6 h-6 text-neon flex-shrink-0" />
-                <span className="text-body-lg text-muted-light">{feature}</span>
+                <CheckCircle className="w-6 h-6 text-green-action flex-shrink-0" />
+                <span className="text-body-lg text-neutral-500">{feature}</span>
               </div>
             ))}
           </div>
@@ -86,7 +86,7 @@ export default function DownloadPage() {
               description="Scan the QR code with your phone camera"
             />
             <div className="w-48 h-48 card-static rounded-2xl mx-auto flex items-center justify-center">
-              <p className="text-muted text-sm">QR Code</p>
+              <p className="text-neutral-500 text-sm">QR Code</p>
             </div>
           </div>
         </Container>

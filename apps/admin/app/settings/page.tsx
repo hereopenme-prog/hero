@@ -36,11 +36,11 @@ export default function SettingsPage() {
   const [dateFormat, setDateFormat] = useState('DD/MM/YYYY')
 
   const inputClasses =
-    'w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-[13px] text-white placeholder:text-muted focus:outline-none focus:border-neon/30 focus:ring-1 focus:ring-neon/20'
-  const labelClasses = 'text-[13px] font-medium text-muted-light mb-2 block'
-  const sectionHeadingClasses = 'text-[15px] font-bold text-white mb-4'
+    'w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-2.5 text-[13px] text-black placeholder:text-neutral-500 focus:outline-none focus:border-green-action/30 focus:ring-1 focus:ring-green-action/20'
+  const labelClasses = 'text-[13px] font-medium text-neutral-500 mb-2 block'
+  const sectionHeadingClasses = 'text-[15px] font-bold text-black mb-4'
   const saveButtonClasses =
-    'bg-neon text-surface-0 px-4 py-2 rounded-lg text-[13px] font-bold hover:bg-neon-600 transition-all'
+    'bg-green-action text-white px-4 py-2 rounded-lg text-[13px] font-bold hover:bg-green-forest transition-all'
 
   return (
     <AdminLayout>
@@ -51,9 +51,9 @@ export default function SettingsPage() {
 
       <div className="space-y-8">
         {/* ACCOUNT */}
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-6">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-4">
-            <User className="w-4 h-4 text-neon" />
+            <User className="w-4 h-4 text-green-action" />
             <h2 className={sectionHeadingClasses}>Account</h2>
           </div>
 
@@ -93,9 +93,9 @@ export default function SettingsPage() {
         </div>
 
         {/* SECURITY */}
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-6">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Shield className="w-4 h-4 text-neon" />
+            <Shield className="w-4 h-4 text-green-action" />
             <h2 className={sectionHeadingClasses}>Security</h2>
           </div>
 
@@ -113,7 +113,7 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black"
                 >
                   {showCurrentPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -136,7 +136,7 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={() => setShowNewPassword(!showNewPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black"
                 >
                   {showNewPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -159,7 +159,7 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black"
                 >
                   {showConfirmPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -173,10 +173,10 @@ export default function SettingsPage() {
 
             <div className="flex items-center justify-between pt-2">
               <div>
-                <p className="text-[13px] font-medium text-white">
+                <p className="text-[13px] font-medium text-black">
                   Two-Factor Authentication
                 </p>
-                <p className="text-[12px] text-muted mt-0.5">
+                <p className="text-[12px] text-neutral-500 mt-0.5">
                   Add an extra layer of security to your account
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={() => setTwoFactorEnabled(!twoFactorEnabled)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  twoFactorEnabled ? 'bg-neon' : 'bg-white/[0.1]'
+                  twoFactorEnabled ? 'bg-green-action' : 'bg-neutral-100'
                 }`}
               >
                 <span
@@ -198,9 +198,9 @@ export default function SettingsPage() {
         </div>
 
         {/* NOTIFICATIONS */}
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-6">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Bell className="w-4 h-4 text-neon" />
+            <Bell className="w-4 h-4 text-green-action" />
             <h2 className={sectionHeadingClasses}>Notifications</h2>
           </div>
 
@@ -233,16 +233,16 @@ export default function SettingsPage() {
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between">
                 <div>
-                  <p className="text-[13px] font-medium text-white">
+                  <p className="text-[13px] font-medium text-black">
                     {item.label}
                   </p>
-                  <p className="text-[12px] text-muted mt-0.5">{item.desc}</p>
+                  <p className="text-[12px] text-neutral-500 mt-0.5">{item.desc}</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => item.onChange(!item.value)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    item.value ? 'bg-neon' : 'bg-white/[0.1]'
+                    item.value ? 'bg-green-action' : 'bg-neutral-100'
                   }`}
                 >
                   <span
@@ -262,9 +262,9 @@ export default function SettingsPage() {
         </div>
 
         {/* SYSTEM */}
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-6">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Settings className="w-4 h-4 text-neon" />
+            <Settings className="w-4 h-4 text-green-action" />
             <h2 className={sectionHeadingClasses}>System</h2>
           </div>
 
@@ -313,7 +313,7 @@ export default function SettingsPage() {
         </div>
 
         {/* DANGER ZONE */}
-        <div className="bg-surface-3 border border-red-500/20 rounded-2xl p-6">
+        <div className="bg-white border border-red-500/20 rounded-2xl p-6">
           <h2 className="text-[15px] font-bold text-red-400 mb-4">
             Danger Zone
           </h2>
@@ -322,7 +322,7 @@ export default function SettingsPage() {
             <button className="w-full bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-2.5 rounded-lg text-[13px] font-bold hover:bg-red-500/20 transition-all">
               Deactivate Account
             </button>
-            <button className="w-full bg-red-500 text-white px-4 py-2.5 rounded-lg text-[13px] font-bold hover:bg-red-600 transition-all">
+            <button className="w-full bg-red-500 text-black px-4 py-2.5 rounded-lg text-[13px] font-bold hover:bg-red-600 transition-all">
               Delete Account
             </button>
           </div>

@@ -69,7 +69,7 @@ const cloudFeatures = [
 
 export default function HowItWorksPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       <section className="section">
         <Container>
           <SectionHeader
@@ -93,12 +93,12 @@ export default function HowItWorksPage() {
             <div className="flex items-center justify-center flex-wrap gap-4">
               {flowSteps.map((step, i) => (
                 <div key={i} className="flex items-center">
-                  <div className="bg-neon/8 border border-neon/15 text-neon px-5 py-3 rounded-2xl flex items-center space-x-3">
+                  <div className="bg-green-action/8 border border-green-action/15 text-green-action px-5 py-3 rounded-2xl flex items-center space-x-3">
                     <step.icon className="w-6 h-6" />
                     <span className="font-medium">{step.label}</span>
                   </div>
                   {i < 3 && (
-                    <div className="w-8 h-0.5 bg-border mx-2 hidden sm:block" />
+                    <div className="w-8 h-0.5 bg-neutral-300 mx-2 hidden sm:block" />
                   )}
                 </div>
               ))}
@@ -107,18 +107,18 @@ export default function HowItWorksPage() {
 
           <div className="space-y-16">
             <div>
-              <h3 className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-white mb-8">
+              <h3 className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-green-forest mb-8">
                 For Shop Owners
               </h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="card-static p-8 border-green-500/20">
-                  <h4 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <h4 className="text-xl font-bold text-green-forest mb-6 flex items-center">
                     <span className="w-8 h-8 bg-green-500/10 text-green-400 rounded-full flex items-center justify-center text-sm mr-3 border border-green-500/20">
                       1
                     </span>
                     Opening Your Shop
                   </h4>
-                  <ol className="space-y-4 text-muted-light">
+                  <ol className="space-y-4 text-neutral-500">
                     {openingSteps.map((step, i) => (
                       <li key={i} className="flex items-start">
                         <CheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -129,13 +129,13 @@ export default function HowItWorksPage() {
                 </div>
 
                 <div className="card-static p-8 border-red-500/20">
-                  <h4 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <h4 className="text-xl font-bold text-green-forest mb-6 flex items-center">
                     <span className="w-8 h-8 bg-red-500/10 text-red-400 rounded-full flex items-center justify-center text-sm mr-3 border border-red-500/20">
                       2
                     </span>
                     Closing Your Shop
                   </h4>
-                  <ol className="space-y-4 text-muted-light">
+                  <ol className="space-y-4 text-neutral-500">
                     {closingSteps.map((step, i) => (
                       <li key={i} className="flex items-start">
                         <CheckCircle className="w-5 h-5 text-red-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -148,34 +148,34 @@ export default function HowItWorksPage() {
             </div>
 
             <div>
-              <h3 className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-white mb-8">
+              <h3 className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-green-forest mb-8">
                 24/7 Security Monitoring
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {securityFeatures.map((feature, i) => (
                   <div key={i} className="card p-6">
-                    <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl flex items-center justify-center text-neon mb-4">
+                    <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action mb-4">
                       <feature.icon className="w-6 h-6" />
                     </div>
-                    <h4 className="font-bold text-white mb-2">{feature.title}</h4>
-                    <p className="text-muted-light text-sm">{feature.desc}</p>
+                    <h4 className="font-bold text-green-forest mb-2">{feature.title}</h4>
+                    <p className="text-neutral-500 text-sm">{feature.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-white mb-8">
+              <h3 className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-green-forest mb-8">
                 The Technology
               </h3>
               <div className="card-static p-8 grid-bg">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <h4 className="font-bold text-xl mb-4">IoT Device</h4>
-                    <ul className="space-y-3 text-muted-light">
+                    <ul className="space-y-3 text-neutral-500">
                       {iotFeatures.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="w-2 h-2 bg-neon rounded-full mr-3 mt-2" />
+                          <span className="w-2 h-2 bg-green-action rounded-full mr-3 mt-2" />
                           {feature}
                         </li>
                       ))}
@@ -183,10 +183,10 @@ export default function HowItWorksPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-xl mb-4">Cloud Platform</h4>
-                    <ul className="space-y-3 text-muted-light">
+                    <ul className="space-y-3 text-neutral-500">
                       {cloudFeatures.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="w-2 h-2 bg-neon rounded-full mr-3 mt-2" />
+                          <span className="w-2 h-2 bg-green-action rounded-full mr-3 mt-2" />
                           {feature}
                         </li>
                       ))}

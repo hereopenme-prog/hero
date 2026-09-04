@@ -49,7 +49,7 @@ export default function NotificationsPage() {
         action={
           <button
             onClick={markAllAsRead}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.05] border border-white/[0.08] text-[13px] font-medium text-muted-light hover:text-white hover:border-white/[0.15] transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-neutral-100 border border-neutral-200 text-[13px] font-medium text-neutral-500 hover:text-black hover:border-green-action/30 transition-all"
           >
             <CheckCheck className="w-4 h-4" />
             Mark all as read
@@ -72,8 +72,8 @@ export default function NotificationsPage() {
             return (
               <div
                 key={notification.id}
-                className={`flex items-start gap-4 bg-surface-3 border border-white/[0.06] rounded-xl p-4 transition-all ${
-                  !notification.read ? 'bg-white/[0.03]' : ''
+                className={`flex items-start gap-4 bg-white border border-neutral-200 rounded-xl p-4 transition-all ${
+                  !notification.read ? 'bg-neutral-100' : ''
                 }`}
               >
                 <div className={`mt-0.5 ${config.color}`}>
@@ -84,24 +84,24 @@ export default function NotificationsPage() {
                   <div className="flex items-center gap-2">
                     <h4
                       className={`text-[14px] ${
-                        !notification.read ? 'font-semibold text-white' : 'font-medium text-muted-light'
+                        !notification.read ? 'font-semibold text-black' : 'font-medium text-neutral-500'
                       }`}
                     >
                       {notification.title}
                     </h4>
                     {!notification.read && (
-                      <span className="w-2 h-2 bg-neon rounded-full flex-shrink-0" />
+                      <span className="w-2 h-2 bg-green-action rounded-full flex-shrink-0" />
                     )}
                   </div>
-                  <p className="text-[13px] text-muted mt-0.5">{notification.description}</p>
-                  <p className="text-[12px] text-muted/60 mt-1">{notification.time}</p>
+                  <p className="text-[13px] text-neutral-500 mt-0.5">{notification.description}</p>
+                  <p className="text-[12px] text-neutral-500/60 mt-1">{notification.time}</p>
                 </div>
 
                 <div className="flex items-center gap-1 flex-shrink-0">
                   {!notification.read && (
                     <button
                       onClick={() => markAsRead(notification.id)}
-                      className="p-2 rounded-lg hover:bg-white/[0.05] text-muted hover:text-white transition-all"
+                      className="p-2 rounded-lg hover:bg-green-light text-neutral-500 hover:text-black transition-all"
                       title="Mark as read"
                     >
                       <Eye className="w-4 h-4" />
@@ -109,7 +109,7 @@ export default function NotificationsPage() {
                   )}
                   <button
                     onClick={() => deleteNotification(notification.id)}
-                    className="p-2 rounded-lg hover:bg-white/[0.05] text-muted hover:text-red-400 transition-all"
+                    className="p-2 rounded-lg hover:bg-green-light text-neutral-500 hover:text-red-400 transition-all"
                     title="Delete"
                   >
                     <Trash2 className="w-4 h-4" />

@@ -22,17 +22,17 @@ export function SectionHeader({
           {eyebrow}
         </div>
       )}
-      <h2 className="font-display font-extrabold tracking-tight text-white text-display-lg">
+      <h2 className="font-display font-extrabold tracking-tight text-green-forest text-display-lg">
         {title}
         {titleAccent && (
           <>
             <br />
-            <span className="text-gradient-neon">{titleAccent}</span>
+            <span className="text-green-action">{titleAccent}</span>
           </>
         )}
       </h2>
       {description && (
-        <p className="mt-5 text-body-lg text-muted-light max-w-content leading-relaxed">
+        <p className="mt-5 text-body-lg text-neutral-500 max-w-content leading-relaxed">
           {description}
         </p>
       )}

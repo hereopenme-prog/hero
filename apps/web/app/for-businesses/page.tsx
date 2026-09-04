@@ -77,23 +77,23 @@ const plans = [
 
 export default function ForBusinessesPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       {/* Hero */}
       <section className="section relative">
         <Container>
           <div className="max-w-3xl">
             <div className="eyebrow mb-6">For Businesses</div>
-            <h1 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-6">
+            <h1 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-6">
               Grow Your Business with{' '}
-              <span className="text-gradient-neon">HERE OPEN</span>
+              <span className="text-green-action">HERE OPEN</span>
             </h1>
-            <p className="text-body-lg text-muted-light mb-8">
+            <p className="text-body-lg text-neutral-500 mb-8">
               Connect with customers, enhance security, and gain insights with our
               IoT-powered platform designed for Indian businesses.
             </p>
             <Link
               href="/download"
-              className="inline-flex items-center bg-neon text-surface-0 px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center bg-green-action text-white px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
             >
               Start Free Trial
               <ArrowRight className="ml-2" size={20} />
@@ -113,13 +113,13 @@ export default function ForBusinessesPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, i) => (
               <div key={i} className="card group">
-                <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl flex items-center justify-center text-neon mb-5">
+                <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action mb-5">
                   <feature.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-display font-extrabold text-white text-xl tracking-tight mb-3">
+                <h3 className="font-display font-extrabold text-green-forest text-xl tracking-tight mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-body-lg text-muted-light">{feature.desc}</p>
+                <p className="text-body-lg text-neutral-500">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -142,37 +142,37 @@ export default function ForBusinessesPage() {
               <ul className="space-y-4">
                 {dashboardFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-neon mr-3 mt-0.5 shrink-0" />
-                    <span className="text-body-lg text-muted-light">{feature}</span>
+                    <CheckCircle className="w-5 h-5 text-green-action mr-3 mt-0.5 shrink-0" />
+                    <span className="text-body-lg text-neutral-500">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="card-static rounded-2xl p-8 glow-green-subtle">
-              <div className="bg-white/[0.03] rounded-2xl p-6">
+            <div className="card-static rounded-2xl p-8 shadow-green">
+              <div className="bg-neutral-100 rounded-2xl p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-semibold text-white">Shop Dashboard</span>
-                  <span className="text-neon text-sm font-medium">Live</span>
+                  <span className="font-semibold text-black">Shop Dashboard</span>
+                  <span className="text-green-action text-sm font-medium">Live</span>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-neon/5 border border-neon/20 rounded-xl p-4">
-                    <p className="text-xs text-muted">Status</p>
-                    <p className="text-xl font-bold text-neon">OPEN</p>
+                  <div className="bg-green-action/10 border border-green-action/20 rounded-xl p-4">
+                    <p className="text-xs text-neutral-500">Status</p>
+                    <p className="text-xl font-bold text-green-action">OPEN</p>
                   </div>
-                  <div className="bg-white/[0.03] border border-border rounded-xl p-4">
-                    <p className="text-xs text-muted">Views Today</p>
-                    <p className="text-xl font-bold text-white">127</p>
+                  <div className="bg-neutral-100 border border-neutral-300 rounded-xl p-4">
+                    <p className="text-xs text-neutral-500">Views Today</p>
+                    <p className="text-xl font-bold text-black">127</p>
                   </div>
-                  <div className="bg-white/[0.03] border border-border rounded-xl p-4">
-                    <p className="text-xs text-muted">Followers</p>
-                    <p className="text-xl font-bold text-white">1,234</p>
+                  <div className="bg-neutral-100 border border-neutral-300 rounded-xl p-4">
+                    <p className="text-xs text-neutral-500">Followers</p>
+                    <p className="text-xl font-bold text-black">1,234</p>
                   </div>
-                  <div className="bg-neon/5 border border-neon/20 rounded-xl p-4">
-                    <p className="text-xs text-muted">Active Offers</p>
-                    <p className="text-xl font-bold text-white">3</p>
+                  <div className="bg-green-action/10 border border-green-action/20 rounded-xl p-4">
+                    <p className="text-xs text-neutral-500">Active Offers</p>
+                    <p className="text-xl font-bold text-black">3</p>
                   </div>
                 </div>
-                <button className="w-full bg-neon text-surface-0 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity">
+                <button className="w-full bg-green-action text-white py-3 rounded-xl font-bold hover:opacity-90 transition-opacity">
                   Manage Shop
                 </button>
               </div>
@@ -195,32 +195,32 @@ export default function ForBusinessesPage() {
                 key={i}
                 className={`rounded-2xl p-8 ${
                   plan.popular
-                    ? 'bg-neon/5 border border-neon/20 glow-green-subtle relative'
+                    ? 'bg-green-action/10 border border-green-action/20 shadow-green relative'
                     : 'card'
                 }`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-neon text-surface-0 text-xs font-bold px-4 py-1 rounded-full">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-action text-white text-xs font-bold px-4 py-1 rounded-full">
                     Popular
                   </span>
                 )}
                 <h3
                   className={`font-display font-extrabold text-xl tracking-tight ${
-                    plan.popular ? 'text-neon' : 'text-white'
+                    plan.popular ? 'text-green-action' : 'text-black'
                   }`}
                 >
                   {plan.name}
                 </h3>
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-extrabold text-white tracking-tight">
+                  <span className="text-4xl font-extrabold text-black tracking-tight">
                     {plan.price}
                   </span>
-                  <span className="text-muted">{plan.period}</span>
+                  <span className="text-neutral-500">{plan.period}</span>
                 </div>
                 <ul className="mt-8 space-y-3">
                   {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-center text-body-lg text-muted-light">
-                      <CheckCircle className="w-5 h-5 text-neon mr-3 shrink-0" />
+                    <li key={j} className="flex items-center text-body-lg text-neutral-500">
+                      <CheckCircle className="w-5 h-5 text-green-action mr-3 shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -229,8 +229,8 @@ export default function ForBusinessesPage() {
                   href="/download"
                   className={`block mt-8 py-3 rounded-lg font-bold text-center transition-opacity hover:opacity-90 ${
                     plan.popular
-                      ? 'bg-neon text-surface-0'
-                      : 'border border-border text-white hover:bg-white/5'
+                      ? 'bg-green-action text-white'
+                      : 'border border-neutral-300 text-black hover:bg-green-light'
                   }`}
                 >
                   Get Started
@@ -252,14 +252,14 @@ export default function ForBusinessesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/download"
-              className="inline-flex items-center justify-center bg-neon text-surface-0 px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center bg-green-action text-white px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
             >
               Start Free Trial
               <ArrowRight className="ml-2" size={20} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center border border-border text-white px-7 py-3.5 rounded-lg font-bold hover:bg-white/5 transition-colors"
+              className="inline-flex items-center justify-center border border-neutral-300 text-black px-7 py-3.5 rounded-lg font-bold hover:bg-green-light transition-colors"
             >
               Contact Sales
             </Link>

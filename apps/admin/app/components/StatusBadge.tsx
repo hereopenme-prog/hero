@@ -5,7 +5,7 @@ const variants: Record<BadgeVariant, string> = {
   warning: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
   danger: 'bg-red-500/10 text-red-400 border-red-500/20',
   info: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  default: 'bg-white/5 text-muted-light border-white/[0.08]',
+  default: 'bg-neutral-100 text-neutral-500 border-neutral-200',
 };
 
 interface StatusBadgeProps {

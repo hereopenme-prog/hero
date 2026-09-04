@@ -24,11 +24,11 @@ export function DataTable<T = Record<string, unknown>>({ columns, data, onRowCli
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-white/[0.06]">
+          <tr className="border-b border-neutral-200">
             {columns.map((col, i) => (
               <th
                 key={col.key || i}
-                className={`text-left py-3 px-4 text-[11px] font-semibold text-muted uppercase tracking-wider ${col.className || ''}`}
+                className={`text-left py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider ${col.className || ''}`}
               >
                 {col.label || col.header}
               </th>
@@ -40,7 +40,7 @@ export function DataTable<T = Record<string, unknown>>({ columns, data, onRowCli
             <tr
               key={i}
               onClick={() => onRowClick?.(item)}
-              className={`border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
+              className={`border-b border-neutral-200 hover:bg-green-light transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
             >
               {columns.map((col, j) => {
                 const renderFn = col.render || col.accessor;

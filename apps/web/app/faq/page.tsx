@@ -52,7 +52,7 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       <section className="section">
         <Container>
           <SectionHeader
@@ -67,8 +67,8 @@ export default function FAQPage() {
           <div className="max-w-3xl mx-auto space-y-6">
             {faqs.map((faq, i) => (
               <div key={i} className="card-static p-6">
-                <h3 className="text-[16px] font-bold text-white mb-3">{faq.question}</h3>
-                <p className="text-body-sm text-muted-light">{faq.answer}</p>
+                <h3 className="text-[16px] font-bold text-green-forest mb-3">{faq.question}</h3>
+                <p className="text-body-sm text-neutral-500">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -78,15 +78,15 @@ export default function FAQPage() {
       <section className="section">
         <Container>
           <div className="card-static p-12 text-center">
-            <h2 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-4">
+            <h2 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-4">
               Still have questions?
             </h2>
-            <p className="text-body-lg text-muted-light mb-8 max-w-xl mx-auto">
+            <p className="text-body-lg text-neutral-500 mb-8 max-w-xl mx-auto">
               We&apos;re here to help. Reach out to our team and we&apos;ll get back to you as soon as possible.
             </p>
             <a
               href="/contact"
-              className="bg-neon text-surface-0 px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity inline-block"
+              className="bg-green-action text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity inline-block"
             >
               Contact Us
             </a>

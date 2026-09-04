@@ -43,22 +43,22 @@ const benefits = [
 
 export default function ForCustomersPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       {/* Hero */}
       <section className="section relative">
         <Container>
           <div className="max-w-3xl">
             <div className="eyebrow mb-6">For Customers</div>
-            <h1 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-6">
+            <h1 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-6">
               Never Waste a Trip Again
             </h1>
-            <p className="text-body-lg text-muted-light mb-8">
+            <p className="text-body-lg text-neutral-500 mb-8">
               Know if your favorite shop is open before you leave home.
               Get offers, discover new shops, and stay connected with local businesses.
             </p>
             <Link
               href="/download"
-              className="inline-flex items-center bg-neon text-surface-0 px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center bg-green-action text-white px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
             >
               Download App
               <ArrowRight className="ml-2" size={20} />
@@ -78,13 +78,13 @@ export default function ForCustomersPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, i) => (
               <div key={i} className="card group">
-                <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl flex items-center justify-center text-neon mb-5">
+                <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action mb-5">
                   <feature.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-display font-extrabold text-white text-xl tracking-tight mb-3">
+                <h3 className="font-display font-extrabold text-green-forest text-xl tracking-tight mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-body-lg text-muted-light">{feature.desc}</p>
+                <p className="text-body-lg text-neutral-500">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -107,31 +107,31 @@ export default function ForCustomersPage() {
               <ul className="space-y-4">
                 {benefits.map((benefit, i) => (
                   <li key={i} className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-neon mr-3 mt-0.5 shrink-0" />
-                    <span className="text-body-lg text-muted-light">{benefit}</span>
+                    <CheckCircle className="w-5 h-5 text-green-action mr-3 mt-0.5 shrink-0" />
+                    <span className="text-body-lg text-neutral-500">{benefit}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="card-static rounded-2xl p-8">
-              <div className="bg-white/[0.03] rounded-2xl p-6">
+              <div className="bg-neutral-100 rounded-2xl p-6">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-neon/10 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-green-action/10 rounded-full flex items-center justify-center">
                     <span className="text-2xl">🏪</span>
                   </div>
                   <div>
-                    <h4 className="font-extrabold tracking-tight text-white">Sharma General Store</h4>
-                    <p className="text-sm text-neon flex items-center">
-                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2 glow-green"></span>
+                    <h4 className="font-extrabold tracking-tight text-green-forest">Sharma General Store</h4>
+                    <p className="text-sm text-green-action flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2 shadow-green"></span>
                       OPEN
                     </p>
                   </div>
                 </div>
-                <p className="text-sm text-muted-light mb-4">0.5 km away • Grocery</p>
-                <div className="bg-neon/5 border border-neon/20 rounded-xl p-4">
-                  <p className="text-xs text-neon font-medium mb-1">New Offer</p>
-                  <p className="text-sm font-medium text-white">10% off on all groceries</p>
-                  <p className="text-xs text-muted-light mt-1">Expires in 2 days</p>
+                <p className="text-sm text-neutral-500 mb-4">0.5 km away • Grocery</p>
+                <div className="bg-green-action/10 border border-green-action/20 rounded-xl p-4">
+                  <p className="text-xs text-green-action font-medium mb-1">New Offer</p>
+                  <p className="text-sm font-medium text-black">10% off on all groceries</p>
+                  <p className="text-xs text-neutral-500 mt-1">Expires in 2 days</p>
                 </div>
               </div>
             </div>
@@ -150,14 +150,14 @@ export default function ForCustomersPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#"
-              className="card-static px-8 py-4 rounded-lg font-bold text-white hover:bg-white/5 transition-colors inline-flex items-center justify-center"
+              className="card-static px-8 py-4 rounded-lg font-bold text-black hover:bg-green-light transition-colors inline-flex items-center justify-center"
             >
               <span className="mr-3">📱</span>
               App Store
             </Link>
             <Link
               href="#"
-              className="card-static px-8 py-4 rounded-lg font-bold text-white hover:bg-white/5 transition-colors inline-flex items-center justify-center"
+              className="card-static px-8 py-4 rounded-lg font-bold text-black hover:bg-green-light transition-colors inline-flex items-center justify-center"
             >
               <span className="mr-3">▶️</span>
               Google Play

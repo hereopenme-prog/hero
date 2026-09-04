@@ -41,8 +41,8 @@ export default function DevicesPage() {
       label: 'Device Name',
       render: (row: Device) => (
         <div>
-          <p className="font-medium text-white">{row.name}</p>
-          <p className="text-[11px] text-muted">{row.type}</p>
+          <p className="font-medium text-black">{row.name}</p>
+          <p className="text-[11px] text-neutral-500">{row.type}</p>
         </div>
       ),
     },
@@ -61,7 +61,7 @@ export default function DevicesPage() {
       label: 'Temperature',
       render: (row: Device) => (
         <div className="flex items-center gap-1.5">
-          <Thermometer className="w-3.5 h-3.5 text-muted" />
+          <Thermometer className="w-3.5 h-3.5 text-neutral-500" />
           <span>{row.temperature}</span>
         </div>
       ),
@@ -87,7 +87,7 @@ export default function DevicesPage() {
       render: (row: Device) => (
         <Link
           href={`/devices/${row.id}`}
-          className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[12px] font-medium text-neon bg-neon/10 border border-neon/20 rounded-lg hover:bg-neon/20 transition-colors"
+          className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[12px] font-medium text-green-action bg-green-action/10 border border-green-action/20 rounded-lg hover:bg-green-action/20 transition-colors"
         >
           <Eye className="w-3.5 h-3.5" />
           View
@@ -114,12 +114,12 @@ export default function DevicesPage() {
       </div>
 
       {filteredDevices.length > 0 ? (
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-1">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-1">
           <DataTable columns={columns} data={filteredDevices} />
         </div>
       ) : (
         <EmptyState
-          icon={<Cpu className="w-12 h-12 text-muted" />}
+          icon={<Cpu className="w-12 h-12 text-neutral-500" />}
           title="No devices found"
           description="Try adjusting your search or filter criteria."
         />

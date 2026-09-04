@@ -15,8 +15,8 @@ export function FilterBar({ filters, active, onChange }: FilterBarProps) {
           onClick={() => onChange(f)}
           className={`px-3.5 py-1.5 rounded-lg text-[12px] font-medium transition-all ${
             active === f
-              ? 'bg-neon/10 text-neon border border-neon/20'
-              : 'bg-white/[0.03] text-muted-light border border-white/[0.06] hover:border-white/[0.12] hover:text-white'
+              ? 'bg-green-action/10 text-green-action border border-green-action/20'
+              : 'bg-neutral-100 text-neutral-500 border border-neutral-200 hover:border-green-action/30 hover:text-black'
           }`}
         >
           {f}

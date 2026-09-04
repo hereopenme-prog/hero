@@ -23,29 +23,29 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-surface-1">
+    <footer className="border-t border-neutral-200 bg-neutral-50">
       <div className="container-site py-16 lg:py-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 bg-neon rounded-lg flex items-center justify-center">
-                <span className="text-surface-0 font-bold text-sm">H</span>
+              <div className="w-8 h-8 bg-green-action rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">H</span>
               </div>
-              <span className="font-bold text-sm tracking-tight text-white">HERE OPEN</span>
+              <span className="font-bold text-sm tracking-tight text-black">HERE OPEN</span>
             </Link>
-            <p className="text-body-sm text-muted leading-relaxed max-w-[280px]">
+            <p className="text-body-sm text-neutral-500 leading-relaxed max-w-[280px]">
               One Tap. Know Every Shop Status Instantly. Real-time IoT visibility for every shop.
             </p>
           </div>
 
           {/* Platform */}
           <div>
-            <h4 className="text-caption text-muted-light uppercase tracking-widest mb-5">Platform</h4>
+            <h4 className="text-caption text-neutral-500 uppercase tracking-widest mb-5">Platform</h4>
             <ul className="space-y-3">
               {footerLinks.platform.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-muted hover:text-white transition-colors duration-200">
+                  <Link href={link.href} className="text-body-sm text-neutral-500 hover:text-black transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -55,11 +55,11 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-caption text-muted-light uppercase tracking-widest mb-5">Company</h4>
+            <h4 className="text-caption text-neutral-500 uppercase tracking-widest mb-5">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-muted hover:text-white transition-colors duration-200">
+                  <Link href={link.href} className="text-body-sm text-neutral-500 hover:text-black transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -69,11 +69,11 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-caption text-muted-light uppercase tracking-widest mb-5">Legal</h4>
+            <h4 className="text-caption text-neutral-500 uppercase tracking-widest mb-5">Legal</h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-muted hover:text-white transition-colors duration-200">
+                  <Link href={link.href} className="text-body-sm text-neutral-500 hover:text-black transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -83,15 +83,15 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-caption text-muted">
+        <div className="mt-16 pt-8 border-t border-neutral-200 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-caption text-neutral-500">
             &copy; {new Date().getFullYear()} HERE OPEN. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/download" className="text-caption text-muted hover:text-white transition-colors">
+            <Link href="/download" className="text-caption text-neutral-500 hover:text-black transition-colors">
               Download App
             </Link>
-            <Link href="/contact" className="text-caption text-muted hover:text-white transition-colors">
+            <Link href="/contact" className="text-caption text-neutral-500 hover:text-black transition-colors">
               Contact
             </Link>
           </div>

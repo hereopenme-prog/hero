@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TechnologyPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       {/* Hero */}
       <section className="section">
         <Container>
@@ -39,18 +39,18 @@ export default function TechnologyPage() {
                 { icon: Smartphone, title: 'Clients', desc: 'Web dashboard, mobile apps, admin panel' },
               ].map((layer) => (
                 <div key={layer.title} className="card text-center">
-                  <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl text-neon flex items-center justify-center mx-auto mb-4">
+                  <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl text-green-action flex items-center justify-center mx-auto mb-4">
                     <layer.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-display font-extrabold text-white mb-2">{layer.title}</h3>
-                  <p className="text-body-lg text-muted-light">{layer.desc}</p>
+                  <h3 className="font-display font-extrabold text-green-forest mb-2">{layer.title}</h3>
+                  <p className="text-body-lg text-neutral-500">{layer.desc}</p>
                 </div>
               ))}
             </div>
             <div className="mt-8 flex items-center justify-center">
-              <div className="bg-neon/5 border border-neon/15 rounded-xl px-6 py-3">
-                <p className="text-body-lg text-muted-light">
-                  IoT Device <span className="text-neon">&rarr;</span> MQTT <span className="text-neon">&rarr;</span> Event Processor <span className="text-neon">&rarr;</span> PostgreSQL <span className="text-neon">&rarr;</span> WebSocket <span className="text-neon">&rarr;</span> Clients
+              <div className="bg-green-action/10 border border-green-action/15 rounded-xl px-6 py-3">
+                <p className="text-body-lg text-neutral-500">
+                  IoT Device <span className="text-green-action">&rarr;</span> MQTT <span className="text-green-action">&rarr;</span> Event Processor <span className="text-green-action">&rarr;</span> PostgreSQL <span className="text-green-action">&rarr;</span> WebSocket <span className="text-green-action">&rarr;</span> Clients
                 </p>
               </div>
             </div>
@@ -99,12 +99,12 @@ export default function TechnologyPage() {
                 desc: 'Real-time bidirectional communication',
               },
             ].map((tech) => (
-              <div key={tech.title} className="card hover:border-neon/15 transition-colors">
-                <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl text-neon flex items-center justify-center mb-4">
+              <div key={tech.title} className="card hover:border-green-action/15 transition-colors">
+                <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl text-green-action flex items-center justify-center mb-4">
                   <tech.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-display font-extrabold text-white mb-2">{tech.title}</h3>
-                <p className="text-body-lg text-muted-light">{tech.desc}</p>
+                <h3 className="font-display font-extrabold text-green-forest mb-2">{tech.title}</h3>
+                <p className="text-body-lg text-neutral-500">{tech.desc}</p>
               </div>
             ))}
           </div>
@@ -131,15 +131,15 @@ export default function TechnologyPage() {
                   'Rate limiting and brute force protection',
                   'Secure WebSocket connections',
                 ].map((item) => (
-                  <li key={item} className="flex items-start bg-neon/5 border border-neon/15 rounded-xl p-4">
-                    <Shield className="w-5 h-5 text-neon mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-body-lg text-muted-light">{item}</span>
+                  <li key={item} className="flex items-start bg-green-action/10 border border-green-action/15 rounded-xl p-4">
+                    <Shield className="w-5 h-5 text-green-action mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-body-lg text-neutral-500">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="card-static p-8">
-              <h3 className="font-display font-extrabold text-white text-xl mb-6">Security Layers</h3>
+              <h3 className="font-display font-extrabold text-green-forest text-xl mb-6">Security Layers</h3>
               <div className="space-y-4">
                 {[
                   { layer: 'Application', desc: 'Input validation, CORS, CSP' },
@@ -149,10 +149,10 @@ export default function TechnologyPage() {
                   { layer: 'Network', desc: 'TLS, rate limiting, DDoS protection' },
                   { layer: 'Device', desc: 'Unique identity, authenticated commands' },
                 ].map((item) => (
-                  <div key={item.layer} className="flex items-center space-x-4 bg-neon/5 border border-neon/15 rounded-xl p-4">
-                    <div className="w-28 text-body-lg text-neon font-medium">{item.layer}</div>
-                    <div className="flex-1 h-px bg-border" />
-                    <div className="text-body-lg text-muted-light">{item.desc}</div>
+                  <div key={item.layer} className="flex items-center space-x-4 bg-green-action/10 border border-green-action/15 rounded-xl p-4">
+                    <div className="w-28 text-body-lg text-green-action font-medium">{item.layer}</div>
+                    <div className="flex-1 h-px bg-neutral-300" />
+                    <div className="text-body-lg text-neutral-500">{item.desc}</div>
                   </div>
                 ))}
               </div>

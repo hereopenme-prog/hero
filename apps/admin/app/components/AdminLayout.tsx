@@ -27,17 +27,17 @@ function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden" onClick={onClose} />
       )}
 
-      <aside className={`fixed left-0 top-0 h-full w-64 bg-surface-3 border-r border-white/[0.06] z-50 transform transition-transform duration-300 lg:translate-x-0 flex flex-col ${
+      <aside className={`fixed left-0 top-0 h-full w-64 bg-white border-r border-neutral-200 z-50 transform transition-transform duration-300 lg:translate-x-0 flex flex-col ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="p-6">
           <Link href="/overview" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-neon rounded-lg flex items-center justify-center">
-              <span className="font-bold text-xl text-surface-0">N</span>
+            <div className="w-10 h-10 bg-green-action rounded-lg flex items-center justify-center">
+              <span className="font-bold text-xl text-white">N</span>
             </div>
             <div>
-              <p className="font-bold text-white">NINE OWN</p>
-              <p className="text-[13px] text-muted-light">Admin Panel</p>
+              <p className="font-bold text-black">NINE OWN</p>
+              <p className="text-[13px] text-neutral-500">Admin Panel</p>
             </div>
           </Link>
         </div>
@@ -53,8 +53,8 @@ function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
                 onClick={onClose}
                 className={`flex items-center space-x-3 px-4 py-2.5 rounded-lg transition-all duration-200 ${
                   isActive
-                    ? 'text-neon bg-neon/[0.08]'
-                    : 'text-muted-light hover:text-white hover:bg-white/[0.04]'
+                    ? 'text-green-action bg-green-action/[0.08]'
+                    : 'text-neutral-500 hover:text-black hover:bg-green-light'
                 }`}
               >
                 <Icon className="w-5 h-5" />
@@ -64,8 +64,8 @@ function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/[0.06]">
-          <button className="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-muted-light hover:text-white hover:bg-white/[0.04] transition-all duration-200 w-full">
+        <div className="p-4 border-t border-neutral-200">
+          <button className="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-neutral-500 hover:text-black hover:bg-green-light transition-all duration-200 w-full">
             <LogOut className="w-5 h-5" />
             <span className="text-[14px] font-medium">Logout</span>
           </button>
@@ -79,16 +79,16 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-surface-0">
+    <div className="min-h-screen bg-white">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="lg:ml-64">
-        <header className="bg-surface-0/80 backdrop-blur-xl border-b border-white/[0.06] px-6 py-4 sticky top-0 z-30">
+        <header className="bg-white/80 backdrop-blur-xl border-b border-neutral-200 px-6 py-4 sticky top-0 z-30">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 text-muted-light hover:bg-white/[0.05] rounded-lg transition-colors"
+                className="lg:hidden p-2 text-neutral-500 hover:bg-green-light rounded-lg transition-colors"
               >
                 <Menu className="w-5 h-5" />
               </button>
@@ -96,15 +96,15 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="flex items-center space-x-3">
-              <button className="relative p-2 text-muted-light hover:bg-white/[0.05] rounded-lg transition-colors">
+              <button className="relative p-2 text-neutral-500 hover:bg-green-light rounded-lg transition-colors">
                 <Bell className="w-5 h-5" />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
               </button>
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-neon/10 text-neon rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-green-action/10 text-green-action rounded-full flex items-center justify-center">
                   <span className="text-sm font-medium">A</span>
                 </div>
-                <span className="text-sm font-medium text-muted-light hidden md:block">Admin</span>
+                <span className="text-sm font-medium text-neutral-500 hidden md:block">Admin</span>
               </div>
             </div>
           </div>
@@ -142,11 +142,11 @@ function Breadcrumb() {
 
         return (
           <span key={i} className="flex items-center space-x-2">
-            {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-muted" />}
+            {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-neutral-500" />}
             {isLast ? (
-              <span className="font-semibold text-white">{label}</span>
+              <span className="font-semibold text-black">{label}</span>
             ) : (
-              <Link href={href} className="text-muted-light hover:text-white transition-colors">
+              <Link href={href} className="text-neutral-500 hover:text-black transition-colors">
                 {label}
               </Link>
             )}

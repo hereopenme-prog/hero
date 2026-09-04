@@ -49,8 +49,8 @@ export default function SecurityPage() {
       label: 'Alert',
       render: (row: SecurityAlert) => (
         <div className="flex items-center gap-2">
-          <AlertTriangle className="h-4 w-4 text-muted" />
-          <span className="font-medium text-white">{row.title}</span>
+          <AlertTriangle className="h-4 w-4 text-neutral-500" />
+          <span className="font-medium text-black">{row.title}</span>
         </div>
       ),
     },
@@ -78,7 +78,7 @@ export default function SecurityPage() {
         <div className="flex items-center gap-2">
           <Link
             href={`/security/${row.id}`}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[12px] font-medium text-neon bg-neon/10 border border-neon/20 rounded-lg hover:bg-neon/20 transition-colors"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[12px] font-medium text-green-action bg-green-action/10 border border-green-action/20 rounded-lg hover:bg-green-action/20 transition-colors"
           >
             <Eye className="w-3.5 h-3.5" />
             View
@@ -111,12 +111,12 @@ export default function SecurityPage() {
       </div>
 
       {filteredAlerts.length > 0 ? (
-        <div className="bg-surface-3 border border-white/[0.06] rounded-2xl p-1">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-1">
           <DataTable columns={columns as any} data={filteredAlerts as any} />
         </div>
       ) : (
         <EmptyState
-          icon={<Shield className="h-12 w-12 text-muted" />}
+          icon={<Shield className="h-12 w-12 text-neutral-500" />}
           title="No security alerts found"
           description="Try adjusting your search or filter criteria."
         />

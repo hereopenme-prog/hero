@@ -79,7 +79,7 @@ const disclaimers = [
 
 export default function SecurityPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       <section className="section">
         <Container>
           <SectionHeader
@@ -98,13 +98,13 @@ export default function SecurityPage() {
               const Icon = feature.icon;
               return (
                 <div key={i} className="card p-8">
-                  <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl flex items-center justify-center mb-6 text-neon">
+                  <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center mb-6 text-green-action">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-3">
+                  <h3 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-body-lg text-muted-light">{feature.desc}</p>
+                  <p className="text-body-lg text-neutral-500">{feature.desc}</p>
                 </div>
               );
             })}
@@ -122,14 +122,14 @@ export default function SecurityPage() {
             <div className="space-y-8">
               {steps.map((item, i) => (
                 <div key={i} className="card-static p-6 flex items-start space-x-6">
-                  <div className="w-10 h-10 bg-neon/8 border border-neon/15 rounded-lg flex items-center justify-center text-neon font-bold text-[11px] flex-shrink-0">
+                  <div className="w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action font-bold text-[11px] flex-shrink-0">
                     {item.step}
                   </div>
                   <div>
-                    <h3 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-2">
+                    <h3 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-body-lg text-muted-light">{item.desc}</p>
+                    <p className="text-body-lg text-neutral-500">{item.desc}</p>
                   </div>
                 </div>
               ))}

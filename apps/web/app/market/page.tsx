@@ -73,7 +73,7 @@ const solutions = [
 
 export default function MarketPage() {
   return (
-    <main className="min-h-screen bg-surface-0 relative noise">
+    <main className="min-h-screen bg-white relative noise">
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="section pt-32 pb-16">
         <Container>
@@ -95,13 +95,13 @@ export default function MarketPage() {
                 key={item.label}
                 className="card-static text-center p-8"
               >
-                <div className="bg-neon/8 border border-neon/15 rounded-xl w-14 h-14 flex items-center justify-center text-neon mx-auto mb-5">
+                <div className="bg-green-action/8 border border-green-action/15 rounded-xl w-14 h-14 flex items-center justify-center text-green-action mx-auto mb-5">
                   {item.icon}
                 </div>
-                <p className="text-display-md font-extrabold text-neon mb-1">
+                <p className="text-display-md font-extrabold text-green-action mb-1">
                   {item.stat}
                 </p>
-                <p className="text-body-lg text-muted-light">{item.label}</p>
+                <p className="text-body-lg text-neutral-500">{item.label}</p>
               </div>
             ))}
           </div>
@@ -120,16 +120,16 @@ export default function MarketPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {problems.map((group) => (
               <div key={group.heading} className="card p-8">
-                <h3 className="font-display font-extrabold text-white text-xl mb-5">
+                <h3 className="font-display font-extrabold text-green-forest text-xl mb-5">
                   {group.heading}
                 </h3>
                 <ul className="space-y-3">
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 text-body-lg text-muted-light"
+                      className="flex items-start gap-3 text-body-lg text-neutral-500"
                     >
-                      <span className="text-neon mt-1 shrink-0">•</span>
+                      <span className="text-green-action mt-1 shrink-0">•</span>
                       {item}
                     </li>
                   ))}
@@ -152,13 +152,13 @@ export default function MarketPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {solutions.map((item) => (
               <div key={item.title} className="card text-center p-8">
-                <div className="bg-neon/8 border border-neon/15 rounded-xl w-14 h-14 flex items-center justify-center mx-auto mb-5 text-neon text-2xl font-bold">
+                <div className="bg-green-action/8 border border-green-action/15 rounded-xl w-14 h-14 flex items-center justify-center mx-auto mb-5 text-green-action text-2xl font-bold">
                   {item.icon}
                 </div>
-                <h3 className="font-display font-extrabold text-white text-xl mb-2">
+                <h3 className="font-display font-extrabold text-green-forest text-xl mb-2">
                   {item.title}
                 </h3>
-                <p className="text-body-lg text-muted-light">{item.desc}</p>
+                <p className="text-body-lg text-neutral-500">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -168,19 +168,19 @@ export default function MarketPage() {
       {/* ── CTA ──────────────────────────────────────────── */}
       <section className="section py-24">
         <Container>
-          <div className="bg-surface-1 border border-neon/20 glow-green-subtle rounded-4xl p-12 md:p-16 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-neon/5 blur-3xl rounded-full" />
+          <div className="bg-neutral-50 border border-green-action/20 shadow-green rounded-4xl p-12 md:p-16 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-green-action/10 blur-3xl rounded-full" />
             <div className="relative z-10">
-              <h2 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-5">
+              <h2 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-5">
                 Join the Revolution
               </h2>
-              <p className="text-body-lg text-muted-light max-w-2xl mx-auto mb-10">
+              <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto mb-10">
                 Be part of the digital transformation of Indian retail. Partner
                 with HERE OPEN and help millions of businesses go online.
               </p>
               <a
                 href="/download"
-                className="bg-neon text-surface-0 px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity inline-block"
+                className="bg-green-action text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity inline-block"
               >
                 Get Started Today
               </a>
@@ -193,8 +193,8 @@ export default function MarketPage() {
       <section className="section py-12">
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-sm text-muted-light/60 leading-relaxed">
-              <span className="font-semibold text-muted-light/80">Disclaimer:</span>{' '}
+            <p className="text-sm text-neutral-400/60 leading-relaxed">
+              <span className="font-semibold text-neutral-400/80">Disclaimer:</span>{' '}
               The figures and statistics presented on this page are based on
               publicly available data from industry reports, government
               publications, and market research as of 2024. Actual numbers may

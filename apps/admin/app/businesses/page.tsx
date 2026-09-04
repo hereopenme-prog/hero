@@ -29,8 +29,8 @@ export default function BusinessesPage() {
   const columns = [
     { key: 'business', label: 'Business', render: (row: Business) => (
       <div className="flex items-center gap-2">
-        <Building2 className="h-4 w-4 text-muted" />
-        <span className="font-medium text-white">{row.name}</span>
+        <Building2 className="h-4 w-4 text-neutral-500" />
+        <span className="font-medium text-black">{row.name}</span>
       </div>
     )},
     { key: 'owner', label: 'Owner', render: (row: Business) => row.owner },
@@ -44,11 +44,11 @@ export default function BusinessesPage() {
     { key: 'createdAt', label: 'Created', render: (row: Business) => row.createdAt },
     { key: 'actions', label: 'Actions', render: (row: Business) => (
       <div className="flex items-center gap-2">
-        <Link href={`/businesses/${row.id}`} className="p-1 hover:bg-white/[0.05] rounded">
-          <Eye className="h-4 w-4 text-muted-light" />
+        <Link href={`/businesses/${row.id}`} className="p-1 hover:bg-green-light rounded">
+          <Eye className="h-4 w-4 text-neutral-500" />
         </Link>
-        <button className="p-1 hover:bg-white/[0.05] rounded">
-          <Edit className="h-4 w-4 text-muted-light" />
+        <button className="p-1 hover:bg-green-light rounded">
+          <Edit className="h-4 w-4 text-neutral-500" />
         </button>
         <button className="p-1 hover:bg-red-500/10 rounded">
           <Trash2 className="h-4 w-4 text-red-400" />
@@ -63,7 +63,7 @@ export default function BusinessesPage() {
         title="Businesses"
         description="Manage and monitor all registered businesses"
         action={
-          <button className="bg-neon text-surface-0 rounded-lg px-4 py-2 text-[13px] font-bold hover:bg-neon/90 transition-colors">
+          <button className="bg-green-action text-white rounded-lg px-4 py-2 text-[13px] font-bold hover:bg-green-action/90 transition-colors">
             + Add Business
           </button>
         }
