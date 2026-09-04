@@ -1,98 +1,60 @@
 import Link from 'next/link';
 
-const footerLinks = {
-  platform: [
-    { href: '/how-it-works', label: 'How It Works' },
-    { href: '/for-businesses', label: 'For Businesses' },
-    { href: '/for-customers', label: 'For Customers' },
-    { href: '/security', label: 'Security' },
-    { href: '/technology', label: 'Technology' },
-  ],
-  company: [
-    { href: '/about', label: 'About' },
-    { href: '/roadmap', label: 'Roadmap' },
-    { href: '/market', label: 'Market' },
-    { href: '/contact', label: 'Contact' },
-    { href: '/faq', label: 'FAQ' },
-  ],
-  legal: [
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/terms', label: 'Terms of Service' },
-  ],
-};
+const footerNav = [
+  { href: '/', label: 'Home' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const legalLinks = [
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Service' },
+];
 
 export function Footer() {
   return (
     <footer className="border-t border-neutral-200 bg-neutral-50">
-      <div className="container-site py-16 lg:py-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
+      <div className="container-site py-12 lg:py-16">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 bg-green-action rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">H</span>
-              </div>
-              <span className="font-bold text-sm tracking-tight text-black">HERE OPEN</span>
-            </Link>
-            <p className="text-body-sm text-black leading-relaxed max-w-[280px]">
-              One Tap. Know Every Shop Status Instantly. Real-time IoT visibility for every shop.
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-green-action rounded-lg flex items-center justify-center shadow-green">
+              <span className="text-white font-bold text-base">H</span>
+            </div>
+            <div>
+              <span className="block font-bold text-[15px] tracking-tight text-black">HERE OPEN</span>
+              <span className="block text-[11px] text-black mt-0.5">One Tap. Know Every Shop Status Instantly.</span>
+            </div>
           </div>
 
-          {/* Platform */}
-          <div>
-            <h4 className="text-caption text-black uppercase tracking-widest mb-5">Platform</h4>
-            <ul className="space-y-3">
-              {footerLinks.platform.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-black hover:text-black transition-colors duration-200">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h4 className="text-caption text-black uppercase tracking-widest mb-5">Company</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-black hover:text-black transition-colors duration-200">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="text-caption text-black uppercase tracking-widest mb-5">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-body-sm text-black hover:text-black transition-colors duration-200">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Nav — same as navbar */}
+          <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-1">
+            {footerNav.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-3.5 py-2 rounded-lg text-[13px] font-medium text-black hover:text-green-action hover:bg-green-light transition-all duration-200"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-neutral-200 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-10 pt-8 border-t border-neutral-200 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-caption text-black">
             &copy; {new Date().getFullYear()} HERE OPEN. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/download" className="text-caption text-black hover:text-black transition-colors">
+            {legalLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="text-caption text-black hover:text-green-action transition-colors">
+                {link.label}
+              </Link>
+            ))}
+            <Link href="/download" className="px-4 py-2 bg-green-action text-white text-[12px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green">
               Download App
-            </Link>
-            <Link href="/contact" className="text-caption text-black hover:text-black transition-colors">
-              Contact
             </Link>
           </div>
         </div>
