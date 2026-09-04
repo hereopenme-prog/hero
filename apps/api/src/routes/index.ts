@@ -1,0 +1,13 @@
+export { authRouter } from './auth';
+export { userRouter } from './users';
+export { businessRouter } from './businesses';
+export { shopRouter } from './shops';
+export { deviceRouter } from './devices';
+export { commandRouter } from './commands';
+export { offerRouter } from './offers';
+export { announcementRouter } from './announcements';
+export { customerRouter } from './customers';
+export { analyticsRouter } from './analytics';
+export { adminRouter } from './admin';
+export { iotRouter } from './iot';
+export { notificationRouter } from './notifications';

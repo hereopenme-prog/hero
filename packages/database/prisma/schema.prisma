@@ -1,0 +1,999 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// AUTH & USER MANAGEMENT
+// ============================================
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  BUSINESS_OWNER
+  BUSINESS_MEMBER
+  CUSTOMER
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String?   @unique
+  phone         String?   @unique
+  name          String?
+  passwordHash  String?
+  role          UserRole  @default(CUSTOMER)
+  avatar        String?
+  emailVerified Boolean   @default(false)
+  phoneVerified Boolean   @default(false)
+  twoFactorEnabled Boolean @default(false)
+  twoFactorSecret    String?
+  lastLoginAt   DateTime?
+  lastLoginIp   String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  businesses    BusinessUser[]
+  customer      Customer?
+  auditLogs     AuditLog[]
+  notifications Notification[]
+  deviceCommands DeviceCommand[]
+
+  @@index([email])
+  @@index([phone])
+  @@index([role])
+}
+
+model Role {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  description String?
+  permissions Permission[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  resource    String
+  action      String
+  conditions  Json?
+  roleId      String
+  role        Role     @relation(fields: [roleId], references: [id])
+  createdAt   DateTime @default(now())
+
+  @@unique([resource, action, roleId])
+}
+
+// ============================================
+// BUSINESS
+// ============================================
+
+model Business {
+  id              String         @id @default(uuid())
+  name            String
+  slug            String         @unique
+  description     String?
+  logo            String?
+  coverImage      String?
+  phone           String?
+  email           String?
+  website         String?
+  category        String?
+  gstNumber       String?
+  panNumber       String?
+  registrationNumber String?
+  isVerified      Boolean        @default(false)
+  verifiedAt      DateTime?
+  verifiedBy      String?
+  isActive        Boolean        @default(true)
+  suspendedAt     DateTime?
+  suspendedBy     String?
+  suspensionReason String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relations
+  users           BusinessUser[]
+  shops           Shop[]
+  offers          Offer[]
+  announcements   Announcement[]
+  subscription    Subscription?
+  payments        Payment[]
+  supportTickets  SupportTicket[]
+
+  @@index([slug])
+  @@index([category])
+  @@index([isActive])
+}
+
+model BusinessUser {
+  id          String   @id @default(uuid())
+  userId      String
+  businessId  String
+  role        String   @default("member")
+  isOwner     Boolean  @default(false)
+  invitedAt   DateTime @default(now())
+  acceptedAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id])
+  business    Business @relation(fields: [businessId], references: [id])
+
+  @@unique([userId, businessId])
+  @@index([businessId])
+}
+
+// ============================================
+// SHOP
+// ============================================
+
+enum ShopStatus {
+  OPEN
+  CLOSED
+  UNKNOWN
+}
+
+model Shop {
+  id              String          @id @default(uuid())
+  businessId      String
+  name            String
+  slug            String
+  description     String?
+  address         String?
+  city            String?
+  state           String?
+  country         String         @default("IN")
+  pincode         String?
+  latitude        Decimal?       @db.Decimal(10, 8)
+  longitude       Decimal?       @db.Decimal(11, 8)
+  phone           String?
+  email           String?
+  status          ShopStatus     @default(UNKNOWN)
+  lastStatusChange DateTime?
+  lastStatusSource String?
+  timezone        String         @default("Asia/Kolkata")
+  openTime        String?
+  closeTime       String?
+  operatingDays   String?        // comma-separated: Mon,Tue,Wed,Thu,Fri,Sat,Sun
+  isActive        Boolean        @default(true)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relations
+  business        Business       @relation(fields: [businessId], references: [id])
+  devices         Device[]
+  statusHistory   ShopStatusHistory[]
+  events          IoTEvent[]
+  securityEvents  SecurityEvent[]
+  fireEvents      FireEvent[]
+  offers          Offer[]
+  announcements   Announcement[]
+  customerFollows CustomerShopFollow[]
+  alerts          Alert[]
+
+  @@unique([businessId, slug])
+  @@index([businessId])
+  @@index([status])
+  @@index([city])
+  @@index([latitude, longitude])
+}
+
+model ShopStatusHistory {
+  id          String     @id @default(uuid())
+  shopId      String
+  status      ShopStatus
+  source      String     // "manual", "device", "scheduled"
+  deviceId    String?
+  changedBy   String?
+  metadata    Json?
+  createdAt   DateTime   @default(now())
+
+  shop        Shop       @relation(fields: [shopId], references: [id])
+
+  @@index([shopId])
+  @@index([createdAt])
+}
+
+// ============================================
+// DEVICE / IoT
+// ============================================
+
+enum DeviceStatus {
+  ONLINE
+  OFFLINE
+  WARNING
+  CRITICAL
+  ACTIVATING
+  DEACTIVATED
+}
+
+enum SIMStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  EXPIRED
+}
+
+model Device {
+  id              String       @id @default(uuid())
+  uid             String       @unique
+  name            String?
+  shopId          String?
+  firmwareVersion String?
+  hardwareVersion String?
+  status          DeviceStatus @default(OFFLINE)
+  simNumber       String?
+  simProvider     String?
+  simStatus       SIMStatus?
+  imsi            String?
+  iccid           String?
+  networkType     String?      // 2G, 3G, 4G, LTE
+  signalStrength  Int?         // 0-100
+  ipAddress       String?
+  macAddress      String?
+  lastHeartbeat   DateTime?
+  lastSeen        DateTime?
+  lastOnlineAt    DateTime?
+  lastOfflineAt   DateTime?
+  powerSource     String?      // "battery", "mains", "solar"
+  batteryLevel    Int?         // 0-100
+  isActive        Boolean      @default(true)
+  isLocked        Boolean      @default(false)
+  activatedAt     DateTime?
+  deactivatedAt   DateTime?
+  deactivationReason String?
+  metadata        Json?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  // Relations
+  shop            Shop?        @relation(fields: [shopId], references: [id])
+  credentials     DeviceCredential?
+  sensors         DeviceSensor[]
+  heartbeats      DeviceHeartbeat[]
+  commands        DeviceCommand[]
+  commandLogs     DeviceCommandLog[]
+  firmwareUpdates DeviceFirmwareUpdate[]
+  iotEvents       IoTEvent[]
+
+  @@index([uid])
+  @@index([shopId])
+  @@index([status])
+  @@index([lastHeartbeat])
+}
+
+model DeviceCredential {
+  id              String   @id @default(uuid())
+  deviceId        String   @unique
+  publicKey       String?
+  privateKeyEnc   String?  // encrypted
+  authToken       String?
+  authTokenExpiry DateTime?
+  mqttUsername     String?
+  mqttPassword     String? // encrypted
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  device          Device   @relation(fields: [deviceId], references: [id])
+}
+
+model DeviceSensor {
+  id          String   @id @default(uuid())
+  deviceId    String
+  type        String   // "temperature", "smoke", "motion", "vibration"
+  name        String?
+  unit        String?
+  minValue    Decimal? @db.Decimal(10, 2)
+  maxValue    Decimal? @db.Decimal(10, 2)
+  threshold   Decimal? @db.Decimal(10, 2)
+  isActive    Boolean  @default(true)
+  lastReading Json?
+  lastReadAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  device      Device   @relation(fields: [deviceId], references: [id])
+
+  @@index([deviceId, type])
+}
+
+model DeviceHeartbeat {
+  id            String   @id @default(uuid())
+  deviceId      String
+  timestamp     DateTime @default(now())
+  uptime        Int?     // seconds
+  signalStrength Int?
+  networkType   String?
+  batteryLevel  Int?
+  temperature   Decimal? @db.Decimal(5, 2)
+  firmwareVersion String?
+  metadata      Json?
+
+  device        Device   @relation(fields: [deviceId], references: [id])
+
+  @@index([deviceId])
+  @@index([timestamp])
+}
+
+enum CommandStatus {
+  REQUESTED
+  SENT
+  ACKNOWLEDGED
+  COMPLETED
+  FAILED
+  TIMEOUT
+}
+
+enum CommandType {
+  OPEN
+  CLOSED
+  PING
+  SYNC
+  RESTART
+  FIRMWARE_UPDATE
+}
+
+model DeviceCommand {
+  id            String        @id @default(uuid())
+  deviceId      String
+  type          CommandType
+  status        CommandStatus @default(REQUESTED)
+  payload       Json?
+  requestedBy   String?
+  requestedAt   DateTime      @default(now())
+  sentAt        DateTime?
+  acknowledgedAt DateTime?
+  completedAt   DateTime?
+  failedAt      DateTime?
+  response      Json?
+  error         String?
+  timeoutMs     Int           @default(30000)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  device        Device        @relation(fields: [deviceId], references: [id])
+  user          User?         @relation(fields: [requestedBy], references: [id])
+  logs          DeviceCommandLog[]
+
+  @@index([deviceId])
+  @@index([status])
+  @@index([type])
+  @@index([requestedAt])
+}
+
+model DeviceCommandLog {
+  id          String   @id @default(uuid())
+  commandId   String
+  deviceId    String
+  action      String
+  status      String
+  payload     Json?
+  response    Json?
+  error       String?
+  timestamp   DateTime @default(now())
+  metadata    Json?
+
+  command     DeviceCommand @relation(fields: [commandId], references: [id])
+  device      Device        @relation(fields: [deviceId], references: [id])
+
+  @@index([commandId])
+  @@index([deviceId])
+  @@index([timestamp])
+}
+
+// ============================================
+// IoT EVENTS
+// ============================================
+
+enum IoTEventType {
+  SHOP_OPENED
+  SHOP_CLOSED
+  DEVICE_ONLINE
+  DEVICE_OFFLINE
+  HEARTBEAT
+  FIRE_DETECTED
+  SMOKE_DETECTED
+  HIGH_TEMPERATURE
+  SECURITY_BREACH
+  THEFT_ALERT
+  COMMAND_SENT
+  COMMAND_ACKNOWLEDGED
+  COMMAND_COMPLETED
+  COMMAND_FAILED
+  FIRMWARE_UPDATED
+  SENSOR_READING
+  CUSTOM
+}
+
+enum EventSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+model IoTEvent {
+  id          String       @id @default(uuid())
+  shopId      String?
+  deviceId    String
+  type        IoTEventType
+  severity    EventSeverity @default(INFO)
+  payload     Json?
+  processed   Boolean      @default(false)
+  processedAt DateTime?
+  metadata    Json?
+  createdAt   DateTime     @default(now())
+
+  shop        Shop?        @relation(fields: [shopId], references: [id])
+  device      Device       @relation(fields: [deviceId], references: [id])
+
+  @@index([shopId])
+  @@index([deviceId])
+  @@index([type])
+  @@index([severity])
+  @@index([createdAt])
+  @@index([processed])
+}
+
+// ============================================
+// SECURITY
+// ============================================
+
+enum SecurityEventType {
+  MOTION_DETECTED
+  DOOR_OPENED
+  DOOR_CLOSED
+  WINDOW_OPENED
+  VIBRATION_DETECTED
+  BREACH_DETECTED
+  THEFT_ATTEMPT
+  UNAUTHORIZED_ACCESS
+  CUSTOMER_DEFINED
+}
+
+enum AlertSeverity {
+  NORMAL
+  WARNING
+  HIGH
+  CRITICAL
+}
+
+enum AlertStatus {
+  ACTIVE
+  ACKNOWLEDGED
+  RESOLVED
+  DISMISSED
+}
+
+model SecurityEvent {
+  id          String            @id @default(uuid())
+  shopId      String
+  deviceId    String?
+  type        SecurityEventType
+  severity    AlertSeverity     @default(NORMAL)
+  description String?
+  payload     Json?
+  imageUrl    String?
+  isAcknowledged Boolean        @default(false)
+  acknowledgedBy  String?
+  acknowledgedAt  DateTime?
+  isResolved  Boolean           @default(false)
+  resolvedBy  String?
+  resolvedAt  DateTime?
+  resolution  String?
+  metadata    Json?
+  createdAt   DateTime          @default(now())
+
+  shop        Shop              @relation(fields: [shopId], references: [id])
+
+  @@index([shopId])
+  @@index([type])
+  @@index([severity])
+  @@index([createdAt])
+  @@index([isAcknowledged, isResolved])
+}
+
+// ============================================
+// FIRE & SAFETY
+// ============================================
+
+enum FireEventType {
+  FIRE_DETECTED
+  SMOKE_DETECTED
+  HIGH_TEMPERATURE
+  HEAT_DETECTED
+  SENSOR_ERROR
+  SENSOR_OFFLINE
+  CUSTOM
+}
+
+model FireEvent {
+  id              String       @id @default(uuid())
+  shopId          String
+  deviceId        String?
+  type            FireEventType
+  severity        AlertSeverity @default(NORMAL)
+  temperature     Decimal?     @db.Decimal(5, 2)
+  smokeLevel      Decimal?     @db.Decimal(5, 2)
+  description     String?
+  payload         Json?
+  isAcknowledged  Boolean      @default(false)
+  acknowledgedBy  String?
+  acknowledgedAt  DateTime?
+  isResolved      Boolean      @default(false)
+  resolvedBy      String?
+  resolvedAt      DateTime?
+  resolution      String?
+  metadata        Json?
+  createdAt       DateTime     @default(now())
+
+  shop            Shop         @relation(fields: [shopId], references: [id])
+
+  @@index([shopId])
+  @@index([type])
+  @@index([severity])
+  @@index([createdAt])
+}
+
+// ============================================
+// ALERTS
+// ============================================
+
+enum AlertType {
+  SECURITY
+  FIRE
+  DEVICE_OFFLINE
+  DEVICE_LOW_BATTERY
+  DEVICE_ERROR
+  COMMAND_FAILED
+  SUBSCRIPTION_EXPIRING
+  SUBSCRIPTION_EXPIRED
+  CUSTOM
+}
+
+model Alert {
+  id          String        @id @default(uuid())
+  shopId      String?
+  deviceId    String?
+  type        AlertType
+  severity    AlertSeverity @default(WARNING)
+  title       String
+  message     String
+  metadata    Json?
+  status      AlertStatus   @default(ACTIVE)
+  acknowledgedBy String?
+  acknowledgedAt DateTime?
+  resolvedBy  String?
+  resolvedAt  DateTime?
+  resolution  String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  shop        Shop?         @relation(fields: [shopId], references: [id])
+
+  @@index([shopId])
+  @@index([type])
+  @@index([severity])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ============================================
+// CUSTOMERS
+// ============================================
+
+model Customer {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  phone           String?
+  email           String?
+  name            String?
+  avatar          String?
+  preferences     Json?
+  notificationPrefs Json?
+  lastActiveAt    DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id])
+  shopFollows     CustomerShopFollow[]
+  offerViews      OfferView[]
+  offerClicks     OfferClick[]
+
+  @@index([userId])
+  @@index([phone])
+  @@index([email])
+}
+
+model CustomerShopFollow {
+  id          String   @id @default(uuid())
+  customerId  String
+  shopId      String
+  followedAt  DateTime @default(now())
+  notifyOnOffers Boolean @default(true)
+  notifyOnUpdates Boolean @default(true)
+  isActive    Boolean  @default(true)
+
+  customer    Customer @relation(fields: [customerId], references: [id])
+  shop        Shop     @relation(fields: [shopId], references: [id])
+
+  @@unique([customerId, shopId])
+  @@index([shopId])
+}
+
+// ============================================
+// OFFERS
+// ============================================
+
+enum OfferStatus {
+  DRAFT
+  SCHEDULED
+  ACTIVE
+  EXPIRED
+  PAUSED
+}
+
+model Offer {
+  id          String      @id @default(uuid())
+  businessId  String
+  shopId      String?
+  title       String
+  description String?
+  image       String?
+  ctaText     String?
+  ctaUrl      String?
+  discount    String?
+  startDate   DateTime?
+  endDate     DateTime?
+  status      OfferStatus @default(DRAFT)
+  sentCount   Int         @default(0)
+  viewCount   Int         @default(0)
+  clickCount  Int         @default(0)
+  metadata    Json?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  business    Business    @relation(fields: [businessId], references: [id])
+  shop        Shop?       @relation(fields: [shopId], references: [id])
+  views       OfferView[]
+  clicks      OfferClick[]
+
+  @@index([businessId])
+  @@index([shopId])
+  @@index([status])
+  @@index([startDate, endDate])
+}
+
+model OfferView {
+  id          String   @id @default(uuid())
+  offerId     String
+  customerId  String
+  viewedAt    DateTime @default(now())
+  source      String?  // "notification", "explore", "search"
+
+  offer       Offer    @relation(fields: [offerId], references: [id])
+  customer    Customer @relation(fields: [customerId], references: [id])
+
+  @@index([offerId])
+  @@index([customerId])
+}
+
+model OfferClick {
+  id          String   @id @default(uuid())
+  offerId     String
+  customerId  String
+  clickedAt   DateTime @default(now())
+  source      String?
+
+  offer       Offer    @relation(fields: [offerId], references: [id])
+  customer    Customer @relation(fields: [customerId], references: [id])
+
+  @@index([offerId])
+  @@index([customerId])
+}
+
+// ============================================
+// ANNOUNCEMENTS
+// ============================================
+
+enum AnnouncementType {
+  NEW_ARRIVAL
+  OPENING_DELAY
+  HOLIDAY_CLOSURE
+  STORE_UPDATE
+  SPECIAL
+  OFFER
+  CUSTOM
+}
+
+enum AnnouncementStatus {
+  DRAFT
+  SCHEDULED
+  ACTIVE
+  EXPIRED
+}
+
+model Announcement {
+  id          String            @id @default(uuid())
+  businessId  String
+  shopId      String?
+  type        AnnouncementType  @default(CUSTOM)
+  title       String
+  description String?
+  image       String?
+  startDate   DateTime?
+  endDate     DateTime?
+  status      AnnouncementStatus @default(DRAFT)
+  metadata    Json?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  business    Business          @relation(fields: [businessId], references: [id])
+  shop        Shop?             @relation(fields: [shopId], references: [id])
+
+  @@index([businessId])
+  @@index([shopId])
+  @@index([status])
+}
+
+// ============================================
+// NOTIFICATIONS
+// ============================================
+
+enum NotificationType {
+  OFFER
+  SHOP_UPDATE
+  OPENING_DELAY
+  NEW_ARRIVAL
+  SECURITY_ALERT
+  FIRE_ALERT
+  SYSTEM
+  CUSTOM
+}
+
+enum NotificationChannel {
+  PUSH
+  EMAIL
+  SMS
+  IN_APP
+}
+
+model Notification {
+  id          String             @id @default(uuid())
+  userId      String
+  type        NotificationType
+  channel     NotificationChannel @default(IN_APP)
+  title       String
+  body        String
+  data        Json?
+  isRead      Boolean            @default(false)
+  readAt      DateTime?
+  sentAt      DateTime?
+  deliveredAt DateTime?
+  error       String?
+  metadata    Json?
+  createdAt   DateTime           @default(now())
+
+  user        User               @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([type])
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+// ============================================
+// SUBSCRIPTIONS & PAYMENTS
+// ============================================
+
+enum SubscriptionStatus {
+  TRIAL
+  ACTIVE
+  PAUSED
+  CANCELLED
+  EXPIRED
+}
+
+model Subscription {
+  id              String             @id @default(uuid())
+  businessId      String             @unique
+  plan            String             @default("free")
+  price           Decimal?           @db.Decimal(10, 2)
+  currency        String             @default("INR")
+  billingPeriod   String?            // "monthly", "yearly"
+  status          SubscriptionStatus @default(TRIAL)
+  trialStart      DateTime?
+  trialEnd        DateTime?
+  startDate       DateTime?
+  endDate         DateTime?
+  cancelledAt     DateTime?
+  cancelReason    String?
+  metadata        Json?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  business        Business           @relation(fields: [businessId], references: [id])
+  payments        Payment[]
+
+  @@index([businessId])
+  @@index([status])
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+model Payment {
+  id              String        @id @default(uuid())
+  businessId      String
+  subscriptionId  String?
+  amount          Decimal       @db.Decimal(10, 2)
+  currency        String        @default("INR")
+  status          PaymentStatus @default(PENDING)
+  provider        String?       // "razorpay", "stripe", "manual"
+  providerTxnId   String?
+  providerOrderId String?
+  method          String?       // "card", "upi", "netbanking", "wallet"
+  description     String?
+  metadata        Json?
+  paidAt          DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  business        Business      @relation(fields: [businessId], references: [id])
+  subscription    Subscription? @relation(fields: [subscriptionId], references: [id])
+
+  @@index([businessId])
+  @@index([subscriptionId])
+  @@index([status])
+  @@index([providerTxnId])
+}
+
+// ============================================
+// SUPPORT
+// ============================================
+
+enum SupportStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING
+  RESOLVED
+  CLOSED
+}
+
+model SupportTicket {
+  id          String         @id @default(uuid())
+  businessId  String?
+  userId      String?
+  subject     String
+  description String
+  category    String?        // "technical", "billing", "general"
+  priority    String         @default("medium")
+  status      SupportStatus  @default(OPEN)
+  assignedTo  String?
+  metadata    Json?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  business    Business?      @relation(fields: [businessId], references: [id])
+
+  @@index([businessId])
+  @@index([status])
+  @@index([priority])
+}
+
+// ============================================
+// AUDIT LOG
+// ============================================
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  userId      String?
+  action      String
+  resource    String
+  resourceId  String?
+  oldValues   Json?
+  newValues   Json?
+  ipAddress   String?
+  userAgent   String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  user        User?    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([resource])
+  @@index([resourceId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+// ============================================
+// FIRMWARE
+// ============================================
+
+enum FirmwareStatus {
+  AVAILABLE
+  DEPRECATED
+  BLOCKED
+}
+
+model FirmwareVersion {
+  id          String          @id @default(uuid())
+  version     String
+  releaseNotes String?
+  fileUrl     String?
+  fileSize    Int?
+  checksum    String?
+  status      FirmwareStatus  @default(AVAILABLE)
+  isMandatory Boolean         @default(false)
+  minHardwareVersion String?
+  metadata    Json?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  updates     DeviceFirmwareUpdate[]
+
+  @@unique([version])
+  @@index([status])
+}
+
+enum FirmwareUpdateStatus {
+  REQUESTED
+  DOWNLOADING
+  INSTALLING
+  SUCCESS
+  FAILED
+}
+
+model DeviceFirmwareUpdate {
+  id              String                @id @default(uuid())
+  deviceId        String
+  firmwareId      String
+  status          FirmwareUpdateStatus  @default(REQUESTED)
+  progress        Int?                  // 0-100
+  startedAt       DateTime?
+  completedAt     DateTime?
+  failedAt        DateTime?
+  error           String?
+  metadata        Json?
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+
+  device          Device                @relation(fields: [deviceId], references: [id])
+  firmware        FirmwareVersion       @relation(fields: [firmwareId], references: [id])
+
+  @@index([deviceId])
+  @@index([firmwareId])
+  @@index([status])
+}
+
+// ============================================
+// SYSTEM SETTINGS
+// ============================================
+
+model SystemSetting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Json
+  description String?
+  category    String?
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([key])
+  @@index([category])
+}

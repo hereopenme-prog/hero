@@ -1,0 +1,170 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { Eye, Bell, MapPin, Clock, Star, ArrowRight, CheckCircle } from 'lucide-react';
+import { Container } from '../components/Container';
+import { SectionHeader } from '../components/SectionHeader';
+
+export const metadata: Metadata = {
+  title: 'For Customers - HERE OPEN',
+  description: 'Never waste a trip again. Know shop status, get offers, and discover local businesses.',
+};
+
+const features = [
+  {
+    icon: Eye,
+    title: 'See Shop Status',
+    desc: 'Real-time OPEN/CLOSED status for any shop',
+  },
+  {
+    icon: MapPin,
+    title: 'Find Nearby Shops',
+    desc: 'Discover shops near you with filters',
+  },
+  {
+    icon: Bell,
+    title: 'Get Notifications',
+    desc: 'Offers, updates, and new arrivals',
+  },
+  {
+    icon: Star,
+    title: 'Follow Shops',
+    desc: 'Save favorites and stay updated',
+  },
+];
+
+const benefits = [
+  'Save time by checking shop status before traveling',
+  'Never miss offers and deals from your favorite shops',
+  'Discover new local businesses in your area',
+  'Get instant notifications when shops update their status',
+  'Free to use with no hidden charges',
+  'Works offline with cached status data',
+];
+
+export default function ForCustomersPage() {
+  return (
+    <main className="min-h-screen bg-surface-0 relative noise">
+      {/* Hero */}
+      <section className="section relative">
+        <Container>
+          <div className="max-w-3xl">
+            <div className="eyebrow mb-6">For Customers</div>
+            <h1 className="font-display font-extrabold text-white text-display-lg tracking-tight mb-6">
+              Never Waste a Trip Again
+            </h1>
+            <p className="text-body-lg text-muted-light mb-8">
+              Know if your favorite shop is open before you leave home.
+              Get offers, discover new shops, and stay connected with local businesses.
+            </p>
+            <Link
+              href="/download"
+              className="inline-flex items-center bg-neon text-surface-0 px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
+            >
+              Download App
+              <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* What You Can Do */}
+      <section className="section">
+        <Container>
+          <SectionHeader
+            eyebrow="Features"
+            title="What You Can Do"
+            description="Everything you need to stay connected with your local shops."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, i) => (
+              <div key={i} className="card group">
+                <div className="w-11 h-11 bg-neon/8 border border-neon/15 rounded-xl flex items-center justify-center text-neon mb-5">
+                  <feature.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-extrabold text-white text-xl tracking-tight mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-body-lg text-muted-light">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Why Customers Love */}
+      <section className="section">
+        <Container>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <SectionHeader
+                eyebrow="Benefits"
+                title="Why Customers Love"
+                titleAccent="HERE OPEN"
+                description="Join thousands of smart shoppers who never waste a trip."
+                align="left"
+                className="mb-10"
+              />
+              <ul className="space-y-4">
+                {benefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-neon mr-3 mt-0.5 shrink-0" />
+                    <span className="text-body-lg text-muted-light">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card-static rounded-2xl p-8">
+              <div className="bg-white/[0.03] rounded-2xl p-6">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-neon/10 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">🏪</span>
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold tracking-tight text-white">Sharma General Store</h4>
+                    <p className="text-sm text-neon flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2 glow-green"></span>
+                      OPEN
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-light mb-4">0.5 km away • Grocery</p>
+                <div className="bg-neon/5 border border-neon/20 rounded-xl p-4">
+                  <p className="text-xs text-neon font-medium mb-1">New Offer</p>
+                  <p className="text-sm font-medium text-white">10% off on all groceries</p>
+                  <p className="text-xs text-muted-light mt-1">Expires in 2 days</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Download */}
+      <section className="section">
+        <Container className="text-center">
+          <SectionHeader
+            eyebrow="Download"
+            title="Get the App"
+            description="Available on iOS and Android. Start discovering local shops today."
+          />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="#"
+              className="card-static px-8 py-4 rounded-lg font-bold text-white hover:bg-white/5 transition-colors inline-flex items-center justify-center"
+            >
+              <span className="mr-3">📱</span>
+              App Store
+            </Link>
+            <Link
+              href="#"
+              className="card-static px-8 py-4 rounded-lg font-bold text-white hover:bg-white/5 transition-colors inline-flex items-center justify-center"
+            >
+              <span className="mr-3">▶️</span>
+              Google Play
+            </Link>
+          </div>
+        </Container>
+      </section>
+    </main>
+  );
+}
