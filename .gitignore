@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+
+# Build output
+dist/
+build/
+out/
+.vercel/
+
+# Coverage
+coverage/
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Prisma generated
+.prisma/
+generated-prisma/
+
+# Logs
+*.log
+logs/
+output.log
+error.log
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Large generated files
+*.db
+*.sqlite
+
+# Diagnostic files
+git_tracked_files.txt
+git_tracked.txt
+git_ls.txt
+git_ls_files.txt
+git_current_tracked.txt
+git_status.txt
+analyze_tracked.ps1
+analyze_tracked2.ps1
+analyze_tracked3.ps1
