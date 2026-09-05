@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { MobileStickyBar } from '@/components/ui/MobileStickyBar';
+import { WhatsAppFloat } from '@/components/ui/WhatsAppFloat';
+import { BackToTop } from '@/components/ui/BackToTop';
 import './globals.css';
 
 const inter = Inter({
@@ -58,6 +61,9 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <MobileStickyBar />
+        <WhatsAppFloat />
+        <BackToTop />
       </body>
     </html>
   );
