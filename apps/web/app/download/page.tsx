@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Smartphone, CheckCircle } from 'lucide-react';
+import { Smartphone, Play, CheckCircle } from 'lucide-react';
 import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
@@ -29,7 +29,7 @@ export default function DownloadPage() {
                 href="#"
                 className="card-static px-8 py-4 font-semibold hover:bg-neutral-100 transition-colors inline-flex items-center justify-center"
               >
-                <span className="mr-3 text-2xl">📱</span>
+                <Smartphone className="w-6 h-6 text-green-action mr-3" />
                 <div className="text-left">
                   <p className="text-xs text-neutral-500">Download on the</p>
                   <p className="text-lg text-black">App Store</p>
@@ -39,7 +39,7 @@ export default function DownloadPage() {
                 href="#"
                 className="card-static px-8 py-4 font-semibold hover:bg-neutral-100 transition-colors inline-flex items-center justify-center"
               >
-                <span className="mr-3 text-2xl">▶️</span>
+                <Play className="w-6 h-6 text-green-action mr-3" />
                 <div className="text-left">
                   <p className="text-xs text-neutral-500">Get it on</p>
                   <p className="text-lg text-black">Google Play</p>

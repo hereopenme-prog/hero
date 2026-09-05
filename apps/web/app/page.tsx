@@ -4,8 +4,8 @@ import { useState, useEffect, useRef, Fragment, type MouseEvent } from 'react';
 import Link from 'next/link';
 import {
   Shield, Bell, Eye, Smartphone, Activity, Zap, CheckCircle, ArrowRight,
-  Thermometer, Wind, AlertTriangle, Wifi,
-  Store, UtensilsCrossed, Pill, Scissors, Wrench, ShoppingBag, Building2, Briefcase
+  Thermometer, Wind, AlertTriangle, Wifi, Cloud, Cpu, Users,
+  Store, UtensilsCrossed, Cross, Scissors, Wrench, ShoppingBag, Building2,
 } from 'lucide-react';
 import { motion, useAnimationControls, useInView, useScroll, MotionConfig, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
@@ -468,7 +468,7 @@ function MonitoringSection() {
 
   const monitors = [
     {
-      icon: <Shield className="w-4 h-4" />,
+      icon: <Shield size={14} className="text-[#6B7C8E]" strokeWidth={1.5} />,
       label: 'Security',
       value: (
         <span className="flex items-center gap-2">
@@ -478,12 +478,12 @@ function MonitoringSection() {
       ),
     },
     {
-      icon: <Thermometer className="w-4 h-4" />,
+      icon: <Thermometer size={14} className="text-[#6B7C8E]" strokeWidth={1.5} />,
       label: 'Temperature',
       value: <>{`${temp}\u00B0C`}</>,
     },
     {
-      icon: <Wind className="w-4 h-4" />,
+      icon: <Wind size={14} className="text-[#6B7C8E]" strokeWidth={1.5} />,
       label: 'Smoke',
       value: (
         <span className="flex items-center gap-2">
@@ -498,7 +498,7 @@ function MonitoringSection() {
       ),
     },
     {
-      icon: <Activity className="w-4 h-4" />,
+      icon: <Wifi size={14} className="text-[#6B7C8E]" strokeWidth={1.5} />,
       label: 'Network',
       value: (
         <span className="flex items-center gap-2">
@@ -511,9 +511,9 @@ function MonitoringSection() {
         </span>
       ),
     },
-    { icon: <Wifi className="w-4 h-4" />, label: 'Device', value: 'Healthy' },
+    { icon: <Cpu size={14} className="text-[#6B7C8E]" strokeWidth={1.5} />, label: 'Device', value: 'Healthy' },
     {
-      icon: <Bell className="w-4 h-4" />,
+      icon: <Bell size={14} className="text-[#6B7C8E]" strokeWidth={1.5} />,
       label: 'Alerts',
       value: (
         <motion.span
@@ -575,8 +575,8 @@ function MonitoringSection() {
             <div className="grid grid-cols-2 gap-3">
               {monitors.map((m) => (
                 <div key={m.label} className="bg-neutral-50 border border-neutral-200 rounded-xl p-4">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <span className="text-black">{m.icon}</span>
+                  <div className="flex items-center mb-2">
+                    <span className="mr-2 flex items-center">{m.icon}</span>
                     <span className="text-[10px] text-black uppercase tracking-wider">{m.label}</span>
                   </div>
                   <p className="text-[13px] font-semibold text-black">{m.value}</p>
@@ -596,14 +596,14 @@ function MonitoringSection() {
 
 function TargetSection() {
   const categories = [
-    { icon: <Store className="w-5 h-5" />, name: 'Kirana' },
-    { icon: <UtensilsCrossed className="w-5 h-5" />, name: 'Restaurants' },
-    { icon: <Pill className="w-5 h-5" />, name: 'Medical Stores' },
-    { icon: <Scissors className="w-5 h-5" />, name: 'Salons' },
-    { icon: <Briefcase className="w-5 h-5" />, name: 'Tailors' },
-    { icon: <Wrench className="w-5 h-5" />, name: 'Repair Shops' },
-    { icon: <ShoppingBag className="w-5 h-5" />, name: 'Retail' },
-    { icon: <Building2 className="w-5 h-5" />, name: 'Small Offices' },
+    { icon: <Store size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Kirana' },
+    { icon: <UtensilsCrossed size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Restaurants' },
+    { icon: <Cross size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Medical Stores' },
+    { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Salons' },
+    { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={1.2} />, name: 'Tailors' },
+    { icon: <Wrench size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Repair Shops' },
+    { icon: <ShoppingBag size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Retail' },
+    { icon: <Building2 size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Small Offices' },
   ];
 
   return (
@@ -618,10 +618,8 @@ function TargetSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
           {categories.map((c, i) => (
-            <div key={i} className="card-static flex flex-col items-center gap-3 py-6 text-center hover:border-green-action/30 transition-colors">
-              <div className="w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action">
-                {c.icon}
-              </div>
+            <div key={i} className="card-static flex items-center justify-center gap-2 py-4 px-5 hover:border-green-action/30 transition-colors">
+              {c.icon}
               <span className="text-[13px] font-medium text-black">{c.name}</span>
             </div>
           ))}
@@ -652,12 +650,12 @@ const techArrowVar: Variants = {
 
 function TechnologySection() {
   const layers = [
-    { label: 'SHOP', sub: 'Physical Location' },
-    { label: 'HERE OPEN DEVICE', sub: 'IoT Hardware' },
-    { label: 'IoT NETWORK', sub: 'GSM / MQTT' },
-    { label: 'CLOUD', sub: 'Processing & Sync' },
-    { label: 'MOBILE APP', sub: 'Real-Time Updates' },
-    { label: 'CUSTOMERS', sub: 'Visibility & Alerts' },
+    { icon: <Store size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'SHOP', sub: 'Physical Location' },
+    { icon: <Cpu size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'HERE OPEN DEVICE', sub: 'IoT Hardware' },
+    { icon: <Wifi size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'IoT NETWORK', sub: 'GSM / MQTT' },
+    { icon: <Cloud size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'CLOUD', sub: 'Processing & Sync' },
+    { icon: <Smartphone size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'MOBILE APP', sub: 'Real-Time Updates' },
+    { icon: <Users size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'CUSTOMERS', sub: 'Visibility & Alerts' },
   ];
 
   return (
@@ -688,8 +686,8 @@ function TechnologySection() {
                     variants={techNodeVar}
                     className="node-glow flex-1 min-w-0 bg-white border border-neutral-200 rounded-2xl px-3 py-4 flex flex-col items-center gap-1.5 text-center"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-green-action/8 border border-green-action/15 flex items-center justify-center text-green-action text-[10px] font-bold flex-shrink-0">
-                      {String(i + 1).padStart(2, '0')}
+                    <div className="w-11 h-11 rounded-xl bg-green-action/8 border border-green-action/15 flex items-center justify-center flex-shrink-0">
+                      {l.icon}
                     </div>
                     <p className="text-[12px] font-bold text-black leading-tight">{l.label}</p>
                     <p className="text-[10px] text-black leading-tight">{l.sub}</p>
@@ -724,8 +722,8 @@ function TechnologySection() {
                     variants={techNodeVar}
                     className="node-glow card-static flex items-center gap-4 py-4 px-6"
                   >
-                    <div className="w-8 h-8 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action text-[11px] font-bold flex-shrink-0">
-                      {String(i + 1).padStart(2, '0')}
+                    <div className="w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center flex-shrink-0">
+                      {l.icon}
                     </div>
                     <div className="flex-1">
                       <p className="text-[13px] font-bold text-black">{l.label}</p>

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Eye, Bell, MapPin, Clock, Star, ArrowRight, CheckCircle } from 'lucide-react';
+import { Eye, Bell, MapPin, Clock, Star, ArrowRight, CheckCircle, Store, Smartphone, Play } from 'lucide-react';
 import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
@@ -117,7 +117,7 @@ export default function ForCustomersPage() {
               <div className="bg-neutral-100 rounded-2xl p-6">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="w-12 h-12 bg-green-action/10 rounded-full flex items-center justify-center">
-                    <span className="text-2xl">🏪</span>
+                    <Store className="w-6 h-6 text-green-action" />
                   </div>
                   <div>
                     <h4 className="font-extrabold tracking-tight text-green-forest">Sharma General Store</h4>
@@ -152,14 +152,14 @@ export default function ForCustomersPage() {
               href="#"
               className="card-static px-8 py-4 rounded-lg font-bold text-black hover:bg-green-light transition-colors inline-flex items-center justify-center"
             >
-              <span className="mr-3">📱</span>
+              <Smartphone className="w-6 h-6 text-green-action mr-3" />
               App Store
             </Link>
             <Link
               href="#"
               className="card-static px-8 py-4 rounded-lg font-bold text-black hover:bg-green-light transition-colors inline-flex items-center justify-center"
             >
-              <span className="mr-3">▶️</span>
+              <Play className="w-6 h-6 text-green-action mr-3" />
               Google Play
             </Link>
           </div>

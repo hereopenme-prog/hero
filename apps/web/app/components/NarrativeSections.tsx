@@ -7,9 +7,9 @@ import {
   Store, Users, Eye, Bell, Shield, Smartphone, Zap, ArrowRight,
   AlertTriangle, Wifi, UtensilsCrossed, Pill, Scissors, Wrench,
   ShoppingBag, Building2, GraduationCap, Bed, Warehouse, MapPin, Cpu, TrendingUp, Network,
-  Lock, LayoutDashboard, Award, Layers, BadgeCheck,
-  Flame, Gauge, Timer, DoorOpen, MessageCircle, Megaphone, Server, Radio, Plug,
-  Workflow, Heart,
+  Lock, Award, Layers, Flame, MessageCircle, MessageSquare, Megaphone, Server, Radio, Plug,
+  Workflow, Heart, ToggleRight, BellRing, ShieldCheck, LayoutGrid, BarChart2,
+  Clock, Compass, Tag, CheckCircle, Map, LineChart, Check, X,
 } from 'lucide-react';
 import { Container } from './Container';
 import { SectionHeader } from './SectionHeader';
@@ -78,7 +78,7 @@ function ProblemColumn({
             className="flex items-start gap-3"
           >
             <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mt-0.5 flex-shrink-0">
-              <span className="text-[10px] font-bold">✕</span>
+              <X size={12} className="text-red-400" strokeWidth={2.5} />
             </div>
             <span className="text-body-sm text-black leading-relaxed">{item}</span>
           </motion.li>
@@ -349,20 +349,20 @@ export function HowItWorksSection() {
    ═══════════════════════════════════════════════════════ */
 
 const features = [
-  { icon: <Eye className="w-5 h-5" />, title: 'Real-Time OPEN/CLOSED Status', desc: 'Live status visibility for every connected location.' },
-  { icon: <Bell className="w-5 h-5" />, title: 'Instant Alerts', desc: 'Status changes and important updates delivered in seconds.' },
-  { icon: <Shield className="w-5 h-5" />, title: '24/7 Safety Monitoring', desc: 'Continuous protection even when your shop is closed.' },
-  { icon: <Flame className="w-5 h-5" />, title: 'Fire Event Detection', desc: 'Temperature and smoke sensing with immediate notification.' },
-  { icon: <Smartphone className="w-5 h-5" />, title: 'Customer Mobile App', desc: 'One tap to know any shop status instantly.' },
-  { icon: <MessageCircle className="w-5 h-5" />, title: 'Direct Customer Communication', desc: 'Talk to your customers without third-party platforms.' },
-  { icon: <Megaphone className="w-5 h-5" />, title: 'Offers & Announcements', desc: 'Publish offers that reach the right people right away.' },
-  { icon: <Building2 className="w-5 h-5" />, title: 'Multi-Shop Management', desc: 'Run many locations from one simple dashboard.' },
-  { icon: <Users className="w-5 h-5" />, title: 'Team & Role Management', desc: 'Assign roles and control who updates what.' },
-  { icon: <LayoutDashboard className="w-5 h-5" />, title: 'Business Dashboard', desc: 'Operational insight with everything in one place.' },
-  { icon: <Cpu className="w-5 h-5" />, title: 'IoT Device Management', desc: 'Health, connectivity, and lifecycle for every device.' },
-  { icon: <Lock className="w-5 h-5" />, title: 'Role-Based Security', desc: 'Granular access control across staff and locations.' },
-  { icon: <MapPin className="w-5 h-5" />, title: 'Location Visibility', desc: 'Customers discover open businesses near them.' },
-  { icon: <TrendingUp className="w-5 h-5" />, title: 'Push Notifications', desc: 'Timely updates straight to customer phones.' },
+  { icon: <ToggleRight size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Real-Time OPEN/CLOSED Status', desc: 'Live status visibility for every connected location.' },
+  { icon: <BellRing size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Instant Alerts', desc: 'Status changes and important updates delivered in seconds.' },
+  { icon: <ShieldCheck size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: '24/7 Safety Monitoring', desc: 'Continuous protection even when your shop is closed.' },
+  { icon: <Flame size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Fire Event Detection', desc: 'Temperature and smoke sensing with immediate notification.' },
+  { icon: <Smartphone size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Customer Mobile App', desc: 'One tap to know any shop status instantly.' },
+  { icon: <MessageSquare size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Direct Customer Communication', desc: 'Talk to your customers without third-party platforms.' },
+  { icon: <Megaphone size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Offers & Announcements', desc: 'Publish offers that reach the right people right away.' },
+  { icon: <LayoutGrid size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Multi-Shop Management', desc: 'Run many locations from one simple dashboard.' },
+  { icon: <Users size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Team & Role Management', desc: 'Assign roles and control who updates what.' },
+  { icon: <BarChart2 size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Business Dashboard', desc: 'Operational insight with everything in one place.' },
+  { icon: <Cpu size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'IoT Device Management', desc: 'Health, connectivity, and lifecycle for every device.' },
+  { icon: <Lock size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Role-Based Security', desc: 'Granular access control across staff and locations.' },
+  { icon: <MapPin size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Location Visibility', desc: 'Customers discover open businesses near them.' },
+  { icon: <Bell size={22} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Push Notifications', desc: 'Timely updates straight to customer phones.' },
 ];
 
 export function FeaturesSection() {
@@ -389,7 +389,10 @@ export function FeaturesSection() {
               className="h-full"
             >
               <div className="card feature-card card-shimmer relative overflow-hidden h-full">
-                <div className="feature-icon w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action mb-4">
+                <div
+                  className="feature-icon flex items-center justify-center"
+                  style={{ background: '#00D0841A', borderRadius: 10, padding: 10, width: 44, height: 44, marginBottom: 16 }}
+                >
                   {f.icon}
                 </div>
                 <h3 className="text-[14px] font-bold text-green-forest mb-1.5 leading-snug">{f.title}</h3>
@@ -408,12 +411,12 @@ export function FeaturesSection() {
    ═══════════════════════════════════════════════════════ */
 
 const ownerBenefits = [
-  { icon: <Eye className="w-5 h-5" />, title: 'Complete Visibility', desc: 'Customers see you are open, and you see every location in real time.' },
-  { icon: <TrendingUp className="w-5 h-5" />, title: 'More Customer Acquisition', desc: 'Open businesses get found. Discoverability drives footfall.' },
-  { icon: <Shield className="w-5 h-5" />, title: 'Peace of Mind Safety', desc: '24/7 monitoring with instant alerts when anything needs attention.' },
-  { icon: <MessageCircle className="w-5 h-5" />, title: 'Direct Communication', desc: 'Reach your customers with offers and updates — no middlemen.' },
-  { icon: <Building2 className="w-5 h-5" />, title: 'Multi-Location Management', desc: 'One dashboard for every shop, every device, every status.' },
-  { icon: <Gauge className="w-5 h-5" />, title: 'Operational Insights', desc: 'Understand opening hours, engagement, and alerts at a glance.' },
+  { icon: <Eye size={20} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Complete Visibility', desc: 'Customers see you are open, and you see every location in real time.' },
+  { icon: <TrendingUp size={20} className="text-[#00D084]" strokeWidth={1.5} />, title: 'More Customer Acquisition', desc: 'Open businesses get found. Discoverability drives footfall.' },
+  { icon: <ShieldCheck size={20} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Peace of Mind Safety', desc: '24/7 monitoring with instant alerts when anything needs attention.' },
+  { icon: <MessageCircle size={20} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Direct Communication', desc: 'Reach your customers with offers and updates — no middlemen.' },
+  { icon: <Map size={20} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Multi-Location Management', desc: 'One dashboard for every shop, every device, every status.' },
+  { icon: <LineChart size={20} className="text-[#00D084]" strokeWidth={1.5} />, title: 'Operational Insights', desc: 'Understand opening hours, engagement, and alerts at a glance.' },
 ];
 
 export function OwnerBenefitsSection() {
@@ -432,7 +435,10 @@ export function OwnerBenefitsSection() {
           {ownerBenefits.map((b, i) => (
             <Reveal key={i} delay={(i % 3) * 80} className="h-full">
               <div className="card group h-full">
-                <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action mb-5 group-hover:shadow-green transition-shadow">
+                <div
+                  className="flex items-center justify-center"
+                  style={{ background: '#00D0841A', borderRadius: 10, padding: 10, width: 40, height: 40, marginBottom: 16 }}
+                >
                   {b.icon}
                 </div>
                 <h3 className="text-[15px] font-bold text-green-forest mb-2">{b.title}</h3>
@@ -451,13 +457,13 @@ export function OwnerBenefitsSection() {
    ═══════════════════════════════════════════════════════ */
 
 const customerBenefits = [
-  { icon: <DoorOpen className="w-5 h-5" />, title: 'Know Before You Go', desc: 'Check the real-time status of any shop before you leave home.' },
-  { icon: <Timer className="w-5 h-5" />, title: 'Save Your Time', desc: 'No more wasted trips to closed businesses.' },
-  { icon: <MapPin className="w-5 h-5" />, title: 'Discover Open Businesses', desc: 'Find shops that are actually open, near you, right now.' },
-  { icon: <MessageCircle className="w-5 h-5" />, title: 'Direct Communication', desc: 'Ask questions and get answers without phone tag.' },
-  { icon: <Megaphone className="w-5 h-5" />, title: 'Never Miss Offers', desc: 'Offers and announcements from the shops you follow.' },
-  { icon: <Bell className="w-5 h-5" />, title: 'Helpful Notifications', desc: 'Know when a favorite shop opens or shares fresh updates.' },
-  { icon: <BadgeCheck className="w-5 h-5" />, title: 'Confidence', desc: 'Every visit is informed, intentional, and worth the trip.' },
+  { icon: <Eye size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Know Before You Go', desc: 'Check the real-time status of any shop before you leave home.' },
+  { icon: <Clock size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Save Your Time', desc: 'No more wasted trips to closed businesses.' },
+  { icon: <Compass size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Discover Open Businesses', desc: 'Find shops that are actually open, near you, right now.' },
+  { icon: <MessageCircle size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Direct Communication', desc: 'Ask questions and get answers without phone tag.' },
+  { icon: <Tag size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Never Miss Offers', desc: 'Offers and announcements from the shops you follow.' },
+  { icon: <Bell size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Helpful Notifications', desc: 'Know when a favorite shop opens or shares fresh updates.' },
+  { icon: <CheckCircle size={20} className="text-[#00B4D8]" strokeWidth={1.5} />, title: 'Confidence', desc: 'Every visit is informed, intentional, and worth the trip.' },
 ];
 
 export function CustomerBenefitsSection() {
@@ -475,7 +481,10 @@ export function CustomerBenefitsSection() {
           {customerBenefits.map((b, i) => (
             <Reveal key={i} delay={(i % 4) * 60} className="h-full">
               <div className="card group h-full">
-                <div className="w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action mb-4 group-hover:shadow-green transition-shadow">
+                <div
+                  className="flex items-center justify-center"
+                  style={{ background: '#00B4D81A', borderRadius: 10, padding: 10, width: 40, height: 40, marginBottom: 16 }}
+                >
                   {b.icon}
                 </div>
                 <h3 className="text-[14px] font-bold text-green-forest mb-1.5 leading-snug">{b.title}</h3>
@@ -579,7 +588,7 @@ export function GrowthSection() {
         />
 
         <div className="relative max-w-5xl mx-auto">
-          {/* Horizontal progress bar connecting phases 1→5 */}
+          {/* Horizontal progress bar connecting phases 1 through 5 */}
           <div className="hidden md:block absolute left-[8%] right-[8%] top-[19px] h-[3px] rounded-full bg-green-action/15" />
           <motion.div
             initial={{ scaleX: 0 }}
@@ -713,7 +722,9 @@ export function WhySection() {
                 transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
                 className="px-5 py-4 text-[13px] text-neutral-500 flex items-start gap-2"
               >
-                <span className="text-red-400 mt-0.5 text-[12px] flex-shrink-0">✕</span>
+                <span className="min-w-[20px] inline-flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <X size={16} className="text-[#3D4F5E]" strokeWidth={2} />
+                </span>
                 <span className="relative inline-block">
                   {row.traditional}
                   <motion.span
@@ -730,15 +741,14 @@ export function WhySection() {
                 transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
                 className="px-5 py-4 text-[13px] text-black flex items-start gap-2"
               >
-                <svg className="w-4 h-4 text-green-action mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <motion.path
-                    d="M5 12.5 L9.5 17 L19 7"
-                    strokeDasharray="40"
-                    initial={{ strokeDashoffset: 40, opacity: 0 }}
-                    animate={inView ? { strokeDashoffset: 0, opacity: 1 } : {}}
-                    transition={{ duration: 0.5, ease: 'easeOut', delay: 0.35 + i * 0.1 }}
-                  />
-                </svg>
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.3, ease: 'easeOut', delay: 0.35 + i * 0.1 }}
+                  className="min-w-[20px] inline-flex items-center justify-center mt-0.5 flex-shrink-0"
+                >
+                  <Check size={16} className="text-[#00D084]" strokeWidth={2.5} />
+                </motion.span>
                 {row.modern}
               </motion.div>
             </div>
@@ -754,9 +764,9 @@ export function WhySection() {
    ═══════════════════════════════════════════════════════ */
 
 const visionLayers = [
-  { icon: <Building2 className="w-5 h-5" />, label: 'Physical Businesses' },
-  { icon: <Cpu className="w-5 h-5" />, label: 'IoT Devices' },
-  { icon: <Smartphone className="w-5 h-5" />, label: 'Customers' },
+  { icon: <Building2 size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Physical Businesses' },
+  { icon: <Cpu size={24} className="text-[#00B4D8]" strokeWidth={1.5} />, label: 'IoT Devices' },
+  { icon: <Users size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Customers' },
 ];
 
 export function VisionSection() {
@@ -782,7 +792,7 @@ export function VisionSection() {
             {visionLayers.map((v, i) => (
               <div key={i} className="flex items-center gap-4">
                 <div className="flex flex-col items-center gap-2 bg-white border border-neutral-200 rounded-2xl px-6 py-5 shadow-card">
-                  <div className="w-12 h-12 bg-green-action/10 rounded-xl flex items-center justify-center text-green-action">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: '#00D0841A' }}>
                     {v.icon}
                   </div>
                   <span className="text-[13px] font-semibold text-black text-center leading-tight">{v.label}</span>

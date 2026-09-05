@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Smartphone, Wifi, Cloud, Eye, Shield, Bell, Zap, CheckCircle, Store, UtensilsCrossed, Pill, Scissors, Briefcase, Wrench, ShoppingBag, Building2 } from 'lucide-react';
+import { Smartphone, Wifi, Cloud, Eye, Shield, Bell, Zap, CheckCircle, Store, UtensilsCrossed, Cross, Scissors, Wrench, ShoppingBag, Building2 } from 'lucide-react';
 import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 import { SolutionSection, FeaturesSection } from '../components/NarrativeSections';
@@ -69,14 +69,14 @@ const cloudFeatures = [
 ];
 
 const providerCategories = [
-  { icon: Store, name: 'Kirana' },
-  { icon: UtensilsCrossed, name: 'Restaurants' },
-  { icon: Pill, name: 'Medical Stores' },
-  { icon: Scissors, name: 'Salons' },
-  { icon: Briefcase, name: 'Tailors' },
-  { icon: Wrench, name: 'Repair Shops' },
-  { icon: ShoppingBag, name: 'Retail' },
-  { icon: Building2, name: 'Small Offices' },
+  { icon: <Store size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Kirana' },
+  { icon: <UtensilsCrossed size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Restaurants' },
+  { icon: <Cross size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Medical Stores' },
+  { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Salons' },
+  { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={1.2} />, name: 'Tailors' },
+  { icon: <Wrench size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Repair Shops' },
+  { icon: <ShoppingBag size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Retail' },
+  { icon: <Building2 size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Small Offices' },
 ];
 
 function ProvidersSection() {
@@ -92,10 +92,8 @@ function ProvidersSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
           {providerCategories.map((c, i) => (
-            <div key={i} className="card-static flex flex-col items-center gap-3 py-6 text-center hover:border-green-action/30 transition-colors">
-              <div className="w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action">
-                <c.icon className="w-5 h-5" />
-              </div>
+            <div key={i} className="card-static flex items-center justify-center gap-2 py-4 px-5 hover:border-green-action/30 transition-colors">
+              {c.icon}
               <span className="text-[13px] font-medium text-black">{c.name}</span>
             </div>
           ))}

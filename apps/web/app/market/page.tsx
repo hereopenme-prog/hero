@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { TrendingUp, Users, Store, MapPin } from 'lucide-react';
+import { TrendingUp, Users, Store, MapPin, Check, ArrowUp } from 'lucide-react';
 import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
@@ -55,7 +55,7 @@ const problems = [
 
 const solutions = [
   {
-    icon: '✓',
+    icon: <Check className="w-7 h-7 text-green-action" />,
     title: 'Plug & Play',
     desc: 'Simple IoT device that works out of the box — no technical expertise needed.',
   },
@@ -65,7 +65,7 @@ const solutions = [
     desc: 'Starting from ₹499/month for businesses — accessible to every shop owner.',
   },
   {
-    icon: '↑',
+    icon: <ArrowUp className="w-7 h-7 text-green-action" />,
     title: 'Scalable',
     desc: 'From single shops to chain stores — grows with your business.',
   },
