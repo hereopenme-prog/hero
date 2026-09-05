@@ -79,7 +79,7 @@ export function SectionHeading({
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
         variants={headingContainer}
-        className={`${titleClasses} text-[var(--ink)] leading-tight ${
+        className={`${titleClasses} text-[var(--accent)] leading-tight ${
           align === 'center' ? 'mx-auto max-w-[820px]' : ''
         }`}
       >

@@ -41,18 +41,18 @@
 
   /* Borders & glass */
   --border:       #DCE1E5;
-  --border-soft:  rgba(1, 12, 40, 0.08);
+  --border-soft:  rgba(0, 0, 0, 0.08);
   --border-strong:#C3CAD0;
-  --glass:        rgba(1, 12, 40, 0.04);
-  --glass-2:      rgba(1, 12, 40, 0.07);
+  --glass:        rgba(0, 0, 0, 0.04);
+  --glass-2:      rgba(0, 0, 0, 0.07);
 
   /* Ink */
-  --ink:       #010C28;
-  --ink-2:     #5F6875;
-  --ink-muted: #98999E;
-  --ink-dim:   #6A7282;
+  --ink:       #000000;
+  --ink-2:     #333333;
+  --ink-muted: #666666;
+  --ink-dim:   #555555;
   --ink-faint: #B8BEC6;
-  --ink-a10:   rgba(1, 12, 40, 0.1);
+  --ink-a10:   rgba(0, 0, 0, 0.1);
 
   /* Screen/device surfaces (identical in both themes) */
   --chip-ink:   #C7D2DC;
@@ -86,9 +86,9 @@
   --color-green-action: #004A00;
   --color-white:        #FFFFFF;
   --color-off-white:    #EAEDEB;
-  --color-black:        #010C28;
-  --color-dark-text:    #010C28;
-  --color-body-text:    #3B4250;
+  --color-black:        #000000;
+  --color-dark-text:    #000000;
+  --color-body-text:    #333333;
 }
 
 :root[data-theme='dark'] {
