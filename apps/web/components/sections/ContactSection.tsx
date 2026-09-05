@@ -5,7 +5,6 @@ import { Mail, MessageCircle, Clock, CheckCircle2, AlertCircle, Send } from 'luc
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { WaitlistForm } from '@/components/waitlist/WaitlistForm';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -56,11 +55,11 @@ export function ContactSection() {
         <SectionHeading
           eyebrow="Contact"
           title="Talk To The HERE OPEN Team"
-          description="Join the waitlist, ask a question, or request a demo — we reply fast."
+          description="Ask a question or request a demo — we reply fast."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* Left: info + waitlist */}
+          {/* Left: info */}
           <div className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
@@ -76,14 +75,6 @@ export function ContactSection() {
                   <p className="font-body font-medium text-[0.82rem] text-[#E8EDF2] break-all">{c.value}</p>
                 </div>
               ))}
-            </div>
-
-            <div className="rounded-3xl border border-[#00D08430] bg-[#0F1923] p-6 lg:p-8">
-              <h3 className="font-display font-semibold text-[1.1rem] text-[#E8EDF2] mb-1">Join the Waitlist</h3>
-              <p className="font-body text-[0.85rem] text-[#8A9BAE] mb-5">
-                Be among the first merchants to get the HERE OPEN device.
-              </p>
-              <WaitlistForm />
             </div>
           </div>
 
