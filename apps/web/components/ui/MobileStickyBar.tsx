@@ -12,7 +12,7 @@ export function MobileStickyBar() {
   })
 
   const handleJoin = () => {
-    document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -36,7 +36,7 @@ export function MobileStickyBar() {
           className="flex-1 rounded-[10px] px-4 font-display font-semibold text-[0.9rem] text-[#080C10] transition-transform duration-200 active:scale-[0.97]"
           style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)', padding: '14px' }}
         >
-          Join Waitlist
+          Get Started
         </button>
         <a
           href="https://wa.me/91XXXXXXXXXX"

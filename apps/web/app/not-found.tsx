@@ -77,7 +77,7 @@ export default function NotFound() {
               Go Back Home
             </Link>
             <Link
-              href="/contact"
+              href="/#contact"
               className="active:scale-[0.97] inline-flex items-center justify-center rounded-lg px-7 py-3.5 border border-[#1C2A38] font-body font-medium text-[15px] text-[#E8EDF2] transition-all duration-200 hover:border-[#00D084]/50 hover:bg-[#16232F] hover:-translate-y-0.5"
             >
               Contact Us

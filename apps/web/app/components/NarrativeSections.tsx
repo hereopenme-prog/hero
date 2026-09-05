@@ -1058,19 +1058,19 @@ export function FinalCTASection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
-              href="#waitlist"
+              href="#contact"
               className="cta-pulse active:scale-[0.97] inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all duration-200 shadow-green hover:shadow-green"
             >
               Join Waitlist <ArrowRight size={16} />
             </Link>
             <Link
-              href="/for-businesses"
+              href="/#businesses"
               className="active:scale-[0.97] inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all duration-200"
             >
               For Businesses
             </Link>
             <Link
-              href="/for-customers"
+              href="/#customers"
               className="active:scale-[0.97] inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all duration-200"
             >
               For Customers

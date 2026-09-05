@@ -88,7 +88,7 @@ export default function FAQPage() {
               We&apos;re here to help. Reach out to our team and we&apos;ll get back to you as soon as possible.
             </p>
             <a
-              href="/contact"
+              href="/#contact"
               className="active:scale-[0.97] bg-green-action text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-all inline-block"
             >
               Contact Us

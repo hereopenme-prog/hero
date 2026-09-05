@@ -227,7 +227,7 @@ export default function RoadmapPage() {
               launch.
             </p>
             <a
-              href="/contact"
+              href="/#contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-action text-white font-bold rounded-xl hover:bg-green-forest transition-all shadow-green hover:shadow-green text-[15px]"
             >
               Contact Us
