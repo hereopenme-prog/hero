@@ -2,8 +2,11 @@ import { Metadata } from 'next';
 import { Container } from '../components/Container';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - HERE OPEN',
+  title: 'Privacy Policy',
   description: 'Privacy policy for HERE OPEN platform.',
+  alternates: {
+    canonical: 'https://hereopen.in/privacy',
+  },
 };
 
 export default function PrivacyPage() {

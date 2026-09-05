@@ -4,8 +4,11 @@ import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
 export const metadata: Metadata = {
-  title: 'Security & Safety - HERE OPEN',
+  title: 'Security & Safety',
   description: '24/7 security monitoring, fire detection, and instant alerts with HERE OPEN IoT platform.',
+  alternates: {
+    canonical: 'https://hereopen.in/security',
+  },
 };
 
 const features = [

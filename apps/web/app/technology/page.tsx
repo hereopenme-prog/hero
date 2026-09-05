@@ -4,8 +4,11 @@ import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
 export const metadata: Metadata = {
-  title: 'Technology - HERE OPEN',
+  title: 'Technology',
   description: 'Learn about the IoT technology powering HERE OPEN platform.',
+  alternates: {
+    canonical: 'https://hereopen.in/technology',
+  },
 };
 
 export default function TechnologyPage() {

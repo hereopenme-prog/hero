@@ -2,8 +2,11 @@ import { Metadata } from 'next';
 import { Container } from '../components/Container';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service - HERE OPEN',
+  title: 'Terms of Service',
   description: 'Terms of service for HERE OPEN platform.',
+  alternates: {
+    canonical: 'https://hereopen.in/terms',
+  },
 };
 
 export default function TermsPage() {

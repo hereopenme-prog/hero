@@ -3,8 +3,11 @@ import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
 export const metadata: Metadata = {
-  title: 'FAQ - HERE OPEN',
+  title: 'FAQ',
   description: 'Frequently asked questions about HERE OPEN platform.',
+  alternates: {
+    canonical: 'https://hereopen.in/faq',
+  },
 };
 
 const faqs = [

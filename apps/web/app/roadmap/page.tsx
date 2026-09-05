@@ -3,9 +3,12 @@ import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
 export const metadata: Metadata = {
-  title: 'Product Roadmap - HERE OPEN',
+  title: 'Product Roadmap',
   description:
     'The future of HERE OPEN — upcoming features and improvements.',
+  alternates: {
+    canonical: 'https://hereopen.in/roadmap',
+  },
 };
 
 const phases = [

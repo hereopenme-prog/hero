@@ -4,9 +4,12 @@ import { Container } from '../components/Container';
 import { SectionHeader } from '../components/SectionHeader';
 
 export const metadata: Metadata = {
-  title: 'Market Opportunity - HERE OPEN',
+  title: 'Market Opportunity',
   description:
     'India has 63 million+ small businesses, 300M+ local shop customers, and a ₹50,000 Cr local retail market — yet 80% of shops operate without any digital presence. Discover the opportunity.',
+  alternates: {
+    canonical: 'https://hereopen.in/market',
+  },
 };
 
 const stats = [

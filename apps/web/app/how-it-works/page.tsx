@@ -5,8 +5,11 @@ import { SectionHeader } from '../components/SectionHeader';
 import { SolutionSection, FeaturesSection } from '../components/NarrativeSections';
 
 export const metadata: Metadata = {
-  title: 'How It Works - HERE OPEN',
+  title: 'How It Works',
   description: 'Learn how HERE OPEN IoT platform provides real-time shop visibility and 24/7 safety monitoring.',
+  alternates: {
+    canonical: 'https://hereopen.in/how-it-works',
+  },
 };
 
 const flowSteps = [

@@ -5,8 +5,11 @@ import { Container } from '../components/Container';
 import { WaitlistForm } from '../../components/waitlist/WaitlistForm';
 
 export const metadata: Metadata = {
-  title: 'Get Early Access - HERE OPEN',
+  title: 'Get Early Access',
   description: 'HERE OPEN is launching city by city. Register for early access and get priority onboarding when we go live in your area.',
+  alternates: {
+    canonical: 'https://hereopen.in/download',
+  },
 };
 
 export default function DownloadPage() {
