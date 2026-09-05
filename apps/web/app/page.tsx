@@ -7,6 +7,7 @@ import {
   Thermometer, Wind, AlertTriangle, Wifi, ChevronRight,
   Store, UtensilsCrossed, Pill, Scissors, Wrench, ShoppingBag, Building2, Briefcase
 } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
 import {
@@ -28,59 +29,135 @@ import {
    HERO
    ═══════════════════════════════════════════════════════ */
 
+const heroContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const heroWord: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const heroBadgeContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15, delayChildren: 1.1 } },
+};
+
+const heroBadgeItem: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
+const heroWords = [
+  { word: 'One', cls: 'text-green-forest' },
+  { word: 'Tap.', cls: 'text-green-forest' },
+  { word: 'Know', cls: 'text-green-action' },
+  { word: 'Every', cls: 'text-green-action' },
+  { word: 'Shop', cls: 'text-green-action' },
+  { word: 'Status', cls: 'text-green-forest' },
+  { word: 'Instantly.', cls: 'text-green-forest' },
+];
+
+const heroBadges = ['Real-time Status', '24/7 Monitoring', 'Secure'];
+
+function useCountUp(target: number, duration = 1200) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      setValue(Math.round(target * p));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration]);
+  return value;
+}
+
 function Hero() {
+  const temp = useCountUp(24);
+
   return (
     <section className="relative min-h-[calc(100vh-80px)] flex items-center overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-white" />
-      <div className="absolute inset-0 grid-pattern opacity-40" />
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] bg-[radial-gradient(ellipse,rgba(0,255,102,0.05)_0%,transparent_65%)] pointer-events-none" />
-      <div className="absolute bottom-0 right-[-200px] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,255,102,0.03)_0%,transparent_65%)] pointer-events-none" />
+      <div className="hero-grid absolute inset-0 opacity-60 pointer-events-none" />
+      <div className="hero-radial absolute inset-0 pointer-events-none" />
+
+      {/* Floating orbs */}
+      <div className="hero-orb w-[280px] h-[280px] top-[-80px] left-[-80px] bg-green-action/25" style={{ animation: 'heroOrbDrift 9s ease-in-out infinite' }} />
+      <div className="hero-orb w-[240px] h-[240px] top-[10%] right-[-100px] bg-[#38BDF8]/20" style={{ animation: 'heroOrbDrift 11s ease-in-out 1s infinite' }} />
+      <div className="hero-orb w-[200px] h-[200px] bottom-[-60px] left-[30%] bg-green-mid/20" style={{ animation: 'heroOrbDrift 13s ease-in-out 2s infinite' }} />
+      <div className="hero-orb w-[220px] h-[220px] bottom-[15%] right-[20%] bg-[#0EA5E9]/15" style={{ animation: 'heroOrbDrift 10s ease-in-out 0.5s infinite' }} />
 
       <Container className="relative z-10 py-20 lg:py-0">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left — Copy */}
           <div className="space-y-8">
             <div className="eyebrow">
-              <span className="w-1.5 h-1.5 bg-green-action rounded-full animate-status-pulse" />
+              <span className="status-dot-pulse inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
               Real-Time Shop Visibility
             </div>
 
-            <h1 className="font-display font-extrabold text-green-forest text-display-xl leading-[1.05] tracking-tight">
-              One Tap.
-              <br />
-              <span className="text-green-action">Know Every Shop</span>
-              <br />
-              Status Instantly.
-            </h1>
+            <motion.h1
+              initial="hidden"
+              animate="visible"
+              variants={heroContainer}
+              className="font-display font-extrabold text-green-forest text-display-xl leading-[1.05] tracking-tight"
+            >
+              {heroWords.map((w, i) => (
+                <motion.span key={i} variants={heroWord} className={`inline-block ${w.cls}`}>
+                  {w.word}
+                  {i < heroWords.length - 1 ? '\u00A0' : ''}
+                </motion.span>
+              ))}
+            </motion.h1>
 
-            <p className="text-body-lg text-black max-w-[500px] leading-relaxed">
-              HERE OPEN connects physical shops to customers in real time through IoT, mobile, and cloud technology. Never waste a trip again.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.9 }}
+            >
+              <p className="text-body-lg text-black max-w-[500px] leading-relaxed">
+                HERE OPEN connects physical shops to customers in real time through IoT, mobile, and cloud technology. Never waste a trip again.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/download"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
-              >
-                Get Started <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/how-it-works"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
-              >
-                See How It Works
-              </Link>
-            </div>
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Link
+                  href="/download"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest hover:-translate-y-0.5 transition-all duration-200 shadow-green hover:shadow-green-lg"
+                >
+                  Get Started <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  See How It Works
+                </Link>
+              </div>
+            </motion.div>
 
-            <div className="flex items-center gap-6 pt-2">
-              {['Real-time Status', '24/7 Monitoring', 'Secure'].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-caption text-black">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={heroBadgeContainer}
+              className="flex flex-wrap items-center gap-3 pt-6"
+            >
+              {heroBadges.map((item) => (
+                <motion.span
+                  key={item}
+                  variants={heroBadgeItem}
+                  className="pill-shimmer inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-neutral-50 border border-neutral-200 text-caption text-black"
+                >
                   <CheckCircle className="w-3.5 h-3.5 text-green-action" />
                   {item}
-                </div>
+                </motion.span>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Right — Device Visual */}
@@ -89,7 +166,7 @@ function Hero() {
 
             <div className="relative w-full max-w-[420px]">
               {/* Device frame */}
-              <div className="bg-white backdrop-blur-sm border border-neutral-200 rounded-3xl p-6 shadow-card animate-glow-pulse">
+              <div className="float-card bg-white backdrop-blur-sm border border-neutral-200 rounded-3xl p-6 shadow-card">
                 {/* Device header */}
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex items-center gap-3">
@@ -102,7 +179,7 @@ function Hero() {
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-green-action rounded-full animate-status-pulse" />
+                    <span className="status-dot-pulse inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
                     <span className="text-[11px] font-semibold text-green-action">Online</span>
                   </div>
                 </div>
@@ -112,12 +189,12 @@ function Hero() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-[10px] text-black uppercase tracking-widest mb-1">Shop Status</p>
-                      <p className="text-4xl font-extrabold text-green-action tracking-tight">OPEN</p>
+                      <p className="open-glow inline-block text-4xl font-extrabold text-green-action tracking-tight rounded-lg px-2">OPEN</p>
                     </div>
                     <div className="text-right">
                       <p className="text-[10px] text-black uppercase tracking-widest mb-1">Live</p>
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-action/10 rounded-full">
-                        <span className="w-1.5 h-1.5 bg-green-action rounded-full animate-status-pulse" />
+                        <span className="blink-dot inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
                         <span className="text-[11px] font-semibold text-green-action">Connected</span>
                       </span>
                     </div>
@@ -128,7 +205,7 @@ function Hero() {
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     { icon: <Shield className="w-3.5 h-3.5" />, label: 'Security', value: 'Active', ok: true },
-                    { icon: <Thermometer className="w-3.5 h-3.5" />, label: 'Temperature', value: '24°C', ok: true },
+                    { icon: <Thermometer className="w-3.5 h-3.5" />, label: 'Temperature', value: `${temp}\u00B0C`, ok: true },
                     { icon: <Wind className="w-3.5 h-3.5" />, label: 'Smoke', value: 'Normal', ok: true },
                     { icon: <Activity className="w-3.5 h-3.5" />, label: 'Network', value: '4G LTE', ok: true },
                   ].map((s) => (
@@ -144,10 +221,10 @@ function Hero() {
               </div>
 
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-11 h-11 bg-white border border-neutral-200 rounded-xl flex items-center justify-center shadow-card animate-float">
+              <div className="float-soft absolute -top-4 -right-4 w-11 h-11 bg-white border border-neutral-200 rounded-xl flex items-center justify-center shadow-card">
                 <Bell className="w-4.5 h-4.5 text-green-action" />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-11 h-11 bg-white border border-neutral-200 rounded-xl flex items-center justify-center shadow-card animate-float" style={{ animationDelay: '1.5s' }}>
+              <div className="float-soft absolute -bottom-4 -left-4 w-11 h-11 bg-white border border-neutral-200 rounded-xl flex items-center justify-center shadow-card" style={{ animationDelay: '1.5s' }}>
                 <Smartphone className="w-4.5 h-4.5 text-green-action" />
               </div>
             </div>
