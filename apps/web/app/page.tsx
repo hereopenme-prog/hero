@@ -48,6 +48,7 @@ export default function HomePage() {
         <ProblemSection />
         <BigIdeaSection />
         <HowItWorksSection />
+        <VisionSection />
         <CustomerExperienceSection />
         <BusinessOwnerBenefitsSection />
         <DeviceShowcaseSection />
@@ -65,7 +66,6 @@ export default function HomePage() {
         <BankBrandedSection />
         <BankPartnershipSection />
         <MerchantValueSection />
-        <VisionSection />
         <MarketSection />
         <RoadmapSection />
         <InnovationSection />

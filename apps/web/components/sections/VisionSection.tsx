@@ -163,8 +163,24 @@ export function VisionSection() {
           variants={fadeUp}
           className="mt-14 lg:mt-16 font-body text-base lg:text-lg text-[#A5B4C4] text-center max-w-2xl mx-auto leading-relaxed"
         >
-          That&apos;s the long-term Here Open vision — infrastructure for the physical world of business.
+          That&apos;s the long-term Here Open vision — infrastructure for the physical world of business. The ecosystem works with zero commission on payments.
         </motion.p>
+
+        {/* Zero commission badge */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={fadeUp}
+          className="mt-8 flex justify-center"
+        >
+          <div className="inline-flex items-center gap-3 rounded-full border border-[#00D08430] bg-[#00D08410] px-5 py-2.5">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00D084] animate-pulse" />
+            <span className="font-body text-sm text-[#00D084] tracking-wide">
+              ZERO COMMISSION — PAYMENTS WITHOUT FEES
+            </span>
+          </div>
+        </motion.div>
       </Container>
     </Section>
   );
