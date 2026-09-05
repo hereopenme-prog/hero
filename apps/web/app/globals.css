@@ -488,6 +488,31 @@
     pointer-events: none;
     z-index: 5;
   }
+
+  .card.phase-current {
+    border-color: rgba(56, 142, 60, 0.45);
+    animation: phaseGlow 2.4s ease-in-out infinite;
+  }
+
+  .cta-hue {
+    background: conic-gradient(
+      from 0deg,
+      rgba(56, 142, 60, 0.08),
+      rgba(20, 184, 166, 0.08),
+      rgba(27, 94, 32, 0.08),
+      rgba(56, 142, 60, 0.08)
+    );
+    animation: ctaHueRotate 8s linear infinite;
+    pointer-events: none;
+  }
+
+  .cta-pulse {
+    animation: ctaPulse 2s ease-in-out infinite;
+  }
+
+  .page-fade-in {
+    animation: pageFadeIn 0.4s ease-out both;
+  }
 }
 
 @keyframes fadeUp {
@@ -583,6 +608,31 @@
   8% { opacity: 1; }
   92% { opacity: 1; }
   100% { top: 100%; opacity: 0; }
+}
+
+@keyframes phaseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(56, 142, 60, 0.25), 0 0 12px rgba(56, 142, 60, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(56, 142, 60, 0.45), 0 0 28px rgba(56, 142, 60, 0.45);
+  }
+}
+
+@keyframes ctaHueRotate {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(16deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+@keyframes ctaPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

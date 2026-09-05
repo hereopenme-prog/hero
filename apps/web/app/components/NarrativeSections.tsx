@@ -4,7 +4,7 @@ import { useRef, type ReactNode } from 'react';
 import Link from 'next/link';
 import { motion, useInView, useScroll, type Variants } from 'framer-motion';
 import {
-  Store, Users, Eye, Bell, Shield, Smartphone, Zap, CheckCircle, ArrowRight,
+  Store, Users, Eye, Bell, Shield, Smartphone, Zap, ArrowRight,
   AlertTriangle, Wifi, UtensilsCrossed, Pill, Scissors, Wrench,
   ShoppingBag, Building2, GraduationCap, Bed, Warehouse, MapPin, Cpu, TrendingUp, Network,
   Lock, LayoutDashboard, Award, Layers, BadgeCheck,
@@ -557,6 +557,16 @@ const growthPhases = [
   { phase: 'Phase 5', title: 'HERE OPEN Ecosystem', desc: 'A full digital layer connecting businesses, devices, and customers.' },
 ];
 
+const growthContainerVar: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const growthCardVar: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
 export function GrowthSection() {
   return (
     <section id="growth" className="section relative">
@@ -568,31 +578,46 @@ export function GrowthSection() {
           description="A staged roadmap that compounds: one shop today, an ecosystem tomorrow."
         />
 
-        <div className="max-w-4xl mx-auto space-y-4">
-          {growthPhases.map((p, i) => (
-            <Reveal key={i} delay={i * 70}>
-              <div className={`card flex items-start gap-5 ${p.status === 'current' ? 'border-green-action/25' : ''}`}>
-                <div className="flex flex-col items-center flex-shrink-0">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-[11px] font-bold ${
-                    p.status === 'current' ? 'bg-green-action text-white shadow-green' : 'bg-green-action/8 border border-green-action/15 text-green-action'
-                  }`}>
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                  {i < growthPhases.length - 1 && (
-                    <div className="w-px flex-1 bg-green-action/20 my-1" />
-                  )}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Horizontal progress bar connecting phases 1→5 */}
+          <div className="hidden md:block absolute left-[8%] right-[8%] top-[19px] h-[3px] rounded-full bg-green-action/15" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1.4, ease: 'easeInOut' }}
+            className="hidden md:block absolute left-[8%] right-[8%] top-[19px] h-[3px] rounded-full bg-green-action origin-left"
+          />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={growthContainerVar}
+            className="grid grid-cols-1 md:grid-cols-5 gap-4"
+          >
+            {growthPhases.map((p, i) => (
+              <motion.div
+                key={i}
+                variants={growthCardVar}
+                className={`card flex flex-col items-center gap-3 text-center relative ${
+                  p.status === 'current' ? 'card phase-current' : ''
+                }`}
+              >
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-[11px] font-bold flex-shrink-0 ${
+                  p.status === 'current' ? 'bg-green-action text-white shadow-green' : 'bg-green-action/8 border border-green-action/15 text-green-action'
+                }`}>
+                  {String(i + 1).padStart(2, '0')}
                 </div>
-                <div className="pb-1">
-                  <p className="text-[11px] text-green-action font-bold uppercase tracking-widest mb-1">
-                    {p.phase}
-                    {p.status === 'current' && <span className="ml-2 bg-green-action/10 text-green-action px-2 py-0.5 rounded-full text-[10px]">Current Focus</span>}
-                  </p>
-                  <h3 className="text-display-sm font-bold text-green-forest mb-1.5">{p.title}</h3>
-                  <p className="text-body-sm text-black leading-relaxed">{p.desc}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+                <p className="text-[11px] text-green-action font-bold uppercase tracking-widest">
+                  {p.phase}
+                  {p.status === 'current' && <span className="ml-2 bg-green-action/10 text-green-action px-2 py-0.5 rounded-full text-[10px]">Current Focus</span>}
+                </p>
+                <h3 className="text-[14px] font-bold text-green-forest leading-snug">{p.title}</h3>
+                <p className="text-[12px] text-black leading-relaxed">{p.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </Container>
     </section>
@@ -662,6 +687,9 @@ const comparisonRows = [
 ];
 
 export function WhySection() {
+  const tableRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(tableRef, { once: true, amount: 0.2 });
+
   return (
     <section id="why" className="section relative">
       <Container className="relative z-10">
@@ -672,24 +700,50 @@ export function WhySection() {
           description="See the difference when physical businesses move from guesswork to real-time truth."
         />
 
-        <Reveal className="max-w-3xl mx-auto">
-          <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-            <div className="grid grid-cols-2 divide-x divide-neutral-200 bg-neutral-50">
-              <div className="px-5 py-4 text-[12px] font-bold text-black uppercase tracking-wider">Traditional Business</div>
-              <div className="px-5 py-4 text-[12px] font-bold text-green-action uppercase tracking-wider">With HERE OPEN</div>
-            </div>
-            {comparisonRows.map((row, i) => (
-              <div key={i} className={`grid grid-cols-2 divide-x divide-neutral-200 ${i < comparisonRows.length - 1 ? 'border-b border-neutral-200' : ''}`}>
-                <div className="px-5 py-4 text-[13px] text-black flex items-start gap-2">
-                  <span className="text-red-400 mt-0.5 text-[12px]">✕</span> {row.traditional}
-                </div>
-                <div className="px-5 py-4 text-[13px] text-black flex items-start gap-2">
-                  <CheckCircle className="w-3.5 h-3.5 text-green-action mt-0.5 flex-shrink-0" /> {row.modern}
-                </div>
-              </div>
-            ))}
+        <div ref={tableRef} className="overflow-hidden rounded-2xl border border-neutral-200 bg-white max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 divide-x divide-neutral-200 bg-neutral-50">
+            <div className="px-5 py-4 text-[12px] font-bold text-black uppercase tracking-wider">Traditional Business</div>
+            <div className="px-5 py-4 text-[12px] font-bold text-green-action uppercase tracking-wider">With HERE OPEN</div>
           </div>
-        </Reveal>
+          {comparisonRows.map((row, i) => (
+            <div key={i} className={`grid grid-cols-2 divide-x divide-neutral-200 ${i < comparisonRows.length - 1 ? 'border-b border-neutral-200' : ''}`}>
+              <motion.div
+                initial={{ opacity: 0, x: -28 }}
+                animate={inView ? { opacity: 1, x: 0 } : undefined}
+                transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
+                className="px-5 py-4 text-[13px] text-neutral-500 flex items-start gap-2"
+              >
+                <span className="text-red-400 mt-0.5 text-[12px] flex-shrink-0">✕</span>
+                <span className="relative inline-block">
+                  {row.traditional}
+                  <motion.span
+                    initial={{ scaleX: 0 }}
+                    animate={inView ? { scaleX: 1 } : {}}
+                    transition={{ duration: 0.4, ease: 'easeOut', delay: 0.3 + i * 0.1 }}
+                    className="absolute left-0 right-0 top-1/2 -mt-[0.75px] h-[1.5px] bg-red-400 origin-left rounded-full"
+                  />
+                </span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 28 }}
+                animate={inView ? { opacity: 1, x: 0 } : undefined}
+                transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
+                className="px-5 py-4 text-[13px] text-black flex items-start gap-2"
+              >
+                <svg className="w-4 h-4 text-green-action mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <motion.path
+                    d="M5 12.5 L9.5 17 L19 7"
+                    strokeDasharray="40"
+                    initial={{ strokeDashoffset: 40, opacity: 0 }}
+                    animate={inView ? { strokeDashoffset: 0, opacity: 1 } : {}}
+                    transition={{ duration: 0.5, ease: 'easeOut', delay: 0.35 + i * 0.1 }}
+                  />
+                </svg>
+                {row.modern}
+              </motion.div>
+            </div>
+          ))}
+        </div>
       </Container>
     </section>
   );
@@ -756,6 +810,8 @@ export function VisionSection() {
 export function FinalCTASection() {
   return (
     <section id="cta" className="section relative overflow-hidden">
+      <div className="cta-hue absolute inset-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,142,60,0.06)_0%,transparent_65%)] pointer-events-none" />
       <Container className="relative z-10 text-center">
         <Reveal>
           <h2 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-5">
@@ -769,13 +825,13 @@ export function FinalCTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/for-businesses"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
+              className="cta-pulse inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
             >
               For Businesses <ArrowRight size={16} />
             </Link>
             <Link
               href="/for-customers"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
+              className="cta-pulse inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
             >
               For Customers
             </Link>

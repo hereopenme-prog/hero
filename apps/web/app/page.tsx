@@ -7,7 +7,7 @@ import {
   Thermometer, Wind, AlertTriangle, Wifi,
   Store, UtensilsCrossed, Pill, Scissors, Wrench, ShoppingBag, Building2, Briefcase
 } from 'lucide-react';
-import { motion, useAnimationControls, useInView, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, useInView, useScroll, MotionConfig, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
 import {
@@ -765,26 +765,36 @@ function TechnologySection() {
    ══════════════════════════════════════════════════════════════ */
 
 export default function HomePage() {
+  const { scrollYProgress } = useScroll();
+
   return (
-    <main className="min-h-screen bg-white relative noise">
-      <Hero />
-      <TrustStrip />
-      <ProblemsSection />
-      <SolutionSection />
-      <DemoSection />
-      <HowItWorksSection />
-      <MonitoringSection />
-      <FeaturesSection />
-      <OwnerBenefitsSection />
-      <CustomerBenefitsSection />
-      <TargetSection />
-      <TechnologySection />
-      <MarketSection />
-      <GrowthSection />
-      <IPSection />
-      <WhySection />
-      <VisionSection />
-      <FinalCTASection />
-    </main>
+    <MotionConfig reducedMotion="user">
+      <main className="min-h-screen bg-white relative noise page-fade-in">
+        {/* Scroll progress bar */}
+        <motion.div
+          style={{ scaleX: scrollYProgress }}
+          className="fixed top-0 left-0 right-0 h-[3px] bg-green-action origin-left z-[100]"
+          aria-hidden="true"
+        />
+        <Hero />
+        <TrustStrip />
+        <ProblemsSection />
+        <SolutionSection />
+        <DemoSection />
+        <HowItWorksSection />
+        <MonitoringSection />
+        <FeaturesSection />
+        <OwnerBenefitsSection />
+        <CustomerBenefitsSection />
+        <TargetSection />
+        <TechnologySection />
+        <MarketSection />
+        <GrowthSection />
+        <IPSection />
+        <WhySection />
+        <VisionSection />
+        <FinalCTASection />
+      </main>
+    </MotionConfig>
   );
 }
