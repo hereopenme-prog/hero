@@ -55,7 +55,7 @@ const itemVariants: Variants = {
 
 export function BusinessOwnerBenefitsSection() {
   return (
-    <Section id="businesses" className="bg-[#0A0F14]">
+    <Section id="businesses" className="bg-[var(--section-2)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.04)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -89,17 +89,17 @@ export function BusinessOwnerBenefitsSection() {
             >
               {benefits.map((b) => (
                 <motion.div key={b.num} variants={itemVariants} className="flex items-start gap-4">
-                  <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-[#00D08414] text-[#00D084]">
+                  <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--a14)] text-[var(--accent)]">
                     {b.icon}
                   </span>
                   <div>
                     <div className="flex items-center gap-2.5">
-                      <span className="font-display font-bold text-[0.6rem] tracking-[0.16em] text-[#00D084]">{b.num}</span>
-                      <h4 className="font-display font-bold text-[0.85rem] tracking-wide text-[#E8EDF2] leading-snug">
+                      <span className="font-display font-bold text-[0.6rem] tracking-[0.16em] text-[var(--accent)]">{b.num}</span>
+                      <h4 className="font-display font-bold text-[0.85rem] tracking-wide text-[var(--ink)] leading-snug">
                         {b.title}
                       </h4>
                     </div>
-                    <p className="mt-1 font-body text-[0.82rem] text-[#8A9BAE] leading-relaxed">{b.desc}</p>
+                    <p className="mt-1 font-body text-[0.82rem] text-[var(--ink-muted)] leading-relaxed">{b.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -128,17 +128,17 @@ export function BusinessOwnerBenefitsSection() {
           >
             {benefits.map((b) => (
               <motion.div key={b.num} variants={itemVariants} className="flex items-start gap-3.5">
-                <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-[#00D08414] text-[#00D084]">
+                <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--a14)] text-[var(--accent)]">
                   {b.icon}
                 </span>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-display font-bold text-[0.55rem] tracking-[0.16em] text-[#00D084]">{b.num}</span>
-                    <h4 className="font-display font-bold text-[0.78rem] tracking-wide text-[#E8EDF2] leading-snug">
+                    <span className="font-display font-bold text-[0.55rem] tracking-[0.16em] text-[var(--accent)]">{b.num}</span>
+                    <h4 className="font-display font-bold text-[0.78rem] tracking-wide text-[var(--ink)] leading-snug">
                       {b.title}
                     </h4>
                   </div>
-                  <p className="mt-1 font-body text-[0.78rem] text-[#8A9BAE] leading-relaxed">{b.desc}</p>
+                  <p className="mt-1 font-body text-[0.78rem] text-[var(--ink-muted)] leading-relaxed">{b.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -151,7 +151,7 @@ export function BusinessOwnerBenefitsSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 text-center font-body text-[0.7rem] text-[#3D4F5E] leading-relaxed"
+          className="mt-12 text-center font-body text-[0.7rem] text-[var(--ink-dim)] leading-relaxed"
         >
           Sensor-based features are designed to support specific configurations and are future-ready.
         </motion.p>

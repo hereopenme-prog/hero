@@ -17,7 +17,7 @@ const chips = [
 
 export function BankBrandedSection() {
   return (
-    <Section id="bank-device" className="bg-[#080C10]">
+    <Section id="bank-device" className="bg-[var(--bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.06)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -90,7 +90,7 @@ export function BankBrandedSection() {
             <motion.span
               key={chip}
               variants={fadeUp}
-              className="rounded-full border border-[#1C2A38] bg-[#0F1923] px-4 py-2 font-body text-[11px] tracking-[0.06em] text-[#A5B4C4]"
+              className="rounded-full border border-[var(--border)] bg-[var(--section)] px-4 py-2 font-body text-[11px] tracking-[0.06em] text-[var(--ink-2)]"
             >
               {chip}
             </motion.span>
@@ -102,13 +102,13 @@ export function BankBrandedSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 text-center font-body text-[0.9rem] leading-relaxed text-[#8A9BAE] max-w-[560px] mx-auto"
+          className="mt-8 text-center font-body text-[0.9rem] leading-relaxed text-[var(--ink-muted)] max-w-[560px] mx-auto"
         >
           This illustrates the opportunity — a bank-branded device powered by Here Open technology,
           developed through partnership.
         </motion.p>
 
-        <p className="mt-8 text-center font-body text-[11px] text-[#3D4F5E]">
+        <p className="mt-8 text-center font-body text-[11px] text-[var(--ink-dim)]">
           Hypothetical branding shown for illustration only. No partnership is implied.
         </p>
       </Container>

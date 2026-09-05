@@ -183,7 +183,7 @@ export default function MarketPage() {
               </p>
               <a
                 href="/#contact"
-                className="bg-green-action text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity inline-block"
+                className="bg-green-action text-[var(--ink)] px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity inline-block"
               >
                 Get Started Today
               </a>

@@ -27,7 +27,7 @@ const itemVariants: Variants = {
 
 export function HowItWorksSection() {
   return (
-    <Section id="how-it-works" className="bg-[#07090B]">
+    <Section id="how-it-works" className="bg-[var(--bg-soft)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -53,18 +53,18 @@ export function HowItWorksSection() {
             className="mb-14 text-center"
           >
             <span className="inline-flex items-center gap-3">
-              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#45F59A]/60" />
-              <span className="font-display text-[1.3rem] font-bold tracking-tight text-[#E8EDF2] lg:text-[1.5rem]">
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[var(--a2-60)]" />
+              <span className="font-display text-[1.3rem] font-bold tracking-tight text-[var(--ink)] lg:text-[1.5rem]">
                 THE OPEN EXPERIENCE
               </span>
-              <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#45F59A]/60" />
+              <span className="h-px w-8 bg-gradient-to-l from-transparent to-[var(--a2-60)]" />
             </span>
           </motion.div>
 
           {/* Desktop: horizontal 5-step */}
           <div className="relative mx-auto hidden max-w-5xl lg:block">
-            <div className="absolute left-[5%] right-[5%] top-[22px] h-px bg-white/[0.07] pointer-events-none" />
-            <div className="absolute left-[5%] right-[5%] top-[22px] h-px bg-gradient-to-r from-transparent via-[#45F59A]/25 to-transparent pointer-events-none" />
+            <div className="absolute left-[5%] right-[5%] top-[22px] h-px bg-[var(--glass-2)] pointer-events-none" />
+            <div className="absolute left-[5%] right-[5%] top-[22px] h-px bg-gradient-to-r from-transparent via-[var(--a2-25)] to-transparent pointer-events-none" />
 
             <motion.div
               initial="hidden"
@@ -75,14 +75,14 @@ export function HowItWorksSection() {
             >
               {openSteps.map((step) => (
                 <motion.div key={step.num} variants={itemVariants} className="relative flex flex-col items-center text-center">
-                  <div className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full border border-[#45F59A]/30 bg-[#07090B] mb-4">
-                    <span className="font-display text-sm font-bold text-[#45F59A]">{step.num}</span>
+                  <div className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full border border-[var(--a2-30)] bg-[var(--bg-soft)] mb-4">
+                    <span className="font-display text-sm font-bold text-[var(--accent-2)]">{step.num}</span>
                   </div>
-                  <div className="absolute top-[22px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#45F59A] shadow-[0_0_10px_#45F59A] z-20" />
-                  <h4 className="mt-2 font-display text-[15px] font-bold tracking-wide text-[#E8EDF2] leading-snug">
+                  <div className="absolute top-[22px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[var(--accent-2)] shadow-[0_0_10px_var(--accent-2)] z-20" />
+                  <h4 className="mt-2 font-display text-[15px] font-bold tracking-wide text-[var(--ink)] leading-snug">
                     {step.title}
                   </h4>
-                  <p className="mt-2 font-body text-[13px] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
+                  <p className="mt-2 font-body text-[13px] text-[var(--ink-muted)] leading-relaxed">{step.caption}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -90,8 +90,8 @@ export function HowItWorksSection() {
 
           {/* Mobile: vertical 5-step */}
           <div className="relative mx-auto max-w-md lg:hidden">
-            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-white/[0.08]" />
-            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-[#45F59A]/20 to-transparent" />
+            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-[var(--glass-2)]" />
+            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-[var(--a2-20)] to-transparent" />
 
             <motion.div
               initial="hidden"
@@ -101,17 +101,17 @@ export function HowItWorksSection() {
             >
               {openSteps.map((step) => (
                 <motion.div key={step.num} variants={itemVariants} className="relative flex gap-6 pb-8 last:pb-0">
-                  <div className="relative z-10 flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-[#45F59A]/30 bg-[#07090B]">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#45F59A] shadow-[0_0_12px_#45F59A]" />
+                  <div className="relative z-10 flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-[var(--a2-30)] bg-[var(--bg-soft)]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent-2)] shadow-[0_0_12px_var(--accent-2)]" />
                   </div>
                   <div className="pt-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-display text-[13px] font-bold tracking-[0.16em] text-[#45F59A]">{step.num}</span>
-                      <h4 className="font-display text-[15px] font-bold tracking-wide text-[#E8EDF2] leading-snug">
+                      <span className="font-display text-[13px] font-bold tracking-[0.16em] text-[var(--accent-2)]">{step.num}</span>
+                      <h4 className="font-display text-[15px] font-bold tracking-wide text-[var(--ink)] leading-snug">
                         {step.title}
                       </h4>
                     </div>
-                    <p className="mt-1 font-body text-[13px] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
+                    <p className="mt-1 font-body text-[13px] text-[var(--ink-muted)] leading-relaxed">{step.caption}</p>
                   </div>
                 </motion.div>
               ))}

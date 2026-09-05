@@ -20,30 +20,30 @@ import { stagger, scaleIn } from '@/lib/animations';
 
 const featured = [
   {
-    icon: <ToggleRight size={22} className="text-[#00D084]" strokeWidth={1.5} />,
+    icon: <ToggleRight size={22} className="text-[var(--accent)]" strokeWidth={1.5} />,
     title: 'One-Tap Control',
     desc: 'Open the app, tap OPEN or CLOSED. The status syncs to every customer instantly.',
   },
   {
-    icon: <Eye size={22} className="text-[#00D084]" strokeWidth={1.5} />,
+    icon: <Eye size={22} className="text-[var(--accent)]" strokeWidth={1.5} />,
     title: 'Real-Time OPEN/CLOSED Visibility',
     desc: 'Customers see live status the second it changes — no calls, no guesswork.',
   },
   {
-    icon: <Flame size={22} className="text-[#00D084]" strokeWidth={1.5} />,
+    icon: <Flame size={22} className="text-[var(--accent)]" strokeWidth={1.5} />,
     title: '24/7 Fire Protection',
     desc: 'Temperature and smoke sensing with immediate notification, even when closed.',
   },
 ];
 
 const grid = [
-  { icon: <Wifi size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Always Connected' },
-  { icon: <ShieldAlert size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Theft / Break-In Alerts' },
-  { icon: <Plug size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Plug-and-Play' },
-  { icon: <WifiOff size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'No Wi-Fi Required' },
-  { icon: <Signal size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'GSM Connectivity' },
-  { icon: <Megaphone size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Offers & Announcements' },
-  { icon: <BellRing size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Customer Updates' },
+  { icon: <Wifi size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Always Connected' },
+  { icon: <ShieldAlert size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Theft / Break-In Alerts' },
+  { icon: <Plug size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Plug-and-Play' },
+  { icon: <WifiOff size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'No Wi-Fi Required' },
+  { icon: <Signal size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'GSM Connectivity' },
+  { icon: <Megaphone size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Offers & Announcements' },
+  { icon: <BellRing size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Customer Updates' },
 ];
 
 export function FeaturesSection() {
@@ -68,17 +68,17 @@ export function FeaturesSection() {
             <motion.div
               key={f.title}
               variants={scaleIn}
-              className="group relative rounded-2xl border border-[#1C2A38] bg-[#0F1923] p-8 h-full transition-colors duration-200 hover:border-[#00D08440]"
+              className="group relative rounded-2xl border border-[var(--border)] bg-[var(--section)] p-8 h-full transition-colors duration-200 hover:border-[var(--a40)]"
             >
-              <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#00D08450] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[var(--a50)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div
                 className="flex items-center justify-center mb-6"
-                style={{ background: '#00D0841A', borderRadius: 12, padding: 11, width: 48, height: 48 }}
+                style={{ background: 'var(--a1A)', borderRadius: 12, padding: 11, width: 48, height: 48 }}
               >
                 {f.icon}
               </div>
-              <h3 className="font-display font-semibold text-[1.05rem] text-[#E8EDF2] mb-2">{f.title}</h3>
-              <p className="font-body text-[0.9rem] text-[#8A9BAE] leading-relaxed">{f.desc}</p>
+              <h3 className="font-display font-semibold text-[1.05rem] text-[var(--ink)] mb-2">{f.title}</h3>
+              <p className="font-body text-[0.9rem] text-[var(--ink-muted)] leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -94,10 +94,10 @@ export function FeaturesSection() {
             <motion.div
               key={g.label}
               variants={scaleIn}
-              className="flex items-center gap-2.5 rounded-xl border border-[#1C2A38] bg-[#0F1923] px-4 py-4 transition-colors duration-200 hover:border-[#00D08430]"
+              className="flex items-center gap-2.5 rounded-xl border border-[var(--border)] bg-[var(--section)] px-4 py-4 transition-colors duration-200 hover:border-[var(--a30)]"
             >
               <span className="flex-shrink-0">{g.icon}</span>
-              <span className="font-body font-medium text-[0.8rem] text-[#A5B4C4] leading-tight">{g.label}</span>
+              <span className="font-body font-medium text-[0.8rem] text-[var(--ink-2)] leading-tight">{g.label}</span>
             </motion.div>
           ))}
         </motion.div>

@@ -47,7 +47,7 @@ const stages = [
 
 export function VisionSection() {
   return (
-    <Section id="vision" className="bg-[#0A0F14]">
+    <Section id="vision" className="bg-[var(--section-2)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,208,132,0.04)_0%,transparent_50%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -67,7 +67,7 @@ export function VisionSection() {
             className="relative flex items-start justify-between"
           >
             {/* Horizontal connector line */}
-            <div className="absolute top-[18px] left-[40px] right-[40px] h-[1px] bg-gradient-to-r from-[#00D08400] via-[#3D4F5E] to-[#00D08400]" />
+            <div className="absolute top-[18px] left-[40px] right-[40px] h-[1px] bg-gradient-to-r from-[var(--a00)] via-[var(--ink-dim)] to-[var(--a00)]" />
 
             {stages.map((stage, i) => (
               <motion.div
@@ -76,24 +76,24 @@ export function VisionSection() {
                 className="relative flex flex-col items-center text-center w-[120px]"
               >
                 {/* Node dot */}
-                <div className="relative z-10 w-9 h-9 rounded-full border border-[#00D08460] bg-[#0F1923] flex items-center justify-center shadow-[0_0_12px_rgba(0,208,132,0.12)]">
-                  <span className="font-body font-bold text-[10px] text-[#00D084] tracking-wider">
+                <div className="relative z-10 w-9 h-9 rounded-full border border-[var(--a60)] bg-[var(--section)] flex items-center justify-center shadow-[0_0_12px_rgba(0,208,132,0.12)]">
+                  <span className="font-body font-bold text-[10px] text-[var(--accent)] tracking-wider">
                     {stage.num}
                   </span>
                 </div>
 
                 {/* Stage label */}
-                <span className="mt-4 font-display font-bold text-[11px] text-[#E8EDF2] tracking-tight leading-snug">
+                <span className="mt-4 font-display font-bold text-[11px] text-[var(--ink)] tracking-tight leading-snug">
                   {stage.label}
                 </span>
 
                 {/* Stage caption */}
-                <span className="mt-1.5 font-body text-xs text-[#8A9BAE] leading-relaxed">
+                <span className="mt-1.5 font-body text-xs text-[var(--ink-muted)] leading-relaxed">
                   {stage.caption}
                 </span>
 
                 {/* Small green dot on the connector */}
-                <div className="absolute top-[15px] w-1.5 h-1.5 rounded-full bg-[#00D084] shadow-[0_0_6px_#00D08480]" />
+                <div className="absolute top-[15px] w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--a80)]" />
               </motion.div>
             ))}
           </motion.div>
@@ -123,7 +123,7 @@ export function VisionSection() {
             className="relative flex flex-col gap-0"
           >
             {/* Vertical connector line */}
-            <div className="absolute top-[18px] left-[17px] bottom-[18px] w-[1px] bg-gradient-to-b from-[#00D08400] via-[#3D4F5E] to-[#00D08400]" />
+            <div className="absolute top-[18px] left-[17px] bottom-[18px] w-[1px] bg-gradient-to-b from-[var(--a00)] via-[var(--ink-dim)] to-[var(--a00)]" />
 
             {stages.map((stage) => (
               <motion.div
@@ -132,24 +132,24 @@ export function VisionSection() {
                 className="relative flex items-start gap-4 py-4"
               >
                 {/* Node badge */}
-                <div className="relative z-10 flex-shrink-0 w-9 h-9 rounded-full border border-[#00D08460] bg-[#0F1923] flex items-center justify-center shadow-[0_0_12px_rgba(208,132,0.12)]">
-                  <span className="font-body font-bold text-[10px] text-[#00D084] tracking-wider">
+                <div className="relative z-10 flex-shrink-0 w-9 h-9 rounded-full border border-[var(--a60)] bg-[var(--section)] flex items-center justify-center shadow-[0_0_12px_rgba(208,132,0.12)]">
+                  <span className="font-body font-bold text-[10px] text-[var(--accent)] tracking-wider">
                     {stage.num}
                   </span>
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-col pt-0.5">
-                  <span className="font-display font-bold text-sm text-[#E8EDF2] tracking-tight leading-snug">
+                  <span className="font-display font-bold text-sm text-[var(--ink)] tracking-tight leading-snug">
                     {stage.label}
                   </span>
-                  <span className="font-body text-xs text-[#8A9BAE] leading-relaxed mt-0.5">
+                  <span className="font-body text-xs text-[var(--ink-muted)] leading-relaxed mt-0.5">
                     {stage.caption}
                   </span>
                 </div>
 
                 {/* Green dot on the connector */}
-                <div className="absolute top-[21px] left-[15px] z-20 w-1.5 h-1.5 rounded-full bg-[#00D084] shadow-[0_0_6px_#00D08480]" />
+                <div className="absolute top-[21px] left-[15px] z-20 w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--a80)]" />
               </motion.div>
             ))}
           </motion.div>
@@ -161,7 +161,7 @@ export function VisionSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           variants={fadeUp}
-          className="mt-14 lg:mt-16 font-body text-base lg:text-lg text-[#A5B4C4] text-center max-w-2xl mx-auto leading-relaxed"
+          className="mt-14 lg:mt-16 font-body text-base lg:text-lg text-[var(--ink-2)] text-center max-w-2xl mx-auto leading-relaxed"
         >
           That&apos;s the long-term Here Open vision — infrastructure for the physical world of business. The ecosystem works with zero commission on payments.
         </motion.p>
@@ -174,9 +174,9 @@ export function VisionSection() {
           variants={fadeUp}
           className="mt-8 flex justify-center"
         >
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#00D08430] bg-[#00D08410] px-5 py-2.5">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00D084] animate-pulse" />
-            <span className="font-body text-sm text-[#00D084] tracking-wide">
+          <div className="inline-flex items-center gap-3 rounded-full border border-[var(--a30)] bg-[var(--a10)] px-5 py-2.5">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+            <span className="font-body text-sm text-[var(--accent)] tracking-wide">
               ZERO COMMISSION — PAYMENTS WITHOUT FEES
             </span>
           </div>

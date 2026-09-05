@@ -3,6 +3,148 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — two themes
+   Theme A (default): Navy · white base, navy ink, deep-green accent
+   Theme B:            Premium dark · near-black, mint accent
+   Switched via `data-theme` on <html> (see app/layout.tsx)
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Surface & canvas */
+  --bg:            #FFFFFF;
+  --bg-soft:       #FFFFFF;
+  --bg-alt:        #EAEDEB;
+  --section:       #FFFFFF;
+  --section-2:     #EAEDEB;
+  --section-3:     #FFFFFF;
+  --panel:         #FFFFFF;
+  --panel-2:       #F4F6F5;
+  --panel-strong:  #010C28;
+  --panel-deep:    #010C28;
+  --inset:         #EAEDEB;
+  --menu-bg:       rgba(255, 255, 255, 0.97);
+  --brand-bg:      #010C28;
+  --brand-bg-2:    #071234;
+
+  /* Legacy form/component surfaces (tailwind.config surface.* / text.*) */
+  --surface-base:   #FFFFFF;
+  --surface-card:   #FFFFFF;
+  --surface-border: #DCE1E5;
+
+  /* Borders & glass */
+  --border:       #DCE1E5;
+  --border-soft:  rgba(1, 12, 40, 0.08);
+  --border-strong:#C3CAD0;
+  --glass:        rgba(1, 12, 40, 0.04);
+  --glass-2:      rgba(1, 12, 40, 0.07);
+
+  /* Ink */
+  --ink:       #010C28;
+  --ink-2:     #5F6875;
+  --ink-muted: #98999E;
+  --ink-dim:   #6A7282;
+  --ink-faint: #B8BEC6;
+  --ink-a10:   rgba(1, 12, 40, 0.1);
+
+  /* Screen/device surfaces (identical in both themes) */
+  --chip-ink:   #C7D2DC;
+  --dev-ink:    #E8EDF2;
+  --dev-muted:  #8A9BAE;
+  --dev-border: #1C2A38;
+
+  /* Accent */
+  --accent:       #004A00;
+  --accent-2:     #004A00;
+  --accent-ink:   #FFFFFF;
+
+  /* On-brand-canvas (hero) — always dark canvas */
+  --brand-accent:       #00E28A;
+  --brand-accent-ink:   #03301C;
+  --brand-ink:         #F2F6F4;
+  --brand-ink-2:       #C6D2CC;
+  --brand-ink-muted:   #94A39C;
+  --brand-a20:  color-mix(in srgb, var(--brand-accent) 20%, transparent);
+  --brand-a40:  color-mix(in srgb, var(--brand-accent) 40%, transparent);
+  --brand-a60:  color-mix(in srgb, var(--brand-accent) 60%, transparent);
+
+  /* Navbar chrome */
+  --nav-bg:     rgba(255, 255, 255, 0.85);
+  --nav-border: rgba(1, 12, 40, 0.08);
+
+  /* Legacy green scale (older utility classes) */
+  --color-green-dark:   #004A00;
+  --color-green-forest: #1A5E2C;
+  --color-green-mid:    #2E7D32;
+  --color-green-action: #004A00;
+  --color-white:        #FFFFFF;
+  --color-off-white:    #EAEDEB;
+  --color-black:        #010C28;
+  --color-dark-text:    #010C28;
+  --color-body-text:    #3B4250;
+}
+
+:root[data-theme='dark'] {
+  --bg:            #080C10;
+  --bg-soft:       #07090B;
+  --bg-alt:        #0A0F14;
+  --section:       #0F1923;
+  --section-2:     #0A0F14;
+  --section-3:     #050708;
+  --panel:         #0B1012;
+  --panel-2:       #0E1416;
+  --panel-strong:  #0F1923;
+  --panel-deep:    #080C10;
+  --inset:         #0A0F14;
+  --menu-bg:       rgba(15, 25, 35, 0.95);
+  --brand-bg:      #0F1923;
+  --brand-bg-2:    #080C10;
+
+  --surface-base:   #080C10;
+  --surface-card:   #0F1923;
+  --surface-border: #1C2A38;
+
+  --border:       #1C2A38;
+  --border-soft:  rgba(255, 255, 255, 0.07);
+  --border-strong:#24323F;
+  --glass:        rgba(255, 255, 255, 0.04);
+  --glass-2:      rgba(255, 255, 255, 0.08);
+
+  --ink:       #E8EDF2;
+  --ink-2:     #A5B4C4;
+  --ink-muted: #8A9BAE;
+  --ink-dim:   #5C6B7A;
+  --ink-faint: #3D4F5E;
+  --ink-a10:   rgba(232, 237, 242, 0.1);
+
+  --chip-ink:   #C7D2DC;
+  --dev-ink:    #E8EDF2;
+  --dev-muted:  #8A9BAE;
+  --dev-border: #1C2A38;
+
+  --accent:       #00D084;
+  --accent-2:     #45F59A;
+  --accent-ink:   #080C10;
+
+  --brand-accent:       #00D084;
+  --brand-accent-ink:   #080C10;
+  --brand-ink:         #E8EDF2;
+  --brand-ink-2:       #A5B4C4;
+  --brand-ink-muted:   #8A9BAE;
+  --brand-a20:  color-mix(in srgb, var(--brand-accent) 20%, transparent);
+  --brand-a40:  color-mix(in srgb, var(--brand-accent) 40%, transparent);
+  --brand-a60:  color-mix(in srgb, var(--brand-accent) 60%, transparent);
+
+  --nav-bg:     rgba(8, 12, 16, 0.82);
+  --nav-border: rgba(28, 42, 56, 1);
+
   --color-green-dark:   #1B5E20;
   --color-green-forest: #1A6B2E;
   --color-green-mid:    #2E7D32;
@@ -14,9 +156,51 @@
   --color-body-text:    #333333;
 }
 
+/* Accent alpha helpers (legacy `#00D084xx` → --aXX) */
+:root {
+  --a00: color-mix(in srgb, var(--accent) 0%, transparent);
+  --a05: color-mix(in srgb, var(--accent) 5%, transparent);
+  --a08: color-mix(in srgb, var(--accent) 8%, transparent);
+  --a0A: color-mix(in srgb, var(--accent) 10%, transparent);
+  --a0D: color-mix(in srgb, var(--accent) 13%, transparent);
+  --a0F: color-mix(in srgb, var(--accent) 15%, transparent);
+  --a10: color-mix(in srgb, var(--accent) 16%, transparent);
+  --a12: color-mix(in srgb, var(--accent) 18%, transparent);
+  --a14: color-mix(in srgb, var(--accent) 20%, transparent);
+  --a15: color-mix(in srgb, var(--accent) 21%, transparent);
+  --a18: color-mix(in srgb, var(--accent) 24%, transparent);
+  --a1A: color-mix(in srgb, var(--accent) 26%, transparent);
+  --a1F: color-mix(in srgb, var(--accent) 31%, transparent);
+  --a20: color-mix(in srgb, var(--accent) 32%, transparent);
+  --a25: color-mix(in srgb, var(--accent) 37%, transparent);
+  --a30: color-mix(in srgb, var(--accent) 48%, transparent);
+  --a40: color-mix(in srgb, var(--accent) 64%, transparent);
+  --a50: color-mix(in srgb, var(--accent) 80%, transparent);
+  --a60: color-mix(in srgb, var(--accent) 96%, transparent);
+  --a70: color-mix(in srgb, var(--accent) 100%, transparent);
+  --a80: color-mix(in srgb, var(--accent) 100%, transparent);
+}
+
+/* Accent-2 alpha helpers (`#45F59A`/alpha → var(--a2-XX)) */
+:root {
+  --a2-05: color-mix(in srgb, var(--accent-2) 5%, transparent);
+  --a2-08: color-mix(in srgb, var(--accent-2) 8%, transparent);
+  --a2-10: color-mix(in srgb, var(--accent-2) 10%, transparent);
+  --a2-12: color-mix(in srgb, var(--accent-2) 12%, transparent);
+  --a2-15: color-mix(in srgb, var(--accent-2) 15%, transparent);
+  --a2-20: color-mix(in srgb, var(--accent-2) 20%, transparent);
+  --a2-25: color-mix(in srgb, var(--accent-2) 25%, transparent);
+  --a2-30: color-mix(in srgb, var(--accent-2) 30%, transparent);
+  --a2-36: color-mix(in srgb, var(--accent-2) 36%, transparent);
+  --a2-40: color-mix(in srgb, var(--accent-2) 40%, transparent);
+  --a2-45: color-mix(in srgb, var(--accent-2) 45%, transparent);
+  --a2-50: color-mix(in srgb, var(--accent-2) 50%, transparent);
+  --a2-60: color-mix(in srgb, var(--accent-2) 60%, transparent);
+}
+
 @layer base {
   * {
-    border-color: #e0e0e0;
+    border-color: var(--border-soft);
   }
 
   html {
@@ -26,8 +210,8 @@
   }
 
   body {
-    background-color: #080C10;
-    color: #E8EDF2;
+    background-color: var(--bg);
+    color: var(--ink);
     font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   }
 
@@ -46,7 +230,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-off-white);
+    background: var(--bg-soft);
   }
 
   ::-webkit-scrollbar-thumb {
@@ -77,8 +261,8 @@
   }
 
   .card {
-    background: var(--color-white);
-    border: 1px solid #e0e0e0;
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
     border-radius: 16px;
     padding: 24px;
     transition: all 0.3s ease;
@@ -90,8 +274,8 @@
   }
 
   .card-static {
-    background: var(--color-white);
-    border: 1px solid #e0e0e0;
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
     border-radius: 16px;
     padding: 24px;
   }
@@ -147,8 +331,8 @@
 
   .input-field {
     width: 100%;
-    background: var(--color-white);
-    border: 1px solid #e0e0e0;
+    background: var(--surface-base);
+    border: 1px solid var(--surface-border);
     border-radius: 10px;
     padding: 12px 16px;
     font-size: 14px;
@@ -204,7 +388,7 @@
   .divider {
     width: 100%;
     height: 1px;
-    background: #e0e0e0;
+    background: var(--border);
   }
 
   .status-open {
@@ -390,8 +574,8 @@
     width: 10px;
     height: 10px;
     border-radius: 9999px;
-    background: #388E3C;
-    box-shadow: 0 0 12px rgba(56, 142, 60, 0.9);
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--a30);
     z-index: 20;
     animation: timelineFlow 3s linear infinite;
     pointer-events: none;
@@ -413,8 +597,8 @@
     height: 10px;
     margin-top: -5px;
     border-radius: 9999px;
-    background: #388E3C;
-    box-shadow: 0 0 12px rgba(56, 142, 60, 0.9);
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--a30);
     z-index: 30;
     animation: pipelineFlowRight 3s linear infinite;
     pointer-events: none;
@@ -428,8 +612,8 @@
     height: 10px;
     margin-left: -5px;
     border-radius: 9999px;
-    background: #388E3C;
-    box-shadow: 0 0 12px rgba(56, 142, 60, 0.9);
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--a30);
     z-index: 30;
     animation: pipelineFlowDown 3s linear infinite;
     pointer-events: none;
@@ -559,12 +743,12 @@
   }
 
   .accordion-row {
-    border-left: 3px solid #00D08400;
+    border-left: 3px solid var(--a00);
     transition: border-color 200ms ease;
   }
 
   .accordion-row:hover {
-    border-left-color: #00D08460;
+    border-left-color: var(--a60);
   }
 }
 
@@ -711,10 +895,10 @@ body {
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    #E8EDF2 0%,
-    #00D084 40%,
+    var(--ink) 0%,
+    var(--accent) 40%,
     #00B4D8 60%,
-    #E8EDF2 100%
+    var(--ink) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -730,7 +914,7 @@ body {
   left: 0; right: 0;
   height: 2px;
   background: linear-gradient(
-    90deg, transparent, #00D08460, transparent
+    90deg, transparent, var(--a60), transparent
   );
   animation: scan 4s linear infinite;
   pointer-events: none;
@@ -740,8 +924,8 @@ body {
 .dot-live {
   width: 8px; height: 8px;
   border-radius: 50%;
-  background: #00D084;
-  box-shadow: 0 0 0 0 #00D08440;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--a40);
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
@@ -763,14 +947,14 @@ body {
 .radar-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid #00D08460;
+  border: 1px solid var(--a60);
   animation: radar 2s ease-out infinite;
 }
 
 /* ── Keyframes (design-system theme, mirrored so custom classes animate) ── */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 #00D08440; opacity: 1; }
-  50% { box-shadow: 0 0 0 12px #00D08400; opacity: 0.7; }
+  0%, 100% { box-shadow: 0 0 0 0 var(--a40); opacity: 1; }
+  50% { box-shadow: 0 0 0 12px var(--a00); opacity: 0.7; }
 }
 
 @keyframes pulse-glow-danger {

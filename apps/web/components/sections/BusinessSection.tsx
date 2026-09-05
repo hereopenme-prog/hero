@@ -17,14 +17,14 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { stagger, scaleIn } from '@/lib/animations';
 
 const benefits = [
-  { icon: <Users size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'More customer visits' },
-  { icon: <Eye size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Higher visibility' },
-  { icon: <MessageSquare size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Direct customer communication' },
-  { icon: <Megaphone size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Offers & announcements' },
-  { icon: <ShieldCheck size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: '24/7 monitoring' },
-  { icon: <BellRing size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Security alerts' },
-  { icon: <Flame size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Fire & smoke monitoring' },
-  { icon: <HeartHandshake size={18} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Peace of mind' },
+  { icon: <Users size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'More customer visits' },
+  { icon: <Eye size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Higher visibility' },
+  { icon: <MessageSquare size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Direct customer communication' },
+  { icon: <Megaphone size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Offers & announcements' },
+  { icon: <ShieldCheck size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: '24/7 monitoring' },
+  { icon: <BellRing size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Security alerts' },
+  { icon: <Flame size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Fire & smoke monitoring' },
+  { icon: <HeartHandshake size={18} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'Peace of mind' },
 ];
 
 const metrics = [
@@ -35,7 +35,7 @@ const metrics = [
 
 export function BusinessSection() {
   return (
-    <Section id="businesses" className="bg-[#0A0F14]">
+    <Section id="businesses" className="bg-[var(--section-2)]">
       <Container className="relative z-10">
         <SectionHeading
           eyebrow="For Business Owners"
@@ -56,15 +56,15 @@ export function BusinessSection() {
               <motion.div
                 key={b.label}
                 variants={scaleIn}
-                className="flex items-center gap-3 rounded-xl border border-[#1C2A38] bg-[#0F1923] px-4 py-4 transition-colors duration-200 hover:border-[#00D08430]"
+                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--section)] px-4 py-4 transition-colors duration-200 hover:border-[var(--a30)]"
               >
                 <span
                   className="flex items-center justify-center flex-shrink-0"
-                  style={{ background: '#00D0841A', borderRadius: 9, padding: 8, width: 32, height: 32 }}
+                  style={{ background: 'var(--a1A)', borderRadius: 9, padding: 8, width: 32, height: 32 }}
                 >
                   {b.icon}
                 </span>
-                <span className="font-body font-medium text-[0.85rem] text-[#A5B4C4]">{b.label}</span>
+                <span className="font-body font-medium text-[0.85rem] text-[var(--ink-2)]">{b.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -77,15 +77,15 @@ export function BusinessSection() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00D08420_0%,transparent_65%)] pointer-events-none" />
-            <div className="relative rounded-2xl border border-[#1C2A38] bg-[#0F1923] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--a20)_0%,transparent_65%)] pointer-events-none" />
+            <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--section)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <p className="font-display font-bold text-[0.9rem] text-[#E8EDF2]">My Shops</p>
-                  <p className="font-body text-[0.7rem] text-[#6B7C8E]">Owner Dashboard</p>
+                  <p className="font-display font-bold text-[0.9rem] text-[var(--ink)]">My Shops</p>
+                  <p className="font-body text-[0.7rem] text-[var(--ink-dim)]">Owner Dashboard</p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00D08440] bg-[#00D08414] px-3 py-1 font-body text-[10px] font-semibold text-[#00D084]">
-                  <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[#00D084]" />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--a40)] bg-[var(--a14)] px-3 py-1 font-body text-[10px] font-semibold text-[var(--accent)]">
+                  <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
                   ONLINE
                 </span>
               </div>
@@ -102,17 +102,17 @@ export function BusinessSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 + i * 0.12 }}
-                    className="flex items-center justify-between rounded-xl border border-[#1C2A38] bg-[#080C10] px-4 py-3.5"
+                    className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3.5"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="inline-block w-2 h-2 rounded-full bg-[#00D084] shadow-[0_0_8px_#00D084]" />
-                      <span className="font-body font-medium text-[0.82rem] text-[#E8EDF2]">{shop.name}</span>
+                      <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent)] shadow-[0_0_8px_var(--accent)]" />
+                      <span className="font-body font-medium text-[0.82rem] text-[var(--ink)]">{shop.name}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className={`font-display font-bold text-[0.72rem] tracking-wider ${shop.live ? 'text-[#00D084]' : 'text-[#FF6B6B]'}`}>
+                      <span className={`font-display font-bold text-[0.72rem] tracking-wider ${shop.live ? 'text-[var(--accent)]' : 'text-[#FF6B6B]'}`}>
                         {shop.status}
                       </span>
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#3D4F5E]" />
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--ink-dim)]" />
                     </div>
                   </motion.div>
                 ))}
@@ -120,9 +120,9 @@ export function BusinessSection() {
 
               <div className="mt-5 grid grid-cols-3 gap-3">
                 {metrics.map((m) => (
-                  <div key={m.label} className="rounded-xl border border-[#1C2A38] bg-[#080C10] px-3 py-4 text-center">
-                    <p className="font-display font-bold text-[1.15rem] text-[#00D084]">{m.value}</p>
-                    <p className="mt-1 font-body text-[0.65rem] text-[#6B7C8E] leading-tight">{m.label}</p>
+                  <div key={m.label} className="rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 py-4 text-center">
+                    <p className="font-display font-bold text-[1.15rem] text-[var(--accent)]">{m.value}</p>
+                    <p className="mt-1 font-body text-[0.65rem] text-[var(--ink-dim)] leading-tight">{m.label}</p>
                   </div>
                 ))}
               </div>

@@ -44,21 +44,21 @@ module.exports = {
           body: '#333333',
         },
         brand: {
-          green: '#00D084',
-          glow: '#00D08440',
+          green: 'var(--accent)',
+          glow: 'var(--a40)',
           blue: '#00B4D8',
           blueMid: '#0077A8',
         },
         surface: {
-          base: '#080C10',
-          card: '#0F1923',
-          border: '#1C2A38',
-          hover: '#16232F',
+          base: 'var(--surface-base)',
+          card: 'var(--surface-card)',
+          border: 'var(--surface-border)',
+          hover: 'var(--panel-2)',
         },
         text: {
-          primary: '#E8EDF2',
-          muted: '#6B7C8E',
-          dim: '#3D4F5E',
+          primary: 'var(--ink)',
+          muted: 'var(--ink-dim)',
+          dim: 'var(--ink-faint)',
         },
       },
       fontFamily: {
@@ -119,8 +119,8 @@ module.exports = {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 0 0 #00D08440', opacity: '1' },
-          '50%': { boxShadow: '0 0 0 12px #00D08400', opacity: '0.7' },
+          '0%, 100%': { boxShadow: '0 0 0 0 var(--a40)', opacity: '1' },
+          '50%': { boxShadow: '0 0 0 12px var(--a00)', opacity: '0.7' },
         },
         'float': {
           '0%, 100%': { transform: 'translateY(0px)' },

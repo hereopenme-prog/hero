@@ -46,14 +46,14 @@ function CalloutLabel({
       className={`flex items-start gap-3 ${isLeft ? 'flex-row-reverse text-right' : ''}`}
     >
       <div className="flex flex-col items-center pt-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#00D084] shadow-[0_0_6px_#00D08480]" />
-        <span className="w-px h-6 bg-[#3D4F5E]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--a80)]" />
+        <span className="w-px h-6 bg-[var(--ink-dim)]" />
       </div>
       <div className={`max-w-[170px] ${isLeft ? 'text-right' : ''}`}>
-        <p className="font-display text-[11px] font-bold tracking-[0.12em] text-[#E8EDF2] leading-tight">
+        <p className="font-display text-[11px] font-bold tracking-[0.12em] text-[var(--ink)] leading-tight">
           {label}
         </p>
-        <p className="font-body text-[10px] text-[#8A9BAE] mt-0.5 leading-snug">{caption}</p>
+        <p className="font-body text-[10px] text-[var(--ink-muted)] mt-0.5 leading-snug">{caption}</p>
       </div>
     </motion.div>
   );
@@ -61,7 +61,7 @@ function CalloutLabel({
 
 export function DeviceShowcaseSection() {
   return (
-    <Section id="device" className="bg-[#080C10]">
+    <Section id="device" className="bg-[var(--bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.06)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -129,22 +129,22 @@ export function DeviceShowcaseSection() {
                 <motion.div
                   key={c.label}
                   variants={fadeUp}
-                  className="rounded-xl border border-[#1C2A38] bg-[#0F1923] px-3.5 py-3"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--section)] px-3.5 py-3"
                 >
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-[#00D084]" />
-                    <p className="font-display text-[10px] font-bold tracking-[0.1em] text-[#E8EDF2]">
+                    <span className="w-1 h-1 rounded-full bg-[var(--accent)]" />
+                    <p className="font-display text-[10px] font-bold tracking-[0.1em] text-[var(--ink)]">
                       {c.label}
                     </p>
                   </div>
-                  <p className="font-body text-[10px] text-[#8A9BAE] mt-1 leading-snug">{c.caption}</p>
+                  <p className="font-body text-[10px] text-[var(--ink-muted)] mt-1 leading-snug">{c.caption}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
 
           {/* Disclaimer */}
-          <p className="mt-10 text-center font-body text-[11px] text-[#3D4F5E]">
+          <p className="mt-10 text-center font-body text-[11px] text-[var(--ink-dim)]">
             Final specifications and on-device capabilities are under development and subject to
             configuration.
           </p>

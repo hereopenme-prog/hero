@@ -46,7 +46,7 @@ const faqItems = [
 
 export function FaqSection() {
   return (
-    <Section id="faq" className="bg-[#0A0F14]">
+    <Section id="faq" className="bg-[var(--section-2)]">
       <Container className="relative z-10">
         <SectionHeading
           eyebrow="FAQ"
@@ -61,7 +61,7 @@ export function FaqSection() {
               href="https://wa.me/919060038229"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#00D08450] bg-[#00D08410] px-5 py-2.5 font-body font-medium text-[0.85rem] text-[#00D084] transition-colors duration-200 hover:bg-[#00D0841A]"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--a50)] bg-[var(--a10)] px-5 py-2.5 font-body font-medium text-[0.85rem] text-[var(--accent)] transition-colors duration-200 hover:bg-[var(--a1A)]"
             >
               <MessageCircle size={16} />
               Still have questions? WhatsApp +91 9060038229

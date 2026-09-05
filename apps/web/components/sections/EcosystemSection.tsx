@@ -7,7 +7,7 @@ import { EcosystemMap } from '@/components/ui/EcosystemMap';
 
 export function EcosystemSection() {
   return (
-    <Section id="ecosystem" className="bg-[#050708]">
+    <Section id="ecosystem" className="bg-[var(--bg)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -24,7 +24,7 @@ export function EcosystemSection() {
 
         <EcosystemMap />
 
-        <p className="mx-auto mt-10 max-w-2xl text-center font-body text-[13px] text-[#5C6B7A] leading-relaxed">
+        <p className="mx-auto mt-10 max-w-2xl text-center font-body text-[13px] text-[var(--ink-dim)] leading-relaxed">
           Every node is designed to be configurable and available depending on integration. The platform grows as
           supported capabilities are added.
         </p>

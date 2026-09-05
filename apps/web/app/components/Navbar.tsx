@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type MouseEvent } from 'react';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent, type Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -23,22 +24,7 @@ const sectionIds = [
   'security', 'platform-network', 'banks', 'vision', 'contact',
 ];
 
-const mobileLinks = navLinks;
-
-const navbarVariants: Variants = {
-  top: {
-    backgroundColor: 'rgba(8, 12, 16, 0)',
-    backdropFilter: 'blur(0px)',
-    borderColor: 'rgba(28, 42, 56, 0)',
-  },
-  scrolled: {
-    backgroundColor: 'rgba(8, 12, 16, 0.82)',
-    backdropFilter: 'blur(16px)',
-    borderColor: 'rgba(28, 42, 56, 1)',
-  },
-};
-
-const mobileMenuVariants: Variants = {
+const mobileMenuVariants = {
   hidden: { height: 0, opacity: 0 },
   visible: { height: 'auto', opacity: 1 },
 };
@@ -47,11 +33,13 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled(latest > 60);
-  });
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -84,14 +72,26 @@ export function Navbar() {
     }
   };
 
+  const onDarkChrome = !isScrolled;
+
+  const barChrome = onDarkChrome
+    ? 'bg-transparent border-transparent'
+    : 'bg-[var(--nav-bg)] backdrop-blur-md border-b border-[var(--nav-border)]';
+
+  const logoTextCls = onDarkChrome ? 'text-white' : 'text-[var(--ink)]';
+  const linkCls = (isActive: boolean) =>
+    onDarkChrome
+      ? `py-2 px-3 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
+          isActive ? 'text-white' : 'text-white/70 hover:text-white'
+        }`
+      : `py-2 px-3 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
+          isActive ? 'text-[var(--accent)]' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
+        }`;
+
   return (
     <>
-      <motion.nav
-        initial="top"
-        animate={isScrolled ? 'scrolled' : 'top'}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        variants={navbarVariants}
-        className="fixed top-0 left-0 right-0 z-50 border-b"
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${barChrome}`}
         role="navigation"
         aria-label="Main navigation"
       >
@@ -106,58 +106,73 @@ export function Navbar() {
             >
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)' }}
+                style={{ background: 'linear-gradient(135deg, var(--accent), #00B4D8)' }}
                 aria-hidden="true"
               >
-                <span className="font-display font-bold" style={{ fontSize: '0.9rem', color: '#080C10' }}>H</span>
+                <span className="font-display font-bold" style={{ fontSize: '0.9rem', color: 'var(--accent-ink)' }}>
+                  H
+                </span>
               </div>
-              <span className="font-display font-bold text-[15px] tracking-tight text-[#E8EDF2]">
+              <span className={`font-display font-bold text-[15px] tracking-tight transition-colors duration-300 ${logoTextCls}`}>
                 HERE OPEN
               </span>
             </a>
 
             {/* Desktop Nav */}
             <div className="hidden xl:flex items-center gap-0.5">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.replace('#', '');
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className={`py-2 px-3 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
-                      isActive ? 'text-[#00D084]' : 'text-[#A5B4C4] hover:text-[#E8EDF2]'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={linkCls(activeSection === link.href.replace('#', ''))}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
 
-            {/* Desktop CTA */}
+            {/* Desktop CTA + theme */}
             <div className="hidden xl:flex items-center gap-3">
+              <ThemeToggle
+                className={
+                  onDarkChrome
+                    ? 'border-white/25 text-white/80 hover:text-white'
+                    : 'border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]'
+                }
+              />
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, '#contact')}
-                className="active:scale-[0.97] inline-flex items-center px-6 py-2.5 bg-[#00D084] text-[#080C10] text-[13px] font-bold rounded-xl hover:brightness-[1.06] transition-all duration-300 shadow-[0_0_24px_#00D08430]"
+                className="active:scale-[0.97] inline-flex items-center px-6 py-2.5 bg-[var(--accent)] text-[var(--accent-ink)] text-[13px] font-bold rounded-xl hover:brightness-[1.06] transition-all duration-300 shadow-[0_0_24px_var(--a30)]"
               >
                 Get Started
               </a>
             </div>
 
             {/* Mobile Toggle */}
-            <button
-              onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="xl:hidden icon-btn p-2 text-[#A5B4C4] hover:text-[#E8EDF2] transition-colors"
-              aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileOpen}
-            >
-              {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+            <div className="xl:hidden flex items-center gap-2">
+              <ThemeToggle
+                className={
+                  onDarkChrome
+                    ? 'border-white/25 text-white/80 hover:text-white'
+                    : 'border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]'
+                }
+              />
+              <button
+                onClick={() => setIsMobileOpen(!isMobileOpen)}
+                className={`icon-btn p-2 transition-colors ${
+                  onDarkChrome ? 'text-white/80 hover:text-white' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
+                }`}
+                aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMobileOpen}
+              >
+                {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </div>
         </div>
-      </motion.nav>
+      </header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -171,9 +186,9 @@ export function Navbar() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="fixed top-[72px] left-0 right-0 z-40 xl:hidden overflow-hidden"
           >
-            <div className="bg-[#0F1923F2] backdrop-blur-md border-b border-[#1C2A38] pb-6">
+            <div className="bg-[var(--menu-bg)] backdrop-blur-md border-b border-[var(--border)] pb-6">
               <div className="container-site py-4 space-y-1">
-                {mobileLinks.map((link) => {
+                {navLinks.map((link) => {
                   const isActive = activeSection === link.href.replace('#', '');
                   return (
                     <a
@@ -182,8 +197,8 @@ export function Navbar() {
                       onClick={(e) => handleNavClick(e, link.href)}
                       className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                         isActive
-                          ? 'text-[#00D084] bg-[#00D0840F]'
-                          : 'text-[#A5B4C4] hover:text-[#E8EDF2] hover:bg-[#00D0840A]'
+                          ? 'text-[var(--accent)] bg-[var(--a0A)]'
+                          : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--glass)]'
                       }`}
                     >
                       {link.label}
@@ -195,7 +210,7 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, '#contact')}
-                  className="block text-center py-3 bg-[#00D084] text-[#080C10] text-sm font-bold rounded-xl shadow-[0_0_24px_#00D08430]"
+                  className="block text-center py-3 bg-[var(--accent)] text-[var(--accent-ink)] text-sm font-bold rounded-xl shadow-[0_0_24px_var(--a30)]"
                 >
                   Get Started
                 </a>

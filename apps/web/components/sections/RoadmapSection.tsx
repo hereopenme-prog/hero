@@ -57,34 +57,34 @@ export function RoadmapSection() {
           variants={stagger}
           className="hidden md:block relative max-w-6xl mx-auto"
         >
-          <div className="absolute top-[14px] left-6 right-6 h-0.5 bg-[#1C2A38]" />
-          <div className="absolute top-[14px] left-6 w-[24%] h-0.5 bg-gradient-to-r from-[#00D084] to-[#00D08460]" />
+          <div className="absolute top-[14px] left-6 right-6 h-0.5 bg-[var(--border)]" />
+          <div className="absolute top-[14px] left-6 w-[24%] h-0.5 bg-gradient-to-r from-[var(--accent)] to-[var(--a60)]" />
           <div className="grid grid-cols-5 gap-6">
             {phases.map((ph, i) => (
               <motion.div key={ph.title} variants={scaleIn} className="relative">
                 <div
                   className={`relative z-10 mb-5 w-7 h-7 rounded-full border-2 flex items-center justify-center ${
                     i === 0
-                      ? 'border-[#00D084] bg-[#00D084] shadow-[0_0_20px_#00D08460]'
+                      ? 'border-[var(--accent)] bg-[var(--accent)] shadow-[0_0_20px_var(--a60)]'
                       : i === 1
-                        ? 'border-[#00D084] bg-[#080C10]'
-                        : 'border-[#1C2A38] bg-[#0F1923]'
+                        ? 'border-[var(--accent)] bg-[var(--bg)]'
+                        : 'border-[var(--border)] bg-[var(--section)]'
                   }`}
                 >
-                  {i === 0 && <span className="w-2 h-2 rounded-full bg-[#080C10]" />}
+                  {i === 0 && <span className="w-2 h-2 rounded-full bg-[var(--bg)]" />}
                 </div>
                 {ph.status && (
                   <span
                     className={`mb-2 inline-block rounded-full px-2.5 py-0.5 font-display font-bold text-[0.6rem] tracking-widest ${
-                      i === 0 ? 'bg-[#00D084] text-[#080C10]' : 'bg-[#00D08414] text-[#00D084] border border-[#00D08440]'
+                      i === 0 ? 'bg-[var(--accent)] text-[var(--accent-ink)]' : 'bg-[var(--a14)] text-[var(--accent)] border border-[var(--a40)]'
                     }`}
                   >
                     {ph.status}
                   </span>
                 )}
-                <p className="font-display font-bold text-[0.95rem] text-[#00D084]">{ph.years}</p>
-                <h3 className="mt-1.5 font-display font-semibold text-[0.95rem] text-[#E8EDF2] leading-snug">{ph.title}</h3>
-                <p className="mt-1.5 font-body text-[0.8rem] text-[#8A9BAE] leading-relaxed">{ph.desc}</p>
+                <p className="font-display font-bold text-[0.95rem] text-[var(--accent)]">{ph.years}</p>
+                <h3 className="mt-1.5 font-display font-semibold text-[0.95rem] text-[var(--ink)] leading-snug">{ph.title}</h3>
+                <p className="mt-1.5 font-body text-[0.8rem] text-[var(--ink-muted)] leading-relaxed">{ph.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -98,33 +98,33 @@ export function RoadmapSection() {
           variants={stagger}
           className="md:hidden relative max-w-md mx-auto"
         >
-          <div className="absolute left-[13px] top-3 bottom-3 w-0.5 bg-[#1C2A38]" />
+          <div className="absolute left-[13px] top-3 bottom-3 w-0.5 bg-[var(--border)]" />
           {phases.map((ph, i) => (
             <motion.div key={ph.title} variants={scaleIn} className="relative flex items-start gap-5 pb-8 last:pb-0">
               <div
                 className={`relative z-10 mt-0.5 w-7 h-7 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                   i === 0
-                    ? 'border-[#00D084] bg-[#00D084] shadow-[0_0_20px_#00D08460]'
+                    ? 'border-[var(--accent)] bg-[var(--accent)] shadow-[0_0_20px_var(--a60)]'
                     : i === 1
-                      ? 'border-[#00D084] bg-[#080C10]'
-                      : 'border-[#1C2A38] bg-[#0F1923]'
+                      ? 'border-[var(--accent)] bg-[var(--bg)]'
+                      : 'border-[var(--border)] bg-[var(--section)]'
                 }`}
               >
-                {i === 0 && <span className="w-2 h-2 rounded-full bg-[#080C10]" />}
+                {i === 0 && <span className="w-2 h-2 rounded-full bg-[var(--bg)]" />}
               </div>
               <div>
                 {ph.status && (
                   <span
                     className={`mb-1.5 inline-block rounded-full px-2.5 py-0.5 font-display font-bold text-[0.6rem] tracking-widest ${
-                      i === 0 ? 'bg-[#00D084] text-[#080C10]' : 'bg-[#00D08414] text-[#00D084] border border-[#00D08440]'
+                      i === 0 ? 'bg-[var(--accent)] text-[var(--accent-ink)]' : 'bg-[var(--a14)] text-[var(--accent)] border border-[var(--a40)]'
                     }`}
                   >
                     {ph.status}
                   </span>
                 )}
-                <p className="font-display font-bold text-[0.9rem] text-[#00D084]">{ph.years}</p>
-                <h3 className="mt-1 font-display font-semibold text-[0.98rem] text-[#E8EDF2]">{ph.title}</h3>
-                <p className="mt-1 font-body text-[0.84rem] text-[#8A9BAE] leading-relaxed">{ph.desc}</p>
+                <p className="font-display font-bold text-[0.9rem] text-[var(--accent)]">{ph.years}</p>
+                <h3 className="mt-1 font-display font-semibold text-[0.98rem] text-[var(--ink)]">{ph.title}</h3>
+                <p className="mt-1 font-body text-[0.84rem] text-[var(--ink-muted)] leading-relaxed">{ph.desc}</p>
               </div>
             </motion.div>
           ))}

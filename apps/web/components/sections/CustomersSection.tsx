@@ -39,32 +39,32 @@ export function CustomersSection() {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#00B4D820_0%,transparent_60%)] pointer-events-none" />
             <div
-              className="relative rounded-[40px] border border-[#1C2A38] bg-[#0F1923] px-4 pt-4 pb-5"
+              className="relative rounded-[40px] border border-[var(--border)] bg-[var(--section)] px-4 pt-4 pb-5"
               style={{ boxShadow: '0 40px 80px rgba(0,0,0,0.6)' }}
             >
               {/* Notch */}
-              <div className="mx-auto mb-4 w-24 h-5 rounded-full bg-[#080C10] border border-[#1C2A38]" />
+              <div className="mx-auto mb-4 w-24 h-5 rounded-full bg-[var(--bg)] border border-[var(--border)]" />
 
               {/* Status bar */}
               <div className="flex items-center justify-between px-2 mb-4">
-                <p className="font-display font-semibold text-[0.8rem] text-[#E8EDF2]">HERE OPEN</p>
-                <span className="status-dot-pulse inline-block w-2 h-2 rounded-full bg-[#00D084]" />
+                <p className="font-display font-semibold text-[0.8rem] text-[var(--ink)]">HERE OPEN</p>
+                <span className="status-dot-pulse inline-block w-2 h-2 rounded-full bg-[var(--accent)]" />
               </div>
 
               {/* Shop card */}
-              <div className="rounded-2xl bg-[#080C10] border border-[#1C2A38] p-4">
-                <p className="font-body text-[0.65rem] text-[#6B7C8E] uppercase tracking-wider mb-1">500m away</p>
-                <p className="font-display font-bold text-[1rem] text-[#E8EDF2]">Sharma General Store</p>
+              <div className="rounded-2xl bg-[var(--bg)] border border-[var(--border)] p-4">
+                <p className="font-body text-[0.65rem] text-[var(--ink-dim)] uppercase tracking-wider mb-1">500m away</p>
+                <p className="font-display font-bold text-[1rem] text-[var(--ink)]">Sharma General Store</p>
                 <div className="mt-3 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00D08414] border border-[#00D08440] px-3 py-1">
-                    <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[#00D084]" />
-                    <span className="font-display font-bold text-[0.7rem] text-[#00D084] tracking-wider">OPEN</span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--a14)] border border-[var(--a40)] px-3 py-1">
+                    <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                    <span className="font-display font-bold text-[0.7rem] text-[var(--accent)] tracking-wider">OPEN</span>
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-[#00D084] px-2.5 py-1 font-body font-bold text-[0.65rem] text-[#080C10]">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)] px-2.5 py-1 font-body font-bold text-[0.65rem] text-[var(--accent-ink)]">
                     <Tag size={10} /> 10% OFF
                   </span>
                 </div>
-                <p className="mt-3 font-body text-[0.72rem] text-[#A5B4C4]">New arrivals — groceries & daily essentials</p>
+                <p className="mt-3 font-body text-[0.72rem] text-[var(--ink-2)]">New arrivals — groceries & daily essentials</p>
 
                 <div className="mt-4 grid grid-cols-3 gap-2">
                   {[
@@ -74,10 +74,10 @@ export function CustomersSection() {
                   ].map((b) => (
                     <span
                       key={b.label}
-                      className="flex flex-col items-center gap-1 rounded-lg border border-[#1C2A38] bg-[#0F1923] py-2.5 text-[#00D084]"
+                      className="flex flex-col items-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--section)] py-2.5 text-[var(--accent)]"
                     >
                       {b.icon}
-                      <span className="font-body text-[0.62rem] text-[#6B7C8E]">{b.label}</span>
+                      <span className="font-body text-[0.62rem] text-[var(--ink-dim)]">{b.label}</span>
                     </span>
                   ))}
                 </div>
@@ -92,10 +92,10 @@ export function CustomersSection() {
                 ].map((s) => (
                   <span
                     key={s.name}
-                    className="flex-1 min-w-0 rounded-xl border border-[#1C2A38] bg-[#080C10] px-3 py-2.5"
+                    className="flex-1 min-w-0 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5"
                   >
-                    <p className="truncate font-body font-medium text-[0.62rem] text-[#E8EDF2]">{s.name}</p>
-                    <span className={`font-display font-bold text-[0.6rem] tracking-wider ${s.st === 'OPEN' ? 'text-[#00D084]' : 'text-[#FF6B6B]'}`}>
+                    <p className="truncate font-body font-medium text-[0.62rem] text-[var(--ink)]">{s.name}</p>
+                    <span className={`font-display font-bold text-[0.6rem] tracking-wider ${s.st === 'OPEN' ? 'text-[var(--accent)]' : 'text-[#FF6B6B]'}`}>
                       ● {s.st}
                     </span>
                   </span>
@@ -110,9 +110,9 @@ export function CustomersSection() {
               transition={{ duration: 0.4, delay: 0.35 }}
               className="absolute -right-8 -bottom-4 float-badge"
             >
-              <div className="flex items-center gap-2 rounded-full border border-[#00D08440] bg-[#0F1923] px-4 py-2">
-                <Bell size={14} className="text-[#00D084]" />
-                <span className="font-body font-semibold text-xs text-[#E8EDF2]">Follow to never miss</span>
+              <div className="flex items-center gap-2 rounded-full border border-[var(--a40)] bg-[var(--section)] px-4 py-2">
+                <Bell size={14} className="text-[var(--accent)]" />
+                <span className="font-body font-semibold text-xs text-[var(--ink)]">Follow to never miss</span>
               </div>
             </motion.div>
           </motion.div>
@@ -127,22 +127,22 @@ export function CustomersSection() {
           >
             {[
               {
-                icon: <Store size={18} className="text-[#00D084]" strokeWidth={1.5} />,
+                icon: <Store size={18} className="text-[var(--accent)]" strokeWidth={1.5} />,
                 title: 'Nearby Shops',
                 desc: 'Discover open businesses near you, sorted by distance and live status.',
               },
               {
-                icon: <Clock size={18} className="text-[#00D084]" strokeWidth={1.5} />,
+                icon: <Clock size={18} className="text-[var(--accent)]" strokeWidth={1.5} />,
                 title: 'Open Now',
                 desc: 'Filter to shops that are genuinely open right now — no wasted trips.',
               },
               {
-                icon: <Tag size={18} className="text-[#00D084]" strokeWidth={1.5} />,
+                icon: <Tag size={18} className="text-[var(--accent)]" strokeWidth={1.5} />,
                 title: 'Offers & Announcements',
                 desc: 'Offers and updates from the shops you follow, in one place.',
               },
               {
-                icon: <MapPin size={18} className="text-[#00D084]" strokeWidth={1.5} />,
+                icon: <MapPin size={18} className="text-[var(--accent)]" strokeWidth={1.5} />,
                 title: 'Shop Details',
                 desc: 'Status, location, offers and announcements for any connected shop.',
               },
@@ -153,17 +153,17 @@ export function CustomersSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: 'easeOut' }}
-                className="flex items-start gap-4 rounded-2xl border border-[#1C2A38] bg-[#0F1923] p-6"
+                className="flex items-start gap-4 rounded-2xl border border-[var(--border)] bg-[var(--section)] p-6"
               >
                 <div
                   className="flex items-center justify-center flex-shrink-0"
-                  style={{ background: '#00D0841A', borderRadius: 11, padding: 9, width: 40, height: 40 }}
+                  style={{ background: 'var(--a1A)', borderRadius: 11, padding: 9, width: 40, height: 40 }}
                 >
                   {f.icon}
                 </div>
                 <div>
-                  <h3 className="font-display font-semibold text-[1rem] text-[#E8EDF2] mb-1">{f.title}</h3>
-                  <p className="font-body text-[0.88rem] text-[#8A9BAE] leading-relaxed">{f.desc}</p>
+                  <h3 className="font-display font-semibold text-[1rem] text-[var(--ink)] mb-1">{f.title}</h3>
+                  <p className="font-body text-[0.88rem] text-[var(--ink-muted)] leading-relaxed">{f.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -172,7 +172,7 @@ export function CustomersSection() {
               {appPills.map((p) => (
                 <span
                   key={p}
-                  className="rounded-full border border-[#1C2A38] bg-[#0F1923] px-3.5 py-1.5 font-body text-[0.72rem] text-[#A5B4C4]"
+                  className="rounded-full border border-[var(--border)] bg-[var(--section)] px-3.5 py-1.5 font-body text-[0.72rem] text-[var(--ink-2)]"
                 >
                   {p}
                 </span>

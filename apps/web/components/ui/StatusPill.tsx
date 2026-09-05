@@ -11,11 +11,11 @@ interface StatusPillProps {
 
 const tones = {
   green: {
-    dot: 'bg-[#00D084]',
-    text: 'text-[#00D084]',
-    border: 'border-[#00D08440]',
-    bg: 'bg-[#00D08420]',
-    shadow: 'shadow-[0_0_12px_#00D08440]',
+    dot: 'bg-[var(--accent)]',
+    text: 'text-[var(--accent)]',
+    border: 'border-[var(--a40)]',
+    bg: 'bg-[var(--a20)]',
+    shadow: 'shadow-[0_0_12px_var(--a40)]',
   },
   red: {
     dot: 'bg-[#FF4444]',
@@ -32,10 +32,10 @@ const tones = {
     shadow: 'shadow-[0_0_12px_#00B4D840]',
   },
   neutral: {
-    dot: 'bg-[#3D4F5E]',
-    text: 'text-[#8A9BAE]',
-    border: 'border-[#1C2A38]',
-    bg: 'bg-[#0F1923]',
+    dot: 'bg-[var(--ink-dim)]',
+    text: 'text-[var(--ink-muted)]',
+    border: 'border-[var(--border)]',
+    bg: 'bg-[var(--section)]',
     shadow: '',
   },
 };

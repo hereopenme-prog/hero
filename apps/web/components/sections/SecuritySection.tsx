@@ -54,7 +54,7 @@ function IndicatorDot({ active, tone = 'green' }: { active: boolean; tone?: 'gre
     <motion.span
       animate={{
         scale: active ? 1 : 0.9,
-        backgroundColor: tone === 'amber' ? '#FFD166' : active ? '#00D084' : '#1F2C39',
+        backgroundColor: tone === 'amber' ? '#FFD166' : active ? 'var(--accent)' : 'var(--ink-faint)',
         boxShadow: active ? (tone === 'amber' ? '0 0 10px rgba(255,209,102,0.8)' : '0 0 10px rgba(0,208,132,0.7)') : '0 0 0 rgba(0,0,0,0)',
       }}
       transition={{ duration: 0.4 }}
@@ -72,15 +72,15 @@ function MonitorLabel({ icon, label, pos, hot = false, active = true }: { icon: 
       className={`absolute z-20 hidden flex-col items-center gap-2 md:flex ${pos}`}
     >
       <motion.span
-        animate={{ color: hot ? '#FFD166' : '#00D084', boxShadow: hot ? '0 0 18px rgba(255,209,102,0.35)' : '0 0 0 rgba(0,0,0,0)' }}
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-[#1C2A38] bg-[#0F1923]"
+        animate={{ color: hot ? '#FFD166' : 'var(--accent)', boxShadow: hot ? '0 0 18px rgba(255,209,102,0.35)' : '0 0 0 rgba(0,0,0,0)' }}
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--section)]"
       >
         {icon}
       </motion.span>
-      <span className="flex items-center gap-1.5 font-body text-[0.56rem] font-bold tracking-[0.22em] text-[#A5B4C4]">
+      <span className="flex items-center gap-1.5 font-body text-[0.56rem] font-bold tracking-[0.22em] text-[var(--ink-2)]">
         <IndicatorDot active={active} tone={hot ? 'amber' : 'green'} /> {label}
       </span>
-      <span className={`font-body text-[0.5rem] tracking-[0.18em] ${hot ? 'text-[#FFD166]' : 'text-[#3D4F5E]'}`}>
+      <span className={`font-body text-[0.5rem] tracking-[0.18em] ${hot ? 'text-[#FFD166]' : 'text-[var(--ink-dim)]'}`}>
         {hot ? 'HIGH — CHECK' : 'NORMAL'}
       </span>
     </motion.div>
@@ -92,40 +92,40 @@ function ShopScene({ step, deviceOn }: { step: Step; deviceOn: boolean }) {
     <div className="relative z-10 mx-auto flex w-full max-w-[340px] flex-col items-center">
       <motion.div
         animate={{ opacity: deviceOn ? 1 : 0.5 }}
-        className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#1C2A38] bg-[#0F1923]/90 px-4 py-1.5"
+        className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[color-mix(in_srgb,var(--section)_90%,transparent)] px-4 py-1.5"
       >
         <Lock size={11} className="text-[#FF6B6B]" />
-        <span className="font-display font-extrabold text-[0.7rem] tracking-[0.28em] text-[#E8EDF2]">SHOP CLOSED</span>
+        <span className="font-display font-extrabold text-[0.7rem] tracking-[0.28em] text-[var(--ink)]">SHOP CLOSED</span>
       </motion.div>
 
       <div className="relative w-full">
         {/* glow */}
-        <div className="absolute -inset-8 rounded-full bg-[#00D084]/[0.06] blur-3xl" />
+        <div className="absolute -inset-8 rounded-full bg-[var(--a08)] blur-3xl" />
         <motion.div
           animate={{ boxShadow: deviceOn ? '0 0 0 14px rgba(0,208,132,0.05), 0 0 46px rgba(0,208,132,0.25)' : '0 0 0 0 rgba(0,208,132,0)' }}
           transition={{ duration: 1 }}
-          className="relative overflow-hidden rounded-t-[3rem] border border-[#24323F] bg-gradient-to-b from-[#0F1923] to-[#0A0F14]"
+          className="relative overflow-hidden rounded-t-[3rem] border border-[var(--border-strong)] bg-gradient-to-b from-[var(--section)] to-[var(--section-2)]"
         >
           {/* parapet */}
-          <div className="h-4 border-b border-[#24323F] bg-[#0C141C]" />
+          <div className="h-4 border-b border-[var(--border-strong)] bg-[var(--panel-2)]" />
           {/* signboard */}
-          <div className="mx-auto mt-5 flex w-[84%] items-center justify-center rounded-md border border-[#00D08430] bg-[#00D08410] px-3 py-2">
-            <span className="text-center font-display font-bold text-[0.72rem] leading-relaxed tracking-[0.12em] text-[#00D084]">
+          <div className="mx-auto mt-5 flex w-[84%] items-center justify-center rounded-md border border-[var(--a30)] bg-[var(--a10)] px-3 py-2">
+            <span className="text-center font-display font-bold text-[0.72rem] leading-relaxed tracking-[0.12em] text-[var(--accent)]">
               SHARMA GENERAL <br /> STORE
             </span>
           </div>
 
           {/* window */}
-          <div className="mx-auto mt-5 flex h-20 w-[76%] items-center justify-center rounded-lg border border-[#24323F] bg-[#0A0F14]">
-            <span className="font-body text-[0.6rem] tracking-[0.3em] text-[#3D4F5E]">AFTER HOURS</span>
+          <div className="mx-auto mt-5 flex h-20 w-[76%] items-center justify-center rounded-lg border border-[var(--border-strong)] bg-[var(--section-2)]">
+            <span className="font-body text-[0.6rem] tracking-[0.3em] text-[var(--ink-dim)]">AFTER HOURS</span>
           </div>
 
           {/* door with CLOSED banner */}
-          <div className="relative mx-auto mt-auto mb-0 flex h-28 w-[58%] items-end justify-center rounded-t-2xl border border-[#24323F] bg-[#0C141C]">
+          <div className="relative mx-auto mt-auto mb-0 flex h-28 w-[58%] items-end justify-center rounded-t-2xl border border-[var(--border-strong)] bg-[var(--panel-2)]">
             <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#FF444440] bg-[#FF444410] px-3 py-1 font-body text-[0.58rem] font-bold tracking-[0.2em] text-[#FF6B6B]">
               CLOSED
             </span>
-            <span className="mb-3 inline-block h-2.5 w-20 rounded-full bg-[#1C2A38]" />
+            <span className="mb-3 inline-block h-2.5 w-20 rounded-full bg-[var(--border)]" />
           </div>
         </motion.div>
 
@@ -138,18 +138,18 @@ function ShopScene({ step, deviceOn }: { step: Step; deviceOn: boolean }) {
             <motion.div
               animate={{ boxShadow: deviceOn ? '0 0 0 8px rgba(0,208,132,0.08), 0 0 24px rgba(0,208,132,0.5)' : '0 0 0 0 rgba(0,0,0,0)' }}
               transition={{ duration: 0.8 }}
-              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#00D08460] bg-[#0F1923]"
+              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--a60)] bg-[var(--section)]"
             >
-              <Cpu size={18} className={deviceOn ? 'text-[#00D084]' : 'text-[#3D4F5E]'} />
+              <Cpu size={18} className={deviceOn ? 'text-[var(--accent)]' : 'text-[var(--ink-dim)]'} />
             </motion.div>
-            <motion.span className="mt-1.5 whitespace-nowrap font-body text-[0.56rem] font-bold tracking-[0.18em] text-[#00D084]">
+            <motion.span className="mt-1.5 whitespace-nowrap font-body text-[0.56rem] font-bold tracking-[0.18em] text-[var(--accent)]">
               HERE OPEN DEVICE
             </motion.span>
-            <span className="mt-0.5 flex items-center gap-1 font-body text-[0.54rem] font-semibold tracking-[0.16em] text-[#A5B4C4]">
+            <span className="mt-0.5 flex items-center gap-1 font-body text-[0.54rem] font-semibold tracking-[0.16em] text-[var(--ink-2)]">
               <motion.span
                 animate={{ opacity: deviceOn ? [1, 0.5, 1] : 0.4 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                className="h-1 w-1 rounded-full bg-[#00D084]"
+                className="h-1 w-1 rounded-full bg-[var(--accent)]"
               />
               CONNECTED
             </span>
@@ -174,20 +174,20 @@ function AlertCard({ show, variant = 'desktop' }: { show: boolean; variant?: 'de
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: 0, y: 16 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className={`overflow-hidden rounded-xl border border-[#FFD16640] bg-[#111A24]/95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${cardCls}`}
+          className={`overflow-hidden rounded-xl border border-[#FFD16640] bg-[var(--panel-2)]/95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${cardCls}`}
         >
-          <div className="flex items-center justify-between border-b border-[#1C2A38] px-3.5 py-2">
-            <span className="font-display font-semibold text-[0.74rem] text-[#E8EDF2]">HERE OPEN</span>
+          <div className="flex items-center justify-between border-b border-[var(--border)] px-3.5 py-2">
+            <span className="font-display font-semibold text-[0.74rem] text-[var(--ink)]">HERE OPEN</span>
             <span className="inline-flex items-center gap-1 font-body text-[0.6rem] font-bold tracking-widest text-[#FFD166]">
               <AlertTriangle size={11} /> ALERT
             </span>
           </div>
           <div className="px-3.5 py-3">
-            <p className="font-body text-[0.92rem] font-semibold text-[#E8EDF2]">Unusual temperature detected.</p>
-            <p className="mt-1 font-body text-[0.66rem] text-[#3D4F5E]">10:42 PM · Sharma General Store</p>
-            <div className="mt-3 flex items-center justify-between rounded-lg border border-[#1C2A38] bg-[#080C10] px-3 py-2">
-              <span className="font-body text-[0.6rem] text-[#A5B4C4]">Simulated event</span>
-              <span className="inline-flex items-center gap-1 rounded-md bg-[#FFD166] px-2.5 py-1 font-body text-[0.6rem] font-bold text-[#080C10]">
+            <p className="font-body text-[0.92rem] font-semibold text-[var(--ink)]">Unusual temperature detected.</p>
+            <p className="mt-1 font-body text-[0.66rem] text-[var(--ink-dim)]">10:42 PM · Sharma General Store</p>
+            <div className="mt-3 flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2">
+              <span className="font-body text-[0.6rem] text-[var(--ink-2)]">Simulated event</span>
+              <span className="inline-flex items-center gap-1 rounded-md bg-[#FFD166] px-2.5 py-1 font-body text-[0.6rem] font-bold text-[var(--accent-ink)]">
                 VIEW ALERT <ArrowRight size={10} />
               </span>
             </div>
@@ -212,17 +212,17 @@ function OwnerCard({ show, variant = 'desktop' }: { show: boolean; variant?: 'de
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: 0, y: 16 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className={`overflow-hidden rounded-xl border border-[#00D08440] bg-[#111A24]/95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${cardCls}`}
+          className={`overflow-hidden rounded-xl border border-[var(--a40)] bg-[var(--panel-2)]/95 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${cardCls}`}
         >
-          <div className="flex items-center justify-between border-b border-[#1C2A38] px-3.5 py-2">
-            <span className="inline-flex items-center gap-1.5 font-body text-[0.6rem] font-bold tracking-[0.18em] text-[#00D084]">
+          <div className="flex items-center justify-between border-b border-[var(--border)] px-3.5 py-2">
+            <span className="inline-flex items-center gap-1.5 font-body text-[0.6rem] font-bold tracking-[0.18em] text-[var(--accent)]">
               <Bell size={11} /> BUSINESS OWNER
             </span>
-            <span className="font-body text-[0.54rem] text-[#3D4F5E]">10:42 PM</span>
+            <span className="font-body text-[0.54rem] text-[var(--ink-dim)]">10:42 PM</span>
           </div>
           <div className="px-3.5 py-3">
-            <p className="font-body text-[0.82rem] font-semibold text-[#E8EDF2]">HERE OPEN Alert</p>
-            <p className="mt-1 font-body text-[0.7rem] text-[#8A9BAE]">Your shop requires attention.</p>
+            <p className="font-body text-[0.82rem] font-semibold text-[var(--ink)]">HERE OPEN Alert</p>
+            <p className="mt-1 font-body text-[0.7rem] text-[var(--ink-muted)]">Your shop requires attention.</p>
           </div>
         </motion.div>
       )}
@@ -243,13 +243,13 @@ function StoryTicker({ step }: { step: Step }) {
         <span key={s} className="flex items-center gap-2">
           <span
             className={`font-body text-[0.58rem] font-bold tracking-[0.22em] transition-colors duration-300 ${
-              i <= activeIndex ? 'text-[#E8EDF2]' : 'text-[#3D4F5E]'
+              i <= activeIndex ? 'text-[var(--ink)]' : 'text-[var(--ink-dim)]'
             }`}
           >
             {s}
           </span>
           {i < STORY.length - 1 && (
-            <ArrowRight size={10} className={`transition-colors duration-300 ${i < activeIndex ? 'text-[#00D084]' : 'text-[#3D4F5E]'}`} />
+            <ArrowRight size={10} className={`transition-colors duration-300 ${i < activeIndex ? 'text-[var(--accent)]' : 'text-[var(--ink-dim)]'}`} />
           )}
         </span>
       ))}
@@ -269,12 +269,12 @@ function MonitoringRail() {
     <div className="mt-8 md:hidden" id="monitoring-rail">
       <div className="mx-auto flex max-w-[340px] flex-col gap-2.5">
         {items.map((i) => (
-          <div key={i.label} className="flex items-center gap-3 border-b border-[#1C2A38] pb-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#1C2A38] bg-[#0F1923] text-[#00D084]">
+          <div key={i.label} className="flex items-center gap-3 border-b border-[var(--border)] pb-2.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--section)] text-[var(--accent)]">
               {i.icon}
             </span>
-            <span className="flex-1 font-body text-[0.62rem] font-bold tracking-[0.2em] text-[#A5B4C4]">{i.label}</span>
-            <span className="flex items-center gap-1.5 font-body text-[0.56rem] text-[#3D4F5E]">
+            <span className="flex-1 font-body text-[0.62rem] font-bold tracking-[0.2em] text-[var(--ink-2)]">{i.label}</span>
+            <span className="flex items-center gap-1.5 font-body text-[0.56rem] text-[var(--ink-dim)]">
               <IndicatorDot active /> NORMAL
             </span>
           </div>
@@ -304,13 +304,13 @@ export function SecuritySection() {
         <div ref={sceneRef} className="relative mx-auto mt-4 max-w-6xl">
           {/* demo label + replay */}
           <div className="flex items-center justify-center gap-3">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#1C2A38] bg-[#0F1923] px-3 py-1.5 font-body text-[0.56rem] font-bold tracking-[0.18em] text-[#8A9BAE]">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--section)] px-3 py-1.5 font-body text-[0.56rem] font-bold tracking-[0.18em] text-[var(--ink-muted)]">
               <span className="status-dot-pulse inline-block h-1.5 w-1.5 rounded-full bg-[#FFD166]" /> SIMULATED EVENT · FRONTEND DEMO
             </span>
             <button
               type="button"
               onClick={replay}
-              className="rounded-full border border-[#00D08440] bg-[#00D08412] px-3 py-1.5 font-body text-[0.56rem] font-bold tracking-[0.18em] text-[#00D084] transition-colors hover:bg-[#00D0841F]"
+              className="rounded-full border border-[var(--a40)] bg-[var(--a12)] px-3 py-1.5 font-body text-[0.56rem] font-bold tracking-[0.18em] text-[var(--accent)] transition-colors hover:bg-[var(--a1F)]"
             >
               REPLAY
             </button>
@@ -346,7 +346,7 @@ export function SecuritySection() {
               animate={{ opacity: step === 0 ? 1 : 0.55 }}
               className="absolute bottom-0 left-1/2 z-20 w-full max-w-md -translate-x-1/2 text-center"
             >
-              <p className="font-body text-[0.68rem] text-[#8A9BAE]">
+              <p className="font-body text-[0.68rem] text-[var(--ink-muted)]">
                 {step === 0 ? 'Calm state — device connected, supported monitoring active.' : 'Changes shown are a simulated sequence.'}
               </p>
             </motion.div>
@@ -374,7 +374,7 @@ export function SecuritySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.55 }}
-            className="font-body text-[0.62rem] font-bold tracking-[0.28em] text-[#00D084]"
+            className="font-body text-[0.62rem] font-bold tracking-[0.28em] text-[var(--accent)]"
           >
             THE DIFFERENCE
           </motion.p>
@@ -383,18 +383,18 @@ export function SecuritySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="mt-4 font-display font-extrabold text-[1.9rem] lg:text-[2.7rem] leading-tight tracking-[-0.02em] text-[#E8EDF2]"
+            className="mt-4 font-display font-extrabold text-[1.9rem] lg:text-[2.7rem] leading-tight tracking-[-0.02em] text-[var(--ink)]"
           >
             CLOSED TO CUSTOMERS.
             <br />
-            <span className="text-[#00D084] drop-shadow-[0_0_30px_#00D08450]">CONNECTED TO WHAT MATTERS.</span>
+            <span className="text-[var(--accent)] drop-shadow-[0_0_30px_var(--a50)]">CONNECTED TO WHAT MATTERS.</span>
           </motion.h3>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.55, delay: 0.2 }}
-            className="mx-auto mt-4 max-w-xl font-body text-[1rem] text-[#8A9BAE] leading-relaxed"
+            className="mx-auto mt-4 max-w-xl font-body text-[1rem] text-[var(--ink-muted)] leading-relaxed"
           >
             Here Open helps businesses stay informed through connected monitoring and alerts based on their configured system.
           </motion.p>
@@ -404,7 +404,7 @@ export function SecuritySection() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.55, delay: 0.3 }}
             href="#platform"
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-[#00D084] px-9 py-4 font-display font-bold text-[0.9rem] tracking-wide text-[#080C10] shadow-[0_0_36px_rgba(0,208,132,0.4)] transition-all duration-300 hover:brightness-[1.08]"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-9 py-4 font-display font-bold text-[0.9rem] tracking-wide text-[var(--accent-ink)] shadow-[0_0_36px_rgba(0,208,132,0.4)] transition-all duration-300 hover:brightness-[1.08]"
           >
             EXPLORE THE ECOSYSTEM <ArrowRight size={16} />
           </motion.a>

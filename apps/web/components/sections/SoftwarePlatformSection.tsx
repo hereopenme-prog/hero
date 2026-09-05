@@ -18,7 +18,7 @@ const capabilities = [
 
 export function SoftwarePlatformSection() {
   return (
-    <Section id="platform" className="bg-[#050708]">
+    <Section id="platform" className="bg-[var(--bg)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -38,29 +38,29 @@ export function SoftwarePlatformSection() {
 
         {/* Platform capabilities */}
         <div className="mx-auto mt-16 max-w-4xl lg:mt-20">
-          <p className="text-center font-body text-[11px] font-semibold tracking-[0.24em] text-white/30 uppercase">
+          <p className="text-center font-body text-[11px] font-semibold tracking-[0.24em] text-[var(--ink-faint)] uppercase">
             Platform Capabilities
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
             {capabilities.map((cap) => (
               <div
                 key={cap.label}
-                className="group flex flex-col items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-4 text-center transition-colors duration-300 hover:border-[#45F59A]/25"
+                className="group flex flex-col items-center gap-2.5 rounded-xl border border-[var(--border-soft)] bg-[var(--glass)] px-3 py-4 text-center transition-colors duration-300 hover:border-[var(--a2-25)]"
               >
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg border border-[#45F59A]/15 bg-[#45F59A]/10 text-[#45F59A]">
+                <span className="flex items-center justify-center w-8 h-8 rounded-lg border border-[var(--a2-15)] bg-[var(--a2-10)] text-[var(--accent-2)]">
                   <cap.icon size={15} strokeWidth={1.75} />
                 </span>
                 <div>
-                  <p className="font-display text-[11px] font-bold tracking-wide text-[#E8EDF2] leading-tight">
+                  <p className="font-display text-[11px] font-bold tracking-wide text-[var(--ink)] leading-tight">
                     {cap.label}
                   </p>
-                  <p className="mt-1 font-body text-[11px] text-[#8A9BAE] leading-snug">{cap.desc}</p>
+                  <p className="mt-1 font-body text-[11px] text-[var(--ink-muted)] leading-snug">{cap.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <p className="mt-8 text-center font-body text-[13px] text-[#5C6B7A] leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-8 text-center font-body text-[13px] text-[var(--ink-dim)] leading-relaxed max-w-2xl mx-auto">
             Banks and financial institutions can also connect as partners and platform operators. Capabilities are
             designed to be configurable depending on integration.
           </p>

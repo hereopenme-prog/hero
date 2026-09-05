@@ -67,7 +67,7 @@ export function SectionHeader({
         )}
       </motion.h2>
       {description && (
-        <p className="mt-5 text-body-lg text-black max-w-content leading-relaxed">
+        <p className="mt-5 text-body-lg text-[var(--ink)] max-w-content leading-relaxed">
           {description}
         </p>
       )}

@@ -24,9 +24,9 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
             key={item.question}
             className="accordion-row"
             style={{
-              borderBottom: isOpen ? '1px solid #00D08430' : '1px solid #1C2A38',
-              borderLeft: '3px solid #00D08400',
-              borderLeftColor: isOpen ? '#00D084' : undefined,
+              borderBottom: isOpen ? '1px solid var(--a30)' : '1px solid var(--border)',
+              borderLeft: '3px solid var(--a00)',
+              borderLeftColor: isOpen ? 'var(--accent)' : undefined,
             }}
           >
             <button
@@ -38,14 +38,14 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
             >
               <span
                 className={`font-display font-semibold text-base transition-colors duration-200 ${
-                  isOpen ? 'text-[#00D084]' : 'text-[#E8EDF2] group-hover:text-[#00D084]'
+                  isOpen ? 'text-[var(--accent)]' : 'text-[var(--ink)] group-hover:text-[var(--accent)]'
                 }`}
               >
                 {item.question}
               </span>
               <span
                 className={`flex-shrink-0 transition-colors duration-200 ${
-                  isOpen ? 'text-[#00D084]' : 'text-[#6B7C8E] group-hover:text-[#00D084]'
+                  isOpen ? 'text-[var(--accent)]' : 'text-[var(--ink-dim)] group-hover:text-[var(--accent)]'
                 }`}
               >
                 <ChevronDown
@@ -74,7 +74,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                     className="font-body font-normal"
                     style={{
                       fontSize: '0.9rem',
-                      color: '#6B7C8E',
+                      color: 'var(--ink-dim)',
                       padding: '4px 0 20px 0',
                       lineHeight: 1.7,
                       maxWidth: 640,

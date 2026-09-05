@@ -43,7 +43,7 @@ export default function HomePage() {
   return (
     <MotionConfig reducedMotion="user">
       <AnnouncementBar />
-      <main id="main" className="relative min-h-screen bg-surface-base text-[#E8EDF2] overflow-x-hidden">
+      <main id="main" className="relative min-h-screen bg-surface-base text-[var(--ink)] overflow-x-hidden">
         <HeroSection />
         <ProblemSection />
         <BigIdeaSection />

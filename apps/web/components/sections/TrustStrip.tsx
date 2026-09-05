@@ -13,7 +13,7 @@ const items = [
 
 export function TrustStrip() {
   return (
-    <section className="relative border-y border-[#1C2A38] bg-[#0A0F14]">
+    <section className="relative border-y border-[var(--border)] bg-[var(--section-2)]">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -26,18 +26,18 @@ export function TrustStrip() {
             <div
               key={i}
               className={`py-8 text-center ${
-                i % 2 === 1 ? 'border-l border-[#1C2A38]' : ''
-              } ${i >= 2 ? 'border-t lg:border-t-0 border-[#1C2A38]' : ''} ${
-                i >= 1 ? 'lg:border-l lg:border-[#1C2A38]' : ''
+                i % 2 === 1 ? 'border-l border-[var(--border)]' : ''
+              } ${i >= 2 ? 'border-t lg:border-t-0 border-[var(--border)]' : ''} ${
+                i >= 1 ? 'lg:border-l lg:border-[var(--border)]' : ''
               }`}
             >
               <div className="flex items-center justify-center gap-2 mb-1.5">
-                <span className="text-[#00D084]">{item.icon}</span>
-                <p className="font-display font-bold text-xl lg:text-2xl tracking-tight text-[#E8EDF2]">
+                <span className="text-[var(--accent)]">{item.icon}</span>
+                <p className="font-display font-bold text-xl lg:text-2xl tracking-tight text-[var(--ink)]">
                   {item.label}
                 </p>
               </div>
-              <p className="font-body text-[13px] text-[#6B7C8E]">{item.desc}</p>
+              <p className="font-body text-[13px] text-[var(--ink-dim)]">{item.desc}</p>
             </div>
           ))}
         </motion.div>

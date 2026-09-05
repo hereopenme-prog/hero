@@ -26,7 +26,7 @@ const benefits = [
 
 export function CustomerExperienceSection() {
   return (
-    <Section id="customer-experience" className="bg-[#050708]">
+    <Section id="customer-experience" className="bg-[var(--bg)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -50,20 +50,20 @@ export function CustomerExperienceSection() {
             {benefits.map((b) => (
               <div
                 key={b.title}
-                className="group flex flex-col rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6 transition-colors duration-300 hover:border-[#45F59A]/25"
+                className="group flex flex-col rounded-2xl border border-[var(--border-soft)] bg-[var(--glass)] p-6 transition-colors duration-300 hover:border-[var(--a2-25)]"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#45F59A]/20 bg-[#45F59A]/10 text-[#45F59A] transition-transform duration-300 group-hover:scale-105">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--a2-20)] bg-[var(--a2-10)] text-[var(--accent-2)] transition-transform duration-300 group-hover:scale-105">
                   {b.icon}
                 </span>
-                <p className="mt-5 font-display text-[15px] font-bold tracking-tight text-[#E8EDF2] leading-snug">
+                <p className="mt-5 font-display text-[15px] font-bold tracking-tight text-[var(--ink)] leading-snug">
                   {b.title}
                 </p>
-                <p className="mt-1.5 font-body text-[13.5px] text-[#8A9BAE] leading-relaxed">{b.desc}</p>
+                <p className="mt-1.5 font-body text-[13.5px] text-[var(--ink-muted)] leading-relaxed">{b.desc}</p>
               </div>
             ))}
           </div>
 
-          <p className="mt-10 text-center font-body text-[13px] text-[#5C6B7A] leading-relaxed">
+          <p className="mt-10 text-center font-body text-[13px] text-[var(--ink-dim)] leading-relaxed">
             A web-first customer experience — no downloads, no sign-up required.
           </p>
         </div>

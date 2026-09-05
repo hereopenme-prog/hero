@@ -9,7 +9,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
 const inputClass =
-  'w-full rounded-xl border border-[#1C2A38] bg-[#080C10] px-4 py-3 font-body text-[0.9rem] text-[#E8EDF2] placeholder:text-[#3D4F5E] outline-none transition-colors duration-200 focus:border-[#00D08480]';
+  'w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 font-body text-[0.9rem] text-[var(--ink)] placeholder:text-[var(--ink-dim)] outline-none transition-colors duration-200 focus:border-[var(--a80)]';
 
 export function ContactSection() {
   const [status, setStatus] = useState<Status>('idle');
@@ -49,8 +49,8 @@ export function ContactSection() {
   };
 
   return (
-    <Section id="contact" className="bg-[#0A0F14] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,#00D0840A_0%,transparent_60%)] pointer-events-none" />
+    <Section id="contact" className="bg-[var(--section-2)] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,var(--a0A)_0%,transparent_60%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
           eyebrow="Contact"
@@ -63,24 +63,24 @@ export function ContactSection() {
           <div className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { icon: <Mail size={16} className="text-[#00D084]" />, label: 'Email', value: 'contact@hereopen.me' },
-                { icon: <MessageCircle size={16} className="text-[#00D084]" />, label: 'WhatsApp', value: '+91 9060038229' },
-                { icon: <Clock size={16} className="text-[#00D084]" />, label: 'Response', value: 'Within 24 hours' },
+                { icon: <Mail size={16} className="text-[var(--accent)]" />, label: 'Email', value: 'contact@hereopen.me' },
+                { icon: <MessageCircle size={16} className="text-[var(--accent)]" />, label: 'WhatsApp', value: '+91 9060038229' },
+                { icon: <Clock size={16} className="text-[var(--accent)]" />, label: 'Response', value: 'Within 24 hours' },
               ].map((c) => (
-                <div key={c.label} className="rounded-xl border border-[#1C2A38] bg-[#0F1923] p-4">
+                <div key={c.label} className="rounded-xl border border-[var(--border)] bg-[var(--section)] p-4">
                   <span className="flex items-center gap-2 mb-1.5">
                     {c.icon}
-                    <span className="font-body text-[0.7rem] text-[#6B7C8E] uppercase tracking-wider">{c.label}</span>
+                    <span className="font-body text-[0.7rem] text-[var(--ink-dim)] uppercase tracking-wider">{c.label}</span>
                   </span>
-                  <p className="font-body font-medium text-[0.82rem] text-[#E8EDF2] break-all">{c.value}</p>
+                  <p className="font-body font-medium text-[0.82rem] text-[var(--ink)] break-all">{c.value}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right: contact form */}
-          <div className="rounded-3xl border border-[#1C2A38] bg-[#0F1923] p-6 lg:p-8">
-            <h3 className="font-display font-semibold text-[1.1rem] text-[#E8EDF2] mb-5">Send us a message</h3>
+          <div className="rounded-3xl border border-[var(--border)] bg-[var(--section)] p-6 lg:p-8">
+            <h3 className="font-display font-semibold text-[1.1rem] text-[var(--ink)] mb-5">Send us a message</h3>
             <form onSubmit={submit} className="space-y-4">
               {[
                 { key: 'name', label: 'Name', type: 'text' as const, placeholder: 'Your full name' },
@@ -89,7 +89,7 @@ export function ContactSection() {
                 { key: 'business', label: 'Business Name', type: 'text' as const, placeholder: 'Your shop or business' },
               ].map((f) => (
                 <div key={f.key}>
-                  <label htmlFor={`contact-${f.key}`} className="mb-1.5 block font-body text-[0.75rem] text-[#8A9BAE]">
+                  <label htmlFor={`contact-${f.key}`} className="mb-1.5 block font-body text-[0.75rem] text-[var(--ink-muted)]">
                     {f.label}
                   </label>
                   <input
@@ -105,7 +105,7 @@ export function ContactSection() {
               ))}
 
               <div>
-                <label htmlFor="contact-message" className="mb-1.5 block font-body text-[0.75rem] text-[#8A9BAE]">
+                <label htmlFor="contact-message" className="mb-1.5 block font-body text-[0.75rem] text-[var(--ink-muted)]">
                   Message
                 </label>
                 <textarea
@@ -122,14 +122,14 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00D084] px-6 py-3.5 font-display font-bold text-[0.85rem] tracking-wide text-[#080C10] transition-all duration-300 hover:brightness-[1.06] disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-6 py-3.5 font-display font-bold text-[0.85rem] tracking-wide text-[var(--accent-ink)] transition-all duration-300 hover:brightness-[1.06] disabled:opacity-60"
               >
                 {status === 'loading' ? 'Sending…' : 'Send Enquiry'}
                 <Send size={15} />
               </button>
 
               {status === 'success' && (
-                <p className="flex items-center gap-2 rounded-xl border border-[#00D08440] bg-[#00D08410] px-4 py-3 font-body text-[0.82rem] text-[#00D084]">
+                <p className="flex items-center gap-2 rounded-xl border border-[var(--a40)] bg-[var(--a10)] px-4 py-3 font-body text-[0.82rem] text-[var(--accent)]">
                   <CheckCircle2 size={15} /> Message sent! We&apos;ll get back to you within 24 hours.
                 </p>
               )}

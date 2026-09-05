@@ -16,7 +16,7 @@ export function WhatsAppFloat() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 8 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0F1923] border border-[#1C2A38] text-[#E8EDF2] rounded-lg px-3 py-1.5 whitespace-nowrap font-body font-medium text-[0.8rem]"
+            className="hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[var(--section)] border border-[var(--border)] text-[var(--ink)] rounded-lg px-3 py-1.5 whitespace-nowrap font-body font-medium text-[0.8rem]"
           >
             Chat with us
           </motion.span>
@@ -43,7 +43,7 @@ export function WhatsAppFloat() {
         className="relative w-[52px] h-[52px] rounded-full bg-[#25D366] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)]"
       >
         <span className="absolute inset-0 rounded-full border-2 border-[#25D366] animate-radar pointer-events-none" />
-        <MessageCircle size={24} className="text-white relative z-10" />
+        <MessageCircle size={24} className="text-[var(--ink)] relative z-10" />
       </motion.a>
     </div>
   )

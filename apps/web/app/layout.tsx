@@ -223,7 +223,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=window.localStorage.getItem('hereopen-theme');var t;if(s==='dark'||s==='navy'){t=s;}else{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'navy';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','navy');}})();`,
+          }}
+        />
+      </head>
       <body className="font-sans">
         <StructuredData data={organizationSchema} />
         <StructuredData data={softwareSchema} />

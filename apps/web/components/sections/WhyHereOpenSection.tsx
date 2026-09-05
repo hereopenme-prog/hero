@@ -10,7 +10,7 @@ const words = ['CONNECTED', 'VISIBLE', 'INFORMED', 'AWARE'];
 
 export function WhyHereOpenSection() {
   return (
-    <Section id="why" className="bg-[#080C10]">
+    <Section id="why" className="bg-[var(--bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,208,132,0.04)_0%,transparent_50%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -27,14 +27,14 @@ export function WhyHereOpenSection() {
         >
           <motion.p
             variants={fadeUp}
-            className="font-display font-bold text-[1.5rem] sm:text-[2rem] lg:text-[2.5rem] leading-tight text-[#E8EDF2] mb-8"
+            className="font-display font-bold text-[1.5rem] sm:text-[2rem] lg:text-[2.5rem] leading-tight text-[var(--ink)] mb-8"
           >
             A payment speaker tells you that money arrived.
           </motion.p>
 
           <motion.p
             variants={fadeUp}
-            className="font-body text-base lg:text-lg text-[#00D084] mb-12"
+            className="font-body text-base lg:text-lg text-[var(--accent)] mb-12"
           >
             HERE OPEN is designed to help your business stay:
           </motion.p>
@@ -44,14 +44,14 @@ export function WhyHereOpenSection() {
               <motion.div
                 key={word}
                 variants={fadeUp}
-                className="font-display font-extrabold text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] tracking-[-0.02em] text-[#E8EDF2]"
+                className="font-display font-extrabold text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] tracking-[-0.02em] text-[var(--ink)]"
                 style={{
                   textShadow: '0 0 60px rgba(0,208,132,0.12)',
                 }}
               >
                 {word}
                 {i < words.length - 1 && (
-                  <span className="text-[#3D4F5E] ml-2">/</span>
+                  <span className="text-[var(--ink-dim)] ml-2">/</span>
                 )}
               </motion.div>
             ))}

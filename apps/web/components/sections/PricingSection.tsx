@@ -32,7 +32,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <Section id="pricing" className="bg-[#0A0F14]">
+    <Section id="pricing" className="bg-[var(--section-2)]">
       <Container className="relative z-10">
         <SectionHeading
           eyebrow="Pricing"
@@ -53,28 +53,28 @@ export function PricingSection() {
               variants={scaleIn}
               className={`relative flex flex-col rounded-3xl border p-8 ${
                 p.featured
-                  ? 'border-[#00D08460] bg-[#0F1923] shadow-[0_0_60px_#00D08420] lg:-translate-y-3'
-                  : 'border-[#1C2A38] bg-[#0F1923]'
+                  ? 'border-[var(--a60)] bg-[var(--section)] shadow-[0_0_60px_var(--a20)] lg:-translate-y-3'
+                  : 'border-[var(--border)] bg-[var(--section)]'
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#00D084] px-4 py-1 font-display font-bold text-[0.65rem] tracking-widest text-[#080C10]">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--accent)] px-4 py-1 font-display font-bold text-[0.65rem] tracking-widest text-[var(--accent-ink)]">
                   MOST POPULAR
                 </span>
               )}
-              <p className="font-display font-semibold text-[1rem] text-[#E8EDF2]">{p.name}</p>
+              <p className="font-display font-semibold text-[1rem] text-[var(--ink)]">{p.name}</p>
               <div className="mt-4 flex items-baseline gap-1">
-                <span className="font-body text-[0.9rem] text-[#8A9BAE]">₹</span>
-                <span className="font-display font-bold text-[2.6rem] leading-none tracking-tight text-[#E8EDF2]">{p.price}</span>
+                <span className="font-body text-[0.9rem] text-[var(--ink-muted)]">₹</span>
+                <span className="font-display font-bold text-[2.6rem] leading-none tracking-tight text-[var(--ink)]">{p.price}</span>
               </div>
-              <p className="mt-2 font-body text-[0.72rem] text-[#3D4F5E]">{p.per}</p>
+              <p className="mt-2 font-body text-[0.72rem] text-[var(--ink-dim)]">{p.per}</p>
 
               <ul className="mt-6 flex-1 space-y-2.5">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5 font-body text-[0.86rem] text-[#A5B4C4]">
+                  <li key={f} className="flex items-start gap-2.5 font-body text-[0.86rem] text-[var(--ink-2)]">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-1 flex-shrink-0" aria-hidden="true">
-                      <circle cx="7" cy="7" r="7" fill="#00D08414" />
-                      <path d="M4.5 7.2L6.3 9L9.5 5.5" stroke="#00D084" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="7" cy="7" r="7" fill="var(--a14)" />
+                      <path d="M4.5 7.2L6.3 9L9.5 5.5" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     {f}
                   </li>
@@ -85,8 +85,8 @@ export function PricingSection() {
                 href="#contact"
                 className={`mt-8 block rounded-xl px-6 py-3.5 text-center font-display font-bold text-[0.85rem] tracking-wide transition-all duration-300 ${
                   p.featured
-                    ? 'bg-[#00D084] text-[#080C10] shadow-[0_0_28px_#00D08440] hover:brightness-[1.06]'
-                    : 'border border-[#00D08450] text-[#00D084] hover:bg-[#00D08414]'
+                    ? 'bg-[var(--accent)] text-[var(--accent-ink)] shadow-[0_0_28px_var(--a40)] hover:brightness-[1.06]'
+                    : 'border border-[var(--a50)] text-[var(--accent)] hover:bg-[var(--a14)]'
                 }`}
               >
                 Get Started
@@ -95,7 +95,7 @@ export function PricingSection() {
           ))}
         </motion.div>
 
-        <p className="mt-8 text-center font-body text-[0.78rem] text-[#3D4F5E]">
+        <p className="mt-8 text-center font-body text-[0.78rem] text-[var(--ink-dim)]">
           Device hardware available on purchase or rental basis. Contact us for bulk business pricing.
         </p>
       </Container>

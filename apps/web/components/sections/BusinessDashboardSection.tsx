@@ -33,16 +33,16 @@ const managementChips = [
 
 function KpiTile({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col rounded-lg border border-[#1C2A38] bg-[#0A0F14] px-4 py-3">
-      <span className="font-body text-[10px] text-[#8A9BAE] tracking-wide uppercase">{label}</span>
-      <span className="mt-1 font-display font-bold text-lg text-[#E8EDF2] tracking-tight">{value}</span>
+    <div className="flex flex-col rounded-lg border border-[var(--border)] bg-[var(--section-2)] px-4 py-3">
+      <span className="font-body text-[10px] text-[var(--ink-muted)] tracking-wide uppercase">{label}</span>
+      <span className="mt-1 font-display font-bold text-lg text-[var(--ink)] tracking-tight">{value}</span>
     </div>
   );
 }
 
 export function BusinessDashboardSection() {
   return (
-    <Section id="platform-network" className="bg-[#080C10]">
+    <Section id="platform-network" className="bg-[var(--bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.04)_0%,transparent_50%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -61,20 +61,20 @@ export function BusinessDashboardSection() {
         >
           <motion.div variants={fadeUp}>
             {/* Dashboard chrome */}
-            <div className="rounded-2xl border border-[#1C2A38] bg-[#0F1923] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--section)] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
               {/* Window title bar */}
-              <div className="flex items-center justify-between px-5 py-3 border-b border-[#1C2A38]">
+              <div className="flex items-center justify-between px-5 py-3 border-b border-[var(--border)]">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#3D4F5E]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#3D4F5E]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#3D4F5E]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--ink-dim)]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--ink-dim)]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--ink-dim)]" />
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-display text-[11px] font-bold tracking-[0.12em] text-[#8A9BAE]">
+                  <span className="font-display text-[11px] font-bold tracking-[0.12em] text-[var(--ink-muted)]">
                     HERE OPEN · ECOSYSTEM
                   </span>
-                  <span className="inline-flex items-center rounded-full border border-[#00D08440] bg-[#00D08414] px-2.5 py-0.5">
-                    <span className="font-body text-[9px] font-bold tracking-wider text-[#00D084]">
+                  <span className="inline-flex items-center rounded-full border border-[var(--a40)] bg-[var(--a14)] px-2.5 py-0.5">
+                    <span className="font-body text-[9px] font-bold tracking-wider text-[var(--accent)]">
                       DEMO DATA
                     </span>
                   </span>
@@ -99,15 +99,15 @@ export function BusinessDashboardSection() {
                 </div>
 
                 {/* Management chips */}
-                <div className="pt-2 border-t border-[#1C2A38]">
-                  <p className="font-body text-[10px] text-[#8A9BAE] tracking-wide uppercase mb-3">
+                <div className="pt-2 border-t border-[var(--border)]">
+                  <p className="font-body text-[10px] text-[var(--ink-muted)] tracking-wide uppercase mb-3">
                     Management
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {managementChips.map((chip) => (
                       <span
                         key={chip}
-                        className="inline-flex items-center rounded-lg border border-[#1C2A38] bg-[#0A0F14] px-3 py-1.5 font-display text-[10px] font-bold tracking-[0.08em] text-[#A5B4C4]"
+                        className="inline-flex items-center rounded-lg border border-[var(--border)] bg-[var(--section-2)] px-3 py-1.5 font-display text-[10px] font-bold tracking-[0.08em] text-[var(--ink-2)]"
                       >
                         {chip}
                       </span>
@@ -119,7 +119,7 @@ export function BusinessDashboardSection() {
           </motion.div>
 
           {/* Disclaimer */}
-          <p className="mt-8 text-center font-body text-[11px] text-[#3D4F5E]">
+          <p className="mt-8 text-center font-body text-[11px] text-[var(--ink-dim)]">
             Illustrative demo data — not real deployments.
           </p>
         </motion.div>

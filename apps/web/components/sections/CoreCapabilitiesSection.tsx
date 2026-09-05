@@ -43,18 +43,18 @@ export function CoreCapabilitiesSection() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
             >
-              <div className="relative w-[120px] h-[170px] rounded-[1.5rem] border border-[#1C2A38] bg-gradient-to-b from-[#0F1923] to-[#080C10] shadow-[0_0_40px_#00D08420,0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden">
+              <div className="relative w-[120px] h-[170px] rounded-[1.5rem] border border-[var(--border)] bg-gradient-to-b from-[var(--section)] to-[var(--bg)] shadow-[0_0_40px_var(--a20),0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden">
                 <div className="flex flex-col items-center gap-1 pt-4 pb-2">
                   {[...Array(4)].map((_, i) => (
-                    <div key={i} className="w-8 h-[1px] rounded-full bg-[#1C2A38]" />
+                    <div key={i} className="w-8 h-[1px] rounded-full bg-[var(--border)]" />
                   ))}
                 </div>
                 <div className="flex justify-center mt-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00D084] shadow-[0_0_6px_#00D084] animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--accent)] animate-pulse" />
                 </div>
                 <div className="flex flex-col items-center mt-3">
-                  <span className="font-display font-bold text-[9px] text-[#E8EDF2] tracking-[0.2em]">HERE</span>
-                  <span className="font-display font-bold text-[9px] text-[#00D084] tracking-[0.2em]">OPEN</span>
+                  <span className="font-display font-bold text-[9px] text-[var(--ink)] tracking-[0.2em]">HERE</span>
+                  <span className="font-display font-bold text-[9px] text-[var(--accent)] tracking-[0.2em]">OPEN</span>
                 </div>
               </div>
             </motion.div>
@@ -75,7 +75,7 @@ export function CoreCapabilitiesSection() {
                   y1={260}
                   x2={pos.x}
                   y2={pos.y}
-                  stroke="#1C2A38"
+                  stroke="var(--border)"
                   strokeWidth={1}
                   strokeDasharray="4 4"
                   initial={{ pathLength: 0, opacity: 0 }}
@@ -105,9 +105,9 @@ export function CoreCapabilitiesSection() {
                   transition={{ delay: 0.3 + i * 0.12 }}
                   className={`absolute ${positions[i]} ${aligns[i]} max-w-[200px]`}
                 >
-                  <p className="font-display font-bold text-xs text-[#00D084] tracking-[0.15em] mb-1">{cap.num}</p>
-                  <h3 className="font-display font-semibold text-[13px] text-[#E8EDF2] tracking-wide mb-1">{cap.title}</h3>
-                  <p className="font-body text-[12px] text-[#8A9BAE] leading-relaxed">{cap.desc}</p>
+                  <p className="font-display font-bold text-xs text-[var(--accent)] tracking-[0.15em] mb-1">{cap.num}</p>
+                  <h3 className="font-display font-semibold text-[13px] text-[var(--ink)] tracking-wide mb-1">{cap.title}</h3>
+                  <p className="font-body text-[12px] text-[var(--ink-muted)] leading-relaxed">{cap.desc}</p>
                 </motion.div>
               );
             })}
@@ -122,18 +122,18 @@ export function CoreCapabilitiesSection() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="flex justify-center mb-10"
             >
-              <div className="relative w-[100px] h-[140px] rounded-[1.25rem] border border-[#1C2A38] bg-gradient-to-b from-[#0F1923] to-[#080C10] shadow-[0_0_30px_#00D08415] overflow-hidden">
+              <div className="relative w-[100px] h-[140px] rounded-[1.25rem] border border-[var(--border)] bg-gradient-to-b from-[var(--section)] to-[var(--bg)] shadow-[0_0_30px_var(--a15)] overflow-hidden">
                 <div className="flex flex-col items-center gap-1 pt-3 pb-1">
                   {[...Array(3)].map((_, i) => (
-                    <div key={i} className="w-7 h-[1px] rounded-full bg-[#1C2A38]" />
+                    <div key={i} className="w-7 h-[1px] rounded-full bg-[var(--border)]" />
                   ))}
                 </div>
                 <div className="flex justify-center mt-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00D084] shadow-[0_0_6px_#00D084] animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--accent)] animate-pulse" />
                 </div>
                 <div className="flex flex-col items-center mt-2">
-                  <span className="font-display font-bold text-[8px] text-[#E8EDF2] tracking-[0.2em]">HERE</span>
-                  <span className="font-display font-bold text-[8px] text-[#00D084] tracking-[0.2em]">OPEN</span>
+                  <span className="font-display font-bold text-[8px] text-[var(--ink)] tracking-[0.2em]">HERE</span>
+                  <span className="font-display font-bold text-[8px] text-[var(--accent)] tracking-[0.2em]">OPEN</span>
                 </div>
               </div>
             </motion.div>
@@ -149,12 +149,12 @@ export function CoreCapabilitiesSection() {
                   key={cap.num}
                   variants={fadeUp}
                   transition={{ delay: 0.2 + i * 0.1 }}
-                  className="relative pl-6 border-l border-[#1C2A38]"
+                  className="relative pl-6 border-l border-[var(--border)]"
                 >
-                  <span className="absolute left-0 top-0 w-1.5 h-1.5 rounded-full bg-[#00D084] -translate-x-[3.5px]" />
-                  <p className="font-display font-bold text-xs text-[#00D084] tracking-[0.15em] mb-1">{cap.num}</p>
-                  <h3 className="font-display font-semibold text-sm text-[#E8EDF2] tracking-wide mb-1">{cap.title}</h3>
-                  <p className="font-body text-[13px] text-[#8A9BAE] leading-relaxed">{cap.desc}</p>
+                  <span className="absolute left-0 top-0 w-1.5 h-1.5 rounded-full bg-[var(--accent)] -translate-x-[3.5px]" />
+                  <p className="font-display font-bold text-xs text-[var(--accent)] tracking-[0.15em] mb-1">{cap.num}</p>
+                  <h3 className="font-display font-semibold text-sm text-[var(--ink)] tracking-wide mb-1">{cap.title}</h3>
+                  <p className="font-body text-[13px] text-[var(--ink-muted)] leading-relaxed">{cap.desc}</p>
                 </motion.div>
               ))}
             </motion.div>

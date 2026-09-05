@@ -15,27 +15,27 @@ import {
 
 const valueChainNodes = [
   {
-    icon: <Landmark size={18} className="text-[#00D084]" />,
+    icon: <Landmark size={18} className="text-[var(--accent)]" />,
     label: 'BANK',
     caption: 'Owns the merchant relationship.',
   },
   {
-    icon: <Cpu size={18} className="text-[#00D084]" />,
+    icon: <Cpu size={18} className="text-[var(--accent)]" />,
     label: 'HERE OPEN TECHNOLOGY',
     caption: 'Device + platform ecosystem.',
   },
   {
-    icon: <Smartphone size={18} className="text-[#00D084]" />,
+    icon: <Smartphone size={18} className="text-[var(--accent)]" />,
     label: 'SMART MERCHANT DEVICE',
     caption: 'A branded, connected device.',
   },
   {
-    icon: <Store size={18} className="text-[#00D084]" />,
+    icon: <Store size={18} className="text-[var(--accent)]" />,
     label: 'MERCHANT',
     caption: 'Payment, visibility and communication.',
   },
   {
-    icon: <Users size={18} className="text-[#00D084]" />,
+    icon: <Users size={18} className="text-[var(--accent)]" />,
     label: 'CUSTOMER',
     caption: 'A better local business experience.',
   },
@@ -78,7 +78,7 @@ const benefits = [
 
 export function BankOpportunitySection() {
   return (
-    <Section id="banks" className="bg-[#0A0F14]">
+    <Section id="banks" className="bg-[var(--section-2)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.06)_0%,transparent_60%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -93,7 +93,7 @@ export function BankOpportunitySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-[640px] text-center font-body text-[0.95rem] leading-relaxed text-[#8A9BAE] mb-16 lg:mb-20"
+          className="mx-auto max-w-[640px] text-center font-body text-[0.95rem] leading-relaxed text-[var(--ink-muted)] mb-16 lg:mb-20"
         >
           Banks and financial institutions already have deep relationships with merchants. The merchant
           device can become more than a payment confirmation device. Here Open can provide the
@@ -111,13 +111,13 @@ export function BankOpportunitySection() {
           <div className="hidden md:flex items-start justify-between gap-4">
             {valueChainNodes.map((node, i) => (
               <motion.div key={node.label} variants={fadeUp} className="flex flex-col items-center flex-1 max-w-[160px]">
-                <div className="w-14 h-14 rounded-full border border-[#1C2A38] bg-[#0F1923] flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-full border border-[var(--border)] bg-[var(--section)] flex items-center justify-center mb-4">
                   {node.icon}
                 </div>
-                <p className="font-display font-bold text-[11px] tracking-[0.1em] text-[#E8EDF2] text-center leading-tight">
+                <p className="font-display font-bold text-[11px] tracking-[0.1em] text-[var(--ink)] text-center leading-tight">
                   {node.label}
                 </p>
-                <p className="mt-1.5 font-body text-[11px] text-[#8A9BAE] text-center leading-snug">
+                <p className="mt-1.5 font-body text-[11px] text-[var(--ink-muted)] text-center leading-snug">
                   {node.caption}
                 </p>
                 {i < valueChainNodes.length - 1 && (
@@ -131,8 +131,8 @@ export function BankOpportunitySection() {
           <div className="hidden lg:flex items-center justify-center -mt-[128px] mb-[128px] px-[8%]">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex-1 flex items-center">
-                <div className="w-full h-px bg-gradient-to-r from-[#00D084]/0 via-[#00D084]/40 to-[#00D084]/0" />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00D084] flex-shrink-0 shadow-[0_0_6px_#00D08480]" />
+                <div className="w-full h-px bg-gradient-to-r from-[var(--a00)] via-[var(--a40)] to-[var(--a00)]" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0 shadow-[0_0_6px_var(--a80)]" />
               </div>
             ))}
           </div>
@@ -140,18 +140,18 @@ export function BankOpportunitySection() {
           {/* Mobile: stacked */}
           <div className="md:hidden space-y-3">
             {valueChainNodes.map((node, i) => (
-              <motion.div key={node.label} variants={fadeUp} className="flex items-center gap-4 rounded-xl border border-[#1C2A38] bg-[#0F1923] px-5 py-4">
-                <div className="w-10 h-10 rounded-full border border-[#1C2A38] bg-[#080C10] flex items-center justify-center flex-shrink-0">
+              <motion.div key={node.label} variants={fadeUp} className="flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--section)] px-5 py-4">
+                <div className="w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--bg)] flex items-center justify-center flex-shrink-0">
                   {node.icon}
                 </div>
                 <div className="min-w-0">
-                  <p className="font-display font-bold text-[11px] tracking-[0.1em] text-[#E8EDF2] leading-tight">{node.label}</p>
-                  <p className="mt-0.5 font-body text-[11px] text-[#8A9BAE] leading-snug">{node.caption}</p>
+                  <p className="font-display font-bold text-[11px] tracking-[0.1em] text-[var(--ink)] leading-tight">{node.label}</p>
+                  <p className="mt-0.5 font-body text-[11px] text-[var(--ink-muted)] leading-snug">{node.caption}</p>
                 </div>
                 {i < valueChainNodes.length - 1 && (
                   <div className="ml-auto flex-shrink-0">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path d="M7 2v10M4 9l3 3 3-3" stroke="#00D084" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M7 2v10M4 9l3 3 3-3" stroke="var(--accent)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 )}
@@ -173,14 +173,14 @@ export function BankOpportunitySection() {
               <motion.div
                 key={b.title}
                 variants={fadeUp}
-                className="flex items-start gap-4 rounded-xl border border-[#1C2A38] bg-[#0F1923] px-5 py-4"
+                className="flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--section)] px-5 py-4"
               >
-                <div className="mt-0.5 w-1.5 h-1.5 rounded-full bg-[#00D084] flex-shrink-0 shadow-[0_0_6px_#00D08480]" />
+                <div className="mt-0.5 w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0 shadow-[0_0_6px_var(--a80)]" />
                 <div>
-                  <p className="font-display font-bold text-[12px] tracking-[0.08em] text-[#E8EDF2] leading-tight">
+                  <p className="font-display font-bold text-[12px] tracking-[0.08em] text-[var(--ink)] leading-tight">
                     {b.title}
                   </p>
-                  <p className="mt-1 font-body text-[12px] text-[#8A9BAE] leading-snug">
+                  <p className="mt-1 font-body text-[12px] text-[var(--ink-muted)] leading-snug">
                     {b.caption}
                   </p>
                 </div>
@@ -189,7 +189,7 @@ export function BankOpportunitySection() {
           </div>
         </motion.div>
 
-        <p className="mt-12 text-center font-body text-[11px] text-[#3D4F5E]">
+        <p className="mt-12 text-center font-body text-[11px] text-[var(--ink-dim)]">
           These capabilities are potential and subject to integration and configuration.
         </p>
       </Container>

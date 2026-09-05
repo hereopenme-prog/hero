@@ -11,7 +11,7 @@ const alerts = [
   { label: 'UNUSUAL EVENT', color: '#FFD166', bg: '#FFD16620', border: '#FFD16640', icon: <AlertTriangle size={12} />, pos: 'right-[2%] top-[5%] sm:right-[0%] sm:top-[10%]' },
   { label: 'DEVICE OFFLINE', color: '#FF6B6B', bg: '#FF6B6B20', border: '#FF6B6B40', icon: <WifiOff size={12} />, pos: 'left-[0%] bottom-[28%] sm:left-[-2%] sm:bottom-[32%]' },
   { label: 'SECURITY EVENT', color: '#FFD166', bg: '#FFD16620', border: '#FFD16640', icon: <ShieldAlert size={12} />, pos: 'right-[-2%] bottom-[30%] sm:right-[-4%] sm:bottom-[34%]' },
-  { label: 'PAYMENT RECEIVED', color: '#00D084', bg: '#00D08420', border: '#00D08440', icon: <CreditCard size={12} />, pos: 'left-[10%] bottom-[4%] sm:left-[6%] sm:bottom-[2%]' },
+  { label: 'PAYMENT RECEIVED', color: 'var(--accent)', bg: 'var(--a20)', border: 'var(--a40)', icon: <CreditCard size={12} />, pos: 'left-[10%] bottom-[4%] sm:left-[6%] sm:bottom-[2%]' },
 ];
 
 export function SmartAlertsSection() {
@@ -34,10 +34,10 @@ export function SmartAlertsSection() {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
           >
             <div className="relative flex flex-col items-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-3xl border border-[#00D08450] bg-[#0F1923] shadow-[0_0_40px_rgba(0,208,132,0.25)]">
-                <Cpu size={32} className="text-[#00D084]" />
+              <div className="flex h-20 w-20 items-center justify-center rounded-3xl border border-[var(--a50)] bg-[var(--section)] shadow-[0_0_40px_rgba(0,208,132,0.25)]">
+                <Cpu size={32} className="text-[var(--accent)]" />
               </div>
-              <span className="mt-2.5 font-body text-[0.55rem] font-bold tracking-[0.2em] text-[#00D084]">HERE OPEN</span>
+              <span className="mt-2.5 font-body text-[0.55rem] font-bold tracking-[0.2em] text-[var(--accent)]">HERE OPEN</span>
             </div>
           </motion.div>
 
@@ -65,11 +65,11 @@ export function SmartAlertsSection() {
 
           {/* Connecting lines (decorative) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <line x1="50" y1="46" x2="18" y2="18" stroke="#00D084" strokeWidth="0.3" strokeDasharray="2 2" />
-            <line x1="50" y1="46" x2="82" y2="16" stroke="#00D084" strokeWidth="0.3" strokeDasharray="2 2" />
-            <line x1="50" y1="46" x2="12" y2="68" stroke="#00D084" strokeWidth="0.3" strokeDasharray="2 2" />
-            <line x1="50" y1="46" x2="88" y2="66" stroke="#00D084" strokeWidth="0.3" strokeDasharray="2 2" />
-            <line x1="50" y1="46" x2="22" y2="92" stroke="#00D084" strokeWidth="0.3" strokeDasharray="2 2" />
+            <line x1="50" y1="46" x2="18" y2="18" stroke="var(--accent)" strokeWidth="0.3" strokeDasharray="2 2" />
+            <line x1="50" y1="46" x2="82" y2="16" stroke="var(--accent)" strokeWidth="0.3" strokeDasharray="2 2" />
+            <line x1="50" y1="46" x2="12" y2="68" stroke="var(--accent)" strokeWidth="0.3" strokeDasharray="2 2" />
+            <line x1="50" y1="46" x2="88" y2="66" stroke="var(--accent)" strokeWidth="0.3" strokeDasharray="2 2" />
+            <line x1="50" y1="46" x2="22" y2="92" stroke="var(--accent)" strokeWidth="0.3" strokeDasharray="2 2" />
           </svg>
         </div>
 
@@ -78,7 +78,7 @@ export function SmartAlertsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 text-center font-body text-[0.95rem] text-[#8A9BAE] leading-relaxed max-w-lg mx-auto"
+          className="mt-6 text-center font-body text-[0.95rem] text-[var(--ink-muted)] leading-relaxed max-w-lg mx-auto"
         >
           Examples of possible alerts from configured sensors and supported features.
         </motion.p>

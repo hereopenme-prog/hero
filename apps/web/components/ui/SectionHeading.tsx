@@ -37,7 +37,8 @@ export function SectionHeading({
   const accentWords = titleAccent ? titleAccent.split(' ') : [];
 
   const isMint = accent === 'mint';
-  const accentHex = isMint ? '#45F59A' : '#00D084';
+  const accentHex = isMint ? 'var(--accent-2)' : 'var(--accent)';
+  const accentFade = isMint ? 'var(--accent-2)' : '#00B4D8';
 
   const titleClasses =
     size === 'lg'
@@ -45,8 +46,8 @@ export function SectionHeading({
       : 'mt-6 font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em]';
   const descClasses =
     size === 'lg'
-      ? 'mt-6 font-body text-lg lg:text-xl text-[#8A9BAE] leading-relaxed max-w-[660px]'
-      : 'mt-5 font-body text-base lg:text-[1.0625rem] text-[#8A9BAE] leading-relaxed max-w-[620px]';
+      ? 'mt-6 font-body text-lg lg:text-xl text-[var(--ink-muted)] leading-relaxed max-w-[660px]'
+      : 'mt-5 font-body text-base lg:text-[1.0625rem] text-[var(--ink-muted)] leading-relaxed max-w-[620px]';
 
   return (
     <div className={`mb-16 lg:mb-20 ${align === 'center' ? 'text-center' : ''} ${className}`}>
@@ -56,8 +57,8 @@ export function SectionHeading({
             align === 'center' ? 'mx-auto' : ''
           }`}
           style={{
-            background: isMint ? '#45F59A12' : '#00D08420',
-            borderColor: isMint ? '#45F59A36' : '#00D08440',
+            background: isMint ? 'var(--a2-12)' : 'var(--a20)',
+            borderColor: isMint ? 'var(--a2-36)' : 'var(--a40)',
           }}
         >
           <span
@@ -78,7 +79,7 @@ export function SectionHeading({
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
         variants={headingContainer}
-        className={`${titleClasses} text-[#E8EDF2] leading-tight ${
+        className={`${titleClasses} text-[var(--ink)] leading-tight ${
           align === 'center' ? 'mx-auto max-w-[820px]' : ''
         }`}
       >
@@ -91,7 +92,7 @@ export function SectionHeading({
         {titleAccent && (
           <>
             <br />
-            <motion.span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${accentHex}, ${isMint ? '#7EF0C0' : '#00B4D8'})` }}>
+            <motion.span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${accentHex}, ${accentFade})` }}>
               {accentWords.map((w, i) => (
                 <motion.span key={`a${i}`} variants={headingWord} className="inline-block">
                   {w}

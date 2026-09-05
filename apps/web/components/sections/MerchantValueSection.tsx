@@ -10,32 +10,32 @@ import { fadeUp, stagger } from '@/lib/animations';
 
 const benefits = [
   {
-    icon: <Volume2 size={16} className="text-[#00D084]" />,
+    icon: <Volume2 size={16} className="text-[var(--accent)]" />,
     title: 'Payment / Event Confirmation',
     caption: 'Hear supported payment and event confirmations.',
   },
   {
-    icon: <Eye size={16} className="text-[#00D084]" />,
+    icon: <Eye size={16} className="text-[var(--accent)]" />,
     title: 'Business Visibility',
     caption: 'Your shop, visible in real time.',
   },
   {
-    icon: <ToggleRight size={16} className="text-[#00D084]" />,
+    icon: <ToggleRight size={16} className="text-[var(--accent)]" />,
     title: 'Open / Closed Status',
     caption: 'One tap signals your status to customers.',
   },
   {
-    icon: <MessageSquare size={16} className="text-[#00D084]" />,
+    icon: <MessageSquare size={16} className="text-[var(--accent)]" />,
     title: 'Customer Connection',
     caption: 'Share offers and announcements.',
   },
   {
-    icon: <ShieldCheck size={16} className="text-[#00D084]" />,
+    icon: <ShieldCheck size={16} className="text-[var(--accent)]" />,
     title: 'Safety & Security',
     caption: 'Designed to support configured monitoring.',
   },
   {
-    icon: <Brain size={16} className="text-[#00D084]" />,
+    icon: <Brain size={16} className="text-[var(--accent)]" />,
     title: 'Device Intelligence',
     caption: 'Insights and future services, designed to grow with the business.',
   },
@@ -43,7 +43,7 @@ const benefits = [
 
 export function MerchantValueSection() {
   return (
-    <Section id="merchant-value" className="bg-[#080C10]">
+    <Section id="merchant-value" className="bg-[var(--bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.03)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -87,14 +87,14 @@ export function MerchantValueSection() {
                   variants={fadeUp}
                   className="flex items-start gap-4"
                 >
-                  <div className="mt-0.5 flex-shrink-0 w-8 h-8 rounded-full border border-[#1C2A38] bg-[#0F1923] flex items-center justify-center">
+                  <div className="mt-0.5 flex-shrink-0 w-8 h-8 rounded-full border border-[var(--border)] bg-[var(--section)] flex items-center justify-center">
                     {b.icon}
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-display font-bold text-sm lg:text-base text-[#E8EDF2] tracking-tight">
+                    <span className="font-display font-bold text-sm lg:text-base text-[var(--ink)] tracking-tight">
                       {b.title}
                     </span>
-                    <span className="font-body text-sm text-[#8A9BAE] leading-relaxed mt-0.5">
+                    <span className="font-body text-sm text-[var(--ink-muted)] leading-relaxed mt-0.5">
                       {b.caption}
                     </span>
                   </div>
@@ -134,14 +134,14 @@ export function MerchantValueSection() {
                   variants={fadeUp}
                   className="flex items-start gap-4"
                 >
-                  <div className="mt-0.5 flex-shrink-0 w-8 h-8 rounded-full border border-[#1C2A38] bg-[#0F1923] flex items-center justify-center">
+                  <div className="mt-0.5 flex-shrink-0 w-8 h-8 rounded-full border border-[var(--border)] bg-[var(--section)] flex items-center justify-center">
                     {b.icon}
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-display font-bold text-sm text-[#E8EDF2] tracking-tight">
+                    <span className="font-display font-bold text-sm text-[var(--ink)] tracking-tight">
                       {b.title}
                     </span>
-                    <span className="font-body text-sm text-[#8A9BAE] leading-relaxed mt-0.5">
+                    <span className="font-body text-sm text-[var(--ink-muted)] leading-relaxed mt-0.5">
                       {b.caption}
                     </span>
                   </div>
@@ -151,7 +151,7 @@ export function MerchantValueSection() {
           </div>
 
           {/* Disclaimer */}
-          <p className="mt-10 font-body text-xs text-[#3D4F5E] text-center tracking-wide">
+          <p className="mt-10 font-body text-xs text-[var(--ink-dim)] text-center tracking-wide">
             Future services are planned and subject to configuration.
           </p>
         </div>

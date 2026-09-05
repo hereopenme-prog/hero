@@ -25,14 +25,14 @@ export function BackToTop() {
           whileHover={{
             y: -2,
             rotate: 5,
-            borderColor: '#00D08460',
-            backgroundColor: '#16232F',
+            borderColor: 'var(--a60)',
+            backgroundColor: 'var(--panel-2)',
             transition: { duration: 0.15, ease: 'easeOut' },
           }}
           whileTap={{ scale: 0.92 }}
-          className="group fixed bottom-24 left-4 sm:bottom-6 sm:left-6 z-40 w-[44px] h-[44px] bg-[#0F1923] border border-[#1C2A38] rounded-xl flex items-center justify-center"
+          className="group fixed bottom-24 left-4 sm:bottom-6 sm:left-6 z-40 w-[44px] h-[44px] bg-[var(--section)] border border-[var(--border)] rounded-xl flex items-center justify-center"
         >
-          <ArrowUp size={18} className="text-[#6B7C8E] group-hover:text-[#00D084] transition-colors duration-200" />
+          <ArrowUp size={18} className="text-[var(--ink-dim)] group-hover:text-[var(--accent)] transition-colors duration-200" />
         </motion.button>
       )}
     </AnimatePresence>

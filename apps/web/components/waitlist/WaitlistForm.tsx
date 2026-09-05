@@ -16,7 +16,7 @@ const businessTypeOptions = [
 ]
 
 const fieldBase =
-  'w-full px-4 py-3 rounded-[10px] bg-surface-base border border-surface-border text-text-primary placeholder:text-text-dim font-body text-[0.9rem] transition-all duration-200 focus:outline-none focus:border-[#00D084]/60 focus:shadow-[0_0_0_3px_#00D0840F] disabled:opacity-60 disabled:cursor-not-allowed appearance-none'
+  'w-full px-4 py-3 rounded-[10px] bg-surface-base border border-surface-border text-text-primary placeholder:text-text-dim font-body text-[0.9rem] transition-all duration-200 focus:outline-none focus:border-[var(--a60)] focus:shadow-[0_0_0_3px_var(--a0F)] disabled:opacity-60 disabled:cursor-not-allowed appearance-none'
 
 const labelBase = 'block font-body font-medium text-[0.8rem] text-text-muted mb-2'
 
@@ -66,7 +66,7 @@ export function WaitlistForm() {
   }
 
   return (
-    <div className="bg-surface-card border border-surface-border rounded-[20px] p-8 shadow-[0_0_0_1px_#00D08410,0_24px_60px_rgba(0,0,0,0.5)]">
+    <div className="bg-surface-card border border-surface-border rounded-[20px] p-8 shadow-[0_0_0_1px_var(--a10),0_24px_60px_rgba(0,0,0,0.5)]">
       <AnimatePresence mode="wait">
         {status === 'success' ? (
           <motion.div
@@ -77,8 +77,8 @@ export function WaitlistForm() {
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             className="text-center py-6"
           >
-            <CheckCircle size={48} className="text-[#00D084] mx-auto" />
-            <h3 className="mt-5 font-display font-bold text-2xl text-[#E8EDF2] tracking-[-0.025em]">
+            <CheckCircle size={48} className="text-[var(--accent)] mx-auto" />
+            <h3 className="mt-5 font-display font-bold text-2xl text-[var(--ink)] tracking-[-0.025em]">
               You&apos;re on the list!
             </h3>
             <p className="mt-3 font-body text-[0.9rem] text-text-muted leading-relaxed">
@@ -91,7 +91,7 @@ export function WaitlistForm() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-6 font-medium text-[0.9rem] text-[#00D084] hover:text-[#00D084]/80 transition-colors"
+              className="inline-flex items-center gap-2 mt-6 font-medium text-[0.9rem] text-[var(--accent)] hover:text-[var(--a80)] transition-colors"
             >
               Share with a shop owner
               <ArrowRight size={14} />
@@ -161,7 +161,7 @@ export function WaitlistForm() {
                 </select>
                 <ChevronDown
                   size={16}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B7C8E] pointer-events-none"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--ink-dim)] pointer-events-none"
                 />
               </div>
             </div>
@@ -187,8 +187,8 @@ export function WaitlistForm() {
               disabled={isLoading}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.1 }}
-              className="w-full py-3.5 rounded-[10px] font-display font-semibold text-base transition-all duration-[220ms] text-[#080C10] disabled:opacity-70 disabled:cursor-not-allowed hover:brightness-[1.08] hover:-translate-y-[1px] hover:shadow-[0_8px_32px_#00D08440]"
-              style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)' }}
+              className="w-full py-3.5 rounded-[10px] font-display font-semibold text-base transition-all duration-[220ms] text-[var(--accent-ink)] disabled:opacity-70 disabled:cursor-not-allowed hover:brightness-[1.08] hover:-translate-y-[1px] hover:shadow-[0_8px_32px_var(--a40)]"
+              style={{ background: 'linear-gradient(135deg, var(--accent), #00B4D8)' }}
             >
               {isLoading ? (
                 <span className="inline-flex items-center justify-center gap-2">

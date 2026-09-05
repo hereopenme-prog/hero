@@ -28,7 +28,7 @@ const stages = [
 
 export function BigIdeaSection() {
   return (
-    <Section id="big-idea" className="bg-[#080C10]">
+    <Section id="big-idea" className="bg-[var(--bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,208,132,0.05)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
@@ -43,7 +43,7 @@ export function BigIdeaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-2xl text-center font-body text-base lg:text-[1.0625rem] text-[#A5B4C4] leading-relaxed mb-20"
+          className="mx-auto max-w-2xl text-center font-body text-base lg:text-[1.0625rem] text-[var(--ink-2)] leading-relaxed mb-20"
         >
           A shop becomes visible in real time. The device communicates status. The platform manages the ecosystem.
           Customers get useful information. Businesses get visibility, communication and safety.
@@ -57,7 +57,7 @@ export function BigIdeaSection() {
           variants={stagger}
           className="relative"
         >
-          <div className="hidden lg:block absolute top-[52px] left-[8%] right-[8%] h-px bg-[#00D08430]" aria-hidden="true" />
+          <div className="hidden lg:block absolute top-[52px] left-[8%] right-[8%] h-px bg-[var(--a30)]" aria-hidden="true" />
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-14 lg:gap-4 relative z-10">
             {stages.map((stage, i) => {
@@ -69,8 +69,8 @@ export function BigIdeaSection() {
                   className="relative flex flex-col items-center text-center"
                 >
                   {/* Node dot */}
-                  <div className="relative z-10 flex items-center justify-center h-6 w-6 rounded-full border border-[#00D08440] bg-[#080C10] mb-6">
-                    <div className="h-2 w-2 rounded-full bg-[#00D084]" />
+                  <div className="relative z-10 flex items-center justify-center h-6 w-6 rounded-full border border-[var(--a40)] bg-[var(--bg)] mb-6">
+                    <div className="h-2 w-2 rounded-full bg-[var(--accent)]" />
                   </div>
 
                   {isDeviceSlot ? (
@@ -85,10 +85,10 @@ export function BigIdeaSection() {
                     <div className="h-56 mb-6" aria-hidden="true" />
                   )}
 
-                  <h3 className="font-display font-bold text-[1.05rem] lg:text-[1.15rem] tracking-tight text-[#E8EDF2]">
+                  <h3 className="font-display font-bold text-[1.05rem] lg:text-[1.15rem] tracking-tight text-[var(--ink)]">
                     {stage.label}
                   </h3>
-                  <p className="mt-2 max-w-[200px] font-body text-[0.85rem] text-[#8A9BAE] leading-relaxed">
+                  <p className="mt-2 max-w-[200px] font-body text-[0.85rem] text-[var(--ink-muted)] leading-relaxed">
                     {stage.caption}
                   </p>
                 </motion.div>
@@ -102,7 +102,7 @@ export function BigIdeaSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto mt-20 max-w-[640px] text-center font-body text-sm text-[#A5B4C4] leading-relaxed"
+          className="mx-auto mt-20 max-w-[640px] text-center font-body text-sm text-[var(--ink-2)] leading-relaxed"
         >
           Here Open is designed to bridge that gap — turning a disconnected physical business into a connected,
           visible, real-time touchpoint.

@@ -60,13 +60,13 @@ export function MoreThanPaymentsSection() {
               variants={slideLeft}
               className="text-right pr-4"
             >
-              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[#3D4F5E] mb-4">Ordinary Payment Speaker</p>
+              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[var(--ink-dim)] mb-4">Ordinary Payment Speaker</p>
               <div className="flex flex-col gap-3">
                 {ordinaryFeatures.map((f) => (
-                  <p key={f} className="font-body text-sm text-[#8A9BAE] leading-relaxed">{f}</p>
+                  <p key={f} className="font-body text-sm text-[var(--ink-muted)] leading-relaxed">{f}</p>
                 ))}
               </div>
-              <div className="mt-4 h-[1px] w-full bg-gradient-to-l from-[#3D4F5E]/40 to-transparent" />
+              <div className="mt-4 h-[1px] w-full bg-gradient-to-l from-[var(--ink-dim)]/40 to-transparent" />
             </motion.div>
 
             {/* Center — Arrow divider */}
@@ -76,13 +76,13 @@ export function MoreThanPaymentsSection() {
               transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col items-center gap-3"
             >
-              <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-[#3D4F5E] to-[#00D08460]" />
-              <div className="flex items-center gap-3 rounded-full px-5 py-2.5 border border-[#00D08440] bg-[#00D08410]">
-                <ArrowRight size={14} className="text-[#00D084]" />
-                <span className="font-display font-bold text-[11px] text-[#00D084] tracking-[0.2em]">REIMAGINED</span>
-                <ArrowRight size={14} className="text-[#00D084]" />
+              <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-[var(--ink-dim)] to-[var(--a60)]" />
+              <div className="flex items-center gap-3 rounded-full px-5 py-2.5 border border-[var(--a40)] bg-[var(--a10)]">
+                <ArrowRight size={14} className="text-[var(--accent)]" />
+                <span className="font-display font-bold text-[11px] text-[var(--accent)] tracking-[0.2em]">REIMAGINED</span>
+                <ArrowRight size={14} className="text-[var(--accent)]" />
               </div>
-              <div className="w-[1px] h-12 bg-gradient-to-b from-[#00D08460] via-[#3D4F5E] to-transparent" />
+              <div className="w-[1px] h-12 bg-gradient-to-b from-[var(--a60)] via-[var(--ink-dim)] to-transparent" />
             </motion.div>
 
             {/* Right — Here Open */}
@@ -92,16 +92,16 @@ export function MoreThanPaymentsSection() {
               variants={slideRight}
               className="pl-4"
             >
-              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[#00D084] mb-4 font-semibold">Here Open</p>
+              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[var(--accent)] mb-4 font-semibold">Here Open</p>
               <div className="flex flex-col gap-3">
                 {hereOpenFeatures.map((f) => (
                   <div key={f} className="flex items-center gap-2.5">
-                    <span className="inline-block w-1 h-1 rounded-full bg-[#00D084] flex-shrink-0" />
-                    <p className="font-body text-sm text-[#E8EDF2] leading-relaxed">{f}</p>
+                    <span className="inline-block w-1 h-1 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                    <p className="font-body text-sm text-[var(--ink)] leading-relaxed">{f}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-[#00D08440] to-transparent" />
+              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-[var(--a40)] to-transparent" />
             </motion.div>
           </div>
 
@@ -112,13 +112,13 @@ export function MoreThanPaymentsSection() {
               animate={isInView ? 'visible' : 'hidden'}
               variants={slideLeft}
             >
-              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[#3D4F5E] mb-4">Ordinary Payment Speaker</p>
+              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[var(--ink-dim)] mb-4">Ordinary Payment Speaker</p>
               <div className="flex flex-col gap-3">
                 {ordinaryFeatures.map((f) => (
-                  <p key={f} className="font-body text-sm text-[#8A9BAE] leading-relaxed">{f}</p>
+                  <p key={f} className="font-body text-sm text-[var(--ink-muted)] leading-relaxed">{f}</p>
                 ))}
               </div>
-              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-[#3D4F5E]/40 to-transparent" />
+              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-[var(--ink-dim)]/40 to-transparent" />
             </motion.div>
 
             <motion.div
@@ -127,12 +127,12 @@ export function MoreThanPaymentsSection() {
               transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="flex items-center gap-3"
             >
-              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#3D4F5E] to-[#00D08460]" />
-              <div className="flex items-center gap-2 rounded-full px-4 py-2 border border-[#00D08440] bg-[#00D08410]">
-                <ArrowRight size={12} className="text-[#00D084]" />
-                <span className="font-display font-bold text-[10px] text-[#00D084] tracking-[0.2em]">REIMAGINED</span>
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[var(--ink-dim)] to-[var(--a60)]" />
+              <div className="flex items-center gap-2 rounded-full px-4 py-2 border border-[var(--a40)] bg-[var(--a10)]">
+                <ArrowRight size={12} className="text-[var(--accent)]" />
+                <span className="font-display font-bold text-[10px] text-[var(--accent)] tracking-[0.2em]">REIMAGINED</span>
               </div>
-              <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#3D4F5E] to-[#00D08460]" />
+              <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[var(--ink-dim)] to-[var(--a60)]" />
             </motion.div>
 
             <motion.div
@@ -140,16 +140,16 @@ export function MoreThanPaymentsSection() {
               animate={isInView ? 'visible' : 'hidden'}
               variants={slideRight}
             >
-              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[#00D084] mb-4 font-semibold">Here Open</p>
+              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[var(--accent)] mb-4 font-semibold">Here Open</p>
               <div className="flex flex-col gap-3">
                 {hereOpenFeatures.map((f) => (
                   <div key={f} className="flex items-center gap-2.5">
-                    <span className="inline-block w-1 h-1 rounded-full bg-[#00D084] flex-shrink-0" />
-                    <p className="font-body text-sm text-[#E8EDF2] leading-relaxed">{f}</p>
+                    <span className="inline-block w-1 h-1 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                    <p className="font-body text-sm text-[var(--ink)] leading-relaxed">{f}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-[#00D08440] to-transparent" />
+              <div className="mt-4 h-[1px] w-full bg-gradient-to-r from-[var(--a40)] to-transparent" />
             </motion.div>
           </div>
         </div>
