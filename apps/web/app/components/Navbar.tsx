@@ -60,8 +60,12 @@ export function Navbar() {
           <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group" aria-label="HERE OPEN home">
-              <div className="logo-glow w-9 h-9 bg-green-action rounded-lg flex items-center justify-center shadow-green transition-shadow group-hover:shadow-green">
-                <span className="text-white font-bold text-base">H</span>
+              <div
+                className="logo-glow w-8 h-8 rounded-lg flex items-center justify-center transition-shadow shadow-green group-hover:shadow-green"
+                style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)' }}
+                aria-hidden="true"
+              >
+                <span className="font-display font-bold" style={{ fontSize: '0.9rem', color: '#080C10' }}>H</span>
               </div>
               <span className="font-bold text-[15px] tracking-tight text-black">
                 HERE OPEN

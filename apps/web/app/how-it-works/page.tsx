@@ -69,14 +69,14 @@ const cloudFeatures = [
 ];
 
 const providerCategories = [
-  { icon: <Store size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Kirana' },
-  { icon: <UtensilsCrossed size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Restaurants' },
-  { icon: <Cross size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Medical Stores' },
-  { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Salons' },
+  { icon: <Store size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Kirana' },
+  { icon: <UtensilsCrossed size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Restaurants' },
+  { icon: <Cross size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Medical Stores' },
+  { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Salons' },
   { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={1.2} />, name: 'Tailors' },
-  { icon: <Wrench size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Repair Shops' },
-  { icon: <ShoppingBag size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Retail' },
-  { icon: <Building2 size={16} className="text-[#6B7C8E]" strokeWidth={2} />, name: 'Small Offices' },
+  { icon: <Wrench size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Repair Shops' },
+  { icon: <ShoppingBag size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Retail' },
+  { icon: <Building2 size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Small Offices' },
 ];
 
 function ProvidersSection() {

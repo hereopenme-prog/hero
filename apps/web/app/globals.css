@@ -28,7 +28,7 @@
   body {
     background-color: #FFFFFF;
     color: #000000;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4 {
