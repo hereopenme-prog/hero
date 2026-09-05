@@ -2,7 +2,7 @@
 
 import { useRef, type ReactNode } from 'react';
 import Link from 'next/link';
-import { motion, useInView, type Variants } from 'framer-motion';
+import { motion, useInView, useScroll, type Variants } from 'framer-motion';
 import {
   Store, Users, Eye, Bell, Shield, Smartphone, Zap, CheckCircle, ArrowRight,
   AlertTriangle, Wifi, UtensilsCrossed, Pill, Scissors, Wrench,
@@ -264,9 +264,25 @@ const steps = [
   { icon: <Zap className="w-5 h-5" />, title: 'Respond', desc: 'Act instantly — change status, broadcast offers, or respond to safety alerts from your phone.' },
 ];
 
+const stepsContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const stepNumberVar: Variants = {
+  hidden: { opacity: 0, scale: 0.4, rotate: -90 },
+  visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 export function HowItWorksSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 75%', 'end 60%'],
+  });
+
   return (
-    <section id="how-it-works" className="section relative">
+    <section id="how-it-works" ref={sectionRef} className="section relative">
       <div className="absolute inset-0 bg-neutral-50" />
       <Container className="relative z-10">
         <SectionHeader
@@ -276,26 +292,43 @@ export function HowItWorksSection() {
           description="A simple, visible loop that puts your business truth in every customer's pocket."
         />
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-4">
-          {steps.map((s, i) => (
-            <Reveal key={i} delay={i * 80} className="h-full">
-              <div className="card group h-full relative">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action group-hover:shadow-green transition-shadow">
-                    {s.icon}
+        <div className="relative max-w-3xl mx-auto pb-2">
+          {/* Static track */}
+          <div className="absolute left-[20px] top-2 bottom-2 w-[2px] bg-green-action/15 rounded-full" />
+          {/* Growing fill, drawn downward on scroll */}
+          <motion.div
+            style={{ scaleY: scrollYProgress }}
+            className="absolute left-[20px] top-2 bottom-2 w-[2px] bg-green-action rounded-full origin-top"
+          />
+          {/* Flowing connector dot */}
+          <span className="timeline-flow" />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={stepsContainer}
+          >
+            {steps.map((s, i) => (
+              <div key={i} className="relative flex items-start gap-6 pb-8 last:pb-2">
+                <motion.div
+                  variants={stepNumberVar}
+                  className="relative z-10 w-11 h-11 rounded-full bg-white border-2 border-green-action text-green-action text-[13px] font-extrabold flex items-center justify-center shadow-card flex-shrink-0"
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </motion.div>
+                <div className="card group flex-1 transition-all duration-200 hover:-translate-y-1 hover:shadow-green hover:border-green-action/25">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action group-hover:shadow-green transition-shadow flex-shrink-0">
+                      {s.icon}
+                    </div>
+                    <h3 className="text-[15px] font-bold text-green-forest">{s.title}</h3>
                   </div>
-                  <span className="text-display-sm font-extrabold text-neutral-200">{String(i + 1).padStart(2, '0')}</span>
+                  <p className="text-body-sm text-black leading-relaxed">{s.desc}</p>
                 </div>
-                <h3 className="text-[15px] font-bold text-green-forest mb-2">{s.title}</h3>
-                <p className="text-body-sm text-black leading-relaxed">{s.desc}</p>
-                {i < steps.length - 1 && (
-                  <div className="hidden xl:block absolute top-1/2 -right-4 -translate-y-1/2 z-10">
-                    <ArrowRight className="w-4 h-4 text-neutral-300" />
-                  </div>
-                )}
               </div>
-            </Reveal>
-          ))}
+            ))}
+          </motion.div>
         </div>
 
         <Reveal className="mt-8">

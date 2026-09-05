@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef, type MouseEvent } from 'react';
+import { useState, useEffect, useRef, Fragment, type MouseEvent } from 'react';
 import Link from 'next/link';
 import {
   Shield, Bell, Eye, Smartphone, Activity, Zap, CheckCircle, ArrowRight,
-  Thermometer, Wind, AlertTriangle, Wifi, ChevronRight,
+  Thermometer, Wind, AlertTriangle, Wifi,
   Store, UtensilsCrossed, Pill, Scissors, Wrench, ShoppingBag, Building2, Briefcase
 } from 'lucide-react';
 import { motion, useAnimationControls, type Variants } from 'framer-motion';
@@ -560,6 +560,21 @@ function TargetSection() {
    TECHNOLOGY
    ═══════════════════════════════════════════════════════ */
 
+const techContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
+};
+
+const techNodeVar: Variants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
+const techArrowVar: Variants = {
+  hidden: { strokeDashoffset: 200, opacity: 0 },
+  visible: { strokeDashoffset: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
+};
+
 function TechnologySection() {
   const layers = [
     { label: 'SHOP', sub: 'Physical Location' },
@@ -581,29 +596,89 @@ function TechnologySection() {
           description="A scalable, secure IoT platform connecting physical shops to digital customers."
         />
 
-        <div className="max-w-2xl mx-auto">
-          <div className="space-y-3">
-            {layers.map((l, i) => (
-              <div key={i}>
-                <div className="card-static flex items-center gap-4 py-4 px-6">
-                  <div className="w-8 h-8 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action text-[11px] font-bold flex-shrink-0">
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-[13px] font-bold text-black">{l.label}</p>
-                    <p className="text-[11px] text-black">{l.sub}</p>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-neutral-300" />
-                </div>
-                {i < layers.length - 1 && (
-                  <div className="flex justify-center py-1">
-                    <div className="w-px h-3 bg-green-action/15" />
-                  </div>
-                )}
-              </div>
-            ))}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={techContainer}
+          className="max-w-5xl mx-auto"
+        >
+          {/* Horizontal pipeline (xl+) */}
+          <div className="hidden xl:block relative">
+            <span className="pipeline-flow" />
+            <div className="flex items-center gap-2">
+              {layers.map((l, i) => (
+                <Fragment key={l.label}>
+                  <motion.div
+                    variants={techNodeVar}
+                    className="node-glow flex-1 min-w-0 bg-white border border-neutral-200 rounded-2xl px-3 py-4 flex flex-col items-center gap-1.5 text-center"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-green-action/8 border border-green-action/15 flex items-center justify-center text-green-action text-[10px] font-bold flex-shrink-0">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <p className="text-[12px] font-bold text-black leading-tight">{l.label}</p>
+                    <p className="text-[10px] text-black leading-tight">{l.sub}</p>
+                  </motion.div>
+                  {i < layers.length - 1 && (
+                    <motion.svg
+                      variants={{ hidden: {}, visible: {} }}
+                      viewBox="0 0 24 24"
+                      className="w-7 h-7 flex-shrink-0 self-center"
+                      fill="none"
+                      stroke="#388E3C"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <motion.path d="M2 12 H17 M11 6 L17 12 L11 18" strokeDasharray="200" variants={techArrowVar} />
+                    </motion.svg>
+                  )}
+                </Fragment>
+              ))}
+            </div>
           </div>
-        </div>
+
+          {/* Vertical fallback (< xl) */}
+          <div className="xl:hidden relative max-w-2xl mx-auto">
+            <span className="pipeline-flow-down" />
+            <div className="space-y-3">
+              {layers.map((l, i) => (
+                <Fragment key={l.label}>
+                  <motion.div
+                    variants={techNodeVar}
+                    className="node-glow card-static flex items-center gap-4 py-4 px-6"
+                  >
+                    <div className="w-8 h-8 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action text-[11px] font-bold flex-shrink-0">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-[13px] font-bold text-black">{l.label}</p>
+                      <p className="text-[11px] text-black">{l.sub}</p>
+                    </div>
+                  </motion.div>
+                  {i < layers.length - 1 && (
+                    <div className="flex justify-center py-1.5">
+                      <motion.svg
+                        variants={{ hidden: {}, visible: {} }}
+                        viewBox="0 0 24 24"
+                        className="w-4 h-6"
+                        fill="none"
+                        stroke="#388E3C"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <motion.path d="M12 2 V19 M6 13 L12 19 L18 13" strokeDasharray="200" variants={techArrowVar} />
+                      </motion.svg>
+                    </div>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );
