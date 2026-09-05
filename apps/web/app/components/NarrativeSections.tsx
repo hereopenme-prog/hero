@@ -1,4 +1,8 @@
+'use client';
+
+import { useRef, type ReactNode } from 'react';
 import Link from 'next/link';
+import { motion, useInView, type Variants } from 'framer-motion';
 import {
   Store, Users, Eye, Bell, Shield, Smartphone, Zap, CheckCircle, ArrowRight,
   AlertTriangle, Wifi, UtensilsCrossed, Pill, Scissors, Wrench,
@@ -32,6 +36,58 @@ const customerProblems = [
   'Uncertainty before every visit',
 ];
 
+function ProblemColumn({
+  title,
+  icon,
+  items,
+  from,
+}: {
+  title: string;
+  icon: ReactNode;
+  items: string[];
+  from: 'left' | 'right';
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28, boxShadow: '0 0 0 rgba(56, 142, 60, 0)' }}
+      animate={
+        inView
+          ? { opacity: 1, y: 0, boxShadow: '0 0 26px rgba(56, 142, 60, 0.14), 0 6px 18px rgba(56, 142, 60, 0.06)' }
+          : undefined
+      }
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="card h-full"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action">
+          {icon}
+        </div>
+        <h3 className="text-display-sm font-bold text-green-forest">{title}</h3>
+      </div>
+      <ul className="space-y-3.5">
+        {items.map((item, i) => (
+          <motion.li
+            key={i}
+            initial={{ opacity: 0, x: from === 'left' ? -24 : 24 }}
+            animate={inView ? { opacity: 1, x: 0 } : undefined}
+            transition={{ duration: 0.45, ease: 'easeOut', delay: 0.2 + i * 0.08 }}
+            className="flex items-start gap-3"
+          >
+            <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <span className="text-[10px] font-bold">✕</span>
+            </div>
+            <span className="text-body-sm text-black leading-relaxed">{item}</span>
+          </motion.li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
 export function ProblemsSection() {
   return (
     <section id="problems" className="section relative">
@@ -44,47 +100,18 @@ export function ProblemsSection() {
         />
 
         <div className="grid lg:grid-cols-2 gap-6">
-          <Reveal>
-            <div className="card h-full">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action">
-                  <Store className="w-5 h-5" />
-                </div>
-                <h3 className="text-display-sm font-bold text-green-forest">Business Owners</h3>
-              </div>
-              <ul className="space-y-3.5">
-                {ownerProblems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <span className="text-[10px] font-bold">✕</span>
-                    </div>
-                    <span className="text-body-sm text-black leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="card h-full">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-11 h-11 bg-green-action/8 border border-green-action/15 rounded-xl flex items-center justify-center text-green-action">
-                  <Users className="w-5 h-5" />
-                </div>
-                <h3 className="text-display-sm font-bold text-green-forest">Customers</h3>
-              </div>
-              <ul className="space-y-3.5">
-                {customerProblems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <span className="text-[10px] font-bold">✕</span>
-                    </div>
-                    <span className="text-body-sm text-black leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+          <ProblemColumn
+            title="Business Owners"
+            icon={<Store className="w-5 h-5" />}
+            items={ownerProblems}
+            from="left"
+          />
+          <ProblemColumn
+            title="Customers"
+            icon={<Users className="w-5 h-5" />}
+            items={customerProblems}
+            from="right"
+          />
         </div>
       </Container>
     </section>
@@ -104,6 +131,24 @@ const solutionHighlights = [
   { icon: <Wifi className="w-4 h-4" />, text: 'All connected through HERE OPEN IoT' },
 ];
 
+const solutionFlowContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
+};
+
+const solutionNodeVar: Variants = {
+  hidden: { opacity: 0, scale: 0.8, y: 12 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+};
+
+const solutionDashVar: Variants = {
+  hidden: { strokeDashoffset: 0 },
+  visible: {
+    strokeDashoffset: [0, -11],
+    transition: { duration: 1.4, ease: 'linear', repeat: Infinity },
+  },
+};
+
 export function SolutionSection() {
   return (
     <section id="solution" className="section relative overflow-hidden">
@@ -115,25 +160,60 @@ export function SolutionSection() {
           description="HERE OPEN is the real-time digital layer that connects businesses, customers, and IoT infrastructure."
         />
 
-        <Reveal className="max-w-4xl mx-auto mb-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={solutionFlowContainer}
+          className="relative max-w-4xl mx-auto mb-10"
+        >
+          {/* Animated dashed connector */}
+          <motion.svg
+            variants={{ hidden: {}, visible: {} }}
+            className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            fill="none"
+            aria-hidden="true"
+          >
+            <motion.line
+              x1="4"
+              y1="50"
+              x2="96"
+              y2="50"
+              stroke="#388E3C"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeDasharray="6 5"
+              variants={solutionDashVar}
+            />
+          </motion.svg>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {[
-              { icon: <Store className="w-6 h-6" />, label: 'Business', sub: 'Your shop, your status' },
-              { icon: <Network className="w-6 h-6" />, label: 'HERE OPEN', sub: 'The connected platform' },
-              { icon: <Users className="w-6 h-6" />, label: 'Customer', sub: 'Real-time clarity' },
+              { icon: <Store className="w-6 h-6" />, label: 'Business', sub: 'Your shop, your status', center: false },
+              { icon: <Network className="w-6 h-6" />, label: 'HERE OPEN', sub: 'The connected platform', center: true },
+              { icon: <Users className="w-6 h-6" />, label: 'Customer', sub: 'Real-time clarity', center: false },
             ].map((n, i) => (
-              <div key={i} className="flex items-center gap-4 bg-white border border-neutral-200 rounded-2xl p-5">
-                <div className="w-12 h-12 bg-green-action/10 rounded-xl flex items-center justify-center text-green-action flex-shrink-0">
+              <motion.div
+                key={i}
+                variants={solutionNodeVar}
+                className={`relative flex items-center gap-4 border-2 rounded-2xl p-5 ${
+                  n.center ? 'border-green-action/35 shadow-green bg-white' : 'border-neutral-200 bg-white'
+                }`}
+              >
+                <div className="relative w-12 h-12 bg-green-action/10 rounded-xl flex items-center justify-center text-green-action flex-shrink-0">
+                  {n.center && <span className="radar-ping absolute inset-0 rounded-full border-[3px] border-green-action/40" />}
                   {n.icon}
                 </div>
                 <div>
                   <p className="text-[15px] font-bold text-green-forest">{n.label}</p>
                   <p className="text-[12px] text-black">{n.sub}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </Reveal>
+        </motion.div>
 
         <Reveal>
           <div className="bg-neutral-50 border border-neutral-200 rounded-3xl p-6 md:p-8 mb-10">

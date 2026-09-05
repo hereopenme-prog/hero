@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, type MouseEvent } from 'react';
 import Link from 'next/link';
 import {
   Shield, Bell, Eye, Smartphone, Activity, Zap, CheckCircle, ArrowRight,
   Thermometer, Wind, AlertTriangle, Wifi, ChevronRight,
   Store, UtensilsCrossed, Pill, Scissors, Wrench, ShoppingBag, Building2, Briefcase
 } from 'lucide-react';
-import { motion, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
 import {
@@ -273,8 +273,24 @@ function TrustStrip() {
 function DemoSection() {
   const [isOpen, setIsOpen] = useState(true);
   const [showAlert, setShowAlert] = useState(false);
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [updatedAt, setUpdatedAt] = useState(0);
+  const cardControls = useAnimationControls();
+  const rippleId = useRef(0);
 
-  const toggle = () => {
+  const removeRipple = (id: number) => {
+    setRipples((rs) => rs.filter((r) => r.id !== id));
+  };
+
+  const toggle = (e: MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = ++rippleId.current;
+    setRipples((rs) => [...rs, { id, x, y }]);
+
+    cardControls.start({ scale: [1, 1.02, 1], transition: { duration: 0.4, ease: 'easeInOut' } });
+    setUpdatedAt(Date.now());
     setIsOpen(!isOpen);
     if (isOpen) {
       setShowAlert(true);
@@ -295,25 +311,42 @@ function DemoSection() {
         />
 
         <div className="max-w-[560px] mx-auto">
-          <div className={`rounded-3xl p-8 transition-all duration-500 ${
-            isOpen
-              ? 'bg-white border border-green-action/15 shadow-green'
-              : 'bg-white border border-red-500/15 shadow-card'
-          }`}>
+          <motion.div
+            animate={cardControls}
+            className={`rounded-3xl p-8 transition-all duration-500 ${
+              isOpen
+                ? 'bg-white border border-green-action/15 shadow-green'
+                : 'bg-white border border-red-500/15 shadow-card'
+            }`}
+          >
             {/* Status */}
-            <div className="text-center mb-8">
+            <motion.div
+              animate={{ backgroundColor: isOpen ? '#E8F5E9' : '#FEE2E2' }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              className="rounded-2xl px-6 py-8 mb-8 text-center"
+            >
               <p className="text-[10px] text-black uppercase tracking-widest mb-3">Shop Status</p>
               <div className="flex items-center justify-center gap-3">
-                <span className={`w-3 h-3 rounded-full ${isOpen ? 'bg-green-action animate-status-pulse' : 'bg-red-500'}`} />
-                <p className={`text-5xl font-extrabold tracking-tight ${
-                  isOpen ? 'text-green-action' : 'text-red-400'
-                }`}>
+                <motion.span
+                  className="w-3 h-3 rounded-full"
+                  animate={{ backgroundColor: isOpen ? '#388E3C' : '#EF5350', scale: [1, 1.35, 1], opacity: [1, 0.6, 1] }}
+                  transition={{
+                    backgroundColor: { duration: 0.4, ease: 'easeInOut' },
+                    scale: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' },
+                    opacity: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' },
+                  }}
+                />
+                <motion.p
+                  className="text-5xl font-extrabold tracking-tight"
+                  animate={{ color: isOpen ? '#388E3C' : '#EF5350' }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                >
                   {isOpen ? 'OPEN' : 'CLOSED'}
-                </p>
+                </motion.p>
               </div>
               {isOpen && (
                 <p className="text-[11px] text-green-action mt-3 flex items-center justify-center gap-1.5">
-                  <span className="w-1.5 h-1.5 bg-green-action rounded-full animate-status-pulse" />
+                  <span className="status-dot-pulse inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
                   LIVE
                 </p>
               )}
@@ -327,11 +360,19 @@ function DemoSection() {
                   </p>
                 </div>
               )}
-            </div>
+            </motion.div>
 
             {/* Meta */}
             <div className="flex items-center justify-between text-[11px] text-black mb-6 px-2">
-              <span>Last updated: Just Now</span>
+              <motion.span
+                key={updatedAt}
+                initial={{ backgroundColor: 'rgba(56, 142, 60, 0.28)', color: '#1A6B2E', y: -2 }}
+                animate={{ backgroundColor: 'rgba(56, 142, 60, 0)', color: '#212121', y: 0 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="px-2 py-0.5 rounded-md"
+              >
+                Last updated: Just Now
+              </motion.span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 bg-green-action rounded-full" />
                 Device Online
@@ -341,14 +382,34 @@ function DemoSection() {
             {/* Toggle */}
             <div className="text-center">
               <button
+                type="button"
                 onClick={toggle}
-                className={`px-8 py-3.5 rounded-lg font-bold text-[13px] transition-all ${
+                className={`relative overflow-hidden px-8 py-3.5 rounded-lg font-bold text-[13px] transition-all ${
                   isOpen
                     ? 'bg-red-500/10 border border-red-500/25 text-red-400 hover:bg-red-500/15'
                     : 'bg-green-action text-white hover:bg-green-forest shadow-green hover:shadow-green'
                 }`}
               >
-                Tap to Set {isOpen ? 'CLOSED' : 'OPEN'}
+                <span className="relative z-10">Tap to Set {isOpen ? 'CLOSED' : 'OPEN'}</span>
+                {ripples.map((r) => (
+                  <motion.span
+                    key={r.id}
+                    initial={{ scale: 0, opacity: 0.5 }}
+                    animate={{ scale: 3, opacity: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    onAnimationComplete={() => removeRipple(r.id)}
+                    className="absolute rounded-full pointer-events-none"
+                    style={{
+                      left: r.x - 80,
+                      top: r.y - 80,
+                      width: 160,
+                      height: 160,
+                      background: isOpen
+                        ? 'radial-gradient(circle, rgba(239, 83, 80, 0.35) 0%, rgba(239, 83, 80, 0) 65%)'
+                        : 'radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 65%)',
+                    }}
+                  />
+                ))}
               </button>
               <p className="text-[11px] text-black mt-4">
                 Demo only — not connected to real devices
@@ -357,7 +418,12 @@ function DemoSection() {
 
             {/* Alert */}
             {showAlert && (
-              <div className="mt-5 bg-red-500/8 border border-red-500/15 rounded-xl p-4 animate-fade-in">
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="mt-5 bg-red-500/8 border border-red-500/15 rounded-xl p-4"
+              >
                 <div className="flex items-center gap-3">
                   <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0" />
                   <div>
@@ -365,9 +431,9 @@ function DemoSection() {
                     <p className="text-[11px] text-red-400/60">Shop status changed to CLOSED — monitoring activated</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </Container>
     </section>
