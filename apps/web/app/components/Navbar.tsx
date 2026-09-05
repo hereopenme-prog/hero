@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, type Variants } from 'framer-motion';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -12,38 +13,46 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+const navbarVariants: Variants = {
+  top: {
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    backdropFilter: 'blur(0px)',
+    borderColor: 'rgba(224, 224, 224, 0)',
+  },
+  scrolled: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backdropFilter: 'blur(12px)',
+    borderColor: 'rgba(224, 224, 224, 1)',
+  },
+};
+
+const mobileMenuVariants: Variants = {
+  hidden: { height: 0, opacity: 0 },
+  visible: { height: 'auto', opacity: 1 },
+};
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setIsScrolled(latest > 60);
+  });
 
   useEffect(() => {
     setIsMobileOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [isMobileOpen]);
-
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/80 backdrop-blur-xl border-b border-neutral-200'
-            : 'bg-transparent'
-        }`}
+      <motion.nav
+        initial="top"
+        animate={isScrolled ? 'scrolled' : 'top'}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        variants={navbarVariants}
+        className="fixed top-0 left-0 right-0 z-50 border-b"
         role="navigation"
         aria-label="Main navigation"
       >
@@ -51,7 +60,7 @@ export function Navbar() {
           <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group" aria-label="HERE OPEN home">
-              <div className="w-9 h-9 bg-green-action rounded-lg flex items-center justify-center shadow-green transition-shadow group-hover:shadow-green">
+              <div className="logo-glow w-9 h-9 bg-green-action rounded-lg flex items-center justify-center shadow-green transition-shadow group-hover:shadow-green">
                 <span className="text-white font-bold text-base">H</span>
               </div>
               <span className="font-bold text-[15px] tracking-tight text-black">
@@ -67,10 +76,8 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3.5 py-2 rounded-lg text-[13px] font-medium transition-all duration-200 ${
-                      isActive
-                        ? 'text-green-action bg-green-action/[0.08]'
-                        : 'text-neutral-700 hover:text-black hover:bg-green-light'
+                    className={`nav-link py-2 px-3.5 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
+                      isActive ? 'nav-link-active text-green-action' : 'text-neutral-700 hover:text-black'
                     }`}
                   >
                     {link.label}
@@ -83,7 +90,7 @@ export function Navbar() {
             <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/download"
-                className="px-5 py-2.5 bg-green-action text-white text-[13px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
+                className="btn-shimmer inline-flex items-center px-5 py-2.5 bg-green-action text-white text-[13px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
               >
                 Download App
               </Link>
@@ -100,58 +107,51 @@ export function Navbar() {
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
-          isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMobileOpen(false)} />
-        <div
-          className={`absolute top-0 right-0 h-full w-full max-w-sm bg-neutral-50 border-l border-neutral-200 transform transition-transform duration-300 ${
-            isMobileOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          <div className="flex items-center justify-between h-[72px] px-5 border-b border-neutral-200">
-            <span className="font-bold text-sm text-black">Menu</span>
-            <button
-              onClick={() => setIsMobileOpen(false)}
-              className="p-2 text-neutral-700 hover:text-black"
-              aria-label="Close menu"
-            >
-              <X size={20} />
-            </button>
-          </div>
-          <div className="p-5 space-y-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
+      {/* Mobile Menu — slides down with height animation */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={mobileMenuVariants}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed top-[72px] left-0 right-0 z-40 lg:hidden overflow-hidden"
+          >
+            <div className="bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-green-lg pb-6">
+              <div className="container-site py-4 space-y-1">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                        isActive
+                          ? 'text-green-action bg-green-action/[0.08]'
+                          : 'text-neutral-700 hover:text-black hover:bg-green-light'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+              <div className="container-site pt-2">
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                    isActive
-                      ? 'text-green-action bg-green-action/[0.08]'
-                      : 'text-neutral-700 hover:text-black hover:bg-green-light'
-                  }`}
+                  href="/download"
+                  className="btn-shimmer block text-center py-3 bg-green-action text-white text-sm font-bold rounded-lg shadow-green"
                 >
-                  {link.label}
+                  Download App
                 </Link>
-              );
-            })}
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-neutral-200">
-            <Link
-              href="/download"
-              className="block text-center py-3 bg-green-action text-white text-sm font-bold rounded-lg"
-            >
-              Download App
-            </Link>
-          </div>
-        </div>
-      </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
