@@ -43,7 +43,7 @@ export function Footer() {
               businesses across India.
             </p>
             <p className="mt-4 font-body text-[0.78rem] text-[#3D4F5E]">
-              WhatsApp: +91 XXXXXXXXXX &nbsp;·&nbsp; hello@hereopen.in
+              WhatsApp: +91 9060038229 &nbsp;·&nbsp; contact@hereopen.me
             </p>
           </div>
 

@@ -64,8 +64,8 @@ export function ContactSection() {
           <div className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { icon: <Mail size={16} className="text-[#00D084]" />, label: 'Email', value: 'hello@hereopen.in' },
-                { icon: <MessageCircle size={16} className="text-[#00D084]" />, label: 'WhatsApp', value: '+91 XXXXXXXXXX' },
+                { icon: <Mail size={16} className="text-[#00D084]" />, label: 'Email', value: 'contact@hereopen.me' },
+                { icon: <MessageCircle size={16} className="text-[#00D084]" />, label: 'WhatsApp', value: '+91 9060038229' },
                 { icon: <Clock size={16} className="text-[#00D084]" />, label: 'Response', value: 'Within 24 hours' },
               ].map((c) => (
                 <div key={c.label} className="rounded-xl border border-[#1C2A38] bg-[#0F1923] p-4">
