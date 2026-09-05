@@ -11,6 +11,8 @@ import { motion, useAnimationControls, useInView, useScroll, MotionConfig, type 
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
 import { WaitlistSection } from '@/components/waitlist/WaitlistSection';
+import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { scaleIn } from '@/lib/animations';
 import {
   ProblemsSection,
   SolutionSection,
@@ -598,34 +600,71 @@ function MonitoringSection() {
 
 function TargetSection() {
   const categories = [
-    { icon: <Store size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Kirana' },
-    { icon: <UtensilsCrossed size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Restaurants' },
-    { icon: <Cross size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Medical Stores' },
-    { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Salons' },
-    { icon: <Scissors size={16} className="text-[#6B7C8E]" strokeWidth={1.2} />, name: 'Tailors' },
-    { icon: <Wrench size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Repair Shops' },
-    { icon: <ShoppingBag size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Retail' },
-    { icon: <Building2 size={16} className="text-[#6B7C8E]" strokeWidth={1.5} />, name: 'Small Offices' },
+    { icon: <Store size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Kirana', sub: 'Know your open hours' },
+    { icon: <UtensilsCrossed size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Restaurants', sub: 'Live table & status updates' },
+    { icon: <Cross size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Medical Stores', sub: '24/7 pharmacy visibility' },
+    { icon: <Scissors size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Salons', sub: 'Appointment slot clarity' },
+    { icon: <Scissors size={24} className="text-[#00D084]" strokeWidth={1.2} />, name: 'Tailors', sub: 'Pickup-ready notifications' },
+    { icon: <Wrench size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Repair Shops', sub: 'Device-ready alerts' },
+    { icon: <ShoppingBag size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Retail', sub: 'Footfall & offer push' },
+    { icon: <Building2 size={24} className="text-[#00D084]" strokeWidth={1.5} />, name: 'Small Offices', sub: 'Visitor & team management' },
   ];
 
   return (
-    <section className="section">
-      <Container>
-        <SectionHeader
-          eyebrow="Who It's For"
-          title="Built For Every"
-          titleAccent="Local Business"
-          description="From kirana stores to clinics, salons to repair shops — any business with physical presence benefits."
-        />
+    <section className="section bg-surface-base relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,208,132,0.05)_0%,transparent_60%)] pointer-events-none" />
+      <Container className="relative z-10">
+        <AnimatedSection className="text-center mb-14">
+          <div className="text-xs font-medium text-[#00D084] tracking-[0.1em] mb-5">Built For Every Local Business</div>
+          <h2 className="font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em] text-[#E8EDF2] leading-tight">
+            If Customers Visit, HERE OPEN Helps
+          </h2>
+          <p className="mt-5 font-body text-base text-[#6B7C8E] max-w-[520px] mx-auto leading-relaxed">
+            From kirana to clinic, any business with a physical presence gets instant discoverability, safety, and connection.
+          </p>
+        </AnimatedSection>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ staggerChildren: 0.07 }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
+        >
           {categories.map((c, i) => (
-            <div key={i} className="card-static flex items-center justify-center gap-2 py-4 px-5 hover:border-green-action/30 transition-colors">
-              {c.icon}
-              <span className="text-[13px] font-medium text-black">{c.name}</span>
-            </div>
+            <motion.div
+              key={i}
+              variants={scaleIn}
+              whileHover={{
+                y: -6,
+                borderColor: '#00D08450',
+                backgroundColor: '#16232F',
+                transition: { duration: 0.22, ease: 'easeOut' },
+              }}
+              className="group card-shimmer relative overflow-hidden cursor-default rounded-2xl p-7 px-5 text-center bg-[#0F1923] border border-[#1C2A38] will-change-transform before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_center,#00D0840A_0%,transparent_70%)] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+            >
+              <div className="relative z-[1]">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-[14px] flex items-center justify-center bg-[#00D0841A] border border-[#00D08430] group-hover:bg-[#00D08420] group-hover:border-[#00D08460] transition-colors duration-200">
+                  {c.icon}
+                </div>
+                <h3 className="font-display font-semibold text-[0.95rem] text-[#E8EDF2] mb-1">{c.name}</h3>
+                <p className="font-body text-[0.8rem] text-[#6B7C8E]">{c.sub}</p>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        <AnimatedSection delay={0.1} className="mt-12">
+          <p className="text-center font-body text-[0.875rem] text-[#6B7C8E]">
+            Don&apos;t see your business type?{' '}
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 text-[#00D084] hover:text-[#00D084]/80 transition-colors"
+            >
+              Tell us and we&apos;ll add it <ArrowRight size={14} className="inline" />
+            </Link>
+          </p>
+        </AnimatedSection>
       </Container>
     </section>
   );
