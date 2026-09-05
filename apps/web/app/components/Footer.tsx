@@ -53,8 +53,8 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/download" className="px-4 py-2 bg-green-action text-white text-[12px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green">
-              Download App
+            <Link href="/#waitlist" className="px-4 py-2 bg-green-action text-white text-[12px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green">
+              Get Early Access
             </Link>
           </div>
         </div>

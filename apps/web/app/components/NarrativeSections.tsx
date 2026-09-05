@@ -848,16 +848,22 @@ export function FinalCTASection() {
           <p className="text-body-lg text-black max-w-[520px] mx-auto mb-10 leading-relaxed">
             Whether you own a business or love supporting local shops, HERE OPEN keeps you connected to what's open, safe, and ready.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
-              href="/for-businesses"
+              href="#waitlist"
               className="cta-pulse inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
             >
-              For Businesses <ArrowRight size={16} />
+              Join Waitlist <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/for-businesses"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
+            >
+              For Businesses
             </Link>
             <Link
               href="/for-customers"
-              className="cta-pulse inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
             >
               For Customers
             </Link>

@@ -60,7 +60,7 @@ export default function ForCustomersPage() {
               href="/download"
               className="inline-flex items-center bg-green-action text-white px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity"
             >
-              Download App
+              Get Early Access
               <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>

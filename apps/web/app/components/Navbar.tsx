@@ -93,10 +93,10 @@ export function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <Link
-                href="/download"
+                href="/#waitlist"
                 className="btn-shimmer inline-flex items-center px-5 py-2.5 bg-green-action text-white text-[13px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
               >
-                Download App
+                Get Early Access
               </Link>
             </div>
 
@@ -146,10 +146,10 @@ export function Navbar() {
               </div>
               <div className="container-site pt-2">
                 <Link
-                  href="/download"
+                  href="/#waitlist"
                   className="btn-shimmer block text-center py-3 bg-green-action text-white text-sm font-bold rounded-lg shadow-green"
                 >
-                  Download App
+                  Get Early Access
                 </Link>
               </div>
             </div>

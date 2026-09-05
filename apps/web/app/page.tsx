@@ -10,6 +10,7 @@ import {
 import { motion, useAnimationControls, useInView, useScroll, MotionConfig, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
+import { WaitlistSection } from '@/components/waitlist/WaitlistSection';
 import {
   ProblemsSection,
   SolutionSection,
@@ -128,10 +129,10 @@ function Hero() {
 
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Link
-                  href="/download"
+                  href="#waitlist"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest hover:-translate-y-0.5 transition-all duration-200 shadow-green hover:shadow-green-lg"
                 >
-                  Get Started <ArrowRight size={16} />
+                  Join Waitlist <ArrowRight size={16} />
                 </Link>
                 <Link
                   href="/how-it-works"
@@ -793,6 +794,7 @@ export default function HomePage() {
         <WhySection />
         <FaqSection />
         <VisionSection />
+        <WaitlistSection />
         <FinalCTASection />
       </main>
     </MotionConfig>
