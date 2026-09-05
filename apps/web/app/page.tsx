@@ -4,7 +4,6 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { TrustStrip } from '@/components/sections/TrustStrip';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { SolutionSection } from '@/components/sections/SolutionSection';
-import { DemoSection } from '@/components/sections/DemoSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { MonitoringSection } from '@/components/sections/MonitoringSection';
 import { SecuritySection } from '@/components/sections/SecuritySection';
@@ -37,7 +36,6 @@ export default function HomePage() {
         <TrustStrip />
         <ProblemSection />
         <SolutionSection />
-        <DemoSection />
         <HowItWorksSection />
         <MonitoringSection />
         <SecuritySection />
