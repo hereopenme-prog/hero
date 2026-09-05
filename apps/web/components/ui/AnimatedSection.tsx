@@ -20,6 +20,7 @@ export function AnimatedSection({
   className,
   once = true,
   threshold = 0.12,
+  as: Tag = 'div',
 }: AnimatedSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once, amount: threshold })
