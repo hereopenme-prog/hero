@@ -3,13 +3,14 @@
 import { useState, useEffect, useRef, Fragment, type MouseEvent } from 'react';
 import Link from 'next/link';
 import {
-  Shield, Bell, Eye, Smartphone, Activity, Zap, CheckCircle, ArrowRight,
+  Shield, Bell, Smartphone, Activity, CheckCircle, ArrowRight,
   Thermometer, Wind, AlertTriangle, Wifi, Cloud, Cpu, Users,
   Store, UtensilsCrossed, Cross, Scissors, Wrench, ShoppingBag, Building2,
 } from 'lucide-react';
-import { motion, useAnimationControls, useInView, useScroll, MotionConfig, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, useInView, MotionConfig, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
+import { DeviceVisual } from '@/components/DeviceVisual';
 import { WaitlistSection } from '@/components/waitlist/WaitlistSection';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { scaleIn } from '@/lib/animations';
@@ -65,24 +66,7 @@ const heroWords = [
 
 const heroBadges = ['Real-time Status', '24/7 Monitoring', 'Secure'];
 
-function useCountUp(target: number, duration = 1200) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    let raf = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1);
-      setValue(Math.round(target * p));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, duration]);
-  return value;
-}
-
 function Hero() {
-  const temp = useCountUp(24);
 
   return (
     <section className="relative min-h-[calc(100vh-80px)] flex items-center overflow-hidden">
@@ -166,72 +150,7 @@ function Hero() {
 
           {/* Right — Device Visual */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,255,102,0.06)_0%,transparent_60%)] pointer-events-none" />
-
-            <div className="relative w-full max-w-[420px]">
-              {/* Device frame */}
-              <div className="float-card bg-white backdrop-blur-sm border border-neutral-200 rounded-3xl p-6 shadow-card">
-                {/* Device header */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-green-action/10 rounded-lg flex items-center justify-center">
-                      <Wifi className="w-4 h-4 text-green-action" />
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold text-black">HERE OPEN Device</p>
-                      <p className="text-[11px] text-black">ID: HO-2026-0042</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="status-dot-pulse inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
-                    <span className="text-[11px] font-semibold text-green-action">Online</span>
-                  </div>
-                </div>
-
-                {/* Status panel */}
-                <div className="bg-green-action/[0.06] border border-green-action/15 rounded-2xl p-5 mb-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] text-black uppercase tracking-widest mb-1">Shop Status</p>
-                      <p className="open-glow inline-block text-4xl font-extrabold text-green-action tracking-tight rounded-lg px-2">OPEN</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-[10px] text-black uppercase tracking-widest mb-1">Live</p>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-action/10 rounded-full">
-                        <span className="blink-dot inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
-                        <span className="text-[11px] font-semibold text-green-action">Connected</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Sensor grid */}
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { icon: <Shield className="w-3.5 h-3.5" />, label: 'Security', value: 'Active', ok: true },
-                    { icon: <Thermometer className="w-3.5 h-3.5" />, label: 'Temperature', value: `${temp}\u00B0C`, ok: true },
-                    { icon: <Wind className="w-3.5 h-3.5" />, label: 'Smoke', value: 'Normal', ok: true },
-                    { icon: <Activity className="w-3.5 h-3.5" />, label: 'Network', value: '4G LTE', ok: true },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-neutral-50 border border-neutral-200 rounded-xl p-3.5">
-                      <div className="flex items-center gap-1.5 mb-2">
-                        <span className="text-black">{s.icon}</span>
-                        <span className="text-[10px] text-black uppercase tracking-wider">{s.label}</span>
-                      </div>
-                      <p className={`text-[13px] font-semibold ${s.ok ? 'text-black' : 'text-green-action'}`}>{s.value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating elements */}
-              <div className="float-soft absolute -top-4 -right-4 w-11 h-11 bg-white border border-neutral-200 rounded-xl flex items-center justify-center shadow-card">
-                <Bell className="w-4.5 h-4.5 text-green-action" />
-              </div>
-              <div className="float-soft absolute -bottom-4 -left-4 w-11 h-11 bg-white border border-neutral-200 rounded-xl flex items-center justify-center shadow-card" style={{ animationDelay: '1.5s' }}>
-                <Smartphone className="w-4.5 h-4.5 text-green-action" />
-              </div>
-            </div>
+            <DeviceVisual theme="light" />
           </div>
         </div>
       </Container>
@@ -804,17 +723,9 @@ function TechnologySection() {
    ══════════════════════════════════════════════════════════════ */
 
 export default function HomePage() {
-  const { scrollYProgress } = useScroll();
-
   return (
     <MotionConfig reducedMotion="user">
       <main className="min-h-screen bg-white relative noise page-fade-in">
-        {/* Scroll progress bar */}
-        <motion.div
-          style={{ scaleX: scrollYProgress }}
-          className="fixed top-0 left-0 right-0 h-[3px] bg-green-action origin-left z-[100]"
-          aria-hidden="true"
-        />
         <Hero />
         <TrustStrip />
         <ProblemsSection />

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ScrollProgress } from './components/ScrollProgress';
 import { MobileStickyBar } from '@/components/ui/MobileStickyBar';
 import { WhatsAppFloat } from '@/components/ui/WhatsAppFloat';
 import { BackToTop } from '@/components/ui/BackToTop';
@@ -56,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="font-sans">
+        <ScrollProgress />
         <Navbar />
         <div className="pt-[72px] lg:pt-[80px]">
           {children}
