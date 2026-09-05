@@ -403,10 +403,10 @@ export function SecuritySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.55, delay: 0.3 }}
-            href="#technology"
+            href="#platform"
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-[#00D084] px-9 py-4 font-display font-bold text-[0.9rem] tracking-wide text-[#080C10] shadow-[0_0_36px_rgba(0,208,132,0.4)] transition-all duration-300 hover:brightness-[1.08]"
           >
-            LEARN ABOUT HERE OPEN <ArrowRight size={16} />
+            EXPLORE THE ECOSYSTEM <ArrowRight size={16} />
           </motion.a>
         </div>
       </Container>

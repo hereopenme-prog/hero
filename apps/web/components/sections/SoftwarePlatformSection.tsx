@@ -1,97 +1,114 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import {
+  Smartphone,
+  Users,
+  Store,
+  Megaphone,
+  Bell,
+  Shield,
+  BarChart3,
+} from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { fadeUp, stagger, scaleIn } from '@/lib/animations';
-import {
-  ShoppingBag,
-  MonitorSmartphone,
-  CreditCard,
-  Bell,
-  Users,
-  AlertTriangle,
-  BarChart3,
-} from 'lucide-react';
+import { fadeUp, stagger, slideLeft, slideRight } from '@/lib/animations';
 
-const platformItems = [
-  { icon: <ShoppingBag size={14} className="text-[#00D084]" />, label: 'SHOP STATUS' },
-  { icon: <MonitorSmartphone size={14} className="text-[#00D084]" />, label: 'DEVICE MANAGEMENT' },
-  { icon: <CreditCard size={14} className="text-[#00D084]" />, label: 'PAYMENT EVENTS' },
-  { icon: <Bell size={14} className="text-[#00D084]" />, label: 'BUSINESS UPDATES' },
-  { icon: <Users size={14} className="text-[#00D084]" />, label: 'CUSTOMER VISIBILITY' },
-  { icon: <AlertTriangle size={14} className="text-[#00D084]" />, label: 'ALERTS' },
-  { icon: <BarChart3 size={14} className="text-[#00D084]" />, label: 'ANALYTICS' },
+const connectionSteps = [
+  { label: 'BUSINESS', sub: 'The physical shop or merchant.' },
+  { label: 'HERE OPEN DEVICE', sub: 'Installed in the business.' },
+  { label: 'HERE OPEN PLATFORM', sub: 'Intelligence and management layer.' },
+  { label: 'CUSTOMER', sub: 'Reaches the customer in real time.' },
+];
+
+const capabilities = [
+  { icon: Smartphone, label: 'DEVICE MANAGEMENT', desc: 'Provision, monitor and manage devices.' },
+  { icon: Users, label: 'BUSINESS MANAGEMENT', desc: 'Onboard and manage business profiles.' },
+  { icon: Store, label: 'SHOP STATUS', desc: 'OPEN / CLOSED visibility in real time.' },
+  { icon: Bell, label: 'ALERTS', desc: 'Configured alert delivery for supported events.' },
+  { icon: Megaphone, label: 'COMMUNICATION', desc: 'Offers and announcements.' },
+  { icon: Shield, label: 'SAFETY & SECURITY', desc: 'Designed to support configured monitoring.' },
+  { icon: BarChart3, label: 'ANALYTICS', desc: 'Platform-level insights where supported.' },
 ];
 
 export function SoftwarePlatformSection() {
   return (
-    <Section id="software" className="bg-[#080C10]">
+    <Section id="platform" className="bg-[#0A0F14]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,208,132,0.04)_0%,transparent_50%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
-          eyebrow="Software"
-          title="THE DEVICE IS ONLY THE BEGINNING."
-          description="The physical device connects to the Here Open software platform."
+          eyebrow="THE PLATFORM"
+          title="ONE PLATFORM."
+          titleAccent="AN ENTIRE CONNECTED BUSINESS NETWORK."
+          description="The intelligence and management layer behind the physical devices."
         />
 
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           variants={stagger}
-          className="mt-10 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0 max-w-4xl mx-auto"
+          className="mt-10 max-w-5xl mx-auto flex flex-col lg:flex-row items-start justify-center gap-10 lg:gap-16"
         >
-          {/* Left: Device */}
-          <motion.div variants={scaleIn} className="flex-shrink-0">
-            <div className="w-20 h-28 rounded-2xl border border-[#1C2A38] bg-[#0F1923] flex flex-col items-center justify-center gap-2">
-              <div className="w-10 h-1 rounded-full bg-[#1C2A38]" />
-              <div className="status-dot-pulse w-2.5 h-2.5 rounded-full bg-[#00D084]" />
-              <span className="font-display text-[8px] font-bold tracking-[0.15em] text-[#E8EDF2]">HERE OPEN</span>
-              <div className="w-6 h-6 rounded-full border border-[#1C2A38] bg-[#080C10] flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-[#3D4F5E]" />
-              </div>
-            </div>
-          </motion.div>
+          {/* Left: Vertical connection story */}
+          <motion.div variants={slideLeft} className="w-full lg:w-[300px] flex-shrink-0">
+            <div className="relative">
+              {/* Vertical connector line */}
+              <div className="absolute left-[7px] top-3 bottom-3 w-px bg-[#1C2A38]" />
 
-          {/* Center: Connection line */}
-          <motion.div
-            variants={fadeUp}
-            className="hidden lg:flex flex-col items-center justify-center w-24"
-          >
-            <div className="h-px w-full bg-gradient-to-r from-[#00D08460] via-[#00D084] to-[#00D08460]" />
-            <motion.div
-              animate={{ x: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="mt-1"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#00D084] shadow-[0_0_8px_#00D084]" />
-            </motion.div>
-          </motion.div>
-
-          {/* Mobile connection line */}
-          <motion.div variants={fadeUp} className="lg:hidden w-px h-8 bg-gradient-to-b from-[#00D08460] via-[#00D084] to-[#00D08460]" />
-
-          {/* Right: Platform interface */}
-          <motion.div variants={scaleIn} className="flex-shrink-0 w-full max-w-sm">
-            <div className="rounded-2xl border border-[#1C2A38] bg-[#0F1923] overflow-hidden">
-              {/* Header */}
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-[#1C2A38] bg-[#080C10]">
-                <div className="status-dot-pulse w-2 h-2 rounded-full bg-[#00D084]" />
-                <span className="font-display font-semibold text-xs tracking-[0.12em] text-[#E8EDF2]">HERE OPEN PLATFORM</span>
-              </div>
-
-              {/* Items */}
-              <div className="divide-y divide-[#1C2A38]">
-                {platformItems.map((item) => (
-                  <div key={item.label} className="flex items-center gap-3 px-5 py-3">
-                    <span className="flex-shrink-0">{item.icon}</span>
-                    <span className="font-body font-medium text-xs text-[#A5B4C4]">{item.label}</span>
-                    <span className="ml-auto status-dot-pulse w-1.5 h-1.5 rounded-full bg-[#00D084]" />
+              <div className="flex flex-col gap-0">
+                {connectionSteps.map((step) => (
+                  <div key={step.label} className="relative flex items-center">
+                    <span className="relative z-10 w-[15px] h-[15px] rounded-full border-2 border-[#1C2A38] bg-[#0F1923] flex items-center justify-center flex-shrink-0">
+                      <span className="w-[7px] h-[7px] rounded-full bg-[#00D084]" />
+                    </span>
+                    <div className="ml-4 flex-1 rounded-lg border border-[#1C2A38] bg-[#0F1923] px-4 py-3">
+                      <p className="font-display text-[11px] font-bold tracking-[0.1em] text-[#E8EDF2] leading-tight">
+                        {step.label}
+                      </p>
+                      <p className="font-body text-[10px] text-[#8A9BAE] mt-0.5 leading-snug">
+                        {step.sub}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
+
+              <p className="mt-5 ml-7 font-body text-[11px] text-[#8A9BAE] leading-snug">
+                Banks and financial institutions can also connect as partners and platform operators.
+              </p>
             </div>
+          </motion.div>
+
+          {/* Right: Platform capabilities */}
+          <motion.div variants={slideRight} className="flex-1 w-full">
+            <h3 className="font-display text-xs font-bold tracking-[0.14em] text-[#8A9BAE] mb-5 uppercase">
+              Platform Capabilities
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {capabilities.map((cap) => (
+                <div
+                  key={cap.label}
+                  className="flex items-start gap-3 rounded-xl border border-[#1C2A38] bg-[#0F1923] px-4 py-3.5"
+                >
+                  <span className="mt-0.5 flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-lg bg-[#00D08414] border border-[#00D08430]">
+                    <cap.icon size={13} className="text-[#00D084]" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-display text-[11px] font-bold tracking-[0.1em] text-[#E8EDF2] leading-tight">
+                      {cap.label}
+                    </p>
+                    <p className="font-body text-[10px] text-[#8A9BAE] mt-0.5 leading-snug">{cap.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-5 font-body text-[11px] text-[#3D4F5E]">
+              Capabilities are designed to be configurable depending on integration.
+            </p>
           </motion.div>
         </motion.div>
       </Container>

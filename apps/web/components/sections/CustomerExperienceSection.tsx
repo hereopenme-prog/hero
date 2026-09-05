@@ -1,16 +1,73 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Search, Navigation, Tag } from 'lucide-react';
+import { Search, Store, Tag, Navigation, Eye } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { stagger } from '@/lib/animations';
+import type { Variants } from 'framer-motion';
 
-const messages = [
-  'No guessing.',
-  'No unnecessary trip.',
-  'Better visibility.',
+const screens = [
+  {
+    label: 'SEARCH / DISCOVER',
+    icon: <Search size={13} className="text-[#00D084]" />,
+    content: (
+      <>
+        <p className="font-display font-bold text-[1.05rem] lg:text-[1.15rem] text-[#E8EDF2] leading-snug">
+          Sharma General Store
+        </p>
+        <p className="mt-1.5 font-body text-[0.72rem] text-[#8A9BAE]">Connaught Place, New Delhi</p>
+      </>
+    ),
+  },
+  {
+    label: 'SEE STATUS',
+    icon: <Eye size={13} className="text-[#00D084]" />,
+    content: (
+      <div className="flex items-center gap-2 mt-1">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00D084] px-3 py-1 font-display font-bold text-[0.6rem] tracking-widest text-[#0A0F14] shadow-[0_0_16px_#00D08450]">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0A0F14]" />
+          OPEN
+        </span>
+      </div>
+    ),
+  },
+  {
+    label: 'CHECK DETAILS',
+    icon: <Tag size={13} className="text-[#00D084]" />,
+    content: (
+      <div className="flex flex-wrap gap-2 mt-1">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#00D084] px-2.5 py-1 font-body font-bold text-[0.6rem] text-[#0A0F14]">
+          <Tag size={9} /> 10% OFF
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#00D08414] border border-[#00D08440] px-2.5 py-1 font-body font-bold text-[0.6rem] text-[#00D084]">
+          NEW ARRIVALS
+        </span>
+      </div>
+    ),
+  },
+  {
+    label: 'VISIT',
+    icon: <Navigation size={13} className="text-[#00D084]" />,
+    content: (
+      <p className="mt-1 font-body text-[0.75rem] text-[#A5B4C4] leading-relaxed">
+        Business hours · Directions · Contact
+      </p>
+    ),
+  },
 ];
+
+const takeaways = [
+  { icon: <Store size={14} />, text: 'No wasted trips' },
+  { icon: <Eye size={14} />, text: 'Real-time status' },
+  { icon: <Search size={14} />, text: 'Discover nearby businesses' },
+];
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export function CustomerExperienceSection() {
   return (
@@ -19,84 +76,71 @@ export function CustomerExperienceSection() {
       <Container className="relative z-10">
         <SectionHeading
           eyebrow="CUSTOMER EXPERIENCE"
-          title="YOUR CUSTOMERS KNOW BEFORE THEY GO."
-          description="A clean, real-time platform experience — not a mobile app. Customers discover shops and their status from any device."
+          title="KNOW BEFORE YOU GO."
+          titleAccent="WEB-FIRST. NO APP NEEDED."
+          description="A connected business visibility experience — accessible to anyone, without downloading anything."
         />
 
-        {/* Shop profile card */}
+        {/* Main visual: 4-screen journey */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-md"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={stagger}
+          className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
         >
-          <div className="rounded-2xl border border-[#1C2A38] bg-[#0F1923] p-6">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-5">
-              <div className="flex items-center gap-2.5 rounded-full px-3 py-1 bg-[#00D08420] border border-[#00D08440]">
-                <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[#00D084]" />
-                <span className="font-body font-semibold text-[0.65rem] tracking-wider text-[#00D084]">
-                  HERE OPEN
+          {screens.map((screen, i) => (
+            <motion.div
+              key={screen.label}
+              variants={itemVariants}
+              className="rounded-xl border border-[#1C2A38] bg-[#0F1923] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
+            >
+              {/* Browser chrome */}
+              <div className="flex items-center gap-1.5 px-3.5 py-2.5 border-b border-[#1C2A38] bg-[#0A0F14]">
+                <span className="w-2 h-2 rounded-full bg-[#3D4F5E]" />
+                <span className="w-2 h-2 rounded-full bg-[#3D4F5E]" />
+                <span className="w-2 h-2 rounded-full bg-[#3D4F5E]" />
+                <span className="ml-auto font-body text-[0.5rem] tracking-[0.16em] text-[#3D4F5E]">
+                  HERE OPEN · CUSTOMER EXPERIENCE
                 </span>
               </div>
-              <span className="font-body text-[0.6rem] tracking-wider text-[#3D4F5E]">PLATFORM</span>
-            </div>
 
-            {/* Store name */}
-            <p className="font-display font-bold text-[1.15rem] text-[#E8EDF2] mb-2">
-              SHARMA GENERAL STORE
-            </p>
+              <div className="px-5 py-6 flex flex-col min-h-[180px]">
+                <span className="font-body text-[0.6rem] font-bold tracking-[0.2em] text-[#3D4F5E] mb-3">
+                  {String(i + 1).padStart(2, '0')} — {screen.label}
+                </span>
 
-            {/* Status */}
-            <div className="flex items-center gap-2.5 mb-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00D084] px-3 py-1 font-display font-bold text-[0.65rem] tracking-widest text-[#080C10] shadow-[0_0_16px_#00D08450]">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#080C10]" />
-                OPEN
-              </span>
-              <span className="font-body text-[0.78rem] text-[#00D084]">Open Now</span>
-            </div>
-
-            {/* Chips */}
-            <div className="flex flex-wrap gap-2 mb-5">
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#00D084] px-2.5 py-1 font-body font-bold text-[0.65rem] text-[#080C10]">
-                <Tag size={10} /> 10% OFF
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#00D08414] border border-[#00D08440] px-2.5 py-1 font-body font-bold text-[0.65rem] text-[#00D084]">
-                NEW ARRIVALS
-              </span>
-            </div>
-
-            {/* Buttons */}
-            <div className="grid grid-cols-2 gap-3">
-              <span className="flex items-center justify-center gap-2 rounded-xl border border-[#1C2A38] bg-[#080C10] px-4 py-3 font-body font-semibold text-[0.78rem] text-[#E8EDF2] hover:border-[#00D08440] transition-colors">
-                <Search size={13} className="text-[#00D084]" /> View Shop
-              </span>
-              <span className="flex items-center justify-center gap-2 rounded-xl border border-[#1C2A38] bg-[#080C10] px-4 py-3 font-body font-semibold text-[0.78rem] text-[#E8EDF2] hover:border-[#00D08440] transition-colors">
-                <Navigation size={13} className="text-[#00D084]" /> Directions
-              </span>
-            </div>
-          </div>
+                <div className="mt-auto">{screen.content}</div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Three messages */}
+        {/* Muted line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-10 text-center font-body text-[0.82rem] text-[#A5B4C4] tracking-wide"
+        >
+          A web-first customer experience — no downloads, no sign-up required.
+        </motion.p>
+
+        {/* Takeaway row */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12"
+          variants={stagger}
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
         >
-          {messages.map((msg, i) => (
-            <motion.div
-              key={msg}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.15 * i, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center gap-2.5"
-            >
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00D084]" />
-              <span className="font-display font-semibold text-[0.95rem] text-[#E8EDF2]">{msg}</span>
+          {takeaways.map((item) => (
+            <motion.div key={item.text} variants={itemVariants} className="flex items-center gap-2.5">
+              <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#00D08414] text-[#00D084]">
+                {item.icon}
+              </span>
+              <span className="font-display font-semibold text-[0.85rem] text-[#E8EDF2]">{item.text}</span>
             </motion.div>
           ))}
         </motion.div>

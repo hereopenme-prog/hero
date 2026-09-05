@@ -4,13 +4,17 @@ import { motion } from 'framer-motion';
 import {
   ShoppingBasket,
   UtensilsCrossed,
+  CookingPot,
   Pill,
   Scissors,
+  Armchair,
   Ruler,
   Wrench,
   ShoppingBag,
   Briefcase,
   Building2,
+  Store,
+  Hand,
 } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
@@ -20,13 +24,17 @@ import { stagger, scaleIn } from '@/lib/animations';
 const businesses = [
   { icon: <ShoppingBasket size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'KIRANA' },
   { icon: <UtensilsCrossed size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'RESTAURANTS' },
+  { icon: <CookingPot size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'TIFFIN' },
   { icon: <Pill size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'MEDICAL STORES' },
   { icon: <Scissors size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'SALONS' },
-  { icon: <Ruler size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'TAILORS' },
+  { icon: <Armchair size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'BARBERS' },
+  { icon: <Ruler size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'TAILORING' },
   { icon: <Wrench size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'REPAIR SHOPS' },
+  { icon: <Store size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'GENERAL SHOPS' },
   { icon: <ShoppingBag size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'RETAIL STORES' },
   { icon: <Briefcase size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'SERVICE BUSINESSES' },
   { icon: <Building2 size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'SMALL OFFICES' },
+  { icon: <Hand size={22} className="text-[#00D084]" strokeWidth={1.5} />, label: 'STREET BUSINESSES' },
 ];
 
 export function TargetSection() {
@@ -44,7 +52,7 @@ export function TargetSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={stagger}
-          className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 max-w-6xl mx-auto"
         >
           {businesses.map((b) => (
             <motion.div

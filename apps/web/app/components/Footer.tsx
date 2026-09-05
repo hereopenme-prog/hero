@@ -2,22 +2,22 @@ import Link from 'next/link';
 
 const platformLinks = [
   { href: '#home', label: 'Home' },
-  { href: '#product', label: 'Product' },
+  { href: '#problem', label: 'The Problem' },
   { href: '#how-it-works', label: 'How It Works' },
-  { href: '#features', label: 'Features' },
-  { href: '#businesses', label: 'For Businesses' },
-  { href: '#customers', label: 'For Customers' },
-  { href: '#about', label: 'About' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#device', label: 'The Device' },
+  { href: '#security', label: 'Safety & Security' },
+  { href: '#platform-network', label: 'Platform' },
+  { href: '#vision', label: 'Vision' },
 ];
 
-const productLinks = [
-  { href: '#payment-experience', label: 'Payments' },
-  { href: '#shop-status', label: 'Shop Status' },
-  { href: '#customer-experience', label: 'Customer Experience' },
-  { href: '#smart-alerts', label: 'Smart Alerts' },
-  { href: '#device', label: 'The Device' },
-  { href: '#software', label: 'Software Platform' },
+const ecosystemLinks = [
+  { href: '#businesses', label: 'For Businesses' },
+  { href: '#customers', label: 'For Customers' },
+  { href: '#banks', label: 'For Banks & Partners' },
+  { href: '#merchant-value', label: 'Merchant Value' },
+  { href: '#market', label: 'Market Opportunity' },
+  { href: '#roadmap', label: 'Roadmap' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const legalLinks = [
@@ -45,7 +45,7 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-4 font-body text-[0.85rem] leading-relaxed text-[#6B7C8E]">
-              A smart business device that brings payment notifications, shop visibility, customer connectivity and configurable smart features together.
+              A connected smart business ecosystem that brings businesses, customers and devices together — real-time visibility, communication, safety and intelligent business connectivity.
             </p>
             <p className="mt-4 font-body text-[0.78rem] text-[#3D4F5E]">
               WhatsApp: +91 9060038229 &nbsp;·&nbsp; contact@hereopen.me
@@ -67,9 +67,9 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">PRODUCT</p>
+              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">ECOSYSTEM</p>
               <ul className="space-y-2.5">
-                {productLinks.map((link) => (
+                {ecosystemLinks.map((link) => (
                   <li key={link.href}>
                     <a href={link.href} className="font-body text-[0.83rem] text-[#A5B4C4] hover:text-[#00D084] transition-colors duration-200">
                       {link.label}

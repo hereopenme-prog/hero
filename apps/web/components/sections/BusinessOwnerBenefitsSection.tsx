@@ -1,131 +1,160 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Cpu, CreditCard, Eye, Bell, Users, BarChart3 } from 'lucide-react';
+import { Power, Eye, Send, Shield, Cpu, BarChart3 } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { DeviceVisual } from '@/components/ui/DeviceVisual';
+import { stagger } from '@/lib/animations';
+import type { Variants } from 'framer-motion';
 
 const benefits = [
-  { icon: <CreditCard size={18} />, label: 'GET PAID', desc: 'with supported payment notifications.' },
-  { icon: <Eye size={18} />, label: 'STAY VISIBLE', desc: 'with shop status.' },
-  { icon: <Bell size={18} />, label: 'STAY INFORMED', desc: 'with configurable alerts.' },
-  { icon: <Users size={18} />, label: 'CONNECT WITH CUSTOMERS', desc: 'through business updates.' },
-  { icon: <BarChart3 size={18} />, label: 'UNDERSTAND YOUR BUSINESS', desc: 'through the Here Open platform.' },
+  {
+    num: '01',
+    title: 'ONE-TAP OPEN/CLOSED CONTROL',
+    desc: 'Keep your shop status live with a single tap.',
+    icon: <Power size={16} />,
+  },
+  {
+    num: '02',
+    title: 'REAL-TIME BUSINESS VISIBILITY',
+    desc: 'Customers see your shop and its status in real time.',
+    icon: <Eye size={16} />,
+  },
+  {
+    num: '03',
+    title: 'CUSTOMER CONNECTION',
+    desc: 'Share offers, announcements and updates directly.',
+    icon: <Send size={16} />,
+  },
+  {
+    num: '04',
+    title: 'SAFETY & SECURITY',
+    desc: 'Designed to support configured fire, smoke, temperature and break-in monitoring.',
+    icon: <Shield size={16} />,
+  },
+  {
+    num: '05',
+    title: 'DEVICE STATUS',
+    desc: 'See the health of the device and its connection.',
+    icon: <Cpu size={16} />,
+  },
+  {
+    num: '06',
+    title: 'BUSINESS INSIGHTS',
+    desc: 'Platform insights designed to support better business awareness.',
+    icon: <BarChart3 size={16} />,
+  },
 ];
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export function BusinessOwnerBenefitsSection() {
   return (
-    <Section id="businesses" className="bg-surface-base">
+    <Section id="businesses" className="bg-[#0A0F14]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.04)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
           eyebrow="FOR BUSINESS OWNERS"
-          title="BUILT AROUND THE BUSINESS OWNER."
+          title="YOUR BUSINESS."
+          titleAccent="ALWAYS CONNECTED."
+          description="One device that keeps your shop visible, your customers informed and your space monitored."
         />
 
-        {/* Desktop: device center + benefits around */}
-        <div className="relative mx-auto mt-6 max-w-5xl hidden md:block" style={{ minHeight: 480 }}>
-          {/* Central device */}
+        {/* Desktop: side-by-side */}
+        <div className="hidden lg:flex items-start gap-14 max-w-5xl mx-auto">
+          {/* Left: DeviceVisual */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 pt-4"
           >
-            <div className="relative flex flex-col items-center">
-              <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-[#00D08450] bg-[#0F1923] shadow-[0_0_50px_rgba(0,208,132,0.2)]">
-                <Cpu size={36} className="text-[#00D084]" />
-              </div>
-              <span className="mt-3 font-body text-[0.6rem] font-bold tracking-[0.22em] text-[#00D084]">HERE OPEN</span>
-            </div>
+            <DeviceVisual size="lg" showNotif amount="₹1,250" notifLabel="PAYMENT RECEIVED" online />
           </motion.div>
 
-          {/* Decorative ring */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] aspect-square rounded-full border border-dashed border-[#00D08420]" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[45%] aspect-square rounded-full border border-[#00D08410]" />
-
-          {/* Benefits positioned around */}
-          {benefits.map((b, i) => {
-            const positions = [
-              'left-[2%] top-[8%]',
-              'right-[2%] top-[8%]',
-              'left-[-1%] top-[45%]',
-              'right-[-1%] top-[45%]',
-              'left-1/2 -translate-x-1/2 bottom-[2%]',
-            ];
-            return (
-              <motion.div
-                key={b.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.45, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className={`absolute z-20 ${positions[i]}`}
-              >
-                <div className="flex items-start gap-3 rounded-xl border border-[#1C2A38] bg-[#0F1923]/90 backdrop-blur-sm px-4 py-3 max-w-[220px]">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#00D08415] flex-shrink-0 text-[#00D084]">
+          {/* Right: benefit list */}
+          <div className="flex-1">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={stagger}
+              className="flex flex-col gap-6"
+            >
+              {benefits.map((b) => (
+                <motion.div key={b.num} variants={itemVariants} className="flex items-start gap-4">
+                  <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-[#00D08414] text-[#00D084]">
                     {b.icon}
                   </span>
                   <div>
-                    <span className="block font-display font-bold text-[0.65rem] tracking-[0.16em] text-[#E8EDF2]">
-                      {b.label}
-                    </span>
-                    <span className="block mt-0.5 font-body text-[0.72rem] text-[#8A9BAE] leading-relaxed">
-                      {b.desc}
-                    </span>
+                    <div className="flex items-center gap-2.5">
+                      <span className="font-display font-bold text-[0.6rem] tracking-[0.16em] text-[#00D084]">{b.num}</span>
+                      <h4 className="font-display font-bold text-[0.85rem] tracking-wide text-[#E8EDF2] leading-snug">
+                        {b.title}
+                      </h4>
+                    </div>
+                    <p className="mt-1 font-body text-[0.82rem] text-[#8A9BAE] leading-relaxed">{b.desc}</p>
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
 
-        {/* Mobile: stacked list */}
-        <div className="mt-6 md:hidden">
-          <div className="mx-auto max-w-md flex flex-col items-center gap-5">
-            {/* Device */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center mb-2"
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#00D08450] bg-[#0F1923] shadow-[0_0_30px_rgba(0,208,132,0.2)]">
-                <Cpu size={26} className="text-[#00D084]" />
-              </div>
-              <span className="mt-2 font-body text-[0.55rem] font-bold tracking-[0.2em] text-[#00D084]">HERE OPEN</span>
-            </motion.div>
+        {/* Mobile: device above, then list */}
+        <div className="lg:hidden mx-auto max-w-md">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center mb-10"
+          >
+            <DeviceVisual size="md" showNotif amount="₹1,250" notifLabel="PAYMENT RECEIVED" online />
+          </motion.div>
 
-            {benefits.map((b, i) => (
-              <motion.div
-                key={b.label}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.45, delay: 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full"
-              >
-                {i > 0 && <div className="border-t border-[#1C2A38] mb-5" />}
-                <div className="flex items-start gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#00D08415] flex-shrink-0 text-[#00D084]">
-                    {b.icon}
-                  </span>
-                  <div>
-                    <span className="block font-display font-bold text-[0.7rem] tracking-[0.16em] text-[#E8EDF2]">
-                      {b.label}
-                    </span>
-                    <span className="block mt-0.5 font-body text-[0.8rem] text-[#8A9BAE] leading-relaxed">
-                      {b.desc}
-                    </span>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={stagger}
+            className="flex flex-col gap-5"
+          >
+            {benefits.map((b) => (
+              <motion.div key={b.num} variants={itemVariants} className="flex items-start gap-3.5">
+                <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-[#00D08414] text-[#00D084]">
+                  {b.icon}
+                </span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-display font-bold text-[0.55rem] tracking-[0.16em] text-[#00D084]">{b.num}</span>
+                    <h4 className="font-display font-bold text-[0.78rem] tracking-wide text-[#E8EDF2] leading-snug">
+                      {b.title}
+                    </h4>
                   </div>
+                  <p className="mt-1 font-body text-[0.78rem] text-[#8A9BAE] leading-relaxed">{b.desc}</p>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
+
+        {/* Footnote */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12 text-center font-body text-[0.7rem] text-[#3D4F5E] leading-relaxed"
+        >
+          Sensor-based features are designed to support specific configurations and are future-ready.
+        </motion.p>
       </Container>
     </Section>
   );

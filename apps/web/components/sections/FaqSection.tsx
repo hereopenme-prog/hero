@@ -8,34 +8,39 @@ import { FaqAccordion } from '@/components/faq/FaqAccordion';
 
 const faqItems = [
   {
-    question: 'How does HERE OPEN work?',
+    question: 'What is Here Open?',
     answer:
-      'Install the HERE OPEN IoT device in your shop. Open the app, tap OPEN or CLOSED, and the status syncs to customers in real time. When closed, the device keeps monitoring for fire, smoke, motion and door events.',
+      'Here Open is a connected smart business device and platform that brings real-time visibility, communication and configurable monitoring to local businesses.',
   },
   {
-    question: 'Does it need Wi-Fi?',
+    question: 'How do businesses use it?',
     answer:
-      'No — the HERE OPEN device uses GSM (mobile network), so it works in shops with unreliable or no Wi-Fi. It remains connected through a dedicated SIM.',
+      "Businesses can signal OPEN / CLOSED, share offers and announcements, and stay connected to customers through the platform.",
   },
   {
-    question: 'What happens when my shop is closed?',
+    question: "How do customers see a shop's status?",
     answer:
-      'The device automatically switches to security mode. Fire, smoke, motion and door sensors stay active, and you are alerted instantly by push notification and SMS if something needs attention.',
+      "Through the customer-facing Here Open web experience — no app download needed.",
   },
   {
-    question: 'Can customers really see if my shop is open?',
+    question: 'Does the device need Wi-Fi?',
     answer:
-      'Yes. Any customer with the HERE OPEN app can see your current status, distance, offers and announcements — updated in real time from your tap.',
+      'Here Open is designed with flexible connectivity options; final connectivity depends on configuration.',
   },
   {
-    question: 'Is my data secure?',
+    question: 'What happens after hours?',
     answer:
-      'Yes. Shop data and alerts are transmitted and stored securely on the HERE OPEN cloud. Only the registered owner can change status.',
+      'Where configured, monitoring and alerting can operate after the shop closes, designed to notify the owner for supported events.',
   },
   {
-    question: 'How much does it cost?',
+    question: 'Is my business data secure?',
     answer:
-      'Plans start at ₹299/month with transparent pricing (GST additional). Devices are available on purchase or rental. See the pricing section above or contact us for bulk plans.',
+      'Here Open is designed around secure device identity, authenticated access and controlled communication.',
+  },
+  {
+    question: 'Can banks and partners use Here Open?',
+    answer:
+      'Yes — the technology is designed as an opportunity for banks and financial institutions to build a branded merchant device ecosystem through partnership. Contact contact@hereopen.me to explore.',
   },
 ];
 
@@ -46,18 +51,20 @@ export function FaqSection() {
         <SectionHeading
           eyebrow="FAQ"
           title="Questions, Answered."
-          description="Everything you need to know before joining HERE OPEN."
+          description="Everything you need to know about Here Open."
         />
 
         <div className="max-w-3xl mx-auto">
           <FaqAccordion items={faqItems} />
           <div className="mt-8 flex justify-center">
             <a
-              href="https://wa.me/919XXXXXXXXX"
+              href="https://wa.me/919060038229"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#00D08450] bg-[#00D08410] px-5 py-2.5 font-body font-medium text-[0.85rem] text-[#00D084] transition-colors duration-200 hover:bg-[#00D0841A]"
             >
               <MessageCircle size={16} />
-              Ask on WhatsApp
+              Still have questions? WhatsApp +91 9060038229
             </a>
           </div>
         </div>
