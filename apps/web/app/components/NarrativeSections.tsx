@@ -9,7 +9,7 @@ import {
   ShoppingBag, Building2, GraduationCap, Bed, Warehouse, MapPin, Cpu, TrendingUp, Network,
   Lock, Award, Layers, Flame, MessageCircle, MessageSquare, Megaphone, Server, Radio, Plug,
   Workflow, Heart, ToggleRight, BellRing, ShieldCheck, LayoutGrid, BarChart2,
-  Clock, Compass, Tag, CheckCircle, Map, LineChart, Check, X,
+  Clock, Compass, Tag, CheckCircle, Map, LineChart, X,
 } from 'lucide-react';
 import { Container } from './Container';
 import { SectionHeader } from './SectionHeader';
@@ -741,14 +741,27 @@ export function WhySection() {
                 transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
                 className="px-5 py-4 text-[13px] text-black flex items-start gap-2"
               >
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, ease: 'easeOut', delay: 0.35 + i * 0.1 }}
-                  className="min-w-[20px] inline-flex items-center justify-center mt-0.5 flex-shrink-0"
-                >
-                  <Check size={16} className="text-[#00D084]" strokeWidth={2.5} />
-                </motion.span>
+                <span className="min-w-[20px] inline-flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <motion.svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    className="text-[#00D084]"
+                    aria-hidden="true"
+                  >
+                    <motion.path
+                      d="M2.5 8.5 L6 12 L13.5 4"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0 }}
+                      animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
+                      transition={{ duration: 0.45, ease: 'easeInOut', delay: 0.35 + i * 0.1 }}
+                    />
+                  </motion.svg>
+                </span>
                 {row.modern}
               </motion.div>
             </div>
