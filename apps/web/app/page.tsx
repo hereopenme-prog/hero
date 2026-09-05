@@ -5,11 +5,14 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { BigIdeaSection } from '@/components/sections/BigIdeaSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
+import { BankOpportunitySection } from '@/components/sections/BankOpportunitySection';
+import { BankBrandedSection } from '@/components/sections/BankBrandedSection';
+import { BankPartnershipSection } from '@/components/sections/BankPartnershipSection';
+import { VisionSection } from '@/components/sections/VisionSection';
 import { CustomerExperienceSection } from '@/components/sections/CustomerExperienceSection';
 import { BusinessOwnerBenefitsSection } from '@/components/sections/BusinessOwnerBenefitsSection';
 import { DeviceShowcaseSection } from '@/components/sections/DeviceShowcaseSection';
 import { MoreThanStatusSection } from '@/components/sections/MoreThanStatusSection';
-import { EcosystemSection } from '@/components/sections/EcosystemSection';
 import { SecuritySection } from '@/components/sections/SecuritySection';
 import { SmartAlertsSection } from '@/components/sections/SmartAlertsSection';
 import { BusinessCommunicationSection } from '@/components/sections/BusinessCommunicationSection';
@@ -18,13 +21,8 @@ import { TargetSection } from '@/components/sections/TargetSection';
 import { SoftwarePlatformSection } from '@/components/sections/SoftwarePlatformSection';
 import { BusinessDashboardSection } from '@/components/sections/BusinessDashboardSection';
 import { TechnologySection } from '@/components/sections/TechnologySection';
-import { BankOpportunitySection } from '@/components/sections/BankOpportunitySection';
-import { BankBrandedSection } from '@/components/sections/BankBrandedSection';
-import { BankPartnershipSection } from '@/components/sections/BankPartnershipSection';
 import { MerchantValueSection } from '@/components/sections/MerchantValueSection';
-import { VisionSection } from '@/components/sections/VisionSection';
 import { MarketSection } from '@/components/sections/MarketSection';
-import { RoadmapSection } from '@/components/sections/RoadmapSection';
 import { InnovationSection } from '@/components/sections/InnovationSection';
 import { ScalabilitySection } from '@/components/sections/ScalabilitySection';
 import { SecurityTrustSection } from '@/components/sections/SecurityTrustSection';
@@ -48,12 +46,14 @@ export default function HomePage() {
         <ProblemSection />
         <BigIdeaSection />
         <HowItWorksSection />
+        <BankOpportunitySection />
+        <BankBrandedSection />
+        <BankPartnershipSection />
         <VisionSection />
         <CustomerExperienceSection />
         <BusinessOwnerBenefitsSection />
         <DeviceShowcaseSection />
         <MoreThanStatusSection />
-        <EcosystemSection />
         <SecuritySection />
         <SmartAlertsSection />
         <BusinessCommunicationSection />
@@ -62,12 +62,8 @@ export default function HomePage() {
         <SoftwarePlatformSection />
         <BusinessDashboardSection />
         <TechnologySection />
-        <BankOpportunitySection />
-        <BankBrandedSection />
-        <BankPartnershipSection />
         <MerchantValueSection />
         <MarketSection />
-        <RoadmapSection />
         <InnovationSection />
         <ScalabilitySection />
         <SecurityTrustSection />
