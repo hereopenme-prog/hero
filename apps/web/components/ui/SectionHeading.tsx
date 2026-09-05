@@ -8,6 +8,8 @@ interface SectionHeadingProps {
   titleAccent?: string;
   description?: string;
   align?: 'left' | 'center';
+  size?: 'md' | 'lg';
+  accent?: 'green' | 'mint';
   className?: string;
 }
 
@@ -27,21 +29,47 @@ export function SectionHeading({
   titleAccent,
   description,
   align = 'center',
+  size = 'md',
+  accent = 'green',
   className = '',
 }: SectionHeadingProps) {
   const titleWords = title.split(' ');
   const accentWords = titleAccent ? titleAccent.split(' ') : [];
 
+  const isMint = accent === 'mint';
+  const accentHex = isMint ? '#45F59A' : '#00D084';
+
+  const titleClasses =
+    size === 'lg'
+      ? 'mt-7 font-display font-bold text-[2.35rem] leading-[1.08] tracking-[-0.025em] sm:text-[2.7rem] lg:text-[3.3rem]'
+      : 'mt-6 font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em]';
+  const descClasses =
+    size === 'lg'
+      ? 'mt-6 font-body text-lg lg:text-xl text-[#8A9BAE] leading-relaxed max-w-[660px]'
+      : 'mt-5 font-body text-base lg:text-[1.0625rem] text-[#8A9BAE] leading-relaxed max-w-[620px]';
+
   return (
-    <div className={`mb-14 lg:mb-16 ${align === 'center' ? 'text-center' : ''} ${className}`}>
+    <div className={`mb-16 lg:mb-20 ${align === 'center' ? 'text-center' : ''} ${className}`}>
       {eyebrow && (
         <div
-          className={`inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 bg-[#00D08420] border border-[#00D08440] ${
+          className={`inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 border ${
             align === 'center' ? 'mx-auto' : ''
           }`}
+          style={{
+            background: isMint ? '#45F59A12' : '#00D08420',
+            borderColor: isMint ? '#45F59A36' : '#00D08440',
+          }}
         >
-          <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[#00D084]" />
-          <span className="font-body font-semibold text-xs text-[#00D084] tracking-wide">{eyebrow}</span>
+          <span
+            className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full"
+            style={{ backgroundColor: accentHex }}
+          />
+          <span
+            className="font-body font-semibold text-xs tracking-wide"
+            style={{ color: accentHex }}
+          >
+            {eyebrow}
+          </span>
         </div>
       )}
 
@@ -50,8 +78,8 @@ export function SectionHeading({
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
         variants={headingContainer}
-        className={`mt-6 font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em] text-[#E8EDF2] leading-tight ${
-          align === 'center' ? 'mx-auto max-w-[800px]' : ''
+        className={`${titleClasses} text-[#E8EDF2] leading-tight ${
+          align === 'center' ? 'mx-auto max-w-[820px]' : ''
         }`}
       >
         {titleWords.map((w, i) => (
@@ -63,7 +91,7 @@ export function SectionHeading({
         {titleAccent && (
           <>
             <br />
-            <motion.span className="text-[#00D084]">
+            <motion.span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${accentHex}, ${isMint ? '#7EF0C0' : '#00B4D8'})` }}>
               {accentWords.map((w, i) => (
                 <motion.span key={`a${i}`} variants={headingWord} className="inline-block">
                   {w}
@@ -81,9 +109,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className={`mt-5 font-body text-base lg:text-[1.0625rem] text-[#8A9BAE] leading-relaxed max-w-[620px] ${
-            align === 'center' ? 'mx-auto' : ''
-          }`}
+          className={`${descClasses} ${align === 'center' ? 'mx-auto' : ''}`}
         >
           {description}
         </motion.p>

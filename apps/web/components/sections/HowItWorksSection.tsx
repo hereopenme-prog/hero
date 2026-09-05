@@ -4,10 +4,9 @@ import { motion } from 'framer-motion';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { DeviceVisual } from '@/components/ui/DeviceVisual';
+import { ClosedExperience } from '@/components/ui/ClosedExperience';
 import { stagger } from '@/lib/animations';
 import type { Variants } from 'framer-motion';
-import { PowerOff, Lock, Eye, ShieldAlert, Bell } from 'lucide-react';
 
 const openSteps = [
   { num: '01', title: 'BUSINESS OPENS', caption: 'Owner taps OPEN.' },
@@ -21,14 +20,6 @@ const openSteps = [
   },
 ];
 
-const closedSteps = [
-  { icon: <PowerOff size={14} />, title: 'OWNER TAPS CLOSED', caption: 'The owner taps CLOSED on the device.' },
-  { icon: <Lock size={14} />, title: 'BUSINESS BECOMES CLOSED', caption: 'The business status switches to CLOSED across the platform.' },
-  { icon: <Eye size={14} />, title: 'CUSTOMER SEES CLOSED', caption: 'Customers see the business as CLOSED in real time.' },
-  { icon: <ShieldAlert size={14} />, title: 'MONITORING / SAFETY ACTIVATE', caption: 'Monitoring and safety features activate where configured.' },
-  { icon: <Bell size={14} />, title: 'ALERTS CAN BE GENERATED', caption: 'Alerts can be generated for supported events.' },
-];
-
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
@@ -36,10 +27,16 @@ const itemVariants: Variants = {
 
 export function HowItWorksSection() {
   return (
-    <Section id="how-it-works" className="bg-[#0A0F14]">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,208,132,0.04)_0%,transparent_50%)] pointer-events-none" />
+    <Section id="how-it-works" className="bg-[#07090B]">
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 55% 40% at 50% 30%, rgba(69,245,154,0.045) 0%, transparent 60%)' }}
+      />
       <Container className="relative z-10">
         <SectionHeading
+          accent="mint"
+          size="lg"
           eyebrow="HOW IT WORKS"
           title="ONE TAP."
           titleAccent="THE WHOLE STORY."
@@ -47,23 +44,27 @@ export function HowItWorksSection() {
         />
 
         {/* ====== PART A — THE OPEN EXPERIENCE ====== */}
-        <div className="mb-24 lg:mb-32">
+        <div className="mb-28 lg:mb-36">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-14"
+            className="mb-14 text-center"
           >
-            <span className="font-display font-bold text-[1.1rem] lg:text-[1.4rem] tracking-tight text-[#E8EDF2]">
-              THE OPEN EXPERIENCE
+            <span className="inline-flex items-center gap-3">
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#45F59A]/60" />
+              <span className="font-display text-[1.3rem] font-bold tracking-tight text-[#E8EDF2] lg:text-[1.5rem]">
+                THE OPEN EXPERIENCE
+              </span>
+              <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#45F59A]/60" />
             </span>
           </motion.div>
 
           {/* Desktop: horizontal 5-step */}
-          <div className="hidden lg:block relative mx-auto max-w-5xl">
-            <div className="absolute top-[22px] left-[5%] right-[5%] h-px bg-[#1C2A38] pointer-events-none" />
-            <div className="absolute top-[22px] left-[5%] right-[5%] h-px bg-gradient-to-r from-transparent via-[#00D08430] to-transparent pointer-events-none" />
+          <div className="relative mx-auto hidden max-w-5xl lg:block">
+            <div className="absolute left-[5%] right-[5%] top-[22px] h-px bg-white/[0.07] pointer-events-none" />
+            <div className="absolute left-[5%] right-[5%] top-[22px] h-px bg-gradient-to-r from-transparent via-[#45F59A]/25 to-transparent pointer-events-none" />
 
             <motion.div
               initial="hidden"
@@ -74,23 +75,23 @@ export function HowItWorksSection() {
             >
               {openSteps.map((step) => (
                 <motion.div key={step.num} variants={itemVariants} className="relative flex flex-col items-center text-center">
-                  <div className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full border border-[#00D08440] bg-[#0A0F14] mb-4">
-                    <span className="font-display font-bold text-sm text-[#00D084]">{step.num}</span>
+                  <div className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full border border-[#45F59A]/30 bg-[#07090B] mb-4">
+                    <span className="font-display text-sm font-bold text-[#45F59A]">{step.num}</span>
                   </div>
-                  <div className="absolute top-[22px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#00D084] shadow-[0_0_10px_#00D084] z-20" />
-                  <h4 className="font-display font-bold text-[0.72rem] tracking-wide text-[#E8EDF2] leading-snug mt-2">
+                  <div className="absolute top-[22px] left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#45F59A] shadow-[0_0_10px_#45F59A] z-20" />
+                  <h4 className="mt-2 font-display text-[15px] font-bold tracking-wide text-[#E8EDF2] leading-snug">
                     {step.title}
                   </h4>
-                  <p className="mt-2 font-body text-[0.75rem] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
+                  <p className="mt-2 font-body text-[13px] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
 
           {/* Mobile: vertical 5-step */}
-          <div className="lg:hidden mx-auto max-w-md relative">
-            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-[#1C2A38]" />
-            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-[#00D08430] to-transparent" />
+          <div className="relative mx-auto max-w-md lg:hidden">
+            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-white/[0.08]" />
+            <div className="absolute left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-[#45F59A]/20 to-transparent" />
 
             <motion.div
               initial="hidden"
@@ -100,17 +101,17 @@ export function HowItWorksSection() {
             >
               {openSteps.map((step) => (
                 <motion.div key={step.num} variants={itemVariants} className="relative flex gap-6 pb-8 last:pb-0">
-                  <div className="relative z-10 flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-[#00D08440] bg-[#0A0F14]">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#00D084] shadow-[0_0_12px_#00D084]" />
+                  <div className="relative z-10 flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-[#45F59A]/30 bg-[#07090B]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#45F59A] shadow-[0_0_12px_#45F59A]" />
                   </div>
                   <div className="pt-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-display font-bold text-[0.6rem] tracking-[0.16em] text-[#00D084]">{step.num}</span>
-                      <h4 className="font-display font-bold text-[0.85rem] tracking-wide text-[#E8EDF2] leading-snug">
+                      <span className="font-display text-[13px] font-bold tracking-[0.16em] text-[#45F59A]">{step.num}</span>
+                      <h4 className="font-display text-[15px] font-bold tracking-wide text-[#E8EDF2] leading-snug">
                         {step.title}
                       </h4>
                     </div>
-                    <p className="mt-1 font-body text-[0.78rem] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
+                    <p className="mt-1 font-body text-[13px] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
                   </div>
                 </motion.div>
               ))}
@@ -120,68 +121,7 @@ export function HowItWorksSection() {
 
         {/* ====== PART B — THE CLOSED EXPERIENCE ====== */}
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-14"
-          >
-            <span className="font-display font-bold text-[1.1rem] lg:text-[1.4rem] tracking-tight text-[#E8EDF2]">
-              THE CLOSED EXPERIENCE
-            </span>
-          </motion.div>
-
-          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
-            {/* Left: vertical timeline */}
-            <div className="flex-1 mx-auto lg:mx-0 max-w-xl relative">
-              <div className="absolute left-[17px] top-2 bottom-2 w-px bg-[#1C2A38]" />
-              <div className="absolute left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-[#3D4F5E60] via-[#00D08430] to-[#3D4F5E60]" />
-
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={stagger}
-              >
-                {closedSteps.map((step) => (
-                  <motion.div key={step.title} variants={itemVariants} className="relative flex gap-6 pb-8 last:pb-0">
-                    <div className="relative z-10 flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-[#3D4F5E] bg-[#0A0F14] text-[#A5B4C4]">
-                      {step.icon}
-                    </div>
-                    <div className="pt-1">
-                      <h4 className="font-display font-bold text-[0.85rem] tracking-wide text-[#E8EDF2] leading-snug">
-                        {step.title}
-                      </h4>
-                      <p className="mt-1 font-body text-[0.78rem] text-[#8A9BAE] leading-relaxed">{step.caption}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Right: DeviceVisual with closed overlay */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="flex-shrink-0 mx-auto lg:mx-0 relative"
-            >
-              <div className="relative opacity-70">
-                <DeviceVisual size="md" online={false} />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-[#3D4F5E] bg-[#0A0F14]/90 px-4 py-2 shadow-[0_0_24px_rgba(0,0,0,0.5)]">
-                    <span className="w-2 h-2 rounded-full bg-[#3D4F5E]" />
-                    <span className="font-display font-bold text-xs tracking-[0.18em] text-[#8A9BAE]">CLOSED</span>
-                  </span>
-                </div>
-              </div>
-              <p className="mt-4 text-center font-body text-[0.7rem] text-[#3D4F5E] leading-relaxed max-w-[280px]">
-                Monitoring and alerting are designed to be configurable and supported depending on configuration.
-              </p>
-            </motion.div>
-          </div>
+          <ClosedExperience />
         </div>
       </Container>
     </Section>
