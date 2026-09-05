@@ -86,7 +86,7 @@ export function WaitlistForm() {
             </p>
             <a
               href={
-                'https://wa.me/91XXXXXXXXXX?text=' +
+                'https://wa.me/919060038229?text=' +
                 encodeURIComponent('Join the HERE OPEN early access waitlist — https://hereopen.in')
               }
               target="_blank"

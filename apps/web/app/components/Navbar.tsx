@@ -30,16 +30,8 @@ const mobileMenuVariants = {
 };
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 60);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -72,26 +64,15 @@ export function Navbar() {
     }
   };
 
-  const onDarkChrome = !isScrolled;
-
-  const barChrome = onDarkChrome
-    ? 'bg-transparent border-transparent'
-    : 'bg-[var(--nav-bg)] backdrop-blur-md border-b border-[var(--nav-border)]';
-
-  const logoTextCls = onDarkChrome ? 'text-white' : 'text-[var(--ink)]';
   const linkCls = (isActive: boolean) =>
-    onDarkChrome
-      ? `py-2 px-3 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
-          isActive ? 'text-white' : 'text-white/70 hover:text-white'
-        }`
-      : `py-2 px-3 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
-          isActive ? 'text-[var(--accent)]' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
-        }`;
+    `py-2 px-3 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
+      isActive ? 'text-[var(--accent)]' : 'text-[var(--ink)] hover:text-[var(--accent)]'
+    }`;
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${barChrome}`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[var(--nav-bg)] backdrop-blur-md border-b border-[var(--nav-border)]"
         role="navigation"
         aria-label="Main navigation"
       >
@@ -113,7 +94,7 @@ export function Navbar() {
                   H
                 </span>
               </div>
-              <span className={`font-display font-bold text-[15px] tracking-tight transition-colors duration-300 ${logoTextCls}`}>
+              <span className="font-display font-bold text-[15px] tracking-tight transition-colors duration-300 text-[var(--ink)]">
                 HERE OPEN
               </span>
             </a>
@@ -134,13 +115,7 @@ export function Navbar() {
 
             {/* Desktop CTA + theme */}
             <div className="hidden xl:flex items-center gap-3">
-              <ThemeToggle
-                className={
-                  onDarkChrome
-                    ? 'border-white/25 text-white/80 hover:text-white'
-                    : 'border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]'
-                }
-              />
+              <ThemeToggle className="border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]" />
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, '#contact')}
@@ -152,18 +127,10 @@ export function Navbar() {
 
             {/* Mobile Toggle */}
             <div className="xl:hidden flex items-center gap-2">
-              <ThemeToggle
-                className={
-                  onDarkChrome
-                    ? 'border-white/25 text-white/80 hover:text-white'
-                    : 'border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]'
-                }
-              />
+              <ThemeToggle className="border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]" />
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className={`icon-btn p-2 transition-colors ${
-                  onDarkChrome ? 'text-white/80 hover:text-white' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
-                }`}
+                className="icon-btn p-2 transition-colors text-[var(--ink)] hover:text-[var(--accent)]"
                 aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMobileOpen}
               >
@@ -198,7 +165,7 @@ export function Navbar() {
                       className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                         isActive
                           ? 'text-[var(--accent)] bg-[var(--a0A)]'
-                          : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--glass)]'
+                          : 'text-[var(--ink)] hover:text-[var(--accent)] hover:bg-[var(--glass)]'
                       }`}
                     >
                       {link.label}

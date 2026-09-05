@@ -24,7 +24,7 @@ export function WhatsAppFloat() {
       </AnimatePresence>
 
       <motion.a
-        href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%27m%20interested%20in%20HERE%20OPEN"
+        href="https://wa.me/919060038229?text=Hi%2C%20I%27m%20interested%20in%20HERE%20OPEN"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"

@@ -48,10 +48,10 @@
 
   /* Ink */
   --ink:       #000000;
-  --ink-2:     #333333;
-  --ink-muted: #666666;
-  --ink-dim:   #555555;
-  --ink-faint: #B8BEC6;
+  --ink-2:     #000000;
+  --ink-muted: #000000;
+  --ink-dim:   #000000;
+  --ink-faint: #000000;
   --ink-a10:   rgba(0, 0, 0, 0.1);
 
   /* Screen/device surfaces (identical in both themes) */
@@ -88,7 +88,7 @@
   --color-off-white:    #EAEDEB;
   --color-black:        #000000;
   --color-dark-text:    #000000;
-  --color-body-text:    #333333;
+  --color-body-text:    #000000;
 }
 
 :root[data-theme='dark'] {

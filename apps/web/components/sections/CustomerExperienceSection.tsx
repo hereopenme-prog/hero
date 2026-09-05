@@ -78,7 +78,8 @@ export function CustomerExperienceSection() {
           eyebrow="CUSTOMER EXPERIENCE"
           title="KNOW BEFORE YOU GO."
           titleAccent="WEB-FIRST. NO APP NEEDED."
-          description="A connected business visibility experience ΓÇö accessible to anyone, without downloading anything."
+          description="A connected business visibility experience — accessible to anyone, without downloading anything."
+          accent="light"
         />
 
         {/* Main visual: 4-screen journey */}

@@ -91,13 +91,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-[var(--border)] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-[0.78rem] text-[var(--ink-dim)]">
-            &copy; {new Date().getFullYear()} HERE OPEN. All rights reserved.
-          </p>
-        </div>
       </div>
     </footer>
   );

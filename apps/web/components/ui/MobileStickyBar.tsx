@@ -41,7 +41,7 @@ export function MobileStickyBar() {
           Get Started
         </button>
         <a
-          href="https://wa.me/91XXXXXXXXXX"
+          href="https://wa.me/919060038229"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"

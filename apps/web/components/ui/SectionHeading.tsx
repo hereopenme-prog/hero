@@ -9,7 +9,7 @@ interface SectionHeadingProps {
   description?: string;
   align?: 'left' | 'center';
   size?: 'md' | 'lg';
-  accent?: 'green' | 'mint';
+  accent?: 'green' | 'mint' | 'light';
   className?: string;
 }
 
@@ -37,8 +37,10 @@ export function SectionHeading({
   const accentWords = titleAccent ? titleAccent.split(' ') : [];
 
   const isMint = accent === 'mint';
-  const accentHex = isMint ? 'var(--accent-2)' : 'var(--accent)';
-  const accentFade = isMint ? 'var(--accent-2)' : '#00B4D8';
+  const isLight = accent === 'light';
+  const accentHex = isLight ? 'var(--brand-accent)' : isMint ? 'var(--accent-2)' : 'var(--accent)';
+  const accentFade = isLight ? '#00B4D8' : isMint ? 'var(--accent-2)' : '#00B4D8';
+  const titleColorCls = isLight ? 'text-[var(--brand-ink)]' : 'text-[var(--accent)]';
 
   const titleClasses =
     size === 'lg'
@@ -46,8 +48,8 @@ export function SectionHeading({
       : 'mt-6 font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em]';
   const descClasses =
     size === 'lg'
-      ? 'mt-6 font-body text-lg lg:text-xl text-[var(--ink-muted)] leading-relaxed max-w-[660px]'
-      : 'mt-5 font-body text-base lg:text-[1.0625rem] text-[var(--ink-muted)] leading-relaxed max-w-[620px]';
+      ? `mt-6 font-body text-lg lg:text-xl ${isLight ? 'text-[var(--brand-ink-muted)]' : 'text-[var(--ink-muted)]'} leading-relaxed max-w-[660px]`
+      : `mt-5 font-body text-base lg:text-[1.0625rem] ${isLight ? 'text-[var(--brand-ink-muted)]' : 'text-[var(--ink-muted)]'} leading-relaxed max-w-[620px]`;
 
   return (
     <div className={`mb-16 lg:mb-20 ${align === 'center' ? 'text-center' : ''} ${className}`}>
@@ -57,8 +59,8 @@ export function SectionHeading({
             align === 'center' ? 'mx-auto' : ''
           }`}
           style={{
-            background: isMint ? 'var(--a2-12)' : 'var(--a20)',
-            borderColor: isMint ? 'var(--a2-36)' : 'var(--a40)',
+            background: isLight ? 'var(--brand-a20)' : isMint ? 'var(--a2-12)' : 'var(--a20)',
+            borderColor: isLight ? 'var(--brand-a40)' : isMint ? 'var(--a2-36)' : 'var(--a40)',
           }}
         >
           <span
@@ -79,7 +81,7 @@ export function SectionHeading({
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
         variants={headingContainer}
-        className={`${titleClasses} text-[var(--accent)] leading-tight ${
+        className={`${titleClasses} ${titleColorCls} leading-tight ${
           align === 'center' ? 'mx-auto max-w-[820px]' : ''
         }`}
       >
