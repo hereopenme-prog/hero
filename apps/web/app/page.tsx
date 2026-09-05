@@ -5,9 +5,7 @@ import { TrustStrip } from '@/components/sections/TrustStrip';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { SolutionSection } from '@/components/sections/SolutionSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
-import { MonitoringSection } from '@/components/sections/MonitoringSection';
 import { SecuritySection } from '@/components/sections/SecuritySection';
-import { FireSafetySection } from '@/components/sections/FireSafetySection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { BusinessSection } from '@/components/sections/BusinessSection';
 import { CustomersSection } from '@/components/sections/CustomersSection';
@@ -37,9 +35,7 @@ export default function HomePage() {
         <ProblemSection />
         <SolutionSection />
         <HowItWorksSection />
-        <MonitoringSection />
         <SecuritySection />
-        <FireSafetySection />
         <FeaturesSection />
         <BusinessSection />
         <CustomersSection />
