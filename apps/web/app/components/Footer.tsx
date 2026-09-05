@@ -34,7 +34,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3.5 py-2 rounded-lg text-[13px] font-medium text-black hover:text-green-action hover:bg-green-light transition-all duration-200"
+                className="link-hover-x px-3.5 py-2 rounded-lg text-[13px] font-medium text-black hover:text-green-action hover:bg-green-light transition-all duration-200"
               >
                 {link.label}
               </Link>
@@ -49,11 +49,11 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6">
             {legalLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-caption text-black hover:text-green-action transition-colors">
+              <Link key={link.href} href={link.href} className="link-hover-x text-caption text-black hover:text-green-action transition-colors">
                 {link.label}
               </Link>
             ))}
-            <Link href="/#waitlist" className="px-4 py-2 bg-green-action text-white text-[12px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green">
+            <Link href="/#waitlist" className="active:scale-[0.97] px-4 py-2 bg-green-action text-white text-[12px] font-bold rounded-lg hover:bg-green-forest transition-all duration-200 shadow-green">
               Get Early Access
             </Link>
           </div>

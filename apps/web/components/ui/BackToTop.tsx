@@ -24,10 +24,12 @@ export function BackToTop() {
           transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
           whileHover={{
             y: -2,
+            rotate: 5,
             borderColor: '#00D08460',
             backgroundColor: '#16232F',
-            transition: { duration: 0.2, ease: 'easeOut' },
+            transition: { duration: 0.15, ease: 'easeOut' },
           }}
+          whileTap={{ scale: 0.92 }}
           className="group fixed bottom-24 left-4 sm:bottom-6 sm:left-6 z-40 w-[44px] h-[44px] bg-[#0F1923] border border-[#1C2A38] rounded-xl flex items-center justify-center"
         >
           <ArrowUp size={18} className="text-[#6B7C8E] group-hover:text-[#00D084] transition-colors duration-200" />

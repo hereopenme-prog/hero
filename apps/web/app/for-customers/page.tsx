@@ -86,7 +86,7 @@ function Hero() {
         >
           <Link
             href="/download"
-            className="inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-display font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_#00B4D840]"
+            className="active:scale-[0.97] inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-display font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_#00B4D840]"
             style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)', color: '#080C10' }}
           >
             Download App (Coming Soon) <ArrowRight className="ml-2" size={16} />
@@ -432,10 +432,12 @@ function NotifyForm() {
               </div>
             </div>
 
-            <button
+            <motion.button
               type="button"
               onClick={handleSubmit}
               disabled={isLoading}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.1 }}
               className="w-full py-3.5 rounded-[10px] font-display font-semibold text-base transition-all duration-[220ms] text-[#080C10] disabled:opacity-70 disabled:cursor-not-allowed hover:brightness-[1.08] hover:-translate-y-[1px] hover:shadow-[0_8px_32px_#00D08440]"
               style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)' }}
             >
@@ -447,7 +449,7 @@ function NotifyForm() {
               ) : (
                 'Notify me when the app launches'
               )}
-            </button>
+            </motion.button>
 
             {error && (
               <p className="flex items-center gap-2 text-[0.85rem] text-[#FF4444]">

@@ -89,7 +89,7 @@ export default function FAQPage() {
             </p>
             <a
               href="/contact"
-              className="bg-green-action text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity inline-block"
+              className="active:scale-[0.97] bg-green-action text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-all inline-block"
             >
               Contact Us
             </a>

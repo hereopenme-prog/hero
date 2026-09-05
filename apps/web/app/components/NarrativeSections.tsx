@@ -1059,19 +1059,19 @@ export function FinalCTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
               href="#waitlist"
-              className="cta-pulse inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
+              className="cta-pulse active:scale-[0.97] inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest transition-all duration-200 shadow-green hover:shadow-green"
             >
               Join Waitlist <ArrowRight size={16} />
             </Link>
             <Link
               href="/for-businesses"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
+              className="active:scale-[0.97] inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all duration-200"
             >
               For Businesses
             </Link>
             <Link
               href="/for-customers"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all"
+              className="active:scale-[0.97] inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light transition-all duration-200"
             >
               For Customers
             </Link>
@@ -1168,7 +1168,7 @@ export function FaqSection() {
             href="https://wa.me/91XXXXXXXXXX"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-2 text-[0.9rem] text-[#00D084] font-medium hover:text-[#00D084]/80 transition-colors"
+            className="link-hover-x inline-flex items-center gap-2 mt-2 text-[0.9rem] text-[#00D084] font-medium hover:text-[#00D084]/80 transition-colors"
           >
             Talk to us on WhatsApp
             <MessageCircle size={16} />

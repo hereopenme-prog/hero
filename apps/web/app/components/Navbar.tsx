@@ -80,7 +80,7 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`nav-link py-2 px-3.5 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
+                    className={`nav-link link-hover-x py-2 px-3.5 rounded-lg text-[13px] font-medium transition-colors duration-200 ${
                       isActive ? 'nav-link-active text-green-action' : 'text-neutral-700 hover:text-black'
                     }`}
                   >
@@ -94,7 +94,7 @@ export function Navbar() {
             <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/#waitlist"
-                className="btn-shimmer inline-flex items-center px-5 py-2.5 bg-green-action text-white text-[13px] font-bold rounded-lg hover:bg-green-forest transition-all shadow-green hover:shadow-green"
+                className="btn-shimmer active:scale-[0.97] inline-flex items-center px-5 py-2.5 bg-green-action text-white text-[13px] font-bold rounded-lg hover:bg-green-forest transition-all duration-200 shadow-green hover:shadow-green"
               >
                 Get Early Access
               </Link>
@@ -103,7 +103,7 @@ export function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="lg:hidden p-2 text-neutral-700 hover:text-black transition-colors"
+              className="lg:hidden icon-btn p-2 text-neutral-700 hover:text-black transition-colors"
               aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileOpen}
             >
@@ -133,7 +133,7 @@ export function Navbar() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                      className={`link-hover-x block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                         isActive
                           ? 'text-green-action bg-green-action/[0.08]'
                           : 'text-neutral-700 hover:text-black hover:bg-green-light'
@@ -147,7 +147,7 @@ export function Navbar() {
               <div className="container-site pt-2">
                 <Link
                   href="/#waitlist"
-                  className="btn-shimmer block text-center py-3 bg-green-action text-white text-sm font-bold rounded-lg shadow-green"
+                  className="btn-shimmer active:scale-[0.97] block text-center py-3 bg-green-action text-white text-sm font-bold rounded-lg shadow-green"
                 >
                   Get Early Access
                 </Link>

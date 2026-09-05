@@ -116,13 +116,13 @@ function Hero() {
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Link
                   href="#waitlist"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest hover:-translate-y-0.5 transition-all duration-200 shadow-green hover:shadow-green-lg"
+                  className="active:scale-[0.97] inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-green-action text-white text-[15px] font-bold rounded-lg hover:bg-green-forest hover:-translate-y-0.5 transition-all duration-200 shadow-green hover:shadow-green-lg"
                 >
                   Join Waitlist <ArrowRight size={16} />
                 </Link>
                 <Link
                   href="/how-it-works"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light hover:-translate-y-0.5 transition-all duration-200"
+                  className="active:scale-[0.97] inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-neutral-200 text-black text-[15px] font-medium rounded-lg hover:border-green-action/30 hover:bg-green-light hover:-translate-y-0.5 transition-all duration-200"
                 >
                   See How It Works
                 </Link>
@@ -150,7 +150,16 @@ function Hero() {
 
           {/* Right — Device Visual */}
           <div className="relative flex justify-center lg:justify-end">
-            <DeviceVisual theme="light" />
+            <motion.div
+              whileHover={{
+                scale: 1.02,
+                boxShadow: '0 0 60px #00D08425, 0 32px 80px rgba(0,0,0,0.7)',
+              }}
+              transition={{ duration: 0.3 }}
+              className="rounded-3xl"
+            >
+              <DeviceVisual theme="light" />
+            </motion.div>
           </div>
         </div>
       </Container>
@@ -578,9 +587,9 @@ function TargetSection() {
             Don&apos;t see your business type?{' '}
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 text-[#00D084] hover:text-[#00D084]/80 transition-colors"
+              className="group link-hover-x inline-flex items-center gap-1.5 text-[#00D084] hover:text-[#00D084]/80 transition-colors"
             >
-              Tell us and we&apos;ll add it <ArrowRight size={14} className="inline" />
+              Tell us and we&apos;ll add it <ArrowRight size={14} className="inline arrow-slide" />
             </Link>
           </p>
         </AnimatedSection>

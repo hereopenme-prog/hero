@@ -33,7 +33,7 @@ export function MobileStickyBar() {
         <button
           type="button"
           onClick={handleJoin}
-          className="flex-1 rounded-[10px] px-4 font-display font-semibold text-[0.9rem] text-[#080C10] transition-transform duration-200 active:scale-[0.98]"
+          className="flex-1 rounded-[10px] px-4 font-display font-semibold text-[0.9rem] text-[#080C10] transition-transform duration-200 active:scale-[0.97]"
           style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)', padding: '14px' }}
         >
           Join Waitlist
@@ -43,7 +43,7 @@ export function MobileStickyBar() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="w-[52px] flex-shrink-0 rounded-[10px] bg-[#25D366] flex items-center justify-center"
+          className="icon-btn w-[52px] flex-shrink-0 rounded-[10px] bg-[#25D366] flex items-center justify-center"
           style={{ padding: '14px' }}
         >
           <MessageCircle size={24} className="text-white" />

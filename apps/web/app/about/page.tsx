@@ -215,7 +215,7 @@ function FounderSection() {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="group w-9 h-9 rounded-[10px] bg-[#0F1923] border border-[#1C2A38] flex items-center justify-center hover:border-[#00D08460] hover:bg-[#16232F] transition-all duration-200 hover:-translate-y-0.5"
+                    className="group icon-btn w-9 h-9 rounded-[10px] bg-[#0F1923] border border-[#1C2A38] flex items-center justify-center hover:border-[#00D08460] hover:bg-[#16232F] transition-all duration-200 hover:-translate-y-0.5"
                   >
                     {s.icon}
                   </a>
@@ -349,10 +349,10 @@ function RoadmapPreviewSection() {
         <AnimatedSection className="text-center mt-8">
           <Link
             href="/roadmap"
-            className="inline-flex items-center gap-2 font-body font-medium text-[0.9rem] text-[#00D084] hover:text-[#00D084]/80 transition-colors"
+            className="group link-hover-x inline-flex items-center gap-2 font-body font-medium text-[0.9rem] text-[#00D084] hover:text-[#00D084]/80 transition-colors"
           >
             See the full roadmap
-            <ArrowRight size={14} />
+            <ArrowRight size={14} className="arrow-slide" />
           </Link>
         </AnimatedSection>
       </Container>
@@ -379,14 +379,14 @@ function CtaSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-9">
             <Link
               href="/download"
-              className="inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-display font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_#00D08440]"
+              className="active:scale-[0.97] inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-display font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_#00D08440]"
               style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)', color: '#080C10' }}
             >
               Join Waitlist <ArrowRight className="ml-2" size={16} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg px-7 py-3.5 border border-[#1C2A38] font-body font-medium text-[15px] text-[#E8EDF2] transition-all duration-200 hover:border-[#00D084]/50 hover:bg-[#16232F] hover:-translate-y-0.5"
+              className="active:scale-[0.97] inline-flex items-center justify-center rounded-lg px-7 py-3.5 border border-[#1C2A38] font-body font-medium text-[15px] text-[#E8EDF2] transition-all duration-200 hover:border-[#00D084]/50 hover:bg-[#16232F] hover:-translate-y-0.5"
             >
               Contact Us
             </Link>

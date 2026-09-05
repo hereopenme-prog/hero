@@ -6,6 +6,7 @@ import { ScrollProgress } from './components/ScrollProgress';
 import { MobileStickyBar } from '@/components/ui/MobileStickyBar';
 import { WhatsAppFloat } from '@/components/ui/WhatsAppFloat';
 import { BackToTop } from '@/components/ui/BackToTop';
+import { PageTransition } from '@/components/ui/PageTransition';
 import { StructuredData } from '@/components/seo/StructuredData';
 import './globals.css';
 
@@ -230,7 +231,7 @@ export default function RootLayout({
         <ScrollProgress />
         <Navbar />
         <div className="pt-[72px] lg:pt-[80px]">
-          {children}
+          <PageTransition>{children}</PageTransition>
         </div>
         <Footer />
         <MobileStickyBar />

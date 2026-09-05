@@ -19,9 +19,9 @@ export default function DownloadPage() {
         <div className="pt-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-black transition-colors"
+            className="group link-hover-x inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-black transition-colors"
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={16} className="arrow-slide-left" />
             Back to Home
           </Link>
         </div>

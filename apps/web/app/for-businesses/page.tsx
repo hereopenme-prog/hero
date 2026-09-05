@@ -90,7 +90,7 @@ function Hero() {
             >
               <Link
                 href="#waitlist"
-                className="inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-display font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_#00D08440]"
+                className="active:scale-[0.97] inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-display font-semibold text-[15px] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_#00D08440]"
                 style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)', color: '#080C10' }}
               >
                 Register Your Business <ArrowRight className="ml-2" size={16} />
@@ -321,7 +321,7 @@ function PricingSection() {
       cta: (
         <Link
           href="/download"
-          className="block text-center rounded-lg px-6 py-3 border border-[#1C2A38] font-body font-medium text-[0.9rem] text-[#E8EDF2] transition-all duration-200 hover:border-[#00D084]/50 hover:bg-[#16232F]"
+          className="active:scale-[0.97] block text-center rounded-lg px-6 py-3 border border-[#1C2A38] font-body font-medium text-[0.9rem] text-[#E8EDF2] transition-all duration-200 hover:border-[#00D084]/50 hover:bg-[#16232F]"
         >
           Join Waitlist
         </Link>
@@ -340,7 +340,7 @@ function PricingSection() {
       cta: (
         <Link
           href="/download"
-          className="block text-center rounded-lg px-6 py-3 font-display font-semibold text-[0.95rem] text-[#080C10] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_8px_32px_#00D08440]"
+          className="active:scale-[0.97] block text-center rounded-lg px-6 py-3 font-display font-semibold text-[0.95rem] text-[#080C10] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_8px_32px_#00D08440]"
           style={{ background: 'linear-gradient(135deg, #00D084, #00B4D8)' }}
         >
           Join Waitlist
@@ -360,7 +360,7 @@ function PricingSection() {
       cta: (
         <Link
           href="/contact"
-          className="block text-center rounded-lg px-6 py-3 border border-[#00B4D840] font-body font-medium text-[0.9rem] text-[#00B4D8] transition-all duration-200 hover:border-[#00B4D8] hover:bg-[#00B4D80A]"
+          className="active:scale-[0.97] block text-center rounded-lg px-6 py-3 border border-[#00B4D840] font-body font-medium text-[0.9rem] text-[#00B4D8] transition-all duration-200 hover:border-[#00B4D8] hover:bg-[#00B4D80A]"
         >
           Talk To Us
         </Link>

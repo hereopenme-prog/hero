@@ -32,10 +32,12 @@ export function WhatsAppFloat() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 2, duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
         whileHover={{
-          scale: 1.08,
+          scale: 1.1,
+          rotate: 5,
           boxShadow: '0 6px 30px rgba(37, 211, 102, 0.5)',
-          transition: { duration: 0.2, ease: 'easeOut' },
+          transition: { duration: 0.15, ease: 'easeOut' },
         }}
+        whileTap={{ scale: 0.92 }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className="relative w-[52px] h-[52px] rounded-full bg-[#25D366] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)]"

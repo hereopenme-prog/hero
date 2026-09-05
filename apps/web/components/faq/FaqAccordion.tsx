@@ -22,7 +22,12 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
         return (
           <div
             key={item.question}
-            style={{ borderBottom: isOpen ? '1px solid #00D08430' : '1px solid #1C2A38' }}
+            className="accordion-row"
+            style={{
+              borderBottom: isOpen ? '1px solid #00D08430' : '1px solid #1C2A38',
+              borderLeft: '3px solid #00D08400',
+              borderLeftColor: isOpen ? '#00D084' : undefined,
+            }}
           >
             <button
               type="button"
