@@ -5,17 +5,18 @@ import Link from 'next/link';
 import { motion, useInView, useScroll, type Variants } from 'framer-motion';
 import {
   Store, Users, Eye, Bell, Shield, Smartphone, Zap, ArrowRight,
-  AlertTriangle, Wifi, UtensilsCrossed, Pill, Scissors, Wrench,
-  ShoppingBag, Building2, GraduationCap, Bed, Warehouse, MapPin, Cpu, TrendingUp, Network,
+  AlertTriangle, Wifi, UtensilsCrossed, Scissors, Wrench,
+  ShoppingBag, Building2, GraduationCap, MapPin, Cpu, TrendingUp, Network, Cross,
   Lock, Award, Layers, Flame, MessageCircle, MessageSquare, Megaphone, Server, Radio, Plug,
-  Workflow, Heart, ToggleRight, BellRing, ShieldCheck, LayoutGrid, BarChart2,
-  Clock, Compass, Tag, CheckCircle, Map, LineChart, X,
+  Workflow, Heart, ToggleRight, BellRing, ShieldCheck, LayoutGrid, BarChart2, ShoppingCart,
+  Clock, Compass, Tag, CheckCircle, Map, LineChart, X, Hotel, Package, ArrowDown,
 } from 'lucide-react';
 import { Container } from './Container';
 import { SectionHeader } from './SectionHeader';
 import { Reveal } from './Reveal';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { slideLeft, slideRight } from '@/lib/animations';
+import { CountUp } from '@/components/ui/CountUp';
+import { slideLeft, slideRight, scaleIn, fadeUp, stagger } from '@/lib/animations';
 import { FaqAccordion } from '@/components/faq/FaqAccordion';
 
 /* ═══════════════════════════════════════════════════════
@@ -505,53 +506,93 @@ export function CustomerBenefitsSection() {
    7. MARKET OPPORTUNITY
    ═══════════════════════════════════════════════════════ */
 
-const targetMarkets = [
-  { icon: <ShoppingBag className="w-5 h-5" />, name: 'Retail' },
-  { icon: <UtensilsCrossed className="w-5 h-5" />, name: 'Restaurants' },
-  { icon: <Pill className="w-5 h-5" />, name: 'Pharmacies' },
-  { icon: <Heart className="w-5 h-5" />, name: 'Clinics' },
-  { icon: <Scissors className="w-5 h-5" />, name: 'Salons' },
-  { icon: <Wrench className="w-5 h-5" />, name: 'Service Centers' },
-  { icon: <ShoppingBag className="w-5 h-5" />, name: 'Grocery' },
-  { icon: <Building2 className="w-5 h-5" />, name: 'Shopping Centers' },
-  { icon: <GraduationCap className="w-5 h-5" />, name: 'Education' },
-  { icon: <Bed className="w-5 h-5" />, name: 'Hospitality' },
-  { icon: <Warehouse className="w-5 h-5" />, name: 'Warehouses' },
-  { icon: <Building2 className="w-5 h-5" />, name: 'Multi-Location Businesses' },
+const marketStats = [
+  { to: 63, suffix: 'M+', prefix: '', label: 'Registered MSMEs in India', sub: 'Potential businesses to connect' },
+  { to: 500, suffix: 'M+', prefix: '', label: 'Customers shop locally', sub: 'Who need live shop status' },
+  { to: 1, suffix: 'T+', prefix: '₹', label: 'Local commerce opportunity', sub: 'Across retail, food, health, services' },
 ];
+
+const targetMarkets = [
+  { icon: <ShoppingBag size={16} strokeWidth={1.5} />, name: 'Retail' },
+  { icon: <UtensilsCrossed size={16} strokeWidth={1.5} />, name: 'Restaurants' },
+  { icon: <Cross size={16} strokeWidth={1.5} />, name: 'Pharmacies' },
+  { icon: <Heart size={16} strokeWidth={1.5} />, name: 'Clinics' },
+  { icon: <Scissors size={16} strokeWidth={1.5} />, name: 'Salons' },
+  { icon: <Wrench size={16} strokeWidth={1.5} />, name: 'Service Centers' },
+  { icon: <ShoppingCart size={16} strokeWidth={1.5} />, name: 'Grocery' },
+  { icon: <Building2 size={16} strokeWidth={1.5} />, name: 'Shopping Centers' },
+  { icon: <GraduationCap size={16} strokeWidth={1.5} />, name: 'Education' },
+  { icon: <Hotel size={16} strokeWidth={1.5} />, name: 'Hospitality' },
+  { icon: <Package size={16} strokeWidth={1.5} />, name: 'Warehouses' },
+  { icon: <LayoutGrid size={16} strokeWidth={1.5} />, name: 'Multi-Location' },
+];
+
+const chipStaggerContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
 
 export function MarketSection() {
   return (
-    <section id="market" className="section relative">
-      <div className="absolute inset-0 bg-neutral-50" />
+    <section id="market" className="section bg-surface-base relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,208,132,0.05)_0%,transparent_60%)] pointer-events-none" />
       <Container className="relative z-10">
-        <SectionHeader
-          eyebrow="Market Opportunity"
-          title="The Next Layer"
-          titleAccent="Of Physical Commerce"
-          description="Every physical business on the planet runs on one silent question: are you open? HERE OPEN is building the connected answer."
-        />
+        <AnimatedSection className="text-center mb-14">
+          <div className="text-xs font-medium text-[#00D084] tracking-[0.1em] mb-5">Market Opportunity</div>
+          <h2 className="font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em] text-[#E8EDF2] leading-tight">
+            The Next Layer <span className="text-[#00D084]">Of Physical Commerce</span>
+          </h2>
+          <p className="mt-5 text-base text-[#6B7C8E] max-w-[520px] mx-auto leading-relaxed">
+            Every physical business on the planet runs on one silent question: are you open? HERE OPEN is building the connected answer.
+          </p>
+        </AnimatedSection>
 
-        <Reveal>
-          <div className="max-w-3xl mx-auto mb-12">
-            <p className="text-body-lg text-black leading-relaxed text-center">
-              The market opportunity lies in connecting large, established industries — retail, food, healthcare, services, hospitality, warehousing, and education — to a real-time digital awareness layer. Wherever people visit a physical location, the need for live status, safety, and direct communication exists. HERE OPEN is positioned to serve this infrastructure across every vertical, without relying on a single geography or industry.
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {targetMarkets.map((m, i) => (
-            <Reveal key={i} delay={(i % 4) * 60} className="h-full">
-              <div className="card-static flex items-center gap-3 py-4 px-5 h-full hover:border-green-action/30 transition-colors">
-                <div className="w-9 h-9 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action flex-shrink-0">
-                  {m.icon}
-                </div>
-                <span className="text-[13px] font-medium text-black">{m.name}</span>
-              </div>
-            </Reveal>
+        <AnimatedSection
+          variant={stagger}
+          delay={0.1}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-14"
+        >
+          {marketStats.map((s) => (
+            <motion.div
+              key={s.label}
+              variants={scaleIn}
+              className="h-full bg-surface-card border border-surface-border border-t-2 border-t-[#00D084] rounded-2xl p-7"
+            >
+              <CountUp
+                to={s.to}
+                prefix={s.prefix}
+                suffix={s.suffix}
+                className="font-display font-bold text-[2.5rem] text-[#00D084] leading-none"
+              />
+              <p className="font-display font-semibold text-[0.9rem] text-[#E8EDF2] mt-2">{s.label}</p>
+              <p className="font-body text-[0.8rem] text-[#6B7C8E] mt-1">{s.sub}</p>
+            </motion.div>
           ))}
-        </div>
+        </AnimatedSection>
+
+        <AnimatedSection
+          variant={chipStaggerContainer}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          {targetMarkets.map((m, i) => (
+            <motion.div
+              key={i}
+              variants={scaleIn}
+              className="group flex items-center gap-[10px] px-5 py-3 rounded-[10px] bg-surface-card border border-surface-border transition-all duration-200 hover:-translate-y-0.5 hover:border-[#00D08450] hover:bg-surface-hover"
+            >
+              <span className="text-[#6B7C8E] group-hover:text-[#00D084] transition-colors duration-200 flex-shrink-0">
+                {m.icon}
+              </span>
+              <span className="font-body font-medium text-[0.875rem] text-[#E8EDF2]">{m.name}</span>
+            </motion.div>
+          ))}
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.05} className="mt-14 max-w-[640px] mx-auto">
+          <p className="font-body text-[1rem] text-[#6B7C8E] leading-[1.8] text-center">
+            The market opportunity lies in connecting large, established industries — retail, food, healthcare, services, hospitality, warehousing, and education — to a real-time digital awareness layer. Wherever people visit a physical location, the need for live status, safety, and direct communication exists.
+          </p>
+        </AnimatedSection>
       </Container>
     </section>
   );
@@ -779,51 +820,218 @@ export function WhySection() {
    11. FUTURE VISION
    ═══════════════════════════════════════════════════════ */
 
-const visionLayers = [
-  { icon: <Building2 size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Physical Businesses' },
-  { icon: <Cpu size={24} className="text-[#00B4D8]" strokeWidth={1.5} />, label: 'IoT Devices' },
-  { icon: <Users size={24} className="text-[#00D084]" strokeWidth={1.5} />, label: 'Customers' },
+const visionNodes = [
+  {
+    key: 'business',
+    icon: <Building2 size={24} className="text-[#00D084]" strokeWidth={1.5} />,
+    label: 'Physical\nBusinesses',
+    variant: slideLeft,
+    position: 'absolute left-[10%] top-1/2 -translate-y-1/2 z-10',
+  },
+  {
+    key: 'iot',
+    icon: <Cpu size={24} className="text-[#00B4D8]" strokeWidth={1.5} />,
+    label: 'IoT\nDevices',
+    variant: fadeUp,
+    position: 'absolute left-1/2 top-[12%] -translate-x-1/2 -translate-y-1/2 z-10',
+  },
+  {
+    key: 'customers',
+    icon: <Users size={24} className="text-[#00D084]" strokeWidth={1.5} />,
+    label: 'Customers',
+    variant: slideRight,
+    position: 'absolute right-[10%] top-1/2 -translate-y-1/2 z-10',
+  },
 ];
 
-export function VisionSection() {
+const visionConnectors = [
+  { id: 'iot', x1: 100, y1: 12, x2: 100, y2: 50, delay: 0 },
+  { id: 'business', x1: 20, y1: 50, x2: 100, y2: 50, delay: 0.66 },
+  { id: 'customers', x1: 180, y1: 50, x2: 100, y2: 50, delay: 1.33 },
+];
+
+function VisionCoreNode() {
   return (
-    <section id="vision" className="section relative overflow-hidden">
-      <div className="absolute inset-0 bg-neutral-50" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse,rgba(0,255,102,0.04)_0%,transparent_60%)] pointer-events-none" />
+    <div
+      className="relative w-[120px] h-[120px] rounded-full flex items-center justify-center"
+      style={{
+        background: 'linear-gradient(135deg, #00D084, #00B4D8)',
+        boxShadow: '0 0 60px #00D08430',
+      }}
+    >
+      <span className="radar-ring" style={{ inset: '-2px' }} />
+      <span className="radar-ring" style={{ inset: '-2px', animationDelay: '1s' }} />
+      <span className="relative z-10 font-display font-bold text-white text-center whitespace-pre-line leading-tight tracking-[0.08em] text-[0.9rem]">
+        {'HERE\nOPEN'}
+      </span>
+    </div>
+  );
+}
+
+export function VisionSection() {
+  const diagramRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(diagramRef, { once: true, amount: 0.2 });
+
+  return (
+    <section id="vision" className="section bg-surface-base relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.05)_0%,transparent_60%)] pointer-events-none" />
       <Container className="relative z-10">
-        <div className="text-center mb-10">
-          <div className="eyebrow mx-auto mb-6">Future Vision</div>
-          <h2 className="font-display font-extrabold text-green-forest text-display-lg tracking-tight mb-5">
+        <AnimatedSection className="text-center mb-14">
+          <div className="text-xs font-medium text-[#00D084] tracking-[0.1em] mb-5">Future Vision</div>
+          <h2 className="font-display font-bold text-[1.8rem] lg:text-[2.5rem] tracking-[-0.025em] text-[#E8EDF2] leading-tight">
             The Real-Time Digital Layer
             <br />
-            <span className="text-green-action">For Physical Commerce</span>
+            <span className="text-[#00D084]">For Physical Commerce</span>
           </h2>
-          <p className="text-body-lg text-black max-w-[560px] mx-auto leading-relaxed">
+          <p className="mt-5 text-base text-[#6B7C8E] max-w-[560px] mx-auto leading-relaxed">
             HERE OPEN is building a connected layer where physical businesses, IoT infrastructure, and customers move on the same real-time signal — making every shop discoverable, safe, and reachable.
           </p>
+        </AnimatedSection>
+
+        <div ref={diagramRef}>
+          {/* Desktop diagram */}
+          <div className="relative hidden lg:block aspect-[2/1] max-w-[880px] mx-auto">
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 200 100"
+              preserveAspectRatio="none"
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="visionFlow" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#00D084" />
+                  <stop offset="100%" stopColor="#00B4D8" />
+                </linearGradient>
+              </defs>
+              {visionConnectors.map((c) => (
+                <g key={c.id}>
+                  <line
+                    x1={c.x1}
+                    y1={c.y1}
+                    x2={c.x2}
+                    y2={c.y2}
+                    stroke="#1C2A38"
+                    strokeWidth={1}
+                    strokeDasharray="4 4"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                  <line
+                    x1={c.x1}
+                    y1={c.y1}
+                    x2={c.x2}
+                    y2={c.y2}
+                    stroke="url(#visionFlow)"
+                    strokeWidth={1}
+                    strokeDasharray="8 60"
+                    vectorEffect="non-scaling-stroke"
+                    style={{
+                      animation: 'data-flow 2s linear infinite',
+                      animationDelay: `${c.delay}s`,
+                    }}
+                  />
+                  <circle r="4" fill="#00D084">
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      begin={`${c.delay}s`}
+                      path={`M ${c.x1} ${c.y1} L ${c.x2} ${c.y2}`}
+                    />
+                  </circle>
+                </g>
+              ))}
+            </svg>
+
+            {visionNodes.map((n) => (
+              <motion.div
+                key={n.key}
+                variants={n.variant}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
+                transition={{ delay: n.key === 'business' || n.key === 'customers' ? 0.1 : 0.15 }}
+                className={n.position}
+              >
+                <div className="flex flex-col items-center">
+                  <div className="w-20 h-20 rounded-full bg-[#0F1923] border border-[#1C2A38] flex items-center justify-center">
+                    {n.icon}
+                  </div>
+                  <span className="mt-3 font-body font-medium text-[0.875rem] text-[#E8EDF2] text-center whitespace-pre-line leading-tight">
+                    {n.label}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              transition={{ delay: 0.2 }}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+            >
+              <VisionCoreNode />
+            </motion.div>
+          </div>
+
+          {/* Mobile diagram: stacked nodes → arrows → center */}
+          <div className="lg:hidden">
+            <div className="space-y-5 max-w-[400px] mx-auto">
+              {visionNodes.map((n, i) => (
+                <div key={n.key} className="flex items-center gap-5">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : undefined}
+                    transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
+                    className="w-20 h-20 rounded-full bg-[#0F1923] border border-[#1C2A38] flex items-center justify-center flex-shrink-0"
+                  >
+                    {n.icon}
+                  </motion.div>
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : undefined}
+                    transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.1 }}
+                    className="flex-1 font-body font-medium text-[0.875rem] text-[#E8EDF2] whitespace-pre-line leading-tight"
+                  >
+                    {n.label}
+                  </motion.span>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={inView ? { opacity: 1 } : undefined}
+                    transition={{ duration: 0.45, delay: 0.15 + i * 0.1 }}
+                  >
+                    <ArrowRight className="w-6 h-6 text-[#00D084]/60 flex-shrink-0" />
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : undefined}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.35 }}
+              className="flex flex-col items-center my-8"
+            >
+              <span className="h-12 w-px bg-gradient-to-b from-[#00D084]/0 to-[#00D084]/60" />
+              <ArrowDown className="w-5 h-5 text-[#00D084] mt-2" />
+            </motion.div>
+
+            <motion.div
+              variants={scaleIn}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              transition={{ delay: 0.5 }}
+              className="flex justify-center"
+            >
+              <VisionCoreNode />
+            </motion.div>
+          </div>
         </div>
 
-        <Reveal className="max-w-2xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {visionLayers.map((v, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="flex flex-col items-center gap-2 bg-white border border-neutral-200 rounded-2xl px-6 py-5 shadow-card">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: '#00D0841A' }}>
-                    {v.icon}
-                  </div>
-                  <span className="text-[13px] font-semibold text-black text-center leading-tight">{v.label}</span>
-                </div>
-                {i < visionLayers.length - 1 && <ArrowRight className="w-5 h-5 text-neutral-300 hidden sm:block" />}
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal className="mt-10">
-          <p className="text-center text-body-md text-black max-w-[640px] mx-auto leading-relaxed">
+        <AnimatedSection delay={0.3} className="mt-14 max-w-[580px] mx-auto">
+          <p className="text-center font-body text-[1rem] text-[#6B7C8E] leading-[1.8]">
             From a single shop to entire markets, every physical business has the right to be seen, safe, and connected — in real time, everywhere.
           </p>
-        </Reveal>
+        </AnimatedSection>
       </Container>
     </section>
   );
