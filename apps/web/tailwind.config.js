@@ -2,6 +2,8 @@
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
     '../../packages/ui/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -41,10 +43,28 @@ module.exports = {
           text: '#212121',
           body: '#333333',
         },
+        brand: {
+          green: '#00D084',
+          glow: '#00D08440',
+          blue: '#00B4D8',
+          blueMid: '#0077A8',
+        },
+        surface: {
+          base: '#080C10',
+          card: '#0F1923',
+          border: '#1C2A38',
+          hover: '#16232F',
+        },
+        text: {
+          primary: '#E8EDF2',
+          muted: '#6B7C8E',
+          dim: '#3D4F5E',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
       fontSize: {
         'display-xl': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
@@ -85,11 +105,46 @@ module.exports = {
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out forwards',
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        'float': 'float 4s ease-in-out infinite',
+        'scan': 'scan 4s linear infinite',
+        'data-flow': 'data-flow 2.5s linear infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'radar': 'radar 2s ease-out infinite',
+        'blink': 'blink 1.2s step-end infinite',
       },
       keyframes: {
         fadeUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'pulse-glow': {
+          '0%, 100%': { boxShadow: '0 0 0 0 #00D08440', opacity: '1' },
+          '50%': { boxShadow: '0 0 0 12px #00D08400', opacity: '0.7' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'scan': {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(400%)' },
+        },
+        'data-flow': {
+          '0%': { strokeDashoffset: '100' },
+          '100%': { strokeDashoffset: '0' },
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        'radar': {
+          '0%': { transform: 'scale(0.8)', opacity: '0.8' },
+          '100%': { transform: 'scale(2.4)', opacity: '0' },
+        },
+        'blink': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
         },
       },
     },

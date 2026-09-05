@@ -31,6 +31,10 @@
     font-family: 'Inter', system-ui, sans-serif;
   }
 
+  h1, h2, h3, h4 {
+    font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  }
+
   ::selection {
     background-color: var(--color-green-action);
     color: var(--color-white);
@@ -643,4 +647,90 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ── Page fade-in on load ── */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+body {
+  animation: page-enter 0.45s ease-out forwards;
+}
+
+/* ── Shimmer utility ── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #E8EDF2 0%,
+    #00D084 40%,
+    #00B4D8 60%,
+    #E8EDF2 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Scan line effect ── */
+.scan-line::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg, transparent, #00D08460, transparent
+  );
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Glow dot ── */
+.dot-live {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #00D084;
+  box-shadow: 0 0 0 0 #00D08440;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ── Radar ring ── */
+.radar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid #00D08460;
+  animation: radar 2s ease-out infinite;
+}
+
+/* ── Keyframes (design-system theme, mirrored so custom classes animate) ── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 #00D08440; opacity: 1; }
+  50% { box-shadow: 0 0 0 12px #00D08400; opacity: 0.7; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+
+@keyframes data-flow {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes radar {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
 }

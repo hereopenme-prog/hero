@@ -13,6 +13,7 @@
     "@hereopen/config": "*",
     "@hereopen/types": "*",
     "@hereopen/ui": "*",
+    "@radix-ui/react-slot": "^1.3.3",
     "clsx": "^2.1.0",
     "framer-motion": "^13.2.0",
     "lucide-react": "^0.309.0",
