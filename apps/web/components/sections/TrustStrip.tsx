@@ -27,9 +27,9 @@ export function TrustStrip() {
               key={i}
               className={`py-8 text-center ${
                 i % 2 === 1 ? 'border-l border-[#1C2A38]' : ''
-              } ${i > 1 ? 'border-t lg:border-t-0 border-[#1C2A38]' : ''} ${
-                i >= 2 ? 'lg:border-l lg:border-[#1C2A38]' : ''
-              } ${i === 2 ? 'lg:border-l-0' : ''}`}
+              } ${i >= 2 ? 'border-t lg:border-t-0 border-[#1C2A38]' : ''} ${
+                i >= 1 ? 'lg:border-l lg:border-[#1C2A38]' : ''
+              }`}
             >
               <div className="flex items-center justify-center gap-2 mb-1.5">
                 <span className="text-[#00D084]">{item.icon}</span>

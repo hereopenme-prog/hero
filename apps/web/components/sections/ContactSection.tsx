@@ -133,7 +133,7 @@ export function ContactSection() {
                 disabled={status === 'loading'}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00D084] px-6 py-3.5 font-display font-bold text-[0.85rem] tracking-wide text-[#080C10] transition-all duration-300 hover:brightness-[1.06] disabled:opacity-60"
               >
-                {status === 'loading' ? 'Sending…' : 'Send Message'}
+                {status === 'loading' ? 'Sending…' : 'Send Enquiry'}
                 <Send size={15} />
               </button>
 

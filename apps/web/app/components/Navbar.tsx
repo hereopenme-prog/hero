@@ -18,6 +18,8 @@ const navLinks = [
 
 const sectionIds = ['home', 'problem', 'solution', 'how-it-works', 'features', 'businesses', 'customers', 'technology', 'roadmap'];
 
+const mobileLinks = [...navLinks, { href: '#contact', label: 'Contact' }];
+
 const navbarVariants: Variants = {
   top: {
     backgroundColor: 'rgba(8, 12, 16, 0)',
@@ -166,7 +168,7 @@ export function Navbar() {
           >
             <div className="bg-[#0F1923F2] backdrop-blur-md border-b border-[#1C2A38] pb-6">
               <div className="container-site py-4 space-y-1">
-                {navLinks.map((link) => {
+                {mobileLinks.map((link) => {
                   const isActive = activeSection === link.href.replace('#', '');
                   return (
                     <a

@@ -115,7 +115,7 @@ export function MonitoringSection() {
               <span className="w-2 h-2 rounded-full bg-[#FFD166]" />
               <span className="w-2 h-2 rounded-full bg-[#00D084]" />
               <h3 className="ml-3 font-display font-semibold text-[0.85rem] text-[#E8EDF2] tracking-wide">
-                Shop Monitor — LIVE DASHBOARD
+                Shop Monitor — DASHBOARD
               </h3>
             </div>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[#1C2A38] bg-[#080C10] px-3 py-1 font-body text-[10px] font-semibold text-[#6B7C8E] tracking-wider">
