@@ -7,7 +7,7 @@ import {
   Thermometer, Wind, AlertTriangle, Wifi,
   Store, UtensilsCrossed, Pill, Scissors, Wrench, ShoppingBag, Building2, Briefcase
 } from 'lucide-react';
-import { motion, useAnimationControls, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, useInView, type Variants } from 'framer-motion';
 import { Container } from './components/Container';
 import { SectionHeader } from './components/SectionHeader';
 import {
@@ -444,14 +444,88 @@ function DemoSection() {
    24/7 MONITORING
    ═══════════════════════════════════════════════════════ */
 
+function useMonitorCount(target: number, active: boolean, from: number, duration = 1200) {
+  const [value, setValue] = useState(from);
+  useEffect(() => {
+    if (!active) return;
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      setValue(from + Math.round((target - from) * p));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, target, from, duration]);
+  return value;
+}
+
 function MonitoringSection() {
+  const dashboardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(dashboardRef, { once: true, amount: 0.3 });
+  const temp = useMonitorCount(24, inView, 18, 1200);
+
   const monitors = [
-    { icon: <Shield className="w-4 h-4" />, label: 'Security', value: 'Active', ok: true },
-    { icon: <Thermometer className="w-4 h-4" />, label: 'Temperature', value: '24°C', ok: true },
-    { icon: <Wind className="w-4 h-4" />, label: 'Smoke', value: 'Normal', ok: true },
-    { icon: <Activity className="w-4 h-4" />, label: 'Network', value: 'Connected', ok: true },
-    { icon: <Wifi className="w-4 h-4" />, label: 'Device', value: 'Healthy', ok: true },
-    { icon: <Bell className="w-4 h-4" />, label: 'Alerts', value: 'None', ok: true },
+    {
+      icon: <Shield className="w-4 h-4" />,
+      label: 'Security',
+      value: (
+        <span className="flex items-center gap-2">
+          <span className="status-dot-pulse inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
+          Active
+        </span>
+      ),
+    },
+    {
+      icon: <Thermometer className="w-4 h-4" />,
+      label: 'Temperature',
+      value: <>{`${temp}\u00B0C`}</>,
+    },
+    {
+      icon: <Wind className="w-4 h-4" />,
+      label: 'Smoke',
+      value: (
+        <span className="flex items-center gap-2">
+          <motion.span
+            initial={{ opacity: 0.2 }}
+            animate={inView ? { opacity: [0.2, 1, 0.2, 1] } : {}}
+            transition={{ duration: 0.9, delay: 0.15 }}
+            className="inline-block w-1.5 h-1.5 rounded-full bg-green-action"
+          />
+          Normal
+        </span>
+      ),
+    },
+    {
+      icon: <Activity className="w-4 h-4" />,
+      label: 'Network',
+      value: (
+        <span className="flex items-center gap-2">
+          Connected
+          <svg className="wifi-signal w-4 h-4 text-green-action" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+            <path d="M5 12.5a10 10 0 0 1 14 0" />
+            <path d="M8.5 16a5.5 5.5 0 0 1 7 0" />
+            <path d="M12 19.5h.01" />
+          </svg>
+        </span>
+      ),
+    },
+    { icon: <Wifi className="w-4 h-4" />, label: 'Device', value: 'Healthy' },
+    {
+      icon: <Bell className="w-4 h-4" />,
+      label: 'Alerts',
+      value: (
+        <motion.span
+          initial={{ backgroundColor: 'rgba(56, 142, 60, 0.28)', color: '#1A6B2E' }}
+          animate={inView ? { backgroundColor: 'rgba(56, 142, 60, 0)', color: '#212121' } : {}}
+          transition={{ duration: 1.2, delay: 0.6 }}
+          className="inline-block text-[13px] font-semibold px-1.5 py-0.5 rounded-md"
+        >
+          None
+        </motion.span>
+      ),
+    },
   ];
 
   return (
@@ -489,11 +563,12 @@ function MonitoringSection() {
           </div>
 
           {/* Dashboard */}
-          <div className="bg-white border border-neutral-200 rounded-3xl p-6">
+          <div ref={dashboardRef} className="relative overflow-hidden bg-white border border-neutral-200 rounded-3xl p-6">
+            <span className="scan-line" />
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-[13px] font-semibold text-green-forest">System Status</h3>
               <span className="flex items-center gap-1.5 text-[11px] text-green-action">
-                <span className="w-1.5 h-1.5 bg-green-action rounded-full animate-status-pulse" />
+                <span className="status-dot-pulse inline-block w-1.5 h-1.5 bg-green-action rounded-full" />
                 ONLINE
               </span>
             </div>
@@ -504,7 +579,7 @@ function MonitoringSection() {
                     <span className="text-black">{m.icon}</span>
                     <span className="text-[10px] text-black uppercase tracking-wider">{m.label}</span>
                   </div>
-                  <p className={`text-[13px] font-semibold ${m.ok ? 'text-black' : 'text-green-action'}`}>{m.value}</p>
+                  <p className="text-[13px] font-semibold text-black">{m.value}</p>
                 </div>
               ))}
             </div>

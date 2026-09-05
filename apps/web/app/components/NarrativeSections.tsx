@@ -366,6 +366,9 @@ const features = [
 ];
 
 export function FeaturesSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
     <section id="features" className="section relative">
       <Container className="relative z-10">
@@ -376,17 +379,23 @@ export function FeaturesSection() {
           description="Purpose-built tools for owners, staff, and customers — designed together, not patched together."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {features.map((f, i) => (
-            <Reveal key={i} delay={(i % 4) * 60} className="h-full">
-              <div className="card group h-full">
-                <div className="w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action mb-4 group-hover:shadow-green transition-shadow">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : undefined}
+              transition={{ duration: 0.45, ease: 'easeOut', delay: Math.floor(i / 4) * 0.3 + (i % 4) * 0.1 }}
+              className="h-full"
+            >
+              <div className="card feature-card card-shimmer relative overflow-hidden h-full">
+                <div className="feature-icon w-10 h-10 bg-green-action/8 border border-green-action/15 rounded-lg flex items-center justify-center text-green-action mb-4">
                   {f.icon}
                 </div>
                 <h3 className="text-[14px] font-bold text-green-forest mb-1.5 leading-snug">{f.title}</h3>
                 <p className="text-body-sm text-black leading-relaxed">{f.desc}</p>
               </div>
-            </Reveal>
+            </motion.div>
           ))}
         </div>
       </Container>
