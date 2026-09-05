@@ -21,6 +21,7 @@ import {
   GrowthSection,
   IPSection,
   WhySection,
+  FaqSection,
   VisionSection,
   FinalCTASection,
 } from './components/NarrativeSections';
@@ -790,6 +791,7 @@ export default function HomePage() {
         <GrowthSection />
         <IPSection />
         <WhySection />
+        <FaqSection />
         <VisionSection />
         <FinalCTASection />
       </main>
