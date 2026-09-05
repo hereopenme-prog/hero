@@ -1,17 +1,23 @@
 import Link from 'next/link';
 
 const platformLinks = [
-  { href: '#problem', label: 'Problem' },
-  { href: '#solution', label: 'Solution' },
+  { href: '#home', label: 'Home' },
+  { href: '#product', label: 'Product' },
   { href: '#how-it-works', label: 'How It Works' },
   { href: '#features', label: 'Features' },
   { href: '#businesses', label: 'For Businesses' },
   { href: '#customers', label: 'For Customers' },
-  { href: '#technology', label: 'Technology' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#roadmap', label: 'Roadmap' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
+];
+
+const productLinks = [
+  { href: '#payment-experience', label: 'Payments' },
+  { href: '#shop-status', label: 'Shop Status' },
+  { href: '#customer-experience', label: 'Customer Experience' },
+  { href: '#smart-alerts', label: 'Smart Alerts' },
+  { href: '#device', label: 'The Device' },
+  { href: '#software', label: 'Software Platform' },
 ];
 
 const legalLinks = [
@@ -39,20 +45,19 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-4 font-body text-[0.85rem] leading-relaxed text-[#6B7C8E]">
-              One Tap. Know Every Shop Status Instantly. Real-time shop visibility and smart monitoring for local
-              businesses across India.
+              A smart business device that brings payment notifications, shop visibility, customer connectivity and configurable smart features together.
             </p>
             <p className="mt-4 font-body text-[0.78rem] text-[#3D4F5E]">
               WhatsApp: +91 9060038229 &nbsp;·&nbsp; contact@hereopen.me
             </p>
           </div>
 
-          {/* Platform */}
+          {/* Links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">PLATFORM</p>
               <ul className="space-y-2.5">
-                {platformLinks.slice(0, 6).map((link) => (
+                {platformLinks.map((link) => (
                   <li key={link.href}>
                     <a href={link.href} className="font-body text-[0.83rem] text-[#A5B4C4] hover:text-[#00D084] transition-colors duration-200">
                       {link.label}
@@ -62,9 +67,9 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">DISCOVER</p>
+              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">PRODUCT</p>
               <ul className="space-y-2.5">
-                {platformLinks.slice(6).map((link) => (
+                {productLinks.map((link) => (
                   <li key={link.href}>
                     <a href={link.href} className="font-body text-[0.83rem] text-[#A5B4C4] hover:text-[#00D084] transition-colors duration-200">
                       {link.label}
@@ -74,14 +79,9 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">EXPLORE</p>
+              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[#6B7C8E] mb-4">LEGAL</p>
               <ul className="space-y-2.5">
-                {[
-                  { href: '/technology', label: 'Technology (Legacy)' },
-                  { href: '/market', label: 'Market (Legacy)' },
-                  { href: '/roadmap', label: 'Roadmap (Legacy)' },
-                  { href: '/faq', label: 'FAQ (Legacy)' },
-                ].map((link) => (
+                {legalLinks.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className="font-body text-[0.83rem] text-[#A5B4C4] hover:text-[#00D084] transition-colors duration-200">
                       {link.label}
@@ -98,13 +98,6 @@ export function Footer() {
           <p className="font-body text-[0.78rem] text-[#6B7C8E]">
             &copy; {new Date().getFullYear()} HERE OPEN. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            {legalLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="font-body text-[0.78rem] text-[#6B7C8E] hover:text-[#00D084] transition-colors duration-200">
-                {link.label}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

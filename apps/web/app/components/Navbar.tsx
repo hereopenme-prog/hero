@@ -6,19 +6,18 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent, type Variants 
 
 const navLinks = [
   { href: '#home', label: 'Home' },
-  { href: '#problem', label: 'Problem' },
-  { href: '#solution', label: 'Solution' },
+  { href: '#product', label: 'Product' },
   { href: '#how-it-works', label: 'How It Works' },
   { href: '#features', label: 'Features' },
-  { href: '#businesses', label: 'Businesses' },
-  { href: '#customers', label: 'Customers' },
-  { href: '#technology', label: 'Technology' },
-  { href: '#roadmap', label: 'Roadmap' },
+  { href: '#businesses', label: 'For Businesses' },
+  { href: '#customers', label: 'For Customers' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
 ];
 
-const sectionIds = ['home', 'problem', 'solution', 'how-it-works', 'features', 'businesses', 'customers', 'technology', 'roadmap'];
+const sectionIds = ['home', 'product', 'how-it-works', 'features', 'businesses', 'customers', 'about', 'contact'];
 
-const mobileLinks = [...navLinks, { href: '#contact', label: 'Contact' }];
+const mobileLinks = navLinks;
 
 const navbarVariants: Variants = {
   top: {

@@ -1,0 +1,28 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
+export function AnnouncementBar() {
+  return (
+    <motion.div
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="relative z-50 flex items-center justify-center h-10 w-full"
+      style={{
+        background: 'linear-gradient(90deg, #00D08410 0%, transparent 60%, #00D08410 100%)',
+        borderBottom: '1px solid #00D08430',
+      }}
+    >
+      <div className="flex items-center gap-3">
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00D084] animate-pulse" />
+        <span className="font-body font-medium text-xs sm:text-[13px] text-[#A5B4C4] tracking-wide">
+          HERE OPEN — SMART BUSINESS DEVICE
+        </span>
+        <span className="inline-flex items-center rounded-full px-2.5 py-0.5 bg-[#00D08420] border border-[#00D08440]">
+          <span className="font-body font-semibold text-[10px] text-[#00D084] tracking-[0.1em]">COMING SOON</span>
+        </span>
+      </div>
+    </motion.div>
+  );
+}

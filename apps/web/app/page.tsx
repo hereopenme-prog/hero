@@ -1,52 +1,64 @@
 import type { Metadata } from 'next';
 import { MotionConfig } from 'framer-motion';
+import { AnnouncementBar } from '@/components/sections/AnnouncementBar';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { TrustStrip } from '@/components/sections/TrustStrip';
-import { ProblemSection } from '@/components/sections/ProblemSection';
-import { SolutionSection } from '@/components/sections/SolutionSection';
+import { MoreThanPaymentsSection } from '@/components/sections/MoreThanPaymentsSection';
+import { CoreCapabilitiesSection } from '@/components/sections/CoreCapabilitiesSection';
+import { PaymentExperienceSection } from '@/components/sections/PaymentExperienceSection';
+import { ShopStatusSection } from '@/components/sections/ShopStatusSection';
+import { CustomerExperienceSection } from '@/components/sections/CustomerExperienceSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { SecuritySection } from '@/components/sections/SecuritySection';
-import { FeaturesSection } from '@/components/sections/FeaturesSection';
-import { BusinessSection } from '@/components/sections/BusinessSection';
-import { CustomersSection } from '@/components/sections/CustomersSection';
+import { SmartAlertsSection } from '@/components/sections/SmartAlertsSection';
+import { BusinessCommunicationSection } from '@/components/sections/BusinessCommunicationSection';
+import { BusinessOwnerBenefitsSection } from '@/components/sections/BusinessOwnerBenefitsSection';
+import { CustomerBenefitsSection } from '@/components/sections/CustomerBenefitsSection';
+import { DeviceShowcaseSection } from '@/components/sections/DeviceShowcaseSection';
+import { SoftwarePlatformSection } from '@/components/sections/SoftwarePlatformSection';
+import { BusinessDashboardSection } from '@/components/sections/BusinessDashboardSection';
+import { EcosystemSection } from '@/components/sections/EcosystemSection';
+import { WhyHereOpenSection } from '@/components/sections/WhyHereOpenSection';
 import { TargetSection } from '@/components/sections/TargetSection';
-import { TechnologySection } from '@/components/sections/TechnologySection';
+import { FutureReadySection } from '@/components/sections/FutureReadySection';
 import { MarketSection } from '@/components/sections/MarketSection';
-import { InnovationSection } from '@/components/sections/InnovationSection';
-import { PatentSection } from '@/components/sections/PatentSection';
 import { RoadmapSection } from '@/components/sections/RoadmapSection';
-import { PricingSection } from '@/components/sections/PricingSection';
-import { FaqSection } from '@/components/sections/FaqSection';
+import { SecurityTrustSection } from '@/components/sections/SecurityTrustSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { ContactSection } from '@/components/sections/ContactSection';
 
 export const metadata: Metadata = {
-  title: 'HERE OPEN — Real-Time Shop Visibility',
+  title: 'HERE OPEN — Smart Business Device for Payments, Visibility & Connectivity',
   description:
-    'HERE OPEN makes every shop visible. Real-time OPEN/CLOSED status, smart security, and 24/7 monitoring for local businesses across India.',
+    'HERE OPEN is a smart business device that brings payment notifications, shop visibility, customer connectivity and configurable smart features together in one connected device.',
 };
 
 export default function HomePage() {
   return (
     <MotionConfig reducedMotion="user">
+      <AnnouncementBar />
       <main id="main" className="relative min-h-screen bg-surface-base text-[#E8EDF2] overflow-x-hidden">
         <HeroSection />
-        <TrustStrip />
-        <ProblemSection />
-        <SolutionSection />
+        <MoreThanPaymentsSection />
+        <CoreCapabilitiesSection />
+        <PaymentExperienceSection />
+        <ShopStatusSection />
+        <CustomerExperienceSection />
         <HowItWorksSection />
         <SecuritySection />
-        <FeaturesSection />
-        <BusinessSection />
-        <CustomersSection />
+        <SmartAlertsSection />
+        <BusinessCommunicationSection />
+        <BusinessOwnerBenefitsSection />
+        <CustomerBenefitsSection />
+        <DeviceShowcaseSection />
+        <SoftwarePlatformSection />
+        <BusinessDashboardSection />
+        <EcosystemSection />
+        <WhyHereOpenSection />
         <TargetSection />
-        <TechnologySection />
+        <FutureReadySection />
         <MarketSection />
-        <InnovationSection />
-        <PatentSection />
         <RoadmapSection />
-        <PricingSection />
-        <FaqSection />
+        <SecurityTrustSection />
         <CTASection />
         <ContactSection />
       </main>
