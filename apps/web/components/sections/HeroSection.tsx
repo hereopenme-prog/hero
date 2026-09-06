@@ -76,7 +76,7 @@ export function HeroSection() {
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-6 font-display font-bold text-[1.125rem] lg:text-[1.1875rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed">
-                <span>Merchants have real problems<span className="text-[var(--brand-accent)]">...</span></span>
+                <span>Merchants have real problems<span className="text-[var(--brand-ink)]">...</span></span>
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-3 font-display text-[1.0625rem] lg:text-[1.125rem] text-[var(--brand-ink-muted)] max-w-[540px] leading-relaxed font-medium">
@@ -84,7 +84,7 @@ export function HeroSection() {
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-3 font-display font-bold text-[1.125rem] lg:text-[1.1875rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed">
-                Our sound box is not just for confirming payments — it solves merchants&apos; real problems.
+                Our sound box is not just for confirming payments — it solves merchant&apos;s real problems.
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-2.5 font-display text-[1.0625rem] lg:text-[1.125rem] text-[var(--brand-ink-muted)] max-w-[540px] leading-relaxed font-medium">
