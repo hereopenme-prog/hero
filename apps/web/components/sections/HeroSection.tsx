@@ -71,27 +71,21 @@ export function HeroSection() {
               </motion.div>
 
               <motion.h1 variants={fadeUp} className="mt-8 font-display font-extrabold text-[2.6rem] sm:text-[3.25rem] lg:text-[4rem] xl:text-[4.6rem] leading-[1.04] tracking-[-0.03em]">
-                <span className="text-[var(--brand-ink)]">CONNECT EVERY BUSINESS.</span>
+                <span className="text-[var(--brand-ink)]">LOSING COMPETITIVE EDGE.</span>
                 <br />
-                <span className="text-[var(--brand-ink)]">SEE EVERY LOCATION.</span>
-                <br />
-                <span className="text-[var(--brand-accent)] [text-shadow:0_0_40px_var(--brand-a60)]">IN REAL TIME.</span>
+                <span className="text-[var(--brand-accent)] [text-shadow:0_0_40px_var(--brand-a60)]">OVER FINTECHS.</span>
               </motion.h1>
 
               <motion.p variants={fadeUp} className="mt-5 font-display font-semibold text-[1.05rem] lg:text-[1.15rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed">
-                Not Just Payment Confirmation. Grows Business by Day. Guards It by Night.
+                Not Because the Payment Sound Box Is Weak. Because the Product Is the Same.
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-7 font-display text-[1.125rem] lg:text-[1.1875rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed font-medium">
-                Here Open connects businesses, smart devices and enterprise ecosystems in real time — giving organizations greater visibility and connectivity across their physical business network.
+                Merchants have real problems. Customers arrive at closed shops causing loss of trust. Offers don&apos;t reach loyal customers. They worry about theft, fire safety, low customer reach, and advertising costs.
               </motion.p>
 
-              <motion.p variants={fadeUp} className="mt-3 font-body text-[1.0625rem] lg:text-[1.125rem] text-[var(--brand-ink-muted)] max-w-[540px] leading-relaxed">
-                Bringing visibility, communication, safety and intelligent business connectivity to the physical world of local businesses.
-              </motion.p>
-
-              <motion.p variants={fadeUp} className="mt-3 font-body text-[0.9375rem] text-[var(--brand-ink-2)] max-w-[540px] leading-relaxed italic">
-                Built for businesses. Designed for customers. Ready for the next generation of merchant ecosystems.
+              <motion.p variants={fadeUp} className="mt-4 font-display font-semibold text-[1.125rem] lg:text-[1.25rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed">
+                This device <span className="text-[var(--brand-accent)]">changes everything.</span>
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 mt-10">
