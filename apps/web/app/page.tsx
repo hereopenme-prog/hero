@@ -5,6 +5,8 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { BigIdeaSection } from '@/components/sections/BigIdeaSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
+import { MerchantGrowthOsSection } from '@/components/sections/MerchantGrowthOsSection';
+import { HardTruthSection } from '@/components/sections/HardTruthSection';
 import { BankOpportunitySection } from '@/components/sections/BankOpportunitySection';
 import { BankBrandedSection } from '@/components/sections/BankBrandedSection';
 import { BankPartnershipSection } from '@/components/sections/BankPartnershipSection';
@@ -46,6 +48,8 @@ export default function HomePage() {
         <ProblemSection />
         <BigIdeaSection />
         <HowItWorksSection />
+        <MerchantGrowthOsSection />
+        <HardTruthSection />
         <BankOpportunitySection />
         <BankBrandedSection />
         <BankPartnershipSection />

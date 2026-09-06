@@ -1,10 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Building2, PlayCircle } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { fadeUp, stagger } from '@/lib/animations';
+
+const bottomLine = [
+  'Shops grow business by day.',
+  'Shops stay protected by night.',
+  'Customers check status from home.',
+  'Customers find nearest open shop in emergency.',
+  'Banks win with stickiness and CASA.',
+];
 
 export function CTASection() {
   return (
@@ -30,46 +38,43 @@ export function CTASection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
           variants={stagger}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-3xl mx-auto text-center"
         >
           <motion.h2
             variants={fadeUp}
-            className="font-display font-extrabold tracking-[-0.02em] text-[2.6rem] leading-[1.05] sm:text-[4rem] lg:text-[4.6rem] text-[var(--ink)]"
+            className="font-display font-extrabold tracking-[-0.02em] text-[2.6rem] leading-[1.05] sm:text-[4rem] lg:text-[4.6rem] text-[var(--accent)]"
           >
-            THE PHYSICAL WORLD
-            <br />
-            <span className="text-[var(--accent)] drop-shadow-[0_0_30px_var(--a30)]">IS READY TO CONNECT.</span>
+            THE BOTTOM LINE
           </motion.h2>
+
+          <motion.ul variants={fadeUp} className="mt-10 space-y-4 text-left sm:text-center">
+            {bottomLine.map((line) => (
+              <motion.li
+                key={line}
+                variants={fadeUp}
+                className="flex items-start sm:items-center justify-start sm:justify-center gap-3 font-body text-[1.05rem] lg:text-[1.15rem] text-[var(--ink)] leading-relaxed"
+              >
+                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[var(--a0A)] text-[var(--accent)]">
+                  <Check size={15} strokeWidth={3} />
+                </span>
+                <span>{line}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 mx-auto max-w-2xl font-body text-[1.05rem] text-[var(--ink-muted)] leading-relaxed"
+            className="mt-10 font-display font-extrabold tracking-tight text-[1.5rem] sm:text-[1.9rem] text-[var(--ink)]"
           >
-            From the smallest local shop to the largest merchant ecosystem, Here Open is building the
-            infrastructure that connects businesses, devices and customers in real time.
+            One device. <span className="text-[var(--accent)]">Total value for everyone.</span>
           </motion.p>
 
-          <motion.div
-            variants={fadeUp}
-            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-4 font-display font-bold text-[0.9rem] tracking-wide text-[var(--accent-ink)] shadow-[0_0_40px_var(--a50)] transition-all duration-300 hover:brightness-[1.08]"
-            >
-              Explore Here Open <ArrowRight size={16} />
-            </a>
-            <a
-              href="#banks"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-transparent px-8 py-4 font-display font-bold text-[0.9rem] tracking-wide text-[var(--ink)] transition-colors duration-300 hover:border-[var(--a40)] hover:text-[var(--accent)]"
-            >
-              <Building2 size={16} /> Partner With Us
-            </a>
+          <motion.div variants={fadeUp} className="mt-10 flex justify-center">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-transparent px-8 py-4 font-display font-bold text-[0.9rem] tracking-wide text-[var(--ink)] transition-colors duration-300 hover:border-[var(--a40)] hover:text-[var(--accent)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-10 py-4 font-display font-bold text-[0.95rem] tracking-wide text-[var(--accent-ink)] shadow-[0_0_40px_var(--a50)] transition-all duration-300 hover:brightness-[1.08]"
             >
-              <PlayCircle size={16} /> Request a Demo
+              LET&apos;S TALK <ArrowRight size={16} />
             </a>
           </motion.div>
         </motion.div>

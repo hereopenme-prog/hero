@@ -66,7 +66,7 @@ export function HeroSection() {
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 bg-[var(--brand-a20)] border border-[var(--brand-a40)]">
                 <span className="status-dot-pulse inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand-accent)]" />
                 <span className="font-body font-semibold text-xs text-[var(--brand-accent)] tracking-[0.14em]">
-                  CONNECTED SMART BUSINESS ECOSYSTEM
+                  THE MERCHANT GROWTH OS™
                 </span>
               </motion.div>
 
@@ -75,6 +75,10 @@ export function HeroSection() {
                 <br />
                 <span className="text-[var(--brand-accent)] [text-shadow:0_0_40px_var(--brand-a60)]">KNOW EVERY SHOP STATUS INSTANTLY.</span>
               </motion.h1>
+
+              <motion.p variants={fadeUp} className="mt-5 font-display font-semibold text-[1.05rem] lg:text-[1.15rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed">
+                Not Just Payment Confirmation. Grows Business by Day. Guards It by Night.
+              </motion.p>
 
               <motion.p variants={fadeUp} className="mt-7 font-display text-[1.125rem] lg:text-[1.1875rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed font-medium">
                 Here Open connects businesses, customers and smart devices in real time.
