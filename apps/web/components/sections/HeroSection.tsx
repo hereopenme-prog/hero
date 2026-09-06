@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView, type Variants } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { btnPrimary, btnSecondary } from '@/components/ui/buttonStyles';
 
@@ -71,9 +71,11 @@ export function HeroSection() {
               </motion.div>
 
               <motion.h1 variants={fadeUp} className="mt-8 font-display font-extrabold text-[2.6rem] sm:text-[3.25rem] lg:text-[4rem] xl:text-[4.6rem] leading-[1.04] tracking-[-0.03em]">
-                <span className="text-[var(--brand-ink)]">ONE TAP.</span>
+                <span className="text-[var(--brand-ink)]">CONNECT EVERY BUSINESS.</span>
                 <br />
-                <span className="text-[var(--brand-accent)] [text-shadow:0_0_40px_var(--brand-a60)]">KNOW EVERY SHOP STATUS INSTANTLY.</span>
+                <span className="text-[var(--brand-ink)]">SEE EVERY LOCATION.</span>
+                <br />
+                <span className="text-[var(--brand-accent)] [text-shadow:0_0_40px_var(--brand-a60)]">IN REAL TIME.</span>
               </motion.h1>
 
               <motion.p variants={fadeUp} className="mt-5 font-display font-semibold text-[1.05rem] lg:text-[1.15rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed">
@@ -81,7 +83,7 @@ export function HeroSection() {
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-7 font-display text-[1.125rem] lg:text-[1.1875rem] text-[var(--brand-ink)] max-w-[540px] leading-relaxed font-medium">
-                Here Open connects businesses, customers and smart devices in real time.
+                Here Open connects businesses, smart devices and enterprise ecosystems in real time — giving organizations greater visibility and connectivity across their physical business network.
               </motion.p>
 
               <motion.p variants={fadeUp} className="mt-3 font-body text-[1.0625rem] lg:text-[1.125rem] text-[var(--brand-ink-muted)] max-w-[540px] leading-relaxed">
@@ -93,11 +95,11 @@ export function HeroSection() {
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 mt-10">
-                <Link href="#how-it-works" className={btnPrimary}>
-                  EXPLORE HERE OPEN <ArrowRight size={16} />
+                <Link href="#banks" className={btnPrimary}>
+                  PARTNER WITH US <ArrowRight size={16} />
                 </Link>
-                <Link href="#banks" className={btnSecondary}>
-                  PARTNER WITH US <Play size={14} />
+                <Link href="#contact" className={btnSecondary}>
+                  REQUEST A DEMO <ArrowRight size={14} />
                 </Link>
               </motion.div>
             </motion.div>
