@@ -143,6 +143,18 @@ export function DeviceShowcaseSection() {
             </motion.div>
           </div>
 
+          {/* Product screenshot */}
+          <motion.div variants={fadeUp} className="mt-12">
+            <p className="text-center font-display text-[11px] font-bold tracking-[0.12em] text-[var(--ink-muted)]">
+              PRODUCT PREVIEW
+            </p>
+            <img
+              src="/hero-screenshot.png"
+              alt="HERE OPEN product preview"
+              className="mt-4 w-full max-w-4xl mx-auto h-auto rounded-2xl border border-[var(--border)] shadow-[0_24px_60px_rgba(0,0,0,0.35)]"
+            />
+          </motion.div>
+
           {/* Disclaimer */}
           <p className="mt-10 text-center font-body text-[11px] text-[var(--ink-dim)]">
             Final specifications and on-device capabilities are under development and subject to
