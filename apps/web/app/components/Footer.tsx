@@ -5,8 +5,6 @@ const platformLinks = [
   { href: '#problem', label: 'The Problem' },
   { href: '#how-it-works', label: 'How It Works' },
   { href: '#device', label: 'The Device' },
-  { href: '#security', label: 'Safety & Security' },
-  { href: '#platform-network', label: 'Platform' },
   { href: '#vision', label: 'Vision' },
 ];
 

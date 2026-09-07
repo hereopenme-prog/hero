@@ -12,8 +12,6 @@ const navLinks = [
   { href: '#businesses', label: 'For Businesses' },
   { href: '#customers', label: 'For Customers' },
   { href: '#device', label: 'The Device' },
-  { href: '#security', label: 'Safety & Security' },
-  { href: '#platform-network', label: 'Platform' },
   { href: '#banks', label: 'For Banks' },
   { href: '#vision', label: 'Vision' },
   { href: '#contact', label: 'Contact' },
@@ -21,7 +19,7 @@ const navLinks = [
 
 const sectionIds = [
   'home', 'problem', 'how-it-works', 'businesses', 'customers', 'device',
-  'security', 'platform-network', 'banks', 'vision', 'contact',
+  'banks', 'vision', 'contact',
 ];
 
 const mobileMenuVariants = {
