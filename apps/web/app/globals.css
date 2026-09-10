@@ -89,6 +89,24 @@
   --color-black:        #000000;
   --color-dark-text:    #000000;
   --color-body-text:    #000000;
+
+  /* Bank opportunity deck (theme-aware) */
+  --deck-bg:            #FAFCFB;
+  --deck-card:          #FFFFFF;
+  --deck-ink:           #17201B;
+  --deck-muted:         #68736D;
+  --deck-faint:         #8A958F;
+  --deck-border:        rgba(20, 40, 30, 0.08);
+  --deck-hover:         rgba(11, 122, 75, 0.3);
+  --deck-accent:        #0B7A4B;
+  --deck-p1:            #EEF8F2;
+  --deck-p2:            #EEF6FB;
+  --deck-p3:            #F5F0FC;
+  --deck-connector:     rgba(11, 122, 75, 0.38);
+  --deck-connector-soft: rgba(11, 122, 75, 0.12);
+  --deck-glow-green:    #0B7A4B;
+  --deck-glow-blue:     #3E6FD8;
+  --deck-glow-purple:   #7A5CD8;
 }
 
 :root[data-theme='dark'] {
@@ -154,6 +172,24 @@
   --color-black:        #0D1F3C;
   --color-dark-text:    #212121;
   --color-body-text:    #333333;
+
+  /* Bank opportunity deck (dark overrides) */
+  --deck-bg:            #0A0F14;
+  --deck-card:          #0F1923;
+  --deck-ink:           #E8EDF2;
+  --deck-muted:         #8A9BAE;
+  --deck-faint:         #5C6B7A;
+  --deck-border:        rgba(232, 237, 242, 0.1);
+  --deck-hover:         rgba(0, 208, 132, 0.35);
+  --deck-accent:        #00D084;
+  --deck-p1:            rgba(0, 208, 132, 0.1);
+  --deck-p2:            rgba(96, 165, 250, 0.12);
+  --deck-p3:            rgba(167, 139, 250, 0.14);
+  --deck-connector:     rgba(0, 208, 132, 0.5);
+  --deck-connector-soft: rgba(0, 208, 132, 0.16);
+  --deck-glow-green:    #00D084;
+  --deck-glow-blue:     #3B82F6;
+  --deck-glow-purple:   #8B5CF6;
 }
 
 /* Accent alpha helpers (legacy `#00D084xx` → --aXX) */
