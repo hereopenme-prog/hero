@@ -9,18 +9,14 @@ import { BankOpportunitySection } from '@/components/sections/BankOpportunitySec
 import { BankBrandedSection } from '@/components/sections/BankBrandedSection';
 import { BankPartnershipSection } from '@/components/sections/BankPartnershipSection';
 import { VisionSection } from '@/components/sections/VisionSection';
-import { CustomerExperienceSection } from '@/components/sections/CustomerExperienceSection';
 import { BusinessOwnerBenefitsSection } from '@/components/sections/BusinessOwnerBenefitsSection';
 import { DeviceShowcaseSection } from '@/components/sections/DeviceShowcaseSection';
 import { MoreThanStatusSection } from '@/components/sections/MoreThanStatusSection';
-import { BusinessCommunicationSection } from '@/components/sections/BusinessCommunicationSection';
-import { CustomerBenefitsSection } from '@/components/sections/CustomerBenefitsSection';
 import { TargetSection } from '@/components/sections/TargetSection';
 import { TechnologySection } from '@/components/sections/TechnologySection';
 import { MerchantValueSection } from '@/components/sections/MerchantValueSection';
 import { MarketSection } from '@/components/sections/MarketSection';
 import { InnovationSection } from '@/components/sections/InnovationSection';
-import { SecurityTrustSection } from '@/components/sections/SecurityTrustSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { PatentSection } from '@/components/sections/PatentSection';
 import { FaqSection } from '@/components/sections/FaqSection';
@@ -45,18 +41,14 @@ export default function HomePage() {
         <BankBrandedSection />
         <BankPartnershipSection />
         <VisionSection />
-        <CustomerExperienceSection />
         <BusinessOwnerBenefitsSection />
         <DeviceShowcaseSection />
         <MoreThanStatusSection />
-        <BusinessCommunicationSection />
-        <CustomerBenefitsSection />
         <TargetSection />
         <TechnologySection />
         <MerchantValueSection />
         <MarketSection />
         <InnovationSection />
-        <SecurityTrustSection />
         <CTASection />
         <PatentSection />
         <FaqSection />

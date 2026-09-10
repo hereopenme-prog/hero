@@ -29,8 +29,8 @@ const nodes = [
     icon: <Cloud size={20} className="text-[var(--accent)]" strokeWidth={1.5} />,
   },
   {
-    label: 'CUSTOMER-FACING EXPERIENCE',
-    sub: 'Visible to customers.',
+    label: 'BUSINESS STATUS PAGE',
+    sub: 'Always up to date.',
     icon: <Globe size={20} className="text-[var(--accent)]" strokeWidth={1.5} />,
   },
   {

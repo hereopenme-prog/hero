@@ -1,40 +1,13 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { MapPin, Search, Timer, Tag, Store, Eye, MessageSquare, ShieldAlert, Flame, Thermometer, BellOff } from 'lucide-react';
+import { Search, Store, Eye, MessageSquare, ShieldAlert, Flame, Thermometer, BellOff } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { stagger } from '@/lib/animations';
-
-const customerRows = [
-  {
-    icon: MapPin,
-    title: 'They travel to a shop only to find it closed.',
-    result: 'Wasted trips',
-  },
-  {
-    icon: Search,
-    title: "They don't know whether the business is open right now.",
-    result: 'No real-time certainty',
-  },
-  {
-    icon: Timer,
-    title: 'They waste time, fuel and effort.',
-    result: 'Lost time and expense',
-  },
-  {
-    icon: Tag,
-    title: 'They miss offers and announcements.',
-    result: 'Missed opportunities',
-  },
-  {
-    icon: Eye,
-    title: 'They cannot reliably discover nearby businesses that are open.',
-    result: 'Limited discovery',
-  },
-];
 
 const businessRows = [
   {
@@ -79,7 +52,7 @@ const businessRows = [
   },
 ];
 
-function ProblemRow({ row, children }: { row: { icon: typeof MapPin; title: string; result: string }; children?: ReactNode }) {
+function ProblemRow({ row, children }: { row: { icon: LucideIcon; title: string; result: string }; children?: ReactNode }) {
   return (
     <motion.div variants={{ hidden: {}, visible: {} }} className="relative pl-11">
       <div className="absolute left-0 top-1.5 flex items-center justify-center h-8 w-8 rounded-full border border-[var(--a40)] bg-[var(--section-2)]">
@@ -102,63 +75,12 @@ export function ProblemSection() {
         <SectionHeading
           eyebrow="THE PROBLEM"
           title="THE PROBLEM IS SIMPLE."
-          titleAccent="BOTH SIDES FEEL IT."
-          description="Customers waste trips. Businesses lose visits. Both sides live without real-time information."
+          titleAccent="MERCHANTS FEEL IT MOST."
+          description="Shops lose visits because customers never know when they're open. Merchants live without real-time information about their own business."
         />
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-16 lg:gap-10 items-stretch">
-          {/* LEFT — FOR CUSTOMERS */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={stagger}
-            className="relative"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="flex items-center justify-center h-8 w-8 rounded-lg border border-[var(--a30)] bg-[var(--a0A)]">
-                <Search size={15} className="text-[var(--accent)]" strokeWidth={1.5} />
-              </div>
-              <h3 className="font-display font-bold text-sm tracking-[0.24em] text-[var(--ink)]">FOR CUSTOMERS</h3>
-            </div>
-
-            <div className="relative">
-              <div className="absolute left-[16px] top-4 bottom-4 w-px bg-[var(--a20)]" aria-hidden="true" />
-              <div className="space-y-9">
-                {customerRows.map((row) => (
-                  <ProblemRow key={row.title} row={row} />
-                ))}
-              </div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.6 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-10 pl-11"
-            >
-              <p className="font-display font-semibold text-[1rem] text-[var(--accent)] tracking-tight">
-                Customers lose time and trust.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          {/* CENTER CONNECTING NODE (desktop only) */}
-          <div className="hidden lg:flex flex-col items-center justify-center" aria-hidden="true">
-            <div className="flex flex-col items-center gap-4">
-              <div className="h-24 w-px bg-gradient-to-b from-transparent via-[var(--a40)] to-[var(--a40)]" />
-              <div className="relative flex items-center justify-center h-12 w-12 rounded-full border border-[var(--a40)] bg-[var(--section)]">
-                <div className="h-2.5 w-2.5 rounded-full bg-[var(--accent)] shadow-[0_0_12px_var(--a80)]" />
-                <span className="absolute -bottom-6 font-body font-semibold text-[0.6rem] tracking-[0.3em] text-[var(--ink-2)]">
-                  BOTH
-                </span>
-              </div>
-              <div className="h-24 w-px bg-gradient-to-b from-[var(--a40)] via-[var(--a40)] to-transparent" />
-            </div>
-          </div>
-
-          {/* RIGHT — FOR BUSINESS OWNERS */}
+        <div className="mx-auto max-w-3xl">
+          {/* FOR MERCHANTS */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -170,7 +92,7 @@ export function ProblemSection() {
               <div className="flex items-center justify-center h-8 w-8 rounded-lg border border-[var(--a30)] bg-[var(--a0A)]">
                 <Store size={15} className="text-[var(--accent)]" strokeWidth={1.5} />
               </div>
-              <h3 className="font-display font-bold text-sm tracking-[0.24em] text-[var(--ink)]">FOR BUSINESS OWNERS</h3>
+              <h3 className="font-display font-bold text-sm tracking-[0.24em] text-[var(--ink)]">FOR MERCHANTS</h3>
             </div>
 
             <div className="relative">

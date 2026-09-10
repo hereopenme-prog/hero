@@ -9,8 +9,7 @@ const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#problem', label: 'The Problem' },
   { href: '#how-it-works', label: 'How It Works' },
-  { href: '#businesses', label: 'For Businesses' },
-  { href: '#customers', label: 'For Customers' },
+  { href: '#businesses', label: 'For Merchants' },
   { href: '#device', label: 'The Device' },
   { href: '#banks', label: 'For Banks' },
   { href: '#vision', label: 'Vision' },
@@ -18,7 +17,7 @@ const navLinks = [
 ];
 
 const sectionIds = [
-  'home', 'problem', 'how-it-works', 'businesses', 'customers', 'device',
+  'home', 'problem', 'how-it-works', 'businesses', 'device',
   'banks', 'vision', 'contact',
 ];
 

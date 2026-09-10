@@ -59,7 +59,7 @@ export function BusinessOwnerBenefitsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,208,132,0.04)_0%,transparent_55%)] pointer-events-none" />
       <Container className="relative z-10">
         <SectionHeading
-          eyebrow="FOR BUSINESS OWNERS"
+          eyebrow="FOR MERCHANTS"
           title="YOUR BUSINESS."
           titleAccent="ALWAYS CONNECTED."
           description="One device that keeps your shop visible, your customers informed and your space monitored."
