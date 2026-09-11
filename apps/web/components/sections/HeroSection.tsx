@@ -35,7 +35,7 @@ export function HeroSection() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[calc(100svh-72px)] flex items-center overflow-hidden pt-28 lg:pt-32 pb-16 lg:pb-20"
+      className="relative min-h-[calc(100svh-72px)] flex items-center pt-28 lg:pt-32 pb-16 lg:pb-20"
       style={{ background: 'var(--brand-bg)' }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,208,132,0.10)_0%,transparent_55%)] pointer-events-none" />
@@ -90,22 +90,30 @@ export function HeroSection() {
             </div>
 
             <div className="hidden lg:block relative w-full max-w-[560px]">
-              <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={deviceVariants} className="relative">
-                <img
-                  src="/hero-screenshot.png"
-                  alt="HERE OPEN platform dashboard"
-                  className="w-full h-auto rounded-3xl border border-[var(--border)] shadow-[0_0_60px_var(--a20),0_32px_80px_rgba(0,0,0,0.6)]"
-                />
+              <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={deviceVariants} className="relative -mb-16 lg:-mb-24 xl:-mb-28">
+                <div className="absolute -inset-8 xl:-inset-10 rounded-full bg-[radial-gradient(circle,rgba(0,208,132,0.18)_0%,transparent_62%)] blur-2xl pointer-events-none" />
+                <div className="hero-float relative">
+                  <img
+                    src="/hero-screenshot.png"
+                    alt="HERE OPEN platform dashboard"
+                    className="hero-mask relative w-full h-auto"
+                  />
+                  <div className="hero-mask hero-edge-blend absolute inset-0 pointer-events-none" />
+                </div>
               </motion.div>
             </div>
 
             <div className="lg:hidden relative w-full max-w-[440px]">
-              <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={deviceVariants}>
-                <img
-                  src="/hero-screenshot.png"
-                  alt="HERE OPEN platform dashboard"
-                  className="w-full h-auto rounded-2xl border border-[var(--border)] shadow-[0_0_40px_var(--a20),0_20px_60px_rgba(0,0,0,0.5)]"
-                />
+              <motion.div initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={deviceVariants} className="relative -mb-8">
+                <div className="absolute -inset-5 rounded-full bg-[radial-gradient(circle,rgba(0,208,132,0.16)_0%,transparent_62%)] blur-2xl pointer-events-none" />
+                <div className="hero-float relative">
+                  <img
+                    src="/hero-screenshot.png"
+                    alt="HERE OPEN platform dashboard"
+                    className="hero-mask relative w-full h-auto"
+                  />
+                  <div className="hero-mask hero-edge-blend absolute inset-0 pointer-events-none" />
+                </div>
               </motion.div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { MotionConfig } from 'framer-motion';
 import { AnnouncementBar } from '@/components/sections/AnnouncementBar';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ProblemSection } from '@/components/sections/ProblemSection';
+import { SolutionSection } from '@/components/sections/SolutionSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { MerchantGrowthOsSection } from '@/components/sections/MerchantGrowthOsSection';
 import { BankOpportunitySection } from '@/components/sections/BankOpportunitySection';
@@ -35,6 +36,7 @@ export default function HomePage() {
       <main id="main" className="relative min-h-screen bg-surface-base text-[var(--ink)] overflow-x-hidden">
         <HeroSection />
         <ProblemSection />
+        <SolutionSection />
         <HowItWorksSection />
         <MerchantGrowthOsSection />
         <BankOpportunitySection />
