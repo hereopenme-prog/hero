@@ -182,7 +182,7 @@ export default function MarketPage() {
                 with HERE OPEN and help millions of businesses go online.
               </p>
               <a
-                href="/#contact"
+                href="mailto:contact@hereopen.me"
                 className="bg-green-action text-[var(--ink)] px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity inline-block"
               >
                 Get Started Today

@@ -107,6 +107,7 @@
   --deck-glow-green:    #0B7A4B;
   --deck-glow-blue:     #3E6FD8;
   --deck-glow-purple:   #7A5CD8;
+  --deck-teal:          #0E7490;
 }
 
 :root[data-theme='dark'] {
@@ -190,6 +191,7 @@
   --deck-glow-green:    #00D084;
   --deck-glow-blue:     #3B82F6;
   --deck-glow-purple:   #8B5CF6;
+  --deck-teal:          #2DD4BF;
 }
 
 /* Accent alpha helpers (legacy `#00D084xx` → --aXX) */
