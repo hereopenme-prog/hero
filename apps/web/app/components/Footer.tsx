@@ -1,11 +1,19 @@
 import Link from 'next/link';
 
 const platformLinks = [
-  { href: '#future', label: 'The solution' },
-  { href: '#vision', label: 'Our vision' },
-  { href: '#banks', label: 'For Banks' },
-  { href: '#msmes', label: 'For Merchants' },
-  { href: '#get-involved', label: 'Get involved' },
+  { href: '#home', label: 'Home' },
+  { href: '#problem', label: 'The Problem' },
+  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#device', label: 'The Device' },
+  { href: '#vision', label: 'Vision' },
+];
+
+const ecosystemLinks = [
+  { href: '#businesses', label: 'For Merchants' },
+  { href: '#banks', label: 'For Banks & Partners' },
+  { href: '#merchant-value', label: 'Merchant Value' },
+  { href: '#market', label: 'Market Opportunity' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const legalLinks = [
@@ -28,23 +36,22 @@ export function Footer() {
               >
                 <span className="font-display font-bold text-base text-[var(--accent-ink)]">H</span>
               </div>
-              <span className="font-display font-bold text-[15px] tracking-tight text-[var(--ink)]">HERE OPEN</span>
+              <div>
+                <span className="block font-display font-bold text-[15px] tracking-tight text-[var(--ink)]">HERE OPEN</span>
+              </div>
             </div>
-            <p className="mt-6 font-display font-semibold text-[1.1rem] leading-relaxed text-[var(--ink)]">
-              Vocal for local. A stronger India.
+            <p className="mt-4 font-body text-[0.85rem] leading-relaxed text-[var(--ink-dim)]">
+              A connected smart business ecosystem that brings businesses, customers and devices together — real-time visibility, communication, safety and intelligent business connectivity.
             </p>
-            <p className="mt-5 font-body text-[0.82rem] text-[var(--ink-2)]">
-              <a href="mailto:contact@hereopen.me" className="hover:text-[var(--accent)] transition-colors duration-200">
-                contact@hereopen.me
-              </a>
-              <span className="text-[var(--ink-dim)]"> &nbsp;·&nbsp; WhatsApp: +91 9060038229</span>
+            <p className="mt-4 font-body text-[0.78rem] text-[var(--ink-dim)]">
+              WhatsApp: +91 9060038229 &nbsp;·&nbsp; contact@hereopen.me
             </p>
           </div>
 
           {/* Links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
-              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[var(--ink-dim)] mb-4">EXPLORE</p>
+              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[var(--ink-dim)] mb-4">PLATFORM</p>
               <ul className="space-y-2.5">
                 {platformLinks.map((link) => (
                   <li key={link.href}>
@@ -56,16 +63,15 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[var(--ink-dim)] mb-4">CONTACT</p>
+              <p className="font-display font-semibold text-[0.72rem] tracking-[0.2em] text-[var(--ink-dim)] mb-4">ECOSYSTEM</p>
               <ul className="space-y-2.5">
-                <li>
-                  <a href="mailto:contact@hereopen.me" className="font-body text-[0.83rem] text-[var(--ink-2)] hover:text-[var(--accent)] transition-colors duration-200">
-                    contact@hereopen.me
-                  </a>
-                </li>
-                <li>
-                  <span className="font-body text-[0.83rem] text-[var(--ink-2)]">WhatsApp: +91 9060038229</span>
-                </li>
+                {ecosystemLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="font-body text-[0.83rem] text-[var(--ink-2)] hover:text-[var(--accent)] transition-colors duration-200">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -81,12 +87,6 @@ export function Footer() {
               </ul>
             </div>
           </div>
-        </div>
-
-        <div className="mt-14 border-t border-[var(--border)] pt-8">
-          <p className="text-center font-body text-[12px] tracking-wide text-[var(--ink-dim)]">
-            ONE DEVICE. DIRECT CONNECTIONS. A STRONGER INDIA.
-          </p>
         </div>
       </div>
     </footer>

@@ -296,7 +296,7 @@ const DimensionHeader = ({
 
 export function ProblemSection() {
   return (
-    <Section id="challenge" className="relative bg-[#050505] py-28 lg:py-40">
+    <Section id="problem" className="relative bg-[#050505] py-28 lg:py-40">
       <Container className="max-w-[1060px]">
         {/* ── Hero ── */}
         <Reveal>

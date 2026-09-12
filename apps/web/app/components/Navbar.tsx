@@ -6,15 +6,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const navLinks = [
-  { href: '#future', label: 'The solution' },
-  { href: '#vision', label: 'Our vision' },
+  { href: '#home', label: 'Home' },
+  { href: '#problem', label: 'The Problem' },
+  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#businesses', label: 'For Merchants' },
+  { href: '#device', label: 'The Device' },
   { href: '#banks', label: 'For Banks' },
-  { href: '#msmes', label: 'For Merchants' },
-  { href: '#get-involved', label: 'Get involved' },
+  { href: '#vision', label: 'Vision' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const sectionIds = [
-  'vision', 'audiences', 'banks', 'msmes', 'people', 'future', 'mission', 'value', 'get-involved',
+  'home', 'problem', 'how-it-works', 'businesses', 'device',
+  'banks', 'vision', 'contact',
 ];
 
 const mobileMenuVariants = {
@@ -73,8 +77,8 @@ export function Navbar() {
           <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
             {/* Logo */}
             <a
-              href="#vision"
-              onClick={(e) => handleNavClick(e, '#vision')}
+              href="#home"
+              onClick={(e) => handleNavClick(e, '#home')}
               className="flex items-center gap-2.5 group"
               aria-label="HERE OPEN home"
             >
@@ -87,13 +91,8 @@ export function Navbar() {
                   H
                 </span>
               </div>
-              <span className="flex flex-col leading-none">
-                <span className="font-display font-bold text-[15px] tracking-tight transition-colors duration-300 text-[var(--ink)]">
-                  HERE OPEN
-                </span>
-                <span className="mt-1 font-body text-[9px] font-medium uppercase tracking-[0.26em] text-[var(--ink-muted)]">
-                  Vocal for local
-                </span>
+              <span className="font-display font-bold text-[15px] tracking-tight transition-colors duration-300 text-[var(--ink)]">
+                HERE OPEN
               </span>
             </a>
 
@@ -115,11 +114,11 @@ export function Navbar() {
             <div className="hidden xl:flex items-center gap-3">
               <ThemeToggle className="border-[var(--border)] text-[var(--ink-2)] hover:text-[var(--ink)]" />
               <a
-                href="#get-involved"
-                onClick={(e) => handleNavClick(e, '#get-involved')}
-                className="active:scale-[0.97] inline-flex items-center px-5 py-2.5 bg-[var(--accent)] text-[var(--accent-ink)] text-[13px] font-bold rounded-xl hover:brightness-[1.06] transition-all duration-300 shadow-[0_0_24px_var(--a30)]"
+                href="#contact"
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="active:scale-[0.97] inline-flex items-center px-6 py-2.5 bg-[var(--accent)] text-[var(--accent-ink)] text-[13px] font-bold rounded-xl hover:brightness-[1.06] transition-all duration-300 shadow-[0_0_24px_var(--a30)]"
               >
-                Get involved
+                Get Started
               </a>
             </div>
 
@@ -173,11 +172,11 @@ export function Navbar() {
               </div>
               <div className="container-site pt-2">
                 <a
-                  href="#get-involved"
-                  onClick={(e) => handleNavClick(e, '#get-involved')}
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, '#contact')}
                   className="block text-center py-3 bg-[var(--accent)] text-[var(--accent-ink)] text-sm font-bold rounded-xl shadow-[0_0_24px_var(--a30)]"
                 >
-                  Get involved
+                  Get Started
                 </a>
               </div>
             </div>

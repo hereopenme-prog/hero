@@ -77,7 +77,7 @@ export default function NotFound() {
               Go Back Home
             </Link>
             <Link
-              href="mailto:contact@hereopen.me"
+              href="/#contact"
               className="active:scale-[0.97] inline-flex items-center justify-center rounded-lg px-7 py-3.5 border border-[var(--border)] font-body font-medium text-[15px] text-[var(--ink)] transition-all duration-200 hover:border-[var(--a50)] hover:bg-[var(--panel-2)] hover:-translate-y-0.5"
             >
               Contact Us

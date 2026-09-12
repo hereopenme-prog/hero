@@ -227,7 +227,7 @@ export default function RoadmapPage() {
               launch.
             </p>
             <a
-              href="mailto:contact@hereopen.me"
+              href="/#contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-action text-[var(--ink)] font-bold rounded-xl hover:bg-green-forest transition-all shadow-green hover:shadow-green text-[15px]"
             >
               Contact Us

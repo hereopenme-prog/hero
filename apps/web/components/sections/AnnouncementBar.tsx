@@ -17,7 +17,7 @@ export function AnnouncementBar() {
       <div className="flex items-center gap-3">
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
         <span className="font-body font-medium text-xs sm:text-[13px] text-[var(--ink-2)] tracking-wide">
-          HERE OPEN — VOCAL FOR LOCAL
+          HERE OPEN — CONNECTED SMART BUSINESS ECOSYSTEM
         </span>
         <span className="inline-flex items-center rounded-full px-2.5 py-0.5 bg-[var(--a20)] border border-[var(--a40)]">
           <span className="font-body font-semibold text-[10px] text-[var(--accent)] tracking-[0.1em]">COMING SOON</span>
