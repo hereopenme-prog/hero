@@ -4,22 +4,19 @@ import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import {
   Layers,
-  Scale,
+  Landmark,
   UserPlus,
-  HeartHandshake,
-  PiggyBank,
-  Network,
-  Link2,
-  Database,
-  Timer,
-  Megaphone,
-  ShieldAlert,
+  UserMinus,
+  Banknote,
+  Link2Off,
+  FileSearch,
   Clock,
+  EyeOff,
   MapPin,
   Siren,
-  Landmark,
   Store,
   Users,
+  ShieldAlert,
   type LucideIcon,
 } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
@@ -96,7 +93,7 @@ const NodeCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.5, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-    className="group flex flex-col items-center rounded-2xl border bg-white px-6 py-9 text-center transition-all duration-300 hover:-translate-y-1"
+    className="group flex w-full max-w-[500px] flex-col items-center justify-self-center rounded-2xl border bg-white px-6 py-9 text-center transition-all duration-300 hover:-translate-y-1 md:px-4 md:py-8 lg:px-6 lg:py-9"
     style={{ borderColor: C.hair, boxShadow: C.shadow, color: C.ink }}
   >
     <span className="font-mono text-[11px] tracking-[0.22em]" style={{ color: C.faint }}>
@@ -183,7 +180,7 @@ const ProblemNodes = ({
   </motion.div>
 );
 
-const ProblemRows = ({ items }: { items: { title: string; desc: string }[] }) => (
+const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: LucideIcon; alert?: boolean }[] }) => (
   <motion.div
     initial="hidden"
     whileInView="visible"
@@ -195,13 +192,28 @@ const ProblemRows = ({ items }: { items: { title: string; desc: string }[] }) =>
       <motion.div
         key={item.title}
         variants={fadeUp}
-        className="flex items-start gap-6 border-b py-6 last:border-b-0"
+        className="flex items-start gap-4 border-b py-6 last:border-b-0 sm:gap-6"
         style={{ borderColor: C.hair }}
       >
         <span className="font-display w-12 flex-shrink-0 font-extrabold leading-none text-[1.5rem] lg:text-[1.8rem]" style={{ color: C.accent }}>
           {String(i + 1).padStart(2, '0')}
         </span>
-        <div>
+        {item.icon && (
+          <span
+            className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border"
+            style={{ borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
+          >
+            <item.icon size={20} strokeWidth={1.7} style={{ color: C.accent }} aria-hidden="true" />
+            {item.alert && (
+              <span
+                aria-hidden="true"
+                className="absolute -right-1 -top-1 h-3 w-3 rounded-full"
+                style={{ backgroundColor: '#DC2626', boxShadow: '0 0 0 2px #FFFFFF' }}
+              />
+            )}
+          </span>
+        )}
+        <div className="min-w-0">
           <p className="font-display text-[0.95rem] font-bold leading-tight tracking-tight lg:text-[1.05rem]" style={{ color: C.ink }}>
             {item.title}
           </p>
@@ -222,14 +234,14 @@ const sides = [
   { num: '03', name: 'CUSTOMERS', Icon: Users },
 ];
 
-const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
+const bankChallenges: { icon: LucideIcon; title: string; desc: string; alert?: boolean }[] = [
   {
     icon: Layers,
     title: 'Limited differentiation',
     desc: 'Similar soundboxes give merchants few reasons to choose one bank over another.',
   },
   {
-    icon: Scale,
+    icon: Landmark,
     title: 'Underused bank strengths',
     desc: 'Banking capabilities do not always translate into daily merchant value.',
   },
@@ -239,27 +251,28 @@ const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
     desc: 'A weak device proposition can limit new merchant relationships.',
   },
   {
-    icon: HeartHandshake,
+    icon: UserMinus,
     title: 'Weak merchant retention',
     desc: 'Limited everyday value makes the relationship easier to replace.',
   },
   {
-    icon: PiggyBank,
+    icon: Landmark,
+    alert: true,
     title: 'CASA relationship risk',
     desc: 'Losing the merchant touchpoint can weaken deposit relationships.',
   },
   {
-    icon: Network,
+    icon: Banknote,
     title: 'Loan distribution',
     desc: 'Intermediated loan distribution can increase acquisition costs.',
   },
   {
-    icon: Link2,
+    icon: Link2Off,
     title: 'Weaker direct relationships',
     desc: "Third-party channels can distance banks from the merchant's daily business.",
   },
   {
-    icon: Database,
+    icon: FileSearch,
     title: 'Limited lending context',
     desc: 'Fragmented business information can limit the context for credit assessment.',
   },
@@ -267,12 +280,12 @@ const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
 
 const merchantConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
   {
-    icon: Timer,
+    icon: Clock,
     title: 'TRUST LOSS & MISSED FOOTFALL',
     desc: 'Uncertain opening times can disappoint customers and erode trust. Shops lose potential visits when people cannot tell whether they are open.',
   },
   {
-    icon: Megaphone,
+    icon: EyeOff,
     title: 'LOW VISIBILITY & MISSED UPDATES',
     desc: 'Without a current digital presence, nearby businesses remain hard to find. Time-sensitive offers and announcements may not reach the right customers.',
   },
@@ -305,7 +318,7 @@ const customerConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
 
 export function ProblemSection() {
   return (
-    <Section id="problem" className="bg-[#F7F8FA] !py-28 lg:!py-44">
+    <Section id="problem" className="bg-[#F7F8FA] !pt-28 !pb-20 lg:!pt-44 lg:!pb-28">
       <Container>
         <div className="mx-auto max-w-[1080px]">
           {/* ── Section introduction ── */}
@@ -344,15 +357,15 @@ export function ProblemSection() {
 
           {/* ── Three sides / DISCONNECTED ── */}
           <div className="mt-24 lg:mt-32">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch lg:items-stretch">
               {sides.map((side, i) => (
                 <div key={side.num} className="contents">
                   <NodeCard num={side.num} name={side.name} Icon={side.Icon} index={i} />
                   {i < sides.length - 1 && (
                     <>
-                      {/* Desktop vertical divider */}
+                      {/* Tablet/desktop vertical divider */}
                       <div
-                        className="hidden lg:flex flex-col items-center self-stretch px-3"
+                        className="hidden md:flex flex-col items-center self-stretch px-2 lg:px-3"
                         aria-hidden="true"
                       >
                         <div className="w-px flex-1 border-l border-dashed" style={{ borderColor: C.hairStrong }} />
@@ -364,16 +377,16 @@ export function ProblemSection() {
                         </span>
                         <div className="w-px flex-1 border-l border-dashed" style={{ borderColor: C.hairStrong }} />
                       </div>
-                      {/* Mobile horizontal divider */}
-                      <div className="lg:hidden flex items-center gap-3 py-1" aria-hidden="true">
-                        <div className="h-px flex-1 border-t border-dashed" style={{ borderColor: C.hairStrong }} />
+                      {/* Mobile vertical journey connector */}
+                      <div className="flex flex-col items-center py-3 md:hidden" aria-hidden="true">
+                        <div className="h-4 w-px border-l border-dashed" style={{ borderColor: C.hairStrong }} />
                         <span
-                          className="font-mono text-[10px] uppercase tracking-[0.24em]"
+                          className="my-2 font-mono text-[10px] uppercase tracking-[0.24em]"
                           style={{ color: C.faint }}
                         >
                           DISCONNECTED
                         </span>
-                        <div className="h-px flex-1 border-t border-dashed" style={{ borderColor: C.hairStrong }} />
+                        <div className="h-4 w-px border-l border-dashed" style={{ borderColor: C.hairStrong }} />
                       </div>
                     </>
                   )}
