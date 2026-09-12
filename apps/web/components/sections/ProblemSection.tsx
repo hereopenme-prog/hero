@@ -1,498 +1,463 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Section } from '@/components/ui/Section';
-import { Container } from '@/app/components/Container';
-import { Reveal } from '@/app/components/Reveal';
-import { fadeUp, stagger } from '@/lib/animations';
+import { motion, type Variants } from 'framer-motion';
+import type { ReactNode } from 'react';
 import {
-  Building2,
+  Layers,
+  Scale,
+  UserPlus,
+  HeartHandshake,
+  PiggyBank,
+  Network,
+  Link2,
+  Database,
+  Timer,
+  Megaphone,
+  ShieldAlert,
+  Clock,
+  MapPin,
+  Siren,
+  Landmark,
   Store,
   Users,
-  Globe,
-  Shield,
-  AlertTriangle,
-  Eye,
-  Heart,
-  Smartphone,
-  PhoneOff,
-  TrendingDown,
-  Megaphone,
-  UserCheck,
-  MapPin,
-  Accessibility,
-  Star,
-  Search,
-  Package,
-  Lock,
-  Ticket,
-  Repeat,
-  UserX,
+  type LucideIcon,
 } from 'lucide-react';
+import { Section } from '@/components/ui/Section';
+import { Container } from '@/app/components/Container';
+import { fadeUp, stagger } from '@/lib/animations';
 
-const dimensions = [
+/* ── Scoped light palette (Problem section only) ─────────────────────── */
+const C = {
+  card: '#FFFFFF',
+  hair: '#E8EBF0',
+  hairStrong: '#D4DAE2',
+  ink: '#191D26',
+  ink2: '#3C4450',
+  muted: '#6E7787',
+  faint: '#97A1AF',
+  accent: '#0E9F6E',
+  accentSoft: 'rgba(14,159,110,0.08)',
+  accentBorder: 'rgba(14,159,110,0.22)',
+  shadow: '0 1px 2px rgba(15,23,42,0.04), 0 10px 30px rgba(15,23,42,0.06)',
+  shadowHover: '0 2px 4px rgba(15,23,42,0.05), 0 16px 40px rgba(15,23,42,0.10)',
+};
+
+const softCardVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const iconMove: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] } },
+};
+
+/* ── Shared pieces ────────────────────────────────────────────────────── */
+
+const Eyebrow = ({ children }: { children: ReactNode }) => (
+  <span
+    className="inline-flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]"
+    style={{ color: C.accent }}
+  >
+    <span className="inline-block h-px w-8" style={{ backgroundColor: 'currentColor', opacity: 0.35 }} />
+    {children}
+  </span>
+);
+
+const DimensionHeader = ({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.4 }}
+    variants={stagger}
+  >
+    <motion.div variants={fadeUp}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+    </motion.div>
+    <motion.h3
+      variants={fadeUp}
+      className="mt-6 font-display font-bold leading-[1.1] tracking-[-0.02em] text-[2rem] sm:text-[2.5rem] lg:text-[2.9rem]"
+      style={{ color: C.ink }}
+    >
+      {title}
+    </motion.h3>
+    <motion.p
+      variants={fadeUp}
+      className="mt-6 max-w-2xl font-body text-[15.5px] leading-relaxed lg:text-base"
+      style={{ color: C.muted }}
+    >
+      {body}
+    </motion.p>
+  </motion.div>
+);
+
+const NodeCard = ({
+  num,
+  name,
+  Icon,
+  index,
+}: {
+  num: string;
+  name: string;
+  Icon: LucideIcon;
+  index: number;
+}) => (
+  <motion.article
+    initial={{ opacity: 0, y: 22 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.5, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+    className="group flex flex-col items-center rounded-2xl border bg-white px-6 py-9 text-center transition-all duration-300 hover:-translate-y-1"
+    style={{ borderColor: C.hair, boxShadow: C.shadow, color: C.ink }}
+  >
+    <span className="font-mono text-[11px] tracking-[0.22em]" style={{ color: C.faint }}>
+      {num}
+    </span>
+    <div
+      className="mt-5 flex h-16 w-16 items-center justify-center rounded-full border"
+      style={{ borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
+    >
+      <Icon size={24} strokeWidth={1.5} className="transition-transform duration-300 group-hover:scale-105" style={{ color: C.accent }} />
+    </div>
+    <h4 className="mt-5 font-display text-[15px] font-bold uppercase tracking-[0.18em]" style={{ color: C.ink }}>
+      {name}
+    </h4>
+  </motion.article>
+);
+
+/* ── Data ─────────────────────────────────────────────────────────────── */
+
+const sides = [
+  { num: '01', name: 'BANKS', Icon: Landmark },
+  { num: '02', name: 'MERCHANTS', Icon: Store },
+  { num: '03', name: 'CUSTOMERS', Icon: Users },
+];
+
+const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
   {
-    eyebrow: 'DIMENSION 01',
-    title: 'Information Blindness',
-    subtitle:
-      'Banks have trust, customers, infrastructure and financial power — but limited visibility and engagement at the merchant\u2019s everyday point of business.',
-    color: 'green',
-    accentClass: 'text-emerald-400',
-    bgClass: 'bg-emerald-500/5',
-    ringClass: 'ring-emerald-500/20',
-    borderClass: 'border-emerald-500/20',
-    dotClass: 'bg-emerald-400',
-    Icon: Building2,
-    problems: [
-      {
-        icon: Globe,
-        title: 'No real-time merchant data',
-        desc: 'Banks cannot see daily sales, foot traffic, or transaction patterns as they happen.',
-      },
-      {
-        icon: TrendingDown,
-        title: 'Merchant churn',
-        desc: 'Without daily relevance, banks become background utilities\u2019not partners in growth.',
-      },
-      {
-        icon: Shield,
-        title: 'High-cost infrastructure',
-        desc: 'POS systems, QR stacks and separate apps cost more and deliver less than one connected device.',
-      },
-      {
-        icon: Smartphone,
-        title: 'App fatigue',
-        desc: 'Customers ignore bank apps when daily spending happens through merchant-side channels.',
-      },
-    ],
-    secondary: [
-      {
-        icon: Eye,
-        title: 'Low visibility at merchant point',
-        desc: 'Banks do not see what happens after the terminal is installed.',
-      },
-      {
-        icon: Megaphone,
-        title: 'Low engagement',
-        desc: 'Communication outside the transaction moment is weak.',
-      },
-      {
-        icon: Package,
-        title: 'Limited product insight',
-        desc: 'No real understanding of merchant inventory, demand, or seasonal patterns.',
-      },
-      {
-        icon: Repeat,
-        title: 'No merchant loyalty loop',
-        desc: 'Banks are replaced when fees drop\u2019not when value rises.',
-      },
-      {
-        icon: Lock,
-        title: 'Old infrastructure dependency',
-        desc: 'Legacy POS, separate QR apps and third-party gateways create fragile systems.',
-      },
-      {
-        icon: AlertTriangle,
-        title: 'Missed early risk signals',
-        desc: 'Declining merchant health or irregular activity goes unnoticed until it is late.',
-      },
-      {
-        icon: UserCheck,
-        title: 'Weak merchant-bank feedback loop',
-        desc: 'Product and underwriting teams lack real merchant operational data.',
-      },
-      {
-        icon: Search,
-        title: 'No organic discovery path',
-        desc: 'Banks cannot become part of everyday customer merchant discovery.',
-      },
-    ],
+    icon: Layers,
+    title: 'Limited differentiation',
+    desc: 'Similar soundboxes give merchants few reasons to choose one bank over another.',
   },
   {
-    eyebrow: 'DIMENSION 02',
-    title: 'Relationship Breakdown',
-    subtitle:
-      'Customers may not know when a shop is open, merchants struggle to reach nearby customers, and important risks can go unnoticed.',
-    color: 'emerald',
-    accentClass: 'text-emerald-400',
-    bgClass: 'bg-emerald-500/5',
-    ringClass: 'ring-emerald-500/20',
-    borderClass: 'border-emerald-500/20',
-    dotClass: 'bg-emerald-400',
-    Icon: Store,
-    problems: [
-      {
-        icon: Megaphone,
-        title: 'Poor merchant visibility',
-        desc: 'Local merchants have no affordable way to appear in nearby daily demand.',
-      },
-      {
-        icon: PhoneOff,
-        title: 'No simple communication channel',
-        desc: 'There is no natural, everyday way for a merchant to stay in touch with nearby buyers.',
-      },
-      {
-        icon: MapPin,
-        title: 'Local discovery is broken',
-        desc: 'Customers rely on old listings, not live merchant status.',
-      },
-      {
-        icon: TrendingDown,
-        title: 'Declining repeat visits',
-        desc: 'Without ongoing connection, customers forget and move on.',
-      },
-    ],
-    secondary: [
-      {
-        icon: UserX,
-        title: 'No owned customer channel',
-        desc: 'Merchants depend on word of mouth, foot traffic, or costly ads.',
-      },
-      {
-        icon: Smartphone,
-        title: 'Fragmented digital tools',
-        desc: 'WhatsApp, social media and listings do not combine into one merchant system.',
-      },
-      {
-        icon: Globe,
-        title: 'No discovery system',
-        desc: 'Local customers cannot easily find which nearby shops are open, active or offering something relevant.',
-      },
-      {
-        icon: Heart,
-        title: 'Relationships stay shallow',
-        desc: 'Without ongoing communication, merchant and customer stay strangers.',
-      },
-      {
-        icon: Accessibility,
-        title: 'Access barriers',
-        desc: 'Many merchants struggle with English-heavy digital tools that are not designed for local use.',
-      },
-      {
-        icon: AlertTriangle,
-        title: 'No fraud buffer',
-        desc: 'Merchants become exposed once relationships and transaction trust are unclear.',
-      },
-      {
-        icon: Ticket,
-        title: 'Offering leakage',
-        desc: 'Discounts, updates and offers lose value if they do not reach nearby customers in time.',
-      },
-      {
-        icon: MapPin,
-        title: 'Location relevance ignored',
-        desc: 'Physical proximity is not matched by digital relevance.',
-      },
-    ],
+    icon: Scale,
+    title: 'Underused bank strengths',
+    desc: 'Banking capabilities do not always translate into daily merchant value.',
   },
   {
-    eyebrow: 'DIMENSION 03',
-    title: 'Trust Erosion',
-    subtitle:
-      'Customers want certainty, convenience and an easier way to discover nearby businesses.',
-    color: 'teal',
-    accentClass: 'text-teal-400',
-    bgClass: 'bg-teal-500/5',
-    ringClass: 'ring-teal-500/20',
-    borderClass: 'border-teal-500/20',
-    dotClass: 'bg-teal-400',
-    Icon: Users,
-    problems: [
-      {
-        icon: Shield,
-        title: 'No trust anchor',
-        desc: 'Customers want a clear way to know the business is safe, active and worth visiting.',
-      },
-      {
-        icon: Eye,
-        title: 'Inconsistent experiences',
-        desc: 'Different shops use different systems, creating confusion and friction.',
-      },
-      {
-        icon: Heart,
-        title: 'Discoverability gap',
-        desc: 'Good nearby businesses remain invisible to people actually looking for them.',
-      },
-      {
-        icon: Globe,
-        title: 'Convenience expectation',
-        desc: 'Customers expect fast, local and simple\u2019not another login, download or unfamiliar flow.',
-      },
-    ],
-    secondary: [
-      {
-        icon: Lock,
-        title: 'No trust system',
-        desc: 'Customers need repeated positive experience before trusting a merchant\u2019s online presence.',
-      },
-      {
-        icon: Search,
-        title: 'Search is impersonal',
-        desc: 'Generic platforms do not reflect the live, local nature of nearby shopping.',
-      },
-      {
-        icon: Repeat,
-        title: 'Low repeat discovery',
-        desc: 'Customers do not naturally return unless the merchant creates ongoing presence.',
-      },
-      {
-        icon: Ticket,
-        title: 'Offer fatigue',
-        desc: 'Generic promotions feel noisy rather than useful.',
-      },
-      {
-        icon: Smartphone,
-        title: 'Device dependency',
-        desc: 'Customers want phone-based convenience without unwanted app installs.',
-      },
-      {
-        icon: UserX,
-        title: 'Relationship disconnection',
-        desc: 'No simple shared layer keeps customer and merchant connected.',
-      },
-      {
-        icon: Star,
-        title: 'Weak reputation transfer',
-        desc: 'Trust built offline does not easily travel into digital awareness.',
-      },
-      {
-        icon: Accessibility,
-        title: 'Accessibility neglect',
-        desc: 'Many local experiences still fail basic convenience and accessibility standards.',
-      },
-    ],
+    icon: UserPlus,
+    title: 'Missed merchant acquisition',
+    desc: 'A weak device proposition can limit new merchant relationships.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Weak merchant retention',
+    desc: 'Limited everyday value makes the relationship easier to replace.',
+  },
+  {
+    icon: PiggyBank,
+    title: 'CASA relationship risk',
+    desc: 'Losing the merchant touchpoint can weaken deposit relationships.',
+  },
+  {
+    icon: Network,
+    title: 'Loan distribution',
+    desc: 'Intermediated loan distribution can increase acquisition costs.',
+  },
+  {
+    icon: Link2,
+    title: 'Weaker direct relationships',
+    desc: "Third-party channels can distance banks from the merchant's daily business.",
+  },
+  {
+    icon: Database,
+    title: 'Limited lending context',
+    desc: 'Fragmented business information can limit the context for credit assessment.',
   },
 ];
 
-const DimensionHeader = ({
-  dimension,
-  index,
-}: {
-  dimension: (typeof dimensions)[number];
-  index: number;
-}) => {
-  const Icon = dimension.Icon;
-  return (
-    <div className="mb-8">
-      <Reveal>
-        <span className={`inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] uppercase ${dimension.accentClass} mb-4`}>
-          <span className="inline-block h-px w-6 bg-current opacity-40" />
-          {dimension.eyebrow}
-        </span>
-      </Reveal>
-      <Reveal>
-        <h3 className="text-2xl sm:text-3xl font-display font-bold text-zinc-50 mb-3 leading-tight">
-          {dimension.title}
-        </h3>
-      </Reveal>
-      <Reveal>
-        <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl">
-          {dimension.subtitle}
-        </p>
-      </Reveal>
-    </div>
-  );
-};
+const merchantConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
+  {
+    icon: Timer,
+    title: 'TRUST LOSS & MISSED FOOTFALL',
+    desc: 'Uncertain opening times can disappoint customers and erode trust. Shops lose potential visits when people cannot tell whether they are open.',
+  },
+  {
+    icon: Megaphone,
+    title: 'LOW VISIBILITY & MISSED UPDATES',
+    desc: 'Without a current digital presence, nearby businesses remain hard to find. Time-sensitive offers and announcements may not reach the right customers.',
+  },
+  {
+    icon: ShieldAlert,
+    title: 'THEFT AND FIRE WORRIES',
+    desc: 'Intrusion, fire and smoke hazards can go unnoticed without suitable monitoring, detection, alerts and a way to respond.',
+  },
+];
+
+const customerConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
+  {
+    icon: Clock,
+    title: 'NO REAL-TIME CERTAINTY',
+    desc: 'Opening hours do not confirm whether a shop is open right now. A trip to a closed shop can waste time, fuel and effort.',
+  },
+  {
+    icon: MapPin,
+    title: 'LIMITED DISCOVERY & MISSED OFFERS',
+    desc: 'Finding a nearby business that is open and ready to serve can be difficult. Useful offers and announcements may never reach interested customers.',
+  },
+  {
+    icon: Siren,
+    title: 'UNCERTAINTY IN URGENT MOMENTS',
+    desc: 'Urgent needs are harder to meet when open nearby shops are difficult to identify.',
+  },
+];
+
+/* ── Section ──────────────────────────────────────────────────────────── */
 
 export function ProblemSection() {
   return (
-    <Section id="problem" className="relative bg-[#050505] py-28 lg:py-40">
-      <Container className="max-w-[1060px]">
-        {/* ── Hero ── */}
-        <Reveal>
-          <span className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] uppercase text-zinc-400 mb-4">
-            <span className="inline-block h-px w-6 bg-current opacity-40" />
-            THE PROBLEM
-          </span>
-        </Reveal>
-
-        <Reveal>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-zinc-50 leading-tight mb-4">
-            The Problem — <span className="text-zinc-400">Three Dimensions</span>
-          </h2>
-        </Reveal>
-
-        <Reveal>
-          <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-3xl mb-12">
-            Today, banks, merchants and customers face different problems because they are not
-            connected in one simple, real-time experience.
-          </p>
-        </Reveal>
-
-        {/* Visual indicators */}
-        <Reveal>
-          <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-16 max-w-3xl">
-            {[
-              { label: 'BANKS', sub: 'Information Blindness', color: 'bg-emerald-400', Icon: Building2 },
-              { label: 'MERCHANTS', sub: 'Relationship Breakdown', color: 'bg-emerald-400', Icon: Store },
-              { label: 'CUSTOMERS', sub: 'Trust Erosion', color: 'bg-teal-400', Icon: Users },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/40 backdrop-blur-sm p-4 sm:p-5"
-              >
-                <div className={`w-2 h-2 rounded-full ${item.color} mb-3`} />
-                <div className="flex items-center gap-2 mb-1">
-                  <item.Icon className="w-4 h-4 text-zinc-500" />
-                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-zinc-500">
-                    {item.label}
-                  </span>
-                </div>
-                <span className="text-xs sm:text-sm text-zinc-300 font-medium">{item.sub}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* ── Dimensions ── */}
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          className="space-y-20"
-        >
-          {dimensions.map((dimension, i) => (
-            <motion.div key={i} variants={fadeUp}>
-              <DimensionHeader dimension={dimension} index={i} />
-              <div className="space-y-10">
-                {/* Primary grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {dimension.problems.map((problem, pi) => {
-                    const PIcon = problem.icon;
-                    return (
-                      <div
-                        key={pi}
-                        className={`rounded-2xl border ${dimension.borderClass} ${dimension.bgClass} p-5 transition hover:border-zinc-600/40 ${
-                          pi === 0
-                            ? 'lg:col-span-2 lg:row-span-2 flex flex-col justify-between min-h-[260px]'
-                            : ''
-                        }`}
-                      >
-                        <div>
-                          <div className="flex items-center gap-2 mb-3">
-                            <div
-                              className={`flex items-center justify-center w-10 h-10 rounded-xl ${dimension.bgClass}`}
-                            >
-                              <PIcon className={`w-5 h-5 ${dimension.accentClass}`} />
-                            </div>
-                            {pi === 0 && (
-                              <span
-                                className={`inline-block w-2 h-2 rounded-full ${dimension.dotClass} animate-pulse`}
-                              />
-                            )}
-                          </div>
-                          <h4 className="text-sm sm:text-base font-semibold text-zinc-100 mb-1.5 leading-snug">
-                            {problem.title}
-                          </h4>
-                          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                            {problem.desc}
-                          </p>
-                        </div>
-                        {pi === 0 && (
-                          <div className="mt-6 pt-4 border-t border-zinc-800/40">
-                            <p className="font-mono text-[10px] tracking-[0.12em] uppercase text-zinc-500">
-                              <span className="text-zinc-300 font-medium">OPEN</span> device creates
-                              a direct real-time view
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Secondary grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {dimension.secondary.map((problem, si) => {
-                    const SIcon = problem.icon;
-                    return (
-                      <div
-                        key={si}
-                        className={`rounded-2xl border border-zinc-800/60 bg-zinc-900/40 backdrop-blur-sm p-4 sm:p-5 hover:bg-zinc-900/60 transition-colors`}
-                      >
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-zinc-800/60">
-                            <SIcon className="w-4 h-4 text-zinc-400" />
-                          </div>
-                          <h4 className="text-sm font-semibold text-zinc-200 leading-snug">
-                            {problem.title}
-                          </h4>
-                        </div>
-                        <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pl-12">
-                          {problem.desc}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+    <Section id="problem" className="bg-[#F7F8FA] !py-28 lg:!py-44">
+      <Container>
+        <div className="mx-auto max-w-[1080px]">
+          {/* ── Section introduction ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+            variants={stagger}
+            className="text-center"
+          >
+            <motion.div variants={fadeUp} className="flex justify-center">
+              <Eyebrow>THE CHALLENGE IN LOCAL COMMERCE</Eyebrow>
             </motion.div>
-          ))}
-        </motion.div>
 
-        {/* ── Transition ── */}
-        <div className="mt-24 text-center">
-          <Reveal>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-zinc-500 mb-3">
-              THE REAL PROBLEM
-            </p>
-          </Reveal>
-          <Reveal>
-            <h3 className="text-2xl sm:text-3xl font-display font-bold text-zinc-50 mb-4">
-              Banks, Merchants and Customers
-              <span className="block text-zinc-400 mt-1">are disconnected.</span>
-            </h3>
-          </Reveal>
-
-          <Reveal>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 my-8 text-sm text-zinc-400 font-medium">
-              <span className="px-4 py-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
-                BANKS
-              </span>
-              <svg width="20" height="20" viewBox="0 0 20 20" className="text-zinc-600 hidden sm:block shrink-0">
-                <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                <circle cx="10" cy="10" r="2" fill="currentColor" opacity="0.4" />
-              </svg>
-              <span className="text-zinc-700 font-mono text-xs hidden sm:block">DISCONNECTED</span>
-              <svg width="20" height="20" viewBox="0 0 20 20" className="text-zinc-600 hidden sm:block shrink-0">
-                <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                <circle cx="10" cy="10" r="2" fill="currentColor" opacity="0.4" />
-              </svg>
-              <span className="px-4 py-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
-                MERCHANTS
-              </span>
-              <svg width="20" height="20" viewBox="0 0 20 20" className="text-zinc-600 hidden sm:block shrink-0">
-                <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                <circle cx="10" cy="10" r="2" fill="currentColor" opacity="0.4" />
-              </svg>
-              <span className="text-zinc-700 font-mono text-xs hidden sm:block">DISCONNECTED</span>
-              <svg width="20" height="20" viewBox="0 0 20 20" className="text-zinc-600 hidden sm:block shrink-0">
-                <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                <circle cx="10" cy="10" r="2" fill="currentColor" opacity="0.4" />
-              </svg>
-              <span className="px-4 py-2 rounded-xl border border-teal-500/20 bg-teal-500/5">
-                CUSTOMERS
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <p className="text-zinc-300 text-lg sm:text-xl font-display font-semibold mb-8">
-              What if one device connected them all?
-            </p>
-          </Reveal>
-          <Reveal>
-            <a
-              href="#solution"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-emerald-500 text-white font-semibold text-sm tracking-wide hover:bg-emerald-400 transition-colors"
+            <motion.h2
+              variants={fadeUp}
+              className="mt-8 font-display font-bold leading-[1.05] tracking-[-0.03em] text-[2.6rem] sm:text-[3.4rem] lg:text-[4.2rem]"
+              style={{ color: C.ink }}
             >
-              See the Solution
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="mt-px">
-                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-          </Reveal>
+              Three sides.
+              <span className="block text-[2.1rem] sm:text-[2.7rem] lg:text-[3.3rem]" style={{ color: C.accent }}>
+                One costly disconnect.
+              </span>
+            </motion.h2>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8"
+            >
+              {[
+                { audience: 'Banks', rest: 'lose everyday relevance.' },
+                { audience: 'Merchants', rest: 'lose visibility.' },
+                { audience: 'Customers', rest: 'lose certainty.' },
+              ].map((line) => (
+                <div key={line.audience} className="flex items-start justify-center gap-3">
+                  <span
+                    className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: C.accent }}
+                  />
+                  <p className="font-display text-lg font-medium leading-snug lg:text-xl" style={{ color: C.ink2 }}>
+                    <span className="font-bold" style={{ color: C.accent }}>
+                      {line.audience}
+                    </span>{' '}
+                    {line.rest}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* ── Three sides / DISCONNECTED ── */}
+          <div className="mt-24 lg:mt-32">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+              {sides.map((side, i) => (
+                <div key={side.num} className="contents">
+                  <NodeCard num={side.num} name={side.name} Icon={side.Icon} index={i} />
+                  {i < sides.length - 1 && (
+                    <>
+                      {/* Desktop vertical divider */}
+                      <div
+                        className="hidden lg:flex flex-col items-center self-stretch px-3"
+                        aria-hidden="true"
+                      >
+                        <div className="w-px flex-1 border-l border-dashed" style={{ borderColor: C.hairStrong }} />
+                        <span
+                          className="my-3 font-mono text-[10px] uppercase tracking-[0.24em]"
+                          style={{ color: C.faint }}
+                        >
+                          DISCONNECTED
+                        </span>
+                        <div className="w-px flex-1 border-l border-dashed" style={{ borderColor: C.hairStrong }} />
+                      </div>
+                      {/* Mobile horizontal divider */}
+                      <div className="lg:hidden flex items-center gap-3 py-1" aria-hidden="true">
+                        <div className="h-px flex-1 border-t border-dashed" style={{ borderColor: C.hairStrong }} />
+                        <span
+                          className="font-mono text-[10px] uppercase tracking-[0.24em]"
+                          style={{ color: C.faint }}
+                        >
+                          DISCONNECTED
+                        </span>
+                        <div className="h-px flex-1 border-t border-dashed" style={{ borderColor: C.hairStrong }} />
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── DIMENSION 01 / BANKS ── */}
+          <motion.div variants={stagger} className="mt-24 lg:mt-36">
+            <DimensionHeader
+              eyebrow="DIMENSION 01 / BANKS"
+              title="Information blindness."
+              body="Banks have trust, reach and financial strength. The challenge is turning that advantage into a direct, everyday merchant relationship."
+            />
+
+            <div className="mb-6 flex items-center gap-4">
+              <span
+                className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em]"
+                style={{ color: C.muted }}
+              >
+                8 CONNECTED CHALLENGES
+              </span>
+              <span className="h-px flex-1" style={{ backgroundColor: C.hair }} />
+            </div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={stagger}
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5"
+            >
+              {bankChallenges.map((b, i) => (
+                <motion.article
+                  key={b.title}
+                  variants={softCardVariants}
+                  className="group rounded-xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1"
+                  style={{ borderColor: C.hair, boxShadow: C.shadow }}
+                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `${C.shadowHover}, 0 0 0 1px ${C.accentBorder}`)}
+                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = C.shadow)}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="mt-0.5 font-mono text-[11px] tracking-[0.18em]" style={{ color: C.faint }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div
+                      className="flex h-10 w-10 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-105"
+                      style={{ backgroundColor: C.accentSoft }}
+                    >
+                      <b.icon size={18} strokeWidth={1.6} style={{ color: C.accent }} />
+                    </div>
+                  </div>
+                  <h4 className="mt-5 font-display text-[15.5px] font-semibold leading-snug tracking-tight" style={{ color: C.ink }}>
+                    {b.title}
+                  </h4>
+                  <p className="mt-2.5 font-body text-[13.5px] leading-relaxed" style={{ color: C.muted }}>
+                    {b.desc}
+                  </p>
+                </motion.article>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* ── DIMENSION 02 / MERCHANTS ── */}
+          <div className="mt-24 lg:mt-36">
+            <DimensionHeader
+              eyebrow="DIMENSION 02 / MERCHANTS"
+              title="Relationship breakdown."
+              body="Shops need visibility, customer connection and confidence after hours."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={stagger}
+              className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6"
+            >
+              {merchantConcerns.map((item) => (
+                <motion.article
+                  key={item.title}
+                  variants={softCardVariants}
+                  className="group flex flex-col rounded-2xl border bg-white p-7 transition-all duration-300 hover:-translate-y-1 lg:p-8"
+                  style={{ borderColor: C.hair, boxShadow: C.shadow }}
+                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `${C.shadowHover}, 0 0 0 1px ${C.accentBorder}`)}
+                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = C.shadow)}
+                >
+                  <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={iconMove}
+                    className="flex items-center justify-center rounded-full border"
+                    style={{ width: 52, height: 52, borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
+                  >
+                    <item.icon size={22} strokeWidth={1.5} style={{ color: C.accent }} />
+                  </motion.div>
+                  <h4
+                    className="mt-6 font-display text-[12.5px] font-bold uppercase leading-snug tracking-[0.13em]"
+                    style={{ color: C.ink }}
+                  >
+                    {item.title}
+                  </h4>
+                  <p className="mt-3.5 font-body text-[14px] leading-relaxed" style={{ color: C.muted }}>
+                    {item.desc}
+                  </p>
+                </motion.article>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* ── DIMENSION 03 / CUSTOMERS ── */}
+          <div className="mt-24 lg:mt-36">
+            <DimensionHeader
+              eyebrow="DIMENSION 03 / CUSTOMERS"
+              title="Trust erosion."
+              body="People need certainty, convenient discovery and useful local information."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={stagger}
+              className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6"
+            >
+              {customerConcerns.map((item) => (
+                <motion.article
+                  key={item.title}
+                  variants={softCardVariants}
+                  className="group flex flex-col rounded-2xl border bg-white p-7 transition-all duration-300 hover:-translate-y-1 lg:p-8"
+                  style={{ borderColor: C.hair, boxShadow: C.shadow }}
+                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `${C.shadowHover}, 0 0 0 1px ${C.accentBorder}`)}
+                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = C.shadow)}
+                >
+                  <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={iconMove}
+                    className="flex items-center justify-center rounded-full border"
+                    style={{ width: 52, height: 52, borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
+                  >
+                    <item.icon size={22} strokeWidth={1.5} style={{ color: C.accent }} />
+                  </motion.div>
+                  <h4
+                    className="mt-6 font-display text-[12.5px] font-bold uppercase leading-snug tracking-[0.13em]"
+                    style={{ color: C.ink }}
+                  >
+                    {item.title}
+                  </h4>
+                  <p className="mt-3.5 font-body text-[14px] leading-relaxed" style={{ color: C.muted }}>
+                    {item.desc}
+                  </p>
+                </motion.article>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </Container>
     </Section>
