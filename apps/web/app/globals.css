@@ -107,6 +107,32 @@
   --deck-glow-green:    #0B7A4B;
   --deck-glow-blue:     #3E6FD8;
   --deck-glow-purple:   #7A5CD8;
+
+  /* Solution showcase-only tokens (dark-first design; light remaps) */
+  --sol-band:            #FFFFFF;
+  --sol-band2:           #EAEDEB;
+  --sol-band3:           #FFFFFF;
+  --sol-accent:          #0B7A4B;
+  --sol-teal:            #0F766E;
+  --sol-faint:           #5B6470;
+  --sol-card:            #FFFFFF;
+  --sol-card-border:     #DCE1E5;
+  --sol-tile:            #E4F3EB;
+  --sol-tealbg:          #E2F4F2;
+  --sol-node-border:     #C7E5D5;
+  --sol-node-bg:         #F1F8F4;
+  --sol-tealnode-border: #BFE7E3;
+  --sol-tealnode-bg:     #EFFAF9;
+
+  /* One-device showcase-only tokens (dark-first design; light remaps) */
+  --od-band:         #FFFFFF;
+  --od-band2:        #EAEDEB;
+  --od-card:         #FFFFFF;
+  --od-card-border:  #DCE1E5;
+  --od-node:         #E9F2ED;
+  --od-line:         #D9E1DD;
+  --od-arrow:        #9DB8AD;
+  --od-path:         #0B7A4B;
 }
 
 :root[data-theme='dark'] {
@@ -190,6 +216,32 @@
   --deck-glow-green:    #00D084;
   --deck-glow-blue:     #3B82F6;
   --deck-glow-purple:   #8B5CF6;
+
+  /* Solution showcase-only tokens (dark values = current design, unchanged) */
+  --sol-band:            #050505;
+  --sol-band2:           #0A0F14;
+  --sol-band3:           #06100A;
+  --sol-accent:          #34D399;
+  --sol-teal:            #2DD4BF;
+  --sol-faint:           #52525B;
+  --sol-card:            rgba(24, 24, 27, 0.4);
+  --sol-card-border:     rgba(39, 39, 42, 0.6);
+  --sol-tile:            rgba(16, 185, 129, 0.1);
+  --sol-tealbg:          rgba(20, 184, 166, 0.1);
+  --sol-node-border:     rgba(16, 185, 129, 0.2);
+  --sol-node-bg:         rgba(16, 185, 129, 0.05);
+  --sol-tealnode-border: rgba(20, 184, 166, 0.2);
+  --sol-tealnode-bg:     rgba(20, 184, 166, 0.05);
+
+  /* One-device showcase-only tokens (dark values = current design, unchanged) */
+  --od-band:         #06100A;
+  --od-band2:        #0A0F14;
+  --od-card:         rgba(255, 255, 255, 0.03);
+  --od-card-border:  rgba(255, 255, 255, 0.09);
+  --od-node:         #0A1510;
+  --od-line:         rgba(255, 255, 255, 0.1);
+  --od-arrow:        #2E4A3C;
+  --od-path:         #00E28A;
 }
 
 /* Accent alpha helpers (legacy `#00D084xx` → --aXX) */

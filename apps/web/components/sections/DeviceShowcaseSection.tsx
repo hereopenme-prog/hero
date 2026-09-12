@@ -31,7 +31,7 @@ import { Reveal } from '@/app/components/Reveal';
 import { fadeUp } from '@/lib/animations';
 
 /* ── Fixed premium-dark palette for this section ── */
-const ACCENT = '#00D084';
+const ACCENT = 'var(--accent)';
 
 /* ── Ecosystem nodes around the device ── */
 type EcoNode = {
@@ -167,17 +167,23 @@ function EcoNode({
   onActivate,
   onClear,
   role = 'button',
+  flow = 'absolute',
 }: {
   node: EcoNode;
   active: boolean;
   onActivate: () => void;
   onClear: () => void;
   role?: 'button' | 'cell';
+  flow?: 'absolute' | 'static';
 }) {
   return (
     <div
-      className="absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center"
-      style={{ left: `${node.x}%`, top: `${node.y}%` }}
+      className={
+        flow === 'absolute'
+          ? 'absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center'
+          : 'relative z-20 flex flex-col items-center'
+      }
+      style={flow === 'absolute' ? { left: `${node.x}%`, top: `${node.y}%` } : undefined}
     >
       <div
         role={role}
@@ -190,16 +196,16 @@ function EcoNode({
         className={`group/node flex flex-col items-center rounded-2xl border px-4 py-3 text-center transition-all duration-200 ${
           active
             ? 'border-[rgba(0,226,138,0.42)] bg-[rgba(0,226,138,0.1)]'
-            : 'border-white/[0.09] bg-white/[0.03] hover:border-[rgba(0,226,138,0.28)] hover:bg-[rgba(0,226,138,0.06)]'
+            : 'border-[var(--od-card-border)] bg-[var(--od-card)] hover:border-[rgba(0,226,138,0.28)] hover:bg-[rgba(0,226,138,0.06)]'
         }`}
       >
-        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0A1510]">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--od-card-border)] bg-[var(--od-node)]">
           <node.icon size={19} strokeWidth={1.5} style={{ color: ACCENT }} />
         </span>
-        <p className="mt-2.5 font-display text-[11px] font-bold tracking-[0.1em] uppercase text-white">
+        <p className="mt-2.5 font-display text-[11px] font-bold tracking-[0.1em] uppercase text-[var(--ink)]">
           {node.label}
         </p>
-        <p className="mt-1 max-w-[150px] font-body text-[11px] leading-snug text-[#8FA39A]">{node.caption}</p>
+        <p className="mt-1 max-w-[150px] font-body text-[11px] leading-snug text-[var(--ink-2)]">{node.caption}</p>
       </div>
     </div>
   );
@@ -235,9 +241,9 @@ function DesktopNetwork({
       <svg aria-hidden="true" className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="ecoLine" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#00E28A" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#00E28A" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#00E28A" stopOpacity="0.3" />
+            <stop offset="0%" style={{ stopColor: 'var(--od-path)' }} stopOpacity="0.3" />
+            <stop offset="50%" style={{ stopColor: 'var(--od-path)' }} stopOpacity="0.8" />
+            <stop offset="100%" style={{ stopColor: 'var(--od-path)' }} stopOpacity="0.3" />
           </linearGradient>
         </defs>
 
@@ -328,8 +334,8 @@ function VerticalFlow({ reduced }: { reduced: boolean }) {
       className="mx-auto flex w-full max-w-[320px] flex-col items-center"
     >
       <motion.div variants={nodeFade} className="flex flex-col items-center">
-        <EcoNode node={ecoNodes[0]} active={false} onActivate={() => {}} onClear={() => {}} role="cell" />
-        <div className="relative h-12 w-px bg-white/10">
+        <EcoNode node={ecoNodes[0]} active={false} onActivate={() => {}} onClear={() => {}} role="cell" flow="static" />
+        <div className="relative h-12 w-px bg-[var(--od-line)]">
           {!reduced && <span className="flow-dot-down" />}
         </div>
       </motion.div>
@@ -343,11 +349,11 @@ function VerticalFlow({ reduced }: { reduced: boolean }) {
         .map((s) => (
           <motion.div key={s.node!.key} variants={nodeFade} className="flex flex-col items-center">
             {s.before && (
-              <div className="relative h-12 w-px bg-white/10">
+              <div className="relative h-12 w-px bg-[var(--od-line)]">
                 {!reduced && <span className="flow-dot-down" />}
               </div>
             )}
-            <EcoNode node={s.node!} active={false} onActivate={() => {}} onClear={() => {}} role="cell" />
+            <EcoNode node={s.node!} active={false} onActivate={() => {}} onClear={() => {}} role="cell" flow="static" />
           </motion.div>
         ))}
     </motion.div>
@@ -365,14 +371,14 @@ const capabilityFlow = [
 
 function CapabilityStrip() {
   return (
-    <div className="mt-14 border-t border-white/[0.08] pt-9 lg:mt-20">
+    <div className="mt-14 border-t border-[var(--od-line)] pt-9 lg:mt-20">
       <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-0 lg:justify-center">
         <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,226,138,0.3)] bg-[rgba(0,226,138,0.08)] px-4 py-1.5">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00D084] opacity-60" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00D084]" />
           </span>
-          <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase text-white">One Device</span>
+          <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase text-[var(--ink)]">One Device</span>
         </span>
 
         <div className="flex flex-wrap items-center justify-center gap-y-3">
@@ -383,15 +389,15 @@ function CapabilityStrip() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
               variants={fadeUp}
-              className="group flex items-center gap-2.5 rounded-full border border-white/[0.09] bg-white/[0.03] px-4 py-2 transition-all duration-200 hover:border-[rgba(0,226,138,0.3)]"
+              className="group flex items-center gap-2.5 rounded-full border border-[var(--od-card-border)] bg-[var(--od-card)] px-4 py-2 transition-all duration-200 hover:border-[rgba(0,226,138,0.3)]"
             >
               <c.icon size={14} strokeWidth={1.6} style={{ color: ACCENT }} />
-              <span className="font-display text-[10px] font-bold uppercase tracking-[0.14em] text-[#B6C6BD] group-hover:text-white">
+              <span className="font-display text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink-2)] group-hover:text-[var(--ink)]">
                 {c.label}
               </span>
             </motion.span>,
             i < capabilityFlow.length - 1 ? (
-              <span key={`arrow-${i}`} className="mx-3 hidden text-[#2E4A3C] lg:block" aria-hidden>
+              <span key={`arrow-${i}`} className="mx-3 hidden text-[var(--od-arrow)] lg:block" aria-hidden>
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
             ) : null,
@@ -416,12 +422,12 @@ function FeatureCard({
 }) {
   return (
     <Reveal delay={delay}>
-      <div className="group h-full rounded-2xl border border-white/[0.09] bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(0,226,138,0.32)] hover:bg-white/[0.05]">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-[#0A1510] transition-transform duration-300 group-hover:scale-105">
+      <div className="group h-full rounded-2xl border border-[var(--od-card-border)] bg-[var(--od-card)] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(0,226,138,0.32)] hover:bg-white/[0.05]">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--od-card-border)] bg-[var(--od-node)] transition-transform duration-300 group-hover:scale-105">
           <Icon size={19} strokeWidth={1.6} style={{ color: ACCENT }} />
         </span>
-        <h4 className="mt-4 font-display text-sm font-semibold leading-snug text-white">{title}</h4>
-        <p className="mt-2 font-body text-[13px] leading-relaxed text-[#8FA39A]">{desc}</p>
+        <h4 className="mt-4 font-display text-sm font-semibold leading-snug text-[var(--ink)]">{title}</h4>
+        <p className="mt-2 font-body text-[13px] leading-relaxed text-[var(--ink-2)]">{desc}</p>
       </div>
     </Reveal>
   );
@@ -444,15 +450,15 @@ function ConnectionHeader({
       <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[rgba(0,226,138,0.28)] bg-[rgba(0,226,138,0.08)]">
         <Icon size={24} strokeWidth={1.5} style={{ color: ACCENT }} />
       </span>
-      <p className="mt-6 font-body text-[11px] font-semibold tracking-[0.2em] uppercase text-[#00D084]">{eyebrow}</p>
-      <h3 className="mt-3 font-display text-[1.8rem] font-bold leading-tight text-white sm:text-4xl">{heading}</h3>
+      <p className="mt-6 font-body text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--accent)]">{eyebrow}</p>
+      <h3 className="mt-3 font-display text-[1.8rem] font-bold leading-tight text-[var(--ink)] sm:text-4xl">{heading}</h3>
 
-      <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.03] px-3 py-1.5">
+      <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-[var(--od-card-border)] bg-[var(--od-card)] px-3 py-1.5">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00D084] opacity-60" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00D084]" />
         </span>
-        <span className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase text-[#A9BBB2]">
+        <span className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase text-[var(--ink-muted)]">
           One Device <ArrowRight className="inline h-3 w-3" /> {flowLabel}
         </span>
       </div>
@@ -472,7 +478,7 @@ const bankCapabilities = [
 
 function BanksBand() {
   return (
-    <Section className="bg-[#0A0F14]">
+    <Section className="bg-[var(--od-band2)]">
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
           <Reveal>
@@ -501,7 +507,7 @@ const merchantBenefits = [
 
 function MerchantsBand() {
   return (
-    <Section className="bg-[#06100A]">
+    <Section className="bg-[var(--od-band)]">
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
           <Reveal>
@@ -515,8 +521,8 @@ function MerchantsBand() {
                   <Sparkles size={22} strokeWidth={1.5} style={{ color: ACCENT }} />
                 </span>
                 <div className="min-w-0">
-                  <h4 className="font-display text-lg font-bold text-white">A stronger offering</h4>
-                  <p className="mt-1 font-body text-[13px] leading-relaxed text-[#8FA39A]">
+                  <h4 className="font-display text-lg font-bold text-[var(--ink)]">A stronger offering</h4>
+                  <p className="mt-1 font-body text-[13px] leading-relaxed text-[var(--ink-2)]">
                     Offer useful services beyond payment confirmation.
                   </p>
                 </div>
@@ -545,7 +551,7 @@ const customerBenefits = [
 
 function CustomersBand() {
   return (
-    <Section className="bg-[#0A0F14]">
+    <Section className="bg-[var(--od-band2)]">
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
           <Reveal>
@@ -565,7 +571,7 @@ function CustomersBand() {
 /* ── Closing statement + CTA + disclaimer ─────────────────── */
 function ClosingBand() {
   return (
-    <Section className="bg-[#06100A] overflow-hidden">
+    <Section className="bg-[var(--od-band)] overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute inset-0"
@@ -577,14 +583,14 @@ function ClosingBand() {
       <Container className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <h3 className="font-display text-3xl font-bold uppercase leading-[1.1] tracking-[-0.015em] text-white sm:text-5xl">
+            <h3 className="font-display text-3xl font-bold uppercase leading-[1.1] tracking-[-0.015em] text-[var(--ink)] sm:text-5xl">
               One device.
               <br />
               <span style={{ color: ACCENT }}>Three stronger relationships.</span>
             </h3>
           </Reveal>
           <Reveal delay={100}>
-            <p className="mx-auto mt-6 max-w-xl font-body text-[15px] leading-relaxed text-[#9AA9A1]">
+            <p className="mx-auto mt-6 max-w-xl font-body text-[15px] leading-relaxed text-[var(--ink-2)]">
               Connect banks, local businesses and customers through a bank-branded smart device.
             </p>
           </Reveal>
@@ -599,7 +605,7 @@ function ClosingBand() {
               </a>
               <a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--od-line)] px-7 py-3.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--ink)] transition-all duration-200 hover:border-white/40 hover:bg-white/5"
               >
                 See How It Works
               </a>
@@ -607,7 +613,7 @@ function ClosingBand() {
           </Reveal>
 
           <Reveal delay={300}>
-            <p className="mx-auto mt-12 max-w-2xl border-t border-white/[0.08] pt-8 font-body text-xs leading-relaxed text-[#6B7D74]">
+            <p className="mx-auto mt-12 max-w-2xl border-t border-[var(--od-line)] pt-8 font-body text-xs leading-relaxed text-[var(--ink-muted)]">
               Credit is subject to bank eligibility and approval. Monitoring requires supported hardware, connectivity and configuration.
             </p>
           </Reveal>
@@ -625,7 +631,7 @@ export function DeviceShowcaseSection() {
   return (
     <div className="relative">
       {/* Hero: intro + device + ecosystem + capabilities */}
-      <Section id="device" className="bg-[#06100A] overflow-hidden">
+      <Section id="device" className="bg-[var(--od-band)] overflow-hidden">
         <div
           aria-hidden="true"
           className="absolute inset-0"
@@ -655,7 +661,7 @@ export function DeviceShowcaseSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
               variants={fadeUp}
-              className="mt-7 font-display text-[2.2rem] font-bold leading-[1.1] tracking-[-0.015em] text-white sm:text-[2.8rem] lg:text-[3.4rem]"
+              className="mt-7 font-display text-[2.2rem] font-bold leading-[1.1] tracking-[-0.015em] text-[var(--ink)] sm:text-[2.8rem] lg:text-[3.4rem]"
             >
               One device. <span style={{ color: ACCENT }}>Three stronger relationships.</span>
             </motion.h2>
@@ -665,7 +671,7 @@ export function DeviceShowcaseSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               variants={fadeUp}
-              className="mx-auto mt-6 max-w-2xl font-body text-[15px] leading-[1.75] text-[#9AA9A1] lg:text-base"
+              className="mx-auto mt-6 max-w-2xl font-body text-[15px] leading-[1.75] text-[var(--ink-2)] lg:text-base"
             >
               Connect banks, local businesses and customers through a bank-branded smart device.
             </motion.p>
