@@ -46,10 +46,9 @@ const C = {
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
   <span
-    className="inline-flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]"
+    className="font-display text-lg font-bold uppercase tracking-[0.14em] sm:text-xl"
     style={{ color: C.accent }}
   >
-    <span className="inline-block h-px w-8" style={{ backgroundColor: 'currentColor', opacity: 0.35 }} />
     {children}
   </span>
 );
@@ -384,9 +383,9 @@ export function ProblemSection() {
           </div>
 
           {/* ── DIMENSION 01 / BANKS ── */}
-          <motion.div variants={stagger} className="mt-24 lg:mt-36">
+          <motion.div variants={stagger} className="mt-16 lg:mt-24">
             <DimensionHeader
-              eyebrow="DIMENSION 01 / BANKS"
+              eyebrow="BANKS"
               title="Information blindness."
               body="Banks have trust, reach and financial strength. The challenge is turning that advantage into a direct, everyday merchant relationship."
             />
@@ -404,10 +403,10 @@ export function ProblemSection() {
             <ProblemRows items={bankChallenges} />
           </motion.div>
 
-          {/* ── DIMENSION 02 / MERCHANTS ── */}
-          <div className="mt-24 lg:mt-36">
+          {/* ── MERCHANTS ── */}
+          <div className="mt-16 lg:mt-24">
             <DimensionHeader
-              eyebrow="DIMENSION 02 / MERCHANTS"
+              eyebrow="MERCHANTS"
               title="Relationship breakdown."
               body="Shops need visibility, customer connection and confidence after hours."
             />
@@ -415,10 +414,10 @@ export function ProblemSection() {
             <ProblemRows items={merchantConcerns} />
           </div>
 
-          {/* ── DIMENSION 03 / CUSTOMERS ── */}
-          <div className="mt-24 lg:mt-36">
+          {/* ── CUSTOMERS ── */}
+          <div className="mt-16 lg:mt-24">
             <DimensionHeader
-              eyebrow="DIMENSION 03 / CUSTOMERS"
+              eyebrow="CUSTOMERS"
               title="Trust erosion."
               body="People need certainty, convenient discovery and useful local information."
             />
