@@ -130,7 +130,7 @@ function SmartDeviceCard({ reduced = false }: { reduced?: boolean }) {
         <p className="mt-4 font-display text-[11px] font-bold tracking-[0.32em] text-[#6FE0B0]" style={{ color: ACCENT }}>
           HERE OPEN
         </p>
-        <p className="mt-1 font-display text-[13px] font-bold tracking-[0.14em] text-white">SMART DEVICE</p>
+        <p className="mt-1 font-display text-[13px] font-bold tracking-[0.14em] text-white">SMART MERCHANT DEVICE</p>
 
         <div className="mx-auto mt-4 w-full max-w-[230px] rounded-2xl border border-white/10 bg-black/30 px-4 py-3">
           <div className="flex items-center justify-between">
