@@ -27,6 +27,8 @@ import {
 } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { PNumberedRows } from '@/components/sections/partnerLook';
 import { Reveal } from '@/app/components/Reveal';
 import { fadeUp } from '@/lib/animations';
 
@@ -408,58 +410,19 @@ function CapabilityStrip() {
   );
 }
 
-/* ── Shared feature card for the three connection areas ───── */
-function FeatureCard({
-  icon: Icon,
-  title,
-  desc,
-  delay = 0,
-}: {
-  icon: LucideIcon;
-  title: string;
-  desc: string;
-  delay?: number;
-}) {
-  return (
-    <Reveal delay={delay}>
-      <div className="group h-full rounded-2xl border border-[var(--od-card-border)] bg-[var(--od-card)] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(0,226,138,0.32)] hover:bg-white/[0.05]">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--od-card-border)] bg-[var(--od-node)] transition-transform duration-300 group-hover:scale-105">
-          <Icon size={19} strokeWidth={1.6} style={{ color: ACCENT }} />
-        </span>
-        <h4 className="mt-4 font-display text-sm font-semibold leading-snug text-[var(--ink)]">{title}</h4>
-        <p className="mt-2 font-body text-[13px] leading-relaxed text-[var(--ink-2)]">{desc}</p>
-      </div>
-    </Reveal>
-  );
-}
+/* ── Shared feature rows are rendered with PNumberedRows (partnership look) ── */
 
-/* ── Connection panel header (audience intro + device link) ─ */
-function ConnectionHeader({
-  icon: Icon,
-  eyebrow,
-  heading,
-  flowLabel,
-}: {
-  icon: LucideIcon;
-  eyebrow: string;
-  heading: string;
-  flowLabel: string;
-}) {
+/* ── "One Device → X" flow pill (kept content, centered) ─────────────── */
+function FlowPill({ label }: { label: string }) {
   return (
-    <div>
-      <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[rgba(0,226,138,0.28)] bg-[rgba(0,226,138,0.08)]">
-        <Icon size={24} strokeWidth={1.5} style={{ color: ACCENT }} />
-      </span>
-      <p className="mt-6 font-body text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--accent)]">{eyebrow}</p>
-      <h3 className="mt-3 font-display text-[1.8rem] font-bold leading-tight text-[var(--ink)] sm:text-4xl">{heading}</h3>
-
-      <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-[var(--od-card-border)] bg-[var(--od-card)] px-3 py-1.5">
+    <div className="flex justify-center">
+      <div className="inline-flex items-center gap-2 rounded-full border border-[var(--od-card-border)] bg-[var(--od-card)] px-3 py-1.5">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00D084] opacity-60" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00D084]" />
         </span>
         <span className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase text-[var(--ink-muted)]">
-          One Device <ArrowRight className="inline h-3 w-3" /> {flowLabel}
+          One Device <ArrowRight className="inline h-3 w-3" /> {label}
         </span>
       </div>
     </div>
@@ -480,16 +443,13 @@ function BanksBand() {
   return (
     <Section className="bg-[var(--od-band2)]">
       <Container>
-        <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-          <Reveal>
-            <ConnectionHeader icon={Landmark} eyebrow="For Banks" heading="Grow together." flowLabel="Banks" />
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {bankCapabilities.map((c, i) => (
-              <FeatureCard key={c.title} icon={c.icon} title={c.title} desc={c.desc} delay={(i % 3) * 70} />
-            ))}
-          </div>
+        <SectionHeading eyebrow="For Banks" title="Grow together." />
+        <div className="-mt-8 mb-10">
+          <FlowPill label="Banks" />
         </div>
+        <PNumberedRows
+          items={bankCapabilities.map((c) => ({ title: c.title, caption: c.desc }))}
+        />
       </Container>
     </Section>
   );
@@ -509,32 +469,29 @@ function MerchantsBand() {
   return (
     <Section className="bg-[var(--od-band)]">
       <Container>
-        <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-          <Reveal>
-            <ConnectionHeader icon={Store} eyebrow="For Merchants" heading="More value, every day." flowLabel="Local Businesses" />
-          </Reveal>
+        <SectionHeading eyebrow="For Merchants" title="More value," titleAccent="every day." />
+        <div className="-mt-8 mb-10">
+          <FlowPill label="Local Businesses" />
+        </div>
 
-          <div>
-            <Reveal>
-              <div className="flex items-center gap-5 rounded-3xl border border-[rgba(0,226,138,0.24)] bg-gradient-to-br from-[rgba(0,226,138,0.12)] via-[rgba(0,226,138,0.05)] to-transparent p-6 sm:p-7">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[rgba(0,226,138,0.3)] bg-[rgba(0,226,138,0.1)]">
-                  <Sparkles size={22} strokeWidth={1.5} style={{ color: ACCENT }} />
-                </span>
-                <div className="min-w-0">
-                  <h4 className="font-display text-lg font-bold text-[var(--ink)]">A stronger offering</h4>
-                  <p className="mt-1 font-body text-[13px] leading-relaxed text-[var(--ink-2)]">
-                    Offer useful services beyond payment confirmation.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {merchantBenefits.map((c, i) => (
-                <FeatureCard key={c.title} icon={c.icon} title={c.title} desc={c.desc} delay={(i % 3) * 70} />
-              ))}
+        <Reveal>
+          <div className="mx-auto flex max-w-3xl items-center gap-5 rounded-3xl border border-[rgba(0,226,138,0.24)] bg-gradient-to-br from-[rgba(0,226,138,0.12)] via-[rgba(0,226,138,0.05)] to-transparent p-6 sm:p-7">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[rgba(0,226,138,0.3)] bg-[rgba(0,226,138,0.1)]">
+              <Sparkles size={22} strokeWidth={1.5} style={{ color: ACCENT }} />
+            </span>
+            <div className="min-w-0">
+              <h4 className="font-display text-lg font-bold text-[var(--ink)]">A stronger offering</h4>
+              <p className="mt-1 font-body text-[13px] leading-relaxed text-[var(--ink-2)]">
+                Offer useful services beyond payment confirmation.
+              </p>
             </div>
           </div>
+        </Reveal>
+
+        <div className="mt-4">
+          <PNumberedRows
+            items={merchantBenefits.map((c) => ({ title: c.title, caption: c.desc }))}
+          />
         </div>
       </Container>
     </Section>
@@ -553,16 +510,13 @@ function CustomersBand() {
   return (
     <Section className="bg-[var(--od-band2)]">
       <Container>
-        <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-          <Reveal>
-            <ConnectionHeader icon={Users} eyebrow="For Customers" heading="Smarter choices. Easier visits." flowLabel="Customers" />
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {customerBenefits.map((c, i) => (
-              <FeatureCard key={c.title} icon={c.icon} title={c.title} desc={c.desc} delay={(i % 4) * 70} />
-            ))}
-          </div>
+        <SectionHeading eyebrow="For Customers" title="Smarter choices." titleAccent="Easier visits." />
+        <div className="-mt-8 mb-10">
+          <FlowPill label="Customers" />
         </div>
+        <PNumberedRows
+          items={customerBenefits.map((c) => ({ title: c.title, caption: c.desc }))}
+        />
       </Container>
     </Section>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import {
   Layers,
@@ -40,16 +40,6 @@ const C = {
   accentBorder: 'rgba(14,159,110,0.22)',
   shadow: '0 1px 2px rgba(15,23,42,0.04), 0 10px 30px rgba(15,23,42,0.06)',
   shadowHover: '0 2px 4px rgba(15,23,42,0.05), 0 16px 40px rgba(15,23,42,0.10)',
-};
-
-const softCardVariants: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const iconMove: Variants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] } },
 };
 
 /* ── Shared pieces ────────────────────────────────────────────────────── */
@@ -123,6 +113,106 @@ const NodeCard = ({
       {name}
     </h4>
   </motion.article>
+);
+
+/* ── PARTNERSHIP-look pieces in the Problem light palette ─────────────── */
+
+const ProblemNodes = ({
+  nodes,
+}: {
+  nodes: { name: string; caption: string; Icon: LucideIcon }[];
+}) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.15 }}
+    variants={stagger}
+  >
+    {/* Desktop: connected badge row */}
+    <div className="hidden md:flex items-start justify-between gap-3">
+      {nodes.map((node) => (
+        <motion.div key={node.name} variants={fadeUp} className="flex flex-1 flex-col items-center max-w-[160px]">
+          <div
+            className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border"
+            style={{ borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
+          >
+            <node.Icon size={20} strokeWidth={1.5} style={{ color: C.accent }} />
+          </div>
+          <p className="font-display text-[11px] font-bold tracking-[0.1em] text-center leading-tight" style={{ color: C.ink }}>
+            {node.name}
+          </p>
+          <p className="mt-1.5 font-body text-[11px] text-center leading-snug" style={{ color: C.muted }}>
+            {node.caption}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Mobile: stacked rows */}
+    <div className="space-y-3 md:hidden">
+      {nodes.map((node, i) => (
+        <motion.div
+          key={node.name}
+          variants={fadeUp}
+          className="flex items-center gap-4 rounded-xl border bg-white px-5 py-4"
+          style={{ borderColor: C.hair }}
+        >
+          <div
+            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border"
+            style={{ borderColor: C.hair, backgroundColor: '#F7F8FA' }}
+          >
+            <node.Icon size={18} strokeWidth={1.5} style={{ color: C.accent }} />
+          </div>
+          <div className="min-w-0">
+            <p className="font-display text-[11px] font-bold tracking-[0.1em] leading-tight" style={{ color: C.ink }}>
+              {node.name}
+            </p>
+            <p className="mt-0.5 font-body text-[11px] leading-snug" style={{ color: C.muted }}>
+              {node.caption}
+            </p>
+          </div>
+          {i < nodes.length - 1 && (
+            <div className="ml-auto flex-shrink-0">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 2v10M4 9l3 3 3-3" stroke={C.accent} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  </motion.div>
+);
+
+const ProblemRows = ({ items }: { items: { title: string; desc: string }[] }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.1 }}
+    variants={stagger}
+    className="mx-auto max-w-3xl"
+  >
+    {items.map((item, i) => (
+      <motion.div
+        key={item.title}
+        variants={fadeUp}
+        className="flex items-start gap-6 border-b py-6 last:border-b-0"
+        style={{ borderColor: C.hair }}
+      >
+        <span className="font-display w-12 flex-shrink-0 font-extrabold leading-none text-[1.5rem] lg:text-[1.8rem]" style={{ color: C.accent }}>
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <div>
+          <p className="font-display text-[0.95rem] font-bold leading-tight tracking-tight lg:text-[1.05rem]" style={{ color: C.ink }}>
+            {item.title}
+          </p>
+          <p className="mt-1.5 font-body text-[0.85rem] leading-relaxed" style={{ color: C.muted }}>
+            {item.desc}
+          </p>
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
 );
 
 /* ── Data ─────────────────────────────────────────────────────────────── */
@@ -242,28 +332,14 @@ export function ProblemSection() {
               </span>
             </motion.h2>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8"
-            >
-              {[
-                { audience: 'Banks', rest: 'lose everyday relevance.' },
-                { audience: 'Merchants', rest: 'lose visibility.' },
-                { audience: 'Customers', rest: 'lose certainty.' },
-              ].map((line) => (
-                <div key={line.audience} className="flex items-start justify-center gap-3">
-                  <span
-                    className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
-                    style={{ backgroundColor: C.accent }}
-                  />
-                  <p className="font-display text-lg font-medium leading-snug lg:text-xl" style={{ color: C.ink2 }}>
-                    <span className="font-bold" style={{ color: C.accent }}>
-                      {line.audience}
-                    </span>{' '}
-                    {line.rest}
-                  </p>
-                </div>
-              ))}
+            <motion.div variants={fadeUp} className="mt-14">
+              <ProblemNodes
+                nodes={[
+                  { name: 'BANKS', caption: 'lose everyday relevance.', Icon: Landmark },
+                  { name: 'MERCHANTS', caption: 'lose visibility.', Icon: Store },
+                  { name: 'CUSTOMERS', caption: 'lose certainty.', Icon: Users },
+                ]}
+              />
             </motion.div>
           </motion.div>
 
@@ -325,42 +401,7 @@ export function ProblemSection() {
               <span className="h-px flex-1" style={{ backgroundColor: C.hair }} />
             </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={stagger}
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5"
-            >
-              {bankChallenges.map((b, i) => (
-                <motion.article
-                  key={b.title}
-                  variants={softCardVariants}
-                  className="group rounded-xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1"
-                  style={{ borderColor: C.hair, boxShadow: C.shadow }}
-                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `${C.shadowHover}, 0 0 0 1px ${C.accentBorder}`)}
-                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = C.shadow)}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="mt-0.5 font-mono text-[11px] tracking-[0.18em]" style={{ color: C.faint }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div
-                      className="flex h-10 w-10 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-105"
-                      style={{ backgroundColor: C.accentSoft }}
-                    >
-                      <b.icon size={18} strokeWidth={1.6} style={{ color: C.accent }} />
-                    </div>
-                  </div>
-                  <h4 className="mt-5 font-display text-[15.5px] font-semibold leading-snug tracking-tight" style={{ color: C.ink }}>
-                    {b.title}
-                  </h4>
-                  <p className="mt-2.5 font-body text-[13.5px] leading-relaxed" style={{ color: C.muted }}>
-                    {b.desc}
-                  </p>
-                </motion.article>
-              ))}
-            </motion.div>
+            <ProblemRows items={bankChallenges} />
           </motion.div>
 
           {/* ── DIMENSION 02 / MERCHANTS ── */}
@@ -371,44 +412,7 @@ export function ProblemSection() {
               body="Shops need visibility, customer connection and confidence after hours."
             />
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={stagger}
-              className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6"
-            >
-              {merchantConcerns.map((item) => (
-                <motion.article
-                  key={item.title}
-                  variants={softCardVariants}
-                  className="group flex flex-col rounded-2xl border bg-white p-7 transition-all duration-300 hover:-translate-y-1 lg:p-8"
-                  style={{ borderColor: C.hair, boxShadow: C.shadow }}
-                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `${C.shadowHover}, 0 0 0 1px ${C.accentBorder}`)}
-                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = C.shadow)}
-                >
-                  <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={iconMove}
-                    className="flex items-center justify-center rounded-full border"
-                    style={{ width: 52, height: 52, borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
-                  >
-                    <item.icon size={22} strokeWidth={1.5} style={{ color: C.accent }} />
-                  </motion.div>
-                  <h4
-                    className="mt-6 font-display text-[12.5px] font-bold uppercase leading-snug tracking-[0.13em]"
-                    style={{ color: C.ink }}
-                  >
-                    {item.title}
-                  </h4>
-                  <p className="mt-3.5 font-body text-[14px] leading-relaxed" style={{ color: C.muted }}>
-                    {item.desc}
-                  </p>
-                </motion.article>
-              ))}
-            </motion.div>
+            <ProblemRows items={merchantConcerns} />
           </div>
 
           {/* ── DIMENSION 03 / CUSTOMERS ── */}
@@ -419,44 +423,7 @@ export function ProblemSection() {
               body="People need certainty, convenient discovery and useful local information."
             />
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={stagger}
-              className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6"
-            >
-              {customerConcerns.map((item) => (
-                <motion.article
-                  key={item.title}
-                  variants={softCardVariants}
-                  className="group flex flex-col rounded-2xl border bg-white p-7 transition-all duration-300 hover:-translate-y-1 lg:p-8"
-                  style={{ borderColor: C.hair, boxShadow: C.shadow }}
-                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `${C.shadowHover}, 0 0 0 1px ${C.accentBorder}`)}
-                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = C.shadow)}
-                >
-                  <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={iconMove}
-                    className="flex items-center justify-center rounded-full border"
-                    style={{ width: 52, height: 52, borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
-                  >
-                    <item.icon size={22} strokeWidth={1.5} style={{ color: C.accent }} />
-                  </motion.div>
-                  <h4
-                    className="mt-6 font-display text-[12.5px] font-bold uppercase leading-snug tracking-[0.13em]"
-                    style={{ color: C.ink }}
-                  >
-                    {item.title}
-                  </h4>
-                  <p className="mt-3.5 font-body text-[14px] leading-relaxed" style={{ color: C.muted }}>
-                    {item.desc}
-                  </p>
-                </motion.article>
-              ))}
-            </motion.div>
+            <ProblemRows items={customerConcerns} />
           </div>
         </div>
       </Container>
