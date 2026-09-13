@@ -10,7 +10,6 @@ import {
   Store,
   Users,
   Sparkles,
-  ArrowRight,
 } from 'lucide-react';
 
 /* ─── Intro: the three-sided HERE OPEN ecosystem ─── */
@@ -155,46 +154,6 @@ function DisclaimerBand() {
   );
 }
 
-/* ─── Closing brand message + CTA ─── */
-function ClosingBand() {
-  return (
-    <Section className="relative bg-[var(--sol-band3)] py-24 lg:py-32 overflow-hidden">
-      <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden>
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[680px] h-[360px] rounded-full bg-[var(--sol-tile)] blur-[120px]" />
-      </div>
-      <Container>
-        <div className="flex flex-col items-center text-center">
-          <Reveal>
-            <p className="font-mono text-xs tracking-[0.25em] uppercase text-[var(--sol-accent)] mb-6">
-              People. Payments. Progress.
-            </p>
-          </Reveal>
-          <Reveal>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-[var(--ink)] leading-snug mb-10 lg:mb-14">
-              Built for banks.<br />
-              <span className="text-[var(--sol-accent)]">Designed around local business.</span>
-            </p>
-          </Reveal>
-          <Reveal>
-            <p className="text-base lg:text-lg text-[var(--ink-2)] max-w-xl mb-10">
-              Build the next merchant experience with Here Open.
-            </p>
-          </Reveal>
-          <Reveal>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-emerald-500 text-[#06100A] font-bold text-sm tracking-wide hover:bg-emerald-400 transition-colors duration-200 shadow-[0_0_40px_#00D08440]"
-            >
-              Discuss a bank partnership
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </Reveal>
-        </div>
-      </Container>
-    </Section>
-  );
-}
-
 /* ─── Main ─── */
 export function SolutionSection() {
   return (
@@ -204,7 +163,6 @@ export function SolutionSection() {
       <MerchantsBand />
       <CustomersBand />
       <DisclaimerBand />
-      <ClosingBand />
     </div>
   );
 }

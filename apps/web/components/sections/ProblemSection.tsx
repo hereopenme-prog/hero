@@ -8,6 +8,13 @@ import {
   ShieldAlert,
   MapPin,
   Siren,
+  Layers,
+  Landmark,
+  UserPlus,
+  UserMinus,
+  Banknote,
+  Link2Off,
+  FileSearch,
   type LucideIcon,
 } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
@@ -82,6 +89,49 @@ const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: L
 
 /* ── Data ─────────────────────────────────────────────────────────────── */
 
+const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
+  {
+    icon: Layers,
+    title: 'Limited differentiation',
+    desc: 'Similar soundboxes give merchants few reasons to choose one bank over another.',
+  },
+  {
+    icon: Landmark,
+    title: 'Underused bank strengths',
+    desc: 'Banking capabilities do not always translate into daily merchant value.',
+  },
+  {
+    icon: UserPlus,
+    title: 'Missed merchant acquisition',
+    desc: 'A weak device proposition can limit new merchant relationships.',
+  },
+  {
+    icon: UserMinus,
+    title: 'Weak merchant retention',
+    desc: 'Limited everyday value makes the relationship easier to replace.',
+  },
+  {
+    icon: Landmark,
+    title: 'CASA relationship risk',
+    desc: 'Losing the merchant touchpoint can weaken deposit relationships.',
+  },
+  {
+    icon: Banknote,
+    title: 'Loan distribution',
+    desc: 'Intermediated loan distribution can increase acquisition costs.',
+  },
+  {
+    icon: Link2Off,
+    title: 'Weaker direct relationships',
+    desc: "Third-party channels can distance banks from the merchant's daily business.",
+  },
+  {
+    icon: FileSearch,
+    title: 'Limited lending context',
+    desc: 'Fragmented business information can limit the context for credit assessment.',
+  },
+];
+
 const merchantProblems: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Clock,
@@ -154,8 +204,24 @@ export function ProblemSection() {
             </motion.p>
           </motion.div>
 
-          {/* ── MERCHANTS ── */}
+          {/* ── BANKS ── */}
           <div className="mx-auto mt-16 max-w-3xl lg:mt-24">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={stagger}
+            >
+              <motion.div variants={fadeUp}>
+                <Eyebrow>BANKS</Eyebrow>
+              </motion.div>
+            </motion.div>
+
+            <ProblemRows items={bankChallenges} />
+          </div>
+
+          {/* ── MERCHANTS ── */}
+          <div className="mx-auto mt-14 max-w-3xl lg:mt-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
