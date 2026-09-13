@@ -77,6 +77,28 @@ const DimensionHeader = ({ eyebrow, title, body }: { eyebrow: string; title: str
   </motion.div>
 );
 
+/* Smaller continuation header for the second part of a split dimension.
+   Titles are short paraphrases of that part's own rows — no new claims. */
+const PartHeader = ({ eyebrow, title }: { eyebrow: string; title: string }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.4 }}
+    variants={stagger}
+  >
+    <motion.div variants={fadeUp}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+    </motion.div>
+    <motion.h3
+      variants={fadeUp}
+      className="mt-5 font-display font-bold leading-[1.12] tracking-[-0.02em] text-[1.6rem] sm:text-[2rem] lg:text-[2.2rem]"
+      style={{ color: C.ink }}
+    >
+      {title}
+    </motion.h3>
+  </motion.div>
+);
+
 const NodeCard = ({
   num,
   name,
@@ -270,7 +292,7 @@ const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
   },
 ];
 
-const merchantConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
+const merchantVisibility: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Clock,
     title: 'TRUST LOSS & MISSED FOOTFALL',
@@ -281,6 +303,9 @@ const merchantConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
     title: 'LOW VISIBILITY & MISSED UPDATES',
     desc: 'Without a current digital presence, nearby businesses remain hard to find. Time-sensitive offers and announcements may not reach the right customers.',
   },
+];
+
+const merchantSafety: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: ShieldAlert,
     title: 'THEFT AND FIRE WORRIES',
@@ -288,7 +313,7 @@ const merchantConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
   },
 ];
 
-const customerConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
+const customerEveryday: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Clock,
     title: 'NO REAL-TIME CERTAINTY',
@@ -299,6 +324,9 @@ const customerConcerns: { icon: LucideIcon; title: string; desc: string }[] = [
     title: 'LIMITED DISCOVERY & MISSED OFFERS',
     desc: 'Finding a nearby business that is open and ready to serve can be difficult. Useful offers and announcements may never reach interested customers.',
   },
+];
+
+const customerUrgent: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Siren,
     title: 'UNCERTAINTY IN URGENT MOMENTS',
@@ -398,7 +426,7 @@ export function ProblemSection() {
             <ProblemRows items={bankChallenges} />
           </motion.div>
 
-          {/* ── MERCHANTS ── */}
+          {/* ── MERCHANTS · PART 1 — visibility & discovery ── */}
           <div className="mt-16 lg:mt-24">
             <DimensionHeader
               eyebrow="MERCHANTS"
@@ -406,10 +434,17 @@ export function ProblemSection() {
               body="Shops need visibility, customer connection and confidence after hours."
             />
 
-            <ProblemRows items={merchantConcerns} />
+            <ProblemRows items={merchantVisibility} />
           </div>
 
-          {/* ── CUSTOMERS ── */}
+          {/* ── MERCHANTS · PART 2 — after-hours protection ── */}
+          <div className="mt-14 lg:mt-20">
+            <PartHeader eyebrow="MERCHANTS" title="Hazards go unnoticed." />
+
+            <ProblemRows items={merchantSafety} />
+          </div>
+
+          {/* ── CUSTOMERS · PART 1 — everyday certainty ── */}
           <div className="mt-16 lg:mt-24">
             <DimensionHeader
               eyebrow="CUSTOMERS"
@@ -417,7 +452,14 @@ export function ProblemSection() {
               body="People need certainty, convenient discovery and useful local information."
             />
 
-            <ProblemRows items={customerConcerns} />
+            <ProblemRows items={customerEveryday} />
+          </div>
+
+          {/* ── CUSTOMERS · PART 2 — urgent moments ── */}
+          <div className="mt-14 lg:mt-20">
+            <PartHeader eyebrow="CUSTOMERS" title="Urgent needs, harder to meet." />
+
+            <ProblemRows items={customerUrgent} />
           </div>
         </div>
       </Container>
