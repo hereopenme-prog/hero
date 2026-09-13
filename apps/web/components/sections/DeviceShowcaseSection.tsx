@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   Landmark,
   Store,
@@ -23,389 +22,127 @@ import {
   Navigation,
   CheckCircle2,
   ArrowRight,
-  type LucideIcon,
 } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PNumberedRows } from '@/components/sections/partnerLook';
 import { Reveal } from '@/app/components/Reveal';
-import { fadeUp } from '@/lib/animations';
+import { fadeUp, scaleIn, stagger } from '@/lib/animations';
 
 /* ── Fixed premium-dark palette for this section ── */
 const ACCENT = 'var(--accent)';
 
-/* ── Ecosystem nodes around the device ── */
-type EcoNode = {
-  key: string;
-  icon: LucideIcon;
-  label: string;
-  caption: string;
-  paths: string[];
-  x: number;
-  y: number;
-};
+/* Fixed deep-navy hub canvas (both themes, per the reference) */
+const HUB_NAVY = '#0B1B34';
 
-const ecoNodes: EcoNode[] = [
-  {
-    key: 'bank',
-    icon: Landmark,
-    label: 'Banks',
-    caption: 'Grow together.',
-    paths: ['bankToDevice'],
-    x: 50,
-    y: 11,
-  },
-  {
-    key: 'merchant',
-    icon: Store,
-    label: 'Local Businesses',
-    caption: 'More value, every day.',
-    paths: ['deviceToMerchant'],
-    x: 17,
-    y: 76,
-  },
-  {
-    key: 'customer',
-    icon: Users,
-    label: 'Customers',
-    caption: 'Smarter choices. Easier visits.',
-    paths: ['deviceToCustomer'],
-    x: 83,
-    y: 76,
-  },
-];
+/* ── HERE OPEN hub relationship diagram ───────────────────────────
+   BANKS (top) → HERE OPEN (center) → MSMEs (bottom-left) +
+   CUSTOMERS (bottom-right). Fixed deep-navy canvas in both themes,
+   per the reference. Lines run center-to-center and hide beneath the
+   opaque white circles; labels sit clear of every line. */
+function HubDiagram() {
+  const reduceMotion = useReducedMotion() ?? false;
+  // Opacity-only entrance (pathLength draw animations can fragment
+  // under non-uniform SVG scaling — plain lines always render solid)
+  const lineAnim = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        whileInView: { opacity: 1 },
+      };
 
-const ECO_PATHS: Record<string, string> = {
-  bankToDevice: 'M50,18 C50,28 50,38 50,44',
-  deviceToMerchant: 'M42,54 C34,62 24,69 17,72',
-  deviceToCustomer: 'M58,54 C66,62 76,69 83,72',
-};
-
-const particles = [
-  { id: 'p1', path: 'bankToDevice', dur: 4, delay: 0.8 },
-  { id: 'p2', path: 'bankToDevice', dur: 4, delay: 2.6 },
-  { id: 'p3', path: 'deviceToMerchant', dur: 4.5, delay: 0.3 },
-  { id: 'p4', path: 'deviceToCustomer', dur: 4.5, delay: 1.6 },
-  { id: 'p5', path: 'deviceToCustomer', dur: 4.5, delay: 3.2 },
-];
-
-const sequence = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.16 } },
-};
-
-const nodeFade = {
-  hidden: { opacity: 0, scale: 0.88 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
-/* ── Central Smart Merchant Device visual ─────────────────── */
-function SmartDeviceCard({ reduced = false }: { reduced?: boolean }) {
-  return (
-    <div className="relative flex flex-col items-center">
-      <div
-        aria-hidden="true"
-        className="absolute -inset-14 rounded-full"
-        style={{
-          background: 'radial-gradient(circle, rgba(0, 226, 138, 0.16) 0%, transparent 62%)',
-          animation: reduced ? 'none' : 'glowPulse 5s ease-in-out infinite',
-        }}
-      />
-      <div
-        className="relative rounded-3xl border border-[rgba(0,226,138,0.24)] px-6 py-6 text-center shadow-[0_34px_80px_rgba(0,0,0,0.55),0_0_70px_rgba(0,226,138,0.16)] sm:px-8"
-        style={{
-          background: 'linear-gradient(165deg, #0D1F16 0%, #060F0A 60%, #05100A 100%)',
-          animation: reduced ? 'none' : 'floatSlow 7s ease-in-out infinite',
-        }}
-      >
-        <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,226,138,0.28)] px-3 py-1">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00D084] opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00D084]" />
-          </span>
-          <span className="font-body text-[9px] font-semibold tracking-[0.22em] text-[#00D084]">
-            BANK-BRANDED EXPERIENCE
-          </span>
-        </span>
-
-        <p className="mt-4 font-display text-[11px] font-bold tracking-[0.32em] text-[#6FE0B0]" style={{ color: ACCENT }}>
-          HERE OPEN
-        </p>
-        <p className="mt-1 font-display text-[13px] font-bold tracking-[0.14em] text-white">SMART MERCHANT DEVICE</p>
-
-        <div className="mx-auto mt-4 w-full max-w-[230px] rounded-2xl border border-white/10 bg-black/30 px-4 py-3">
-          <div className="flex items-center justify-between">
-            <p className="font-body text-[9px] font-semibold tracking-[0.18em] text-[#8FA39A]">SHOP STATUS</p>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(0,226,138,0.35)] bg-[rgba(0,226,138,0.1)] px-2 py-0.5">
-              <span className="h-1 w-1 rounded-full bg-[#00D084]" />
-              <span className="font-display text-[10px] font-bold tracking-[0.12em] text-[#00D084]">OPEN</span>
-            </span>
-          </div>
-          <div className="mt-2.5 border-t border-white/10 pt-2.5">
-            <div className="flex items-center justify-between">
-              <span className="font-body text-[9px] tracking-[0.16em] text-[#8FA39A]">CONFIDENCE</span>
-              <span className="font-body text-[9px] font-semibold tracking-[0.12em] text-[#00D084]">HIGH</span>
-            </div>
-            <div className="mt-1.5 flex items-center gap-1">
-              <span className="h-1 flex-1 rounded-full bg-[#00D084]" />
-              <span className="h-1 flex-1 rounded-full bg-[#00D084]" />
-              <span className="h-1 flex-1 rounded-full bg-[#00D084]/50" />
-              <span className="h-1 flex-1 rounded-full bg-white/10" />
-            </div>
-          </div>
-        </div>
-
-        <p className="mt-4 font-body text-[9px] tracking-[0.24em] text-[#5F7268]">ILLUSTRATIVE DEVICE DESIGN</p>
-      </div>
-    </div>
-  );
-}
-
-/* ── Ecosystem node ───────────────────────────────────────── */
-function EcoNode({
-  node,
-  active,
-  onActivate,
-  onClear,
-  role = 'button',
-  flow = 'absolute',
-}: {
-  node: EcoNode;
-  active: boolean;
-  onActivate: () => void;
-  onClear: () => void;
-  role?: 'button' | 'cell';
-  flow?: 'absolute' | 'static';
-}) {
   return (
     <div
-      className={
-        flow === 'absolute'
-          ? 'absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center'
-          : 'relative z-20 flex flex-col items-center'
-      }
-      style={flow === 'absolute' ? { left: `${node.x}%`, top: `${node.y}%` } : undefined}
+      role="img"
+      aria-label="Relationship diagram: Banks connects to Here Open, which connects to MSMEs and Customers"
+      className="relative mx-auto w-full max-w-[680px]"
     >
-      <div
-        role={role}
-        tabIndex={role === 'button' ? 0 : undefined}
-        aria-label={`${node.label} — ${node.caption}`}
-        onMouseEnter={onActivate}
-        onMouseLeave={onClear}
-        onFocus={onActivate}
-        onBlur={onClear}
-        className={`group/node flex flex-col items-center rounded-2xl border px-4 py-3 text-center transition-all duration-200 ${
-          active
-            ? 'border-[rgba(0,226,138,0.42)] bg-[rgba(0,226,138,0.1)]'
-            : 'border-[var(--od-card-border)] bg-[var(--od-card)] hover:border-[rgba(0,226,138,0.28)] hover:bg-[rgba(0,226,138,0.06)]'
-        }`}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        variants={stagger}
+        className="relative h-[560px] sm:h-[620px] lg:h-[660px]"
       >
-        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--od-card-border)] bg-[var(--od-node)]">
-          <node.icon size={19} strokeWidth={1.5} style={{ color: ACCENT }} />
-        </span>
-        <p className="mt-2.5 font-display text-[11px] font-bold tracking-[0.1em] uppercase text-[var(--ink)]">
-          {node.label}
-        </p>
-        <p className="mt-1 max-w-[150px] font-body text-[11px] leading-snug text-[var(--ink-2)]">{node.caption}</p>
-      </div>
-    </div>
-  );
-}
-
-/* ── Desktop ecosystem network ────────────────────────────── */
-function DesktopNetwork({
-  active,
-  onActivate,
-  onClear,
-  reduced,
-}: {
-  active: string | null;
-  onActivate: (k: string) => void;
-  onClear: () => void;
-  reduced: boolean;
-}) {
-  const isPathHot = (pathId: string) =>
-    active === 'device' || (active !== null && (ecoNodes.find((n) => n.key === active)?.paths ?? []).includes(pathId));
-
-  const ref = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
-
-  return (
-    <div ref={ref} className="relative h-[560px] w-full lg:h-[600px]">
-      {/* Ambient glow behind center */}
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(0,226,138,0.12) 0%, transparent 60%)' }}
-      />
-
-      <svg aria-hidden="true" className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="ecoLine" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" style={{ stopColor: 'var(--od-path)' }} stopOpacity="0.3" />
-            <stop offset="50%" style={{ stopColor: 'var(--od-path)' }} stopOpacity="0.8" />
-            <stop offset="100%" style={{ stopColor: 'var(--od-path)' }} stopOpacity="0.3" />
-          </linearGradient>
-        </defs>
-
-        <g>
-          {Object.entries(ECO_PATHS).map(([id, d]) => {
-            const hot = isPathHot(id);
-            return (
-              <path
-                key={id}
-                d={d}
-                fill="none"
-                stroke="url(#ecoLine)"
-                strokeLinecap="round"
-                pathLength={1}
-                vectorEffect="non-scaling-stroke"
-                style={{
-                  opacity: hot ? 1 : 0.5,
-                  strokeWidth: hot ? 2 : 1.4,
-                  strokeDasharray: 1,
-                  strokeDashoffset: inView ? 0 : 1,
-                  transition: 'opacity 0.25s ease, stroke-width 0.25s ease, stroke-dashoffset 1.8s ease',
-                }}
-              />
-            );
-          })}
-        </g>
-
-        {!reduced &&
-          particles.map((p) => (
-            <circle
-              key={p.id}
-              r={1.5}
-              fill="#00D084"
-              style={{
-                offsetPath: `path('${ECO_PATHS[p.path]}')`,
-                animation: `ecoFlow ${p.dur}s linear ${p.delay}s infinite`,
-                filter: 'drop-shadow(0 0 3px rgba(0, 226, 138, 0.9))',
-              }}
-            />
-          ))}
-      </svg>
-
-      {/* Nodes */}
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={sequence}>
-        {ecoNodes.map((n) => (
-          <motion.div key={n.key} variants={nodeFade} style={{ position: 'absolute', inset: 0 }}>
-            <EcoNode node={n} active={active === n.key} onActivate={() => onActivate(n.key)} onClear={onClear} />
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Central device */}
-      <div
-        className="absolute left-1/2 top-[52%] z-20 -translate-x-1/2 -translate-y-1/2"
-        onMouseEnter={() => onActivate('device')}
-        onMouseLeave={onClear}
-      >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={nodeFade}
-        >
-          <div className={active ? 'transition duration-300' : 'transition duration-300 saturate-90 brightness-95'}>
-            <SmartDeviceCard reduced={reduced} />
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Mobile / tablet vertical flow ────────────────────────── */
-function VerticalFlow({ reduced }: { reduced: boolean }) {
-  const steps = [
-    { node: ecoNodes[0], before: false },
-    { node: null, before: false },
-    { node: ecoNodes[1], before: true },
-    { node: ecoNodes[2], before: true },
-  ];
-
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={sequence}
-      className="mx-auto flex w-full max-w-[320px] flex-col items-center"
-    >
-      <motion.div variants={nodeFade} className="flex flex-col items-center">
-        <EcoNode node={ecoNodes[0]} active={false} onActivate={() => {}} onClear={() => {}} role="cell" flow="static" />
-        <div className="relative h-12 w-px bg-[var(--od-line)]">
-          {!reduced && <span className="flow-dot-down" />}
+        {/* Concentric backdrop rings + glow */}
+        <div aria-hidden="true" className="absolute inset-0">
+          <div className="absolute left-1/2 top-[56%] aspect-square w-[150%] max-w-none -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.06]" />
+          <div className="absolute left-1/2 top-[56%] aspect-square w-[104%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.08]" />
+          <div className="absolute left-1/2 top-[56%] aspect-square w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.1]" />
+          <div
+            className="absolute left-1/2 top-[56%] aspect-square w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(120,160,255,0.10) 0%, transparent 62%)' }}
+          />
         </div>
-      </motion.div>
 
-      <motion.div variants={nodeFade} className="my-2">
-        <SmartDeviceCard reduced={reduced} />
-      </motion.div>
+        {/* Connecting lines (behind the nodes) */}
+        <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 z-[1] h-full w-full">
+          {/* BANKS → hub: tuned per breakpoint so it starts just below the label */}
+          <motion.line x1="50" y1="20" x2="50" y2="56" stroke="rgba(255,255,255,0.28)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" strokeLinecap="round" className="block sm:hidden" viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }} {...lineAnim} />
+          <motion.line x1="50" y1="21.5" x2="50" y2="56" stroke="rgba(255,255,255,0.28)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" strokeLinecap="round" className="hidden sm:block lg:hidden" viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }} {...lineAnim} />
+          <motion.line x1="50" y1="23.5" x2="50" y2="56" stroke="rgba(255,255,255,0.28)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" strokeLinecap="round" className="hidden lg:block" viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }} {...lineAnim} />
+          {/* hub → MSMEs / CUSTOMERS */}
+          <motion.line x1="50" y1="56" x2="13" y2="84.5" stroke="rgba(255,255,255,0.28)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" strokeLinecap="round" viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }} {...lineAnim} />
+          <motion.line x1="50" y1="56" x2="87" y2="84.5" stroke="rgba(255,255,255,0.28)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" strokeLinecap="round" viewport={{ once: true }} transition={{ duration: 1, delay: 0.8 }} {...lineAnim} />
+        </svg>
 
-      {steps
-        .filter((s) => s.node !== null)
-        .map((s) => (
-          <motion.div key={s.node!.key} variants={nodeFade} className="flex flex-col items-center">
-            {s.before && (
-              <div className="relative h-12 w-px bg-[var(--od-line)]">
-                {!reduced && <span className="flow-dot-down" />}
-              </div>
-            )}
-            <EcoNode node={s.node!} active={false} onActivate={() => {}} onClear={() => {}} role="cell" flow="static" />
+        {/* BANKS — top */}
+        <div className="absolute left-1/2 top-[2%] z-10 -translate-x-1/2">
+          <motion.div variants={fadeUp} className="flex flex-col items-center gap-2">
+            <span className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-[0_18px_50px_rgba(0,0,0,0.45)] sm:h-[88px] sm:w-[88px] lg:h-[104px] lg:w-[104px]">
+              <Landmark className="h-[42%] w-[42%]" strokeWidth={1.6} style={{ color: '#3B82F6' }} />
+            </span>
+            <span className="font-display text-[10px] font-bold tracking-[0.18em] text-white sm:text-[11px] lg:text-xs">
+              BANKS
+            </span>
           </motion.div>
-        ))}
-    </motion.div>
-  );
-}
+        </div>
 
-/* ── Device-led capability chain ──────────────────────────── */
-const capabilityFlow = [
-  { icon: Smartphone, label: 'Shop status' },
-  { icon: MapPin, label: 'Discovery' },
-  { icon: Eye, label: 'Visibility' },
-  { icon: Megaphone, label: 'Offers' },
-  { icon: ShieldAlert, label: 'Alerts' },
-];
-
-function CapabilityStrip() {
-  return (
-    <div className="mt-14 border-t border-[var(--od-line)] pt-9 lg:mt-20">
-      <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-0 lg:justify-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,226,138,0.3)] bg-[rgba(0,226,138,0.08)] px-4 py-1.5">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00D084] opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00D084]" />
-          </span>
-          <span className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase text-[var(--ink)]">One Device</span>
-        </span>
-
-        <div className="flex flex-wrap items-center justify-center gap-y-3">
-          {capabilityFlow.flatMap((c, i) => [
-            <motion.span
-              key={`chip-${c.label}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={fadeUp}
-              className="group flex items-center gap-2.5 rounded-full border border-[var(--od-card-border)] bg-[var(--od-card)] px-4 py-2 transition-all duration-200 hover:border-[rgba(0,226,138,0.3)]"
+        {/* HERE OPEN — center */}
+        <div className="absolute left-1/2 top-[56%] z-10 -translate-x-1/2 -translate-y-1/2">
+          <motion.div
+            variants={scaleIn}
+            className="flex h-[168px] w-[168px] flex-col items-center justify-center gap-2 rounded-full bg-white text-center shadow-[0_30px_90px_rgba(0,0,0,0.5)] sm:h-[208px] sm:w-[208px] lg:h-[240px] lg:w-[240px]"
+          >
+            <span
+              className="flex h-11 w-11 items-center justify-center rounded-xl sm:h-14 sm:w-14"
+              style={{ background: 'linear-gradient(135deg, var(--accent), #00B4D8)' }}
             >
-              <c.icon size={14} strokeWidth={1.6} style={{ color: ACCENT }} />
-              <span className="font-display text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink-2)] group-hover:text-[var(--ink)]">
-                {c.label}
+              <span className="font-display font-bold text-white" style={{ fontSize: '1.1rem' }}>
+                H
               </span>
-            </motion.span>,
-            i < capabilityFlow.length - 1 ? (
-              <span key={`arrow-${i}`} className="mx-3 hidden text-[var(--od-arrow)] lg:block" aria-hidden>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            ) : null,
-          ])}
+            </span>
+            <span className="font-display text-sm font-bold tracking-[0.14em] sm:text-base lg:text-lg" style={{ color: HUB_NAVY }}>
+              HERE OPEN
+            </span>
+          </motion.div>
         </div>
-      </div>
+
+        {/* MSMEs — bottom left */}
+        <div className="absolute bottom-[3%] left-[4%] z-10 sm:left-[6%]">
+          <motion.div variants={fadeUp} className="flex flex-col items-center gap-2">
+            <span className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-[0_18px_50px_rgba(0,0,0,0.45)] sm:h-[88px] sm:w-[88px] lg:h-[104px] lg:w-[104px]">
+              <Store className="h-[42%] w-[42%]" strokeWidth={1.6} style={{ color: '#0B7A4B' }} />
+            </span>
+            <span className="font-display text-[10px] font-bold tracking-[0.18em] text-white sm:text-[11px] lg:text-xs">
+              MSMEs
+            </span>
+          </motion.div>
+        </div>
+
+        {/* CUSTOMERS — bottom right */}
+        <div className="absolute bottom-[3%] right-[4%] z-10 sm:right-[6%]">
+          <motion.div variants={fadeUp} className="flex flex-col items-center gap-2">
+            <span className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-[0_18px_50px_rgba(0,0,0,0.45)] sm:h-[88px] sm:w-[88px] lg:h-[104px] lg:w-[104px]">
+              <Users className="h-[42%] w-[42%]" strokeWidth={1.6} style={{ color: '#7A5CD8' }} />
+            </span>
+            <span className="font-display text-[10px] font-bold tracking-[0.18em] text-white sm:text-[11px] lg:text-xs">
+              CUSTOMERS
+            </span>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 }
@@ -579,69 +316,12 @@ function ClosingBand() {
 
 /* ── Section ──────────────────────────────────────────────── */
 export function DeviceShowcaseSection() {
-  const reduced = useReducedMotion();
-  const [active, setActive] = useState<string | null>(null);
-
   return (
     <div className="relative">
-      {/* Hero: intro + device + ecosystem + capabilities */}
-      <Section id="device" className="bg-[var(--od-band)] overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at 68% 42%, rgba(0,226,138,0.07) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(0,124,205,0.05) 0%, transparent 50%)',
-          }}
-        />
-
+      {/* Hub diagram hero (fixed deep-navy canvas, both themes) */}
+      <Section id="device" className="overflow-hidden bg-[#0B1B34]">
         <Container className="relative z-10">
-          <div className="mx-auto max-w-3xl text-center">
-            <motion.span
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.6 }}
-              variants={fadeUp}
-              className="inline-flex items-center gap-2.5 rounded-full border border-[rgba(0,226,138,0.3)] bg-[rgba(0,226,138,0.08)] px-4 py-1.5"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00D084]" />
-              <span className="font-body text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: ACCENT }}>
-                One Device
-              </span>
-            </motion.span>
-
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={fadeUp}
-              className="mt-7 font-display text-[2.2rem] font-bold leading-[1.1] tracking-[-0.015em] text-[var(--ink)] sm:text-[2.8rem] lg:text-[3.4rem]"
-            >
-              One device. <span style={{ color: ACCENT }}>Three stronger relationships.</span>
-            </motion.h2>
-
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.6 }}
-              variants={fadeUp}
-              className="mx-auto mt-6 max-w-2xl font-body text-[15px] leading-[1.75] text-[var(--ink-2)] lg:text-base"
-            >
-              Connect banks, local businesses and customers through a bank-branded smart device.
-            </motion.p>
-          </div>
-
-          {/* Ecosystem with device at the center */}
-          <div className="mt-10">
-            <div className="hidden lg:block">
-              <DesktopNetwork active={active} onActivate={setActive} onClear={() => setActive(null)} reduced={reduced ?? false} />
-            </div>
-            <div className="lg:hidden">
-              <VerticalFlow reduced={reduced ?? false} />
-            </div>
-          </div>
-
-          <CapabilityStrip />
+          <HubDiagram />
         </Container>
       </Section>
 
