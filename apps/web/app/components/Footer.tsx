@@ -12,7 +12,6 @@ const ecosystemLinks = [
   { href: '#businesses', label: 'For Merchants' },
   { href: '#banks', label: 'For Banks & Partners' },
   { href: '#merchant-value', label: 'Merchant Value' },
-  { href: '#market', label: 'Market Opportunity' },
   { href: '#contact', label: 'Contact' },
 ];
 

@@ -180,7 +180,7 @@ const ProblemNodes = ({
   </motion.div>
 );
 
-const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: LucideIcon; alert?: boolean }[] }) => (
+const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: LucideIcon }[] }) => (
   <motion.div
     initial="hidden"
     whileInView="visible"
@@ -200,17 +200,10 @@ const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: L
         </span>
         {item.icon && (
           <span
-            className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border"
+            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border"
             style={{ borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
           >
             <item.icon size={20} strokeWidth={1.7} style={{ color: C.accent }} aria-hidden="true" />
-            {item.alert && (
-              <span
-                aria-hidden="true"
-                className="absolute -right-1 -top-1 h-3 w-3 rounded-full"
-                style={{ backgroundColor: '#DC2626', boxShadow: '0 0 0 2px #FFFFFF' }}
-              />
-            )}
           </span>
         )}
         <div className="min-w-0">
@@ -234,7 +227,7 @@ const sides = [
   { num: '03', name: 'CUSTOMERS', Icon: Users },
 ];
 
-const bankChallenges: { icon: LucideIcon; title: string; desc: string; alert?: boolean }[] = [
+const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Layers,
     title: 'Limited differentiation',
@@ -257,7 +250,6 @@ const bankChallenges: { icon: LucideIcon; title: string; desc: string; alert?: b
   },
   {
     icon: Landmark,
-    alert: true,
     title: 'CASA relationship risk',
     desc: 'Losing the merchant touchpoint can weaken deposit relationships.',
   },
@@ -402,16 +394,6 @@ export function ProblemSection() {
               title="Information blindness."
               body="Banks have trust, reach and financial strength. The challenge is turning that advantage into a direct, everyday merchant relationship."
             />
-
-            <div className="mb-6 flex items-center gap-4">
-              <span
-                className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em]"
-                style={{ color: C.muted }}
-              >
-                8 CONNECTED CHALLENGES
-              </span>
-              <span className="h-px flex-1" style={{ backgroundColor: C.hair }} />
-            </div>
 
             <ProblemRows items={bankChallenges} />
           </motion.div>

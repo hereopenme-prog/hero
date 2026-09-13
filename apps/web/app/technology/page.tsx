@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function TechnologyPage() {
   return (
-    <main className="min-h-screen bg-white relative noise">
+    <main className="min-h-screen bg-white relative noise force-light">
       {/* Hero */}
       <section className="section">
         <Container>

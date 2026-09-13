@@ -15,6 +15,8 @@ import {
   Building2,
   Store,
   Hand,
+  Brush,
+  Shirt,
 } from 'lucide-react';
 import { Container } from '@/app/components/Container';
 import { Section } from '@/components/ui/Section';
@@ -31,6 +33,8 @@ const businesses = [
   { icon: <Ruler size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'TAILORING' },
   { icon: <Wrench size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'REPAIR SHOPS' },
   { icon: <Store size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'GENERAL SHOPS' },
+  { icon: <Brush size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'BEAUTY PARLOURS' },
+  { icon: <Shirt size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'CLOTHING' },
   { icon: <ShoppingBag size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'RETAIL STORES' },
   { icon: <Briefcase size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'SERVICE BUSINESSES' },
   { icon: <Building2 size={22} className="text-[var(--accent)]" strokeWidth={1.5} />, label: 'SMALL OFFICES' },

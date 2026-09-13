@@ -244,6 +244,33 @@
   --od-path:         #00E28A;
 }
 
+/* Pinned-light scope for legacy static pages (faq, market, technology,
+   roadmap, security, privacy, terms). These pages use a fixed light
+   palette, so their theme-dependent tokens are pinned to the light
+   values — identical, readable UI in both themes. Homepage unaffected. */
+.force-light {
+  color-scheme: light;
+  --surface-card: #FFFFFF;
+  --surface-border: #DCE1E5;
+  --ink: #000000;
+  --ink-2: #000000;
+  --ink-muted: #000000;
+  --ink-dim: #000000;
+  --ink-faint: #000000;
+  --accent: #004A00;
+  --accent-2: #004A00;
+  --border: #DCE1E5;
+  --color-green-dark: #004A00;
+  --color-green-forest: #1A5E2C;
+  --color-green-mid: #2E7D32;
+  --color-green-action: #004A00;
+  --color-white: #FFFFFF;
+  --color-off-white: #EAEDEB;
+  --color-black: #000000;
+  --color-dark-text: #000000;
+  --color-body-text: #000000;
+}
+
 /* Accent alpha helpers (legacy `#00D084xx` → --aXX) */
 :root {
   --a00: color-mix(in srgb, var(--accent) 0%, transparent);

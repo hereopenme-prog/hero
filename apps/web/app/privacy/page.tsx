@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-white relative noise">
+    <main className="min-h-screen bg-white relative noise force-light">
       <section className="section">
         <Container>
           <div className="max-w-content mx-auto">

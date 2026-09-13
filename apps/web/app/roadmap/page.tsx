@@ -98,7 +98,7 @@ function statusBadge(status: 'completed' | 'in-progress' | 'pending') {
 
 export default function RoadmapPage() {
   return (
-    <main className="min-h-screen bg-white relative noise">
+    <main className="min-h-screen bg-white relative noise force-light">
       {/* Hero */}
       <section className="section">
         <Container>

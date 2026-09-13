@@ -4,13 +4,9 @@ import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Container } from '@/app/components/Container';
 import { Reveal } from '@/app/components/Reveal';
-import { PNodeBadges, PNumberedRows } from '@/components/sections/partnerLook';
+import { PNumberedRows } from '@/components/sections/partnerLook';
 import { DeviceVisual } from '@/components/ui/DeviceVisual';
 import {
-  Building2,
-  Smartphone,
-  Store,
-  Users,
   Sparkles,
   ArrowRight,
 } from 'lucide-react';
@@ -18,7 +14,7 @@ import {
 /* ─── Intro: the three-sided HERE OPEN ecosystem ─── */
 function IntroBand() {
   return (
-    <Section id="solution" className="relative bg-[var(--sol-band)] pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+    <Section id="solution" className="relative bg-[var(--sol-band)] pt-20 pb-20 lg:pt-28 lg:pb-28 overflow-hidden">
       <Container>
         <Reveal>
           <span className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.2em] uppercase mb-4">
@@ -33,14 +29,6 @@ function IntroBand() {
           title="One device."
           titleAccent="Three stronger relationships."
           description="Connect banks, local businesses and customers through a bank-branded smart device."
-        />
-        <PNodeBadges
-          nodes={[
-            { icon: <Building2 size={20} className="text-[var(--sol-accent)]" />, label: 'BANKS', caption: 'Grow together.' },
-            { icon: <Smartphone size={20} className="text-[var(--sol-accent)]" />, label: 'SMART MERCHANT DEVICE', caption: 'Bank-Branded Experience' },
-            { icon: <Store size={20} className="text-[var(--sol-accent)]" />, label: 'LOCAL BUSINESSES', caption: 'More value, every day.' },
-            { icon: <Users size={20} className="text-[var(--sol-teal)]" />, label: 'CUSTOMERS', caption: 'Smarter choices. Easier visits.' },
-          ]}
         />
       </Container>
     </Section>

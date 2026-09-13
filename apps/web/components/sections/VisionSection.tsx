@@ -288,7 +288,7 @@ function WhoWeConnect() {
           </motion.h2>
         </motion.div>
 
-        {/* Connected chain: BANKS → HERE OPEN → MSMEs → PEOPLE */}
+        {/* Connected chain: BANKS → MSMEs → PEOPLE */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -298,26 +298,6 @@ function WhoWeConnect() {
         >
           <motion.div variants={fadeUp} className="flex w-full max-w-xs justify-center">
             <AudienceNode audience={AUDIENCES[0]} />
-          </motion.div>
-
-          <ChainLink orientation="vertical" />
-          <ChainLink orientation="horizontal" />
-
-          {/* Central HERE OPEN medallion */}
-          <motion.div variants={fadeUp} className="flex shrink-0 items-center justify-center py-2 lg:px-1 lg:py-0">
-            <div className="relative flex h-36 w-36 flex-col items-center justify-center rounded-full border border-[var(--a30)] bg-[var(--section-2)] lg:h-40 lg:w-40">
-              <span aria-hidden="true" className="absolute inset-2 rounded-full border border-[var(--a30)]/60" />
-              <span className="relative flex h-2 w-2 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent)]" />
-              </span>
-              <span className="relative mt-2.5 font-display text-sm font-bold tracking-[0.14em] text-[var(--ink)]">
-                HERE OPEN
-              </span>
-              <span className="relative mt-1 font-body text-[10px] font-semibold tracking-[0.2em] text-[var(--ink-muted)]">
-                ONE DEVICE
-              </span>
-            </div>
           </motion.div>
 
           <ChainLink orientation="vertical" />
@@ -412,7 +392,7 @@ function MissionBelief() {
   return (
     <Section as="div" className="bg-[var(--section)]">
       <Container className="relative z-10">
-        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-2 lg:gap-12">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-12">
           {/* Mission */}
           <motion.div
             initial="hidden"
@@ -424,7 +404,7 @@ function MissionBelief() {
             <Eyebrow>THE MISSION</Eyebrow>
             <motion.span
               variants={fadeUp}
-              className="mt-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--a30)] bg-[var(--a10)]"
+              className="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--a30)] bg-[var(--a10)]"
             >
               <Compass size={24} strokeWidth={1.5} className="text-[var(--accent)]" />
             </motion.span>
@@ -447,7 +427,7 @@ function MissionBelief() {
             <Eyebrow>THE BELIEF</Eyebrow>
             <motion.span
               variants={fadeUp}
-              className="mt-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--a30)] bg-[var(--a10)]"
+              className="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--a30)] bg-[var(--a10)]"
             >
               <Heart size={24} strokeWidth={1.5} className="text-[var(--accent)]" />
             </motion.span>
@@ -459,7 +439,7 @@ function MissionBelief() {
             </motion.p>
 
             {/* Growth ladder */}
-            <motion.div variants={fadeUp} className="mt-8 w-full max-w-md">
+            <motion.div variants={fadeUp} className="mt-6 w-full max-w-md">
               <p className="font-body text-sm font-semibold tracking-[0.14em] text-[var(--ink-muted)] uppercase">
                 When a merchant grows...
               </p>
@@ -514,21 +494,21 @@ function ThePromise() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           variants={stagger}
-          className="mx-auto mt-12 max-w-4xl lg:mt-14"
+          className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-5"
         >
           {PROMISES.map((p) => (
             <motion.div
               key={p.index}
               variants={fadeUp}
-              className="group grid gap-2 border-t border-[var(--ink-dim)] py-7 transition-colors duration-300 last:border-b hover:border-[var(--a30)] sm:grid-cols-[72px_180px_1fr] sm:items-baseline sm:gap-6 lg:py-8"
+              className="flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--section)] p-6 transition-colors duration-300 hover:border-[var(--a30)] lg:p-7"
             >
               <span className="font-display text-sm font-bold tracking-[0.2em] text-[var(--accent)]">
                 {p.index}
               </span>
-              <span className="font-display text-lg font-bold tracking-tight text-[var(--ink)] uppercase sm:text-xl">
+              <span className="mt-3 font-display text-lg font-bold tracking-tight text-[var(--ink)] uppercase">
                 {p.label}
               </span>
-              <span className="font-body text-base leading-relaxed text-[var(--ink-2)] lg:text-lg">
+              <span className="mt-2 font-body text-[15px] leading-relaxed text-[var(--ink-2)]">
                 {p.text}
               </span>
             </motion.div>

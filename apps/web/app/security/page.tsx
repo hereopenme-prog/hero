@@ -82,7 +82,7 @@ const disclaimers = [
 
 export default function SecurityPage() {
   return (
-    <main className="min-h-screen bg-white relative noise">
+    <main className="min-h-screen bg-white relative noise force-light">
       <section className="section">
         <Container>
           <SectionHeader

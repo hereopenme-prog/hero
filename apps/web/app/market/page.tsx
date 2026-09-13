@@ -76,7 +76,7 @@ const solutions = [
 
 export default function MarketPage() {
   return (
-    <main className="min-h-screen bg-white relative noise">
+    <main className="min-h-screen bg-white relative noise force-light">
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="section pt-32 pb-16">
         <Container>

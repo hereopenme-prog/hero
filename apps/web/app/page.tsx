@@ -16,7 +16,6 @@ import { MoreThanStatusSection } from '@/components/sections/MoreThanStatusSecti
 import { TargetSection } from '@/components/sections/TargetSection';
 import { TechnologySection } from '@/components/sections/TechnologySection';
 import { MerchantValueSection } from '@/components/sections/MerchantValueSection';
-import { MarketSection } from '@/components/sections/MarketSection';
 import { InnovationSection } from '@/components/sections/InnovationSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { PatentSection } from '@/components/sections/PatentSection';
@@ -49,7 +48,6 @@ export default function HomePage() {
         <TargetSection />
         <TechnologySection />
         <MerchantValueSection />
-        <MarketSection />
         <InnovationSection />
         <CTASection />
         <PatentSection />
