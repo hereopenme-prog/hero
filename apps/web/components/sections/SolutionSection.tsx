@@ -4,9 +4,11 @@ import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Container } from '@/app/components/Container';
 import { Reveal } from '@/app/components/Reveal';
-import { PNumberedRows } from '@/components/sections/partnerLook';
-import { DeviceVisual } from '@/components/ui/DeviceVisual';
+import { PNodeBadges, PNumberedRows } from '@/components/sections/partnerLook';
 import {
+  Building2,
+  Store,
+  Users,
   Sparkles,
   ArrowRight,
 } from 'lucide-react';
@@ -29,6 +31,26 @@ function IntroBand() {
           title="One device."
           titleAccent="Three stronger relationships."
           description="Connect banks, local businesses and customers through a bank-branded smart device."
+        />
+        <PNodeBadges
+          nodes={[
+            { icon: <Building2 size={20} style={{ color: '#3B82F6' }} />, label: 'BANKS', caption: 'The anchor relationship' },
+            {
+              icon: (
+                <span
+                  className="flex h-6 w-6 items-center justify-center rounded-md text-white"
+                  style={{ background: 'linear-gradient(135deg, var(--accent), #00B4D8)', fontSize: '0.8rem' }}
+                  aria-hidden="true"
+                >
+                  H
+                </span>
+              ),
+              label: 'HERE OPEN',
+              caption: 'The connected hub',
+            },
+            { icon: <Store size={20} style={{ color: '#0B7A4B' }} />, label: 'MSMEs', caption: 'Everyday local businesses' },
+            { icon: <Users size={20} style={{ color: '#7A5CD8' }} />, label: 'CUSTOMERS', caption: 'The everyday visitors' },
+          ]}
         />
       </Container>
     </Section>
@@ -90,41 +112,6 @@ function MerchantsBand() {
         <PNumberedRows
           items={benefits.map((b) => ({ title: b.title, caption: b.desc }))}
         />
-      </Container>
-    </Section>
-  );
-}
-
-/* ─── Smart Merchant Device (bank-branded showcase) ─── */
-function DeviceBand() {
-  return (
-    <Section className="relative bg-[var(--sol-band2)] py-20 lg:py-28 overflow-hidden">
-      <Container>
-        <div className="flex flex-col items-center text-center">
-          <Reveal>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-[var(--sol-accent)] mb-3">Bank-Branded Experience</p>
-          </Reveal>
-          <Reveal>
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[var(--ink)] mb-3">
-              Smart Merchant Device
-            </h3>
-          </Reveal>
-          <Reveal>
-            <p className="text-[var(--ink-muted)] font-mono text-xs tracking-[0.2em] uppercase mb-12 lg:mb-16">
-              Illustrative device design
-            </p>
-          </Reveal>
-        </div>
-
-        <Reveal>
-          <div className="relative mx-auto w-fit">
-            <div className="absolute inset-0 -z-10 m-auto w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] rounded-full bg-[var(--sol-tile)] blur-3xl" aria-hidden />
-            <div className="absolute inset-0 -z-10 m-auto rounded-full border border-emerald-500/10 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px]" aria-hidden />
-            <div className="device-float">
-              <DeviceVisual size="lg" className="mx-auto" />
-            </div>
-          </div>
-        </Reveal>
       </Container>
     </Section>
   );
@@ -212,17 +199,9 @@ function ClosingBand() {
 export function SolutionSection() {
   return (
     <div className="relative">
-      <style>{`
-        @keyframes device-float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
-        }
-        .device-float { animation: device-float 7s ease-in-out infinite; }
-      `}</style>
       <IntroBand />
       <BanksBand />
       <MerchantsBand />
-      <DeviceBand />
       <CustomersBand />
       <DisclaimerBand />
       <ClosingBand />

@@ -3,20 +3,11 @@
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import {
-  Layers,
-  Landmark,
-  UserPlus,
-  UserMinus,
-  Banknote,
-  Link2Off,
-  FileSearch,
   Clock,
   EyeOff,
+  ShieldAlert,
   MapPin,
   Siren,
-  Store,
-  Users,
-  ShieldAlert,
   type LucideIcon,
 } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
@@ -43,163 +34,11 @@ const C = {
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
   <span
-    className="font-display text-lg font-bold uppercase tracking-[0.14em] sm:text-xl"
+    className="font-display block text-lg font-bold uppercase tracking-[0.14em] sm:text-xl"
     style={{ color: C.accent }}
   >
     {children}
   </span>
-);
-
-const DimensionHeader = ({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.4 }}
-    variants={stagger}
-  >
-    <motion.div variants={fadeUp}>
-      <Eyebrow>{eyebrow}</Eyebrow>
-    </motion.div>
-    <motion.h3
-      variants={fadeUp}
-      className="mt-6 font-display font-bold leading-[1.1] tracking-[-0.02em] text-[2rem] sm:text-[2.5rem] lg:text-[2.9rem]"
-      style={{ color: C.ink }}
-    >
-      {title}
-    </motion.h3>
-    <motion.p
-      variants={fadeUp}
-      className="mt-6 max-w-2xl font-body text-[15.5px] leading-relaxed lg:text-base"
-      style={{ color: C.muted }}
-    >
-      {body}
-    </motion.p>
-  </motion.div>
-);
-
-/* Smaller continuation header for the second part of a split dimension.
-   Titles are short paraphrases of that part's own rows — no new claims. */
-const PartHeader = ({ eyebrow, title }: { eyebrow: string; title: string }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.4 }}
-    variants={stagger}
-  >
-    <motion.div variants={fadeUp}>
-      <Eyebrow>{eyebrow}</Eyebrow>
-    </motion.div>
-    <motion.h3
-      variants={fadeUp}
-      className="mt-5 font-display font-bold leading-[1.12] tracking-[-0.02em] text-[1.6rem] sm:text-[2rem] lg:text-[2.2rem]"
-      style={{ color: C.ink }}
-    >
-      {title}
-    </motion.h3>
-  </motion.div>
-);
-
-const NodeCard = ({
-  num,
-  name,
-  Icon,
-  index,
-}: {
-  num: string;
-  name: string;
-  Icon: LucideIcon;
-  index: number;
-}) => (
-  <motion.article
-    initial={{ opacity: 0, y: 22 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.3 }}
-    transition={{ duration: 0.5, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-    className="group flex w-full max-w-[500px] flex-col items-center justify-self-center rounded-2xl border bg-white px-6 py-9 text-center transition-all duration-300 hover:-translate-y-1 md:px-4 md:py-8 lg:px-6 lg:py-9"
-    style={{ borderColor: C.hair, boxShadow: C.shadow, color: C.ink }}
-  >
-    <span className="font-mono text-[11px] tracking-[0.22em]" style={{ color: C.faint }}>
-      {num}
-    </span>
-    <div
-      className="mt-5 flex h-16 w-16 items-center justify-center rounded-full border"
-      style={{ borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
-    >
-      <Icon size={24} strokeWidth={1.5} className="transition-transform duration-300 group-hover:scale-105" style={{ color: C.accent }} />
-    </div>
-    <h4 className="mt-5 font-display text-[15px] font-bold uppercase tracking-[0.18em]" style={{ color: C.ink }}>
-      {name}
-    </h4>
-  </motion.article>
-);
-
-/* ── PARTNERSHIP-look pieces in the Problem light palette ─────────────── */
-
-const ProblemNodes = ({
-  nodes,
-}: {
-  nodes: { name: string; caption: string; Icon: LucideIcon }[];
-}) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.15 }}
-    variants={stagger}
-  >
-    {/* Desktop: connected badge row */}
-    <div className="hidden md:flex items-start justify-between gap-3">
-      {nodes.map((node) => (
-        <motion.div key={node.name} variants={fadeUp} className="flex flex-1 flex-col items-center max-w-[160px]">
-          <div
-            className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border"
-            style={{ borderColor: C.accentBorder, backgroundColor: C.accentSoft }}
-          >
-            <node.Icon size={20} strokeWidth={1.5} style={{ color: C.accent }} />
-          </div>
-          <p className="font-display text-[11px] font-bold tracking-[0.1em] text-center leading-tight" style={{ color: C.ink }}>
-            {node.name}
-          </p>
-          <p className="mt-1.5 font-body text-[11px] text-center leading-snug" style={{ color: C.muted }}>
-            {node.caption}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-
-    {/* Mobile: stacked rows */}
-    <div className="space-y-3 md:hidden">
-      {nodes.map((node, i) => (
-        <motion.div
-          key={node.name}
-          variants={fadeUp}
-          className="flex items-center gap-4 rounded-xl border bg-white px-5 py-4"
-          style={{ borderColor: C.hair }}
-        >
-          <div
-            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border"
-            style={{ borderColor: C.hair, backgroundColor: '#F7F8FA' }}
-          >
-            <node.Icon size={18} strokeWidth={1.5} style={{ color: C.accent }} />
-          </div>
-          <div className="min-w-0">
-            <p className="font-display text-[11px] font-bold tracking-[0.1em] leading-tight" style={{ color: C.ink }}>
-              {node.name}
-            </p>
-            <p className="mt-0.5 font-body text-[11px] leading-snug" style={{ color: C.muted }}>
-              {node.caption}
-            </p>
-          </div>
-          {i < nodes.length - 1 && (
-            <div className="ml-auto flex-shrink-0">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M7 2v10M4 9l3 3 3-3" stroke={C.accent} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-          )}
-        </motion.div>
-      ))}
-    </div>
-  </motion.div>
 );
 
 const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: LucideIcon }[] }) => (
@@ -208,7 +47,7 @@ const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: L
     whileInView="visible"
     viewport={{ once: true, amount: 0.1 }}
     variants={stagger}
-    className="mx-auto max-w-3xl"
+    className="max-w-3xl"
   >
     {items.map((item, i) => (
       <motion.div
@@ -243,56 +82,7 @@ const ProblemRows = ({ items }: { items: { title: string; desc: string; icon?: L
 
 /* ── Data ─────────────────────────────────────────────────────────────── */
 
-const sides = [
-  { num: '01', name: 'BANKS', Icon: Landmark },
-  { num: '02', name: 'MERCHANTS', Icon: Store },
-  { num: '03', name: 'CUSTOMERS', Icon: Users },
-];
-
-const bankChallenges: { icon: LucideIcon; title: string; desc: string }[] = [
-  {
-    icon: Layers,
-    title: 'Limited differentiation',
-    desc: 'Similar soundboxes give merchants few reasons to choose one bank over another.',
-  },
-  {
-    icon: Landmark,
-    title: 'Underused bank strengths',
-    desc: 'Banking capabilities do not always translate into daily merchant value.',
-  },
-  {
-    icon: UserPlus,
-    title: 'Missed merchant acquisition',
-    desc: 'A weak device proposition can limit new merchant relationships.',
-  },
-  {
-    icon: UserMinus,
-    title: 'Weak merchant retention',
-    desc: 'Limited everyday value makes the relationship easier to replace.',
-  },
-  {
-    icon: Landmark,
-    title: 'CASA relationship risk',
-    desc: 'Losing the merchant touchpoint can weaken deposit relationships.',
-  },
-  {
-    icon: Banknote,
-    title: 'Loan distribution',
-    desc: 'Intermediated loan distribution can increase acquisition costs.',
-  },
-  {
-    icon: Link2Off,
-    title: 'Weaker direct relationships',
-    desc: "Third-party channels can distance banks from the merchant's daily business.",
-  },
-  {
-    icon: FileSearch,
-    title: 'Limited lending context',
-    desc: 'Fragmented business information can limit the context for credit assessment.',
-  },
-];
-
-const merchantVisibility: { icon: LucideIcon; title: string; desc: string }[] = [
+const merchantProblems: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Clock,
     title: 'TRUST LOSS & MISSED FOOTFALL',
@@ -303,9 +93,6 @@ const merchantVisibility: { icon: LucideIcon; title: string; desc: string }[] = 
     title: 'LOW VISIBILITY & MISSED UPDATES',
     desc: 'Without a current digital presence, nearby businesses remain hard to find. Time-sensitive offers and announcements may not reach the right customers.',
   },
-];
-
-const merchantSafety: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: ShieldAlert,
     title: 'THEFT AND FIRE WORRIES',
@@ -313,7 +100,7 @@ const merchantSafety: { icon: LucideIcon; title: string; desc: string }[] = [
   },
 ];
 
-const customerEveryday: { icon: LucideIcon; title: string; desc: string }[] = [
+const customerProblems: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Clock,
     title: 'NO REAL-TIME CERTAINTY',
@@ -324,9 +111,6 @@ const customerEveryday: { icon: LucideIcon; title: string; desc: string }[] = [
     title: 'LIMITED DISCOVERY & MISSED OFFERS',
     desc: 'Finding a nearby business that is open and ready to serve can be difficult. Useful offers and announcements may never reach interested customers.',
   },
-];
-
-const customerUrgent: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Siren,
     title: 'UNCERTAINTY IN URGENT MOMENTS',
@@ -350,7 +134,7 @@ export function ProblemSection() {
             className="text-center"
           >
             <motion.div variants={fadeUp} className="flex justify-center">
-              <Eyebrow>THE CHALLENGE IN LOCAL COMMERCE</Eyebrow>
+              <Eyebrow>PROBLEMS</Eyebrow>
             </motion.div>
 
             <motion.h2
@@ -358,108 +142,48 @@ export function ProblemSection() {
               className="mt-8 font-display font-bold leading-[1.05] tracking-[-0.03em] text-[2.6rem] sm:text-[3.4rem] lg:text-[4.2rem]"
               style={{ color: C.ink }}
             >
-              Three sides.
-              <span className="block text-[2.1rem] sm:text-[2.7rem] lg:text-[3.3rem]" style={{ color: C.accent }}>
-                One costly disconnect.
-              </span>
+              The local connection is broken.
             </motion.h2>
 
-            <motion.div variants={fadeUp} className="mt-14">
-              <ProblemNodes
-                nodes={[
-                  { name: 'BANKS', caption: 'lose everyday relevance.', Icon: Landmark },
-                  { name: 'MERCHANTS', caption: 'lose visibility.', Icon: Store },
-                  { name: 'CUSTOMERS', caption: 'lose certainty.', Icon: Users },
-                ]}
-              />
+            <motion.p
+              variants={fadeUp}
+              className="mx-auto mt-6 max-w-2xl font-body text-[15.5px] leading-relaxed lg:text-base"
+              style={{ color: C.muted }}
+            >
+              Shops need visibility, customer connection and confidence after hours. People need certainty, convenient discovery and useful local information.
+            </motion.p>
+          </motion.div>
+
+          {/* ── MERCHANTS ── */}
+          <div className="mx-auto mt-16 max-w-3xl lg:mt-24">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={stagger}
+            >
+              <motion.div variants={fadeUp}>
+                <Eyebrow>MERCHANTS</Eyebrow>
+              </motion.div>
             </motion.div>
-          </motion.div>
 
-          {/* ── Three sides / DISCONNECTED ── */}
-          <div className="mt-24 lg:mt-32">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch lg:items-stretch">
-              {sides.map((side, i) => (
-                <div key={side.num} className="contents">
-                  <NodeCard num={side.num} name={side.name} Icon={side.Icon} index={i} />
-                  {i < sides.length - 1 && (
-                    <>
-                      {/* Tablet/desktop vertical divider */}
-                      <div
-                        className="hidden md:flex flex-col items-center self-stretch px-2 lg:px-3"
-                        aria-hidden="true"
-                      >
-                        <div className="w-px flex-1 border-l border-dashed" style={{ borderColor: C.hairStrong }} />
-                        <span
-                          className="my-3 font-mono text-[10px] uppercase tracking-[0.24em]"
-                          style={{ color: C.faint }}
-                        >
-                          DISCONNECTED
-                        </span>
-                        <div className="w-px flex-1 border-l border-dashed" style={{ borderColor: C.hairStrong }} />
-                      </div>
-                      {/* Mobile vertical journey connector */}
-                      <div className="flex flex-col items-center py-3 md:hidden" aria-hidden="true">
-                        <div className="h-4 w-px border-l border-dashed" style={{ borderColor: C.hairStrong }} />
-                        <span
-                          className="my-2 font-mono text-[10px] uppercase tracking-[0.24em]"
-                          style={{ color: C.faint }}
-                        >
-                          DISCONNECTED
-                        </span>
-                        <div className="h-4 w-px border-l border-dashed" style={{ borderColor: C.hairStrong }} />
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
+            <ProblemRows items={merchantProblems} />
           </div>
 
-          {/* ── DIMENSION 01 / BANKS ── */}
-          <motion.div variants={stagger} className="mt-16 lg:mt-24">
-            <DimensionHeader
-              eyebrow="BANKS"
-              title="Information blindness."
-              body="Banks have trust, reach and financial strength. The challenge is turning that advantage into a direct, everyday merchant relationship."
-            />
+          {/* ── CUSTOMERS ── */}
+          <div className="mx-auto mt-14 max-w-3xl lg:mt-20">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={stagger}
+            >
+              <motion.div variants={fadeUp}>
+                <Eyebrow>CUSTOMERS</Eyebrow>
+              </motion.div>
+            </motion.div>
 
-            <ProblemRows items={bankChallenges} />
-          </motion.div>
-
-          {/* ── MERCHANTS · PART 1 — visibility & discovery ── */}
-          <div className="mt-16 lg:mt-24">
-            <DimensionHeader
-              eyebrow="MERCHANTS"
-              title="Relationship breakdown."
-              body="Shops need visibility, customer connection and confidence after hours."
-            />
-
-            <ProblemRows items={merchantVisibility} />
-          </div>
-
-          {/* ── MERCHANTS · PART 2 — after-hours protection ── */}
-          <div className="mt-14 lg:mt-20">
-            <PartHeader eyebrow="MERCHANTS" title="Hazards go unnoticed." />
-
-            <ProblemRows items={merchantSafety} />
-          </div>
-
-          {/* ── CUSTOMERS · PART 1 — everyday certainty ── */}
-          <div className="mt-16 lg:mt-24">
-            <DimensionHeader
-              eyebrow="CUSTOMERS"
-              title="Trust erosion."
-              body="People need certainty, convenient discovery and useful local information."
-            />
-
-            <ProblemRows items={customerEveryday} />
-          </div>
-
-          {/* ── CUSTOMERS · PART 2 — urgent moments ── */}
-          <div className="mt-14 lg:mt-20">
-            <PartHeader eyebrow="CUSTOMERS" title="Urgent needs, harder to meet." />
-
-            <ProblemRows items={customerUrgent} />
+            <ProblemRows items={customerProblems} />
           </div>
         </div>
       </Container>
