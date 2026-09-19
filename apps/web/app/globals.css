@@ -997,15 +997,6 @@
   }
 }
 
-/* ── Page fade-in on load ── */
-@keyframes page-enter {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-body {
-  animation: page-enter 0.45s ease-out forwards;
-}
-
 /* ── Shimmer utility ── */
 .shimmer-text {
   background: linear-gradient(

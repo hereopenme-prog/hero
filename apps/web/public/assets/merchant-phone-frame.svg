@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="620" viewBox="0 0 320 620">
+  <defs>
+    <linearGradient id="metal" x1="0" x2="1" y2="1"><stop stop-color="#d1d9e0"/><stop offset=".15" stop-color="#626d77"/><stop offset=".5" stop-color="#f5f6f8"/><stop offset=".8" stop-color="#78838d"/><stop offset="1" stop-color="#b5c0c9"/></linearGradient>
+    <linearGradient id="edge" x1="0" x2="1"><stop stop-color="#0c141b"/><stop offset=".5" stop-color="#34404a"/><stop offset="1" stop-color="#111820"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-10%" width="160%" height="125%"><feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#082338" flood-opacity=".2"/></filter>
+  </defs>
+  <rect x="5" y="112" width="6" height="28" rx="3" fill="#53616b"/>
+  <rect x="5" y="156" width="6" height="44" rx="3" fill="#53616b"/>
+  <rect x="309" y="157" width="6" height="64" rx="3" fill="#53616b"/>
+  <rect x="9" y="5" width="302" height="602" rx="44" fill="url(#metal)" filter="url(#shadow)"/>
+  <rect x="12" y="8" width="296" height="596" rx="42" fill="url(#edge)"/>
+  <rect x="18" y="14" width="284" height="584" rx="37" fill="#fff"/>
+  <rect x="116" y="23" width="88" height="22" rx="11" fill="#101820"/>
+  <circle cx="191" cy="34" r="4" fill="#213a4a"/><circle cx="190" cy="33" r="1.5" fill="#467086"/>
+  <rect x="119" y="582" width="82" height="4" rx="2" fill="#152632"/>
+</svg>
