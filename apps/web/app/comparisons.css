@@ -1,0 +1,173 @@
+/* PDF-inspired overview sections: all three audiences remain visible. */
+.comparison-section { padding-block: 16px; scroll-margin-top: -22px; }
+.comparison-container { width: min(1320px, calc(100% - 64px)); }
+.comparison-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 18px; }
+.comparison-heading .eyebrow { font-size: .65rem; margin-bottom: 8px; }
+.comparison-heading h2 { font-size: clamp(1.75rem, 2.45vw, 2.3rem); margin: 0; letter-spacing: -.035em; }
+.comparison-heading > p { font-size: .84rem; line-height: 1.5; margin: 0; flex-shrink: 0; }
+.dimension-bank, .dimension-small { border: 1px solid var(--line); border-radius: 14px; }
+.dimension-bank { background: var(--soft-green); padding: 12px; --accent: var(--green); display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 10px 24px; }
+.dimension-title { display: flex; align-items: center; gap: 11px; }
+.dimension-title h3 { font-size: .95rem; color: var(--accent); letter-spacing: -.015em; margin: 0 0 3px; }
+.dimension-title h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px; }
+.dimension-title h3 small { font-size: .78em; font-weight: 500; letter-spacing: .015em; }
+.dimension-title p { font-size: .88rem; font-weight: 600; margin: 0; color: var(--ink); }
+.dimension-title .item-icon { width: 35px; height: 35px; border: 0; color: var(--accent); border-radius: 9px; }
+.dimension-title .icon { width: 25px; height: 25px; }
+.dimension-count { display: none; }
+.dimension-intro { font-size: .81rem; line-height: 1.4; margin: 0; }
+.dimension-bank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; grid-column: 1/-1; }
+.dimension-bank-grid .item { padding: 11px; background: var(--panel); border-radius: 9px; border: 1px solid var(--line); gap: 9px; }
+.comparison-section .item-icon { color: var(--accent); }
+.dimension-bank-grid .item-icon { width: 25px; height: 28px; border: 0; background: transparent; }
+.dimension-bank-grid .icon { width: 23px; height: 23px; }
+.dimension-bank-grid .item h4 { font-size: .89rem; line-height: 1.23; margin: 0 0 5px; }
+.dimension-bank-grid .item p { font-size: .81rem; line-height: 1.4; }
+.dimension-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.dimension-small { padding: 12px 17px 6px; }
+.dimension-merchants { background: var(--soft-blue); --accent: var(--blue); }
+.dimension-customers { background: var(--soft-purple); --accent: var(--purple); }
+.dimension-small .dimension-title { margin-bottom: 6px; }
+.dimension-small .dimension-title > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.dimension-small .dimension-title p { font-size: .79rem; }
+.dimension-small .item { padding: 6px 0; gap: 10px; border-top: 1px solid var(--line); }
+.dimension-small .item-icon { width: 25px; height: 27px; border: 0; background: transparent; }
+.dimension-small .icon { width: 22px; height: 22px; }
+.dimension-small .item h4 { font-size: .88rem; line-height: 1.25; margin: 0 0 3px; }
+.dimension-small .item p { font-size: .81rem; line-height: 1.4; }
+.comparison-next { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: .81rem; font-weight: 700; color: var(--blue); margin-top: 13px; }
+.comparison-next:hover { text-decoration: underline; text-underline-offset: 4px; }
+.comparison-next .icon { width: 18px; height: 18px; }
+
+.benefit-section { border-top: 1px solid var(--line); }
+.benefit-section .anchor-alias { position: absolute; top: 0; width: 1px; height: 1px; scroll-margin-top: -22px; }
+.device-comparison { display: grid; grid-template-columns: 1fr .98fr 1fr; gap: 18px; align-items: stretch; }
+.audience-card { padding: 18px 19px 10px; border-radius: 14px; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.banks-card { background: var(--soft-green); --accent: var(--green); }
+.merchants-card { background: var(--soft-blue); --accent: var(--blue); }
+.customers-card { background: var(--soft-purple); --accent: var(--purple); }
+.card-title { display: flex; align-items: center; gap: 11px; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.card-title .item-icon { color: var(--accent); border: 0; width: 34px; height: 36px; }
+.card-title .icon { width: 25px; height: 25px; }
+.card-title h3 { font-size: 1.3rem; text-transform: uppercase; color: var(--accent); letter-spacing: -.015em; margin: 0 0 4px; }
+.card-title p { color: var(--ink); font-size: .82rem; font-weight: 600; line-height: 1.3; margin: 0; }
+.all-benefits { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.all-benefits .item { gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.all-benefits .item:last-child { border-bottom: 0; }
+.all-benefits .item-icon { color: var(--accent); width: 27px; height: 29px; border: 0; border-radius: 7px; }
+.all-benefits .icon { width: 21px; height: 21px; }
+.all-benefits .item h4 { font-size: .92rem; line-height: 1.25; margin-bottom: 4px; }
+.all-benefits .item p { font-size: .82rem; line-height: 1.4; }
+.device-centre { display: flex; flex-direction: column; gap: 12px; }
+.connected-device { margin: 0; position: relative; text-align: center; isolation: isolate; }
+.connected-device img { height: 180px; width: 180px; margin: 0 auto; object-fit: contain; border-radius: 22px; }
+.connected-device figcaption strong { display: block; font-size: 1.13rem; line-height: 1.3; margin-top: 5px; }
+.connected-device figcaption span { display: block; font-size: .72rem; color: var(--blue); margin-top: 3px; }
+.connected-device figcaption small { display: block; font-size: .6rem; color: var(--muted); margin-top: 2px; }
+.device-halo { position: absolute; z-index: -2; top: 10px; width: 250px; height: 175px; left: 50%; transform: translateX(-50%); background: radial-gradient(ellipse, var(--soft-blue), transparent 70%); }
+.device-curves { position: absolute; z-index: -1; width: 100%; height: 196px; top: 0; left: 0; fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round; opacity: .55; }
+.customers-card { flex: 1; padding: 13px 16px 6px; }
+.customers-card .card-title { padding-bottom: 8px; }
+.customers-card .card-title h3 { font-size: 1.12rem; }
+.customers-card .card-title p { font-size: .74rem; }
+.customers-card .all-benefits .item { padding-block: 6px; }
+.customers-card .all-benefits .item h4 { font-size: .86rem; margin-bottom: 3px; }
+.customers-card .all-benefits .item p { font-size: .79rem; }
+.comparison-footnote { font-size: .7rem; margin: 12px 0 0; line-height: 1.5; }
+
+@media (min-width: 1600px) {
+  .comparison-section { padding-block: 44px; }
+  .dimension-bank-grid .item { padding: 16px 12px; }
+  .dimension-bank-grid .item p, .dimension-small .item p { font-size: .87rem; }
+  .dimension-small .item { padding-block: 11px; }
+  .all-benefits .item { padding-block: 15px; }
+  .all-benefits .item p { font-size: .88rem; }
+  .connected-device img { height: 235px; width: 235px; }
+}
+@media (max-width: 1100px) {
+  .comparison-container { width: calc(100% - 48px); }
+  .comparison-heading > p { display: none; }
+  .dimension-title h3 { font-size: .95rem; }
+  .dimension-bank-grid .item { display: block; }
+  .dimension-bank-grid .item-icon { float: left; margin: 0 7px 4px 0; }
+  .dimension-bank-grid .item p { clear: both; }
+  .device-comparison { gap: 12px; grid-template-columns: 1fr 1fr 1fr; }
+  .audience-card { padding-inline: 13px; }
+  .card-title { gap: 8px; }
+  .card-title h3 { font-size: 1.1rem; }
+  .all-benefits .item { gap: 8px; }
+  .all-benefits .item-icon { width: 23px; }
+  .connected-device img { width: 190px; height: 190px; }
+}
+@media (max-width: 800px) {
+  .comparison-section { padding-block: 40px; }
+  .comparison-heading h2 { font-size: 1.8rem; }
+  .dimension-title h3 { font-size: .92rem; }
+  .dimension-title p { font-size: .84rem; }
+  .dimension-bank { display: block; }
+  .dimension-intro { margin-block: 12px; }
+  .dimension-small .dimension-title > div { display: block; }
+  .dimension-bank-grid { grid-template-columns: repeat(2, 1fr); }
+  .dimension-bank-grid .item { display: flex; }
+  .dimension-bank-grid .item-icon { float: none; margin: 0; }
+  .dimension-bank-grid .item p, .dimension-small .item p { font-size: .88rem; }
+  .dimension-small { padding-inline: 13px; }
+  .dimension-pair .dimension-title { align-items: start; }
+  .device-comparison { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .banks-card { grid-column: 1; grid-row: 1; }
+  .merchants-card { grid-column: 2; grid-row: 1; }
+  .device-centre { grid-column: 1/-1; grid-row: 2; flex-direction: row; align-items: center; }
+  .connected-device { flex: 1; }
+  .connected-device img { width: 225px; height: 225px; }
+  .customers-card { flex: 1.25; }
+  .all-benefits .item h4 { font-size: .97rem; }
+  .all-benefits .item p { font-size: .9rem; }
+  .customers-card .all-benefits .item h4 { font-size: .93rem; }
+  .customers-card .all-benefits .item p { font-size: .88rem; }
+}
+@media (max-width: 600px) {
+  .comparison-container { width: calc(100% - 32px); }
+  .comparison-heading { margin-bottom: 21px; }
+  .comparison-heading h2 { font-size: 1.9rem; max-width: 400px; }
+  .comparison-heading .eyebrow { font-size: .66rem; margin-bottom: 12px; }
+  .dimension-bank { padding: 16px 13px; }
+  .dimension-title { gap: 9px; }
+  .dimension-title h3 { font-size: .92rem; }
+  .dimension-count { display: none; }
+  .dimension-intro { font-size: .91rem; line-height: 1.55; margin-block: 13px; }
+  .dimension-bank-grid { grid-template-columns: 1fr; }
+  .dimension-bank-grid .item { padding: 13px 11px; }
+  .dimension-bank-grid .item h4, .dimension-small .item h4 { font-size: 1rem; margin-bottom: 5px; }
+  .dimension-bank-grid .item p, .dimension-small .item p { font-size: .94rem; line-height: 1.55; }
+  .dimension-pair { grid-template-columns: 1fr; gap: 16px; }
+  .dimension-small { padding: 18px 15px 7px; }
+  .dimension-small .item { padding-block: 13px; }
+  .comparison-next { font-size: .85rem; justify-content: start; margin-top: 20px; }
+  .device-comparison { display: flex; flex-direction: column; gap: 18px; }
+  .audience-card { padding: 20px 18px 8px; }
+  .card-title h3, .customers-card .card-title h3 { font-size: 1.25rem; }
+  .card-title p, .customers-card .card-title p { font-size: .87rem; }
+  .all-benefits .item, .customers-card .all-benefits .item { gap: 12px; padding-block: 14px; }
+  .all-benefits .item h4, .customers-card .all-benefits .item h4 { font-size: 1rem; }
+  .all-benefits .item p, .customers-card .all-benefits .item p { font-size: .94rem; line-height: 1.55; }
+  .all-benefits .item-icon { width: 29px; height: 30px; }
+  .device-centre { display: contents; }
+  .connected-device { order: -1; margin-bottom: 5px; }
+  .connected-device img { width: 225px; height: 225px; }
+  .connected-device figcaption strong { font-size: 1.25rem; }
+  .connected-device figcaption span { font-size: .81rem; }
+  .connected-device figcaption small { font-size: .68rem; }
+  .banks-card { order: 0; }
+  .merchants-card { order: 1; }
+  .customers-card { order: 2; }
+  .device-curves { display: none; }
+  .comparison-footnote { font-size: .77rem; line-height: 1.6; margin-top: 18px; }
+}
+@media print {
+  .comparison-section { break-inside: avoid; padding-block: 18px; }
+  .comparison-container { width: 100%; }
+  .comparison-heading h2 { font-size: 25px; }
+  .comparison-heading > p { font-size: 11px; }
+  .comparison-next { display: none; }
+  .device-comparison { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+}

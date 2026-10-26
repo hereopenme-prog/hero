@@ -1,0 +1,91 @@
+/* Simple Vision PDF adapted to the website's green and navy brand. */
+.simple-vision { background: var(--bg); scroll-margin-top: -22px; }
+.vision-section-heading { padding: 28px 0 20px; background: var(--bg); }
+.vision-section-heading .section-label { margin-bottom: 0; }
+.simple-vision-hero { background: var(--navy); color: var(--brand-ink); padding: 34px 0; }
+.simple-vision-hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; align-items: center; gap: 70px; }
+.simple-vision-hero .eyebrow { color: #9adfbf; font-size: .7rem; margin-bottom: 18px; }
+.simple-vision-hero h2 { font-size: clamp(2.2rem,3.55vw,3.1rem); line-height: 1.12; letter-spacing: -.035em; margin-bottom: 20px; }
+.simple-vision-hero p { color: #bed0c6; font-size: 1.13rem; line-height: 1.6; max-width: 540px; margin-bottom: 14px; }
+.vision-tagline { font-size: .68rem; font-weight: 600; letter-spacing: .065em; color: #a7cbbb; }
+.vision-connection { width: min(100%,360px); height: 270px; position: relative; justify-self: center; }
+.vision-connection-paths { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vision-connection-paths circle { fill: #153e43; }
+.vision-connection-paths circle+circle { fill: #1e514f; }
+.vision-connection-paths path { fill: none; stroke: #96c6b4; stroke-width: 1.8; }
+.vision-node { position: absolute; transform: translate(-50%,-50%); display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.vision-node>span { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: #004a00; }
+.vision-node .icon { width: 30px; height: 30px; }
+.vision-node strong { font-size: .57rem; color: #f2f6f4; line-height: 1.2; }
+.vision-node-bank { left: 50%; top: 18%; }
+.vision-node-msmes { left: 23%; top: 81%; }
+.vision-node-customers { left: 77%; top: 81%; }
+.vision-node-hub { left: 50%; top: 53%; }
+.vision-node-hub>span { width: 69px; height: 69px; background: transparent; border: 0; padding: 0; }
+.simple-vision-content { padding-block: 29px 40px; }
+.vision-problems-label { font-size: .73rem; letter-spacing: .05em; line-height: 1.4; margin-bottom: 17px; }
+.vision-scale-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.vision-scale-card { display: flex; gap: 18px; padding: 23px 25px; border: 1px solid var(--line); border-radius: 14px; }
+.vision-people { background: var(--soft-blue); }
+.vision-msmes { background: var(--soft-green); }
+.vision-card-icon { display: grid; place-items: center; width: 48px; height: 48px; flex-shrink: 0; background: var(--panel); color: var(--blue); border-radius: 50%; }
+.vision-card-icon .icon { width: 29px; height: 29px; }
+.vision-scale-card h3 { font-size: 2.3rem; margin: 0 0 6px; color: var(--blue); line-height: 1.1; }
+.vision-msmes h3,.vision-msmes .vision-card-icon { color: var(--green); }
+.vision-scale-card h4 { font-family: 'Here Open Inter',Arial,sans-serif; font-size: .84rem; letter-spacing: .015em; margin-bottom: 10px; }
+.vision-scale-card p { font-size: .93rem; line-height: 1.6; margin: 0; max-width: 480px; }
+.vision-bank-strip { display: flex; align-items: center; gap: 20px; padding: 19px 25px; margin-block: 23px; background: var(--navy); color: var(--brand-ink); border-radius: 13px; }
+.vision-bank-strip .vision-card-icon { background: #fff; color: #004a00; }
+.vision-bank-strip .eyebrow { color: #a7cbbb; font-size: .64rem; margin: 0 0 5px; }
+.vision-bank-strip h3 { font-size: 1.48rem; margin: 0; white-space: nowrap; }
+.vision-bank-strip p { color: #bed0c6; font-size: .96rem; line-height: 1.6; margin: 0 0 0 auto; max-width: 900px; padding-left: 20px; }
+.vision-purpose-card { border: 1px solid var(--line); border-radius: 14px; padding: 28px 30px; background: var(--panel); }
+.vision-purpose-label { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--blue); }
+.vision-purpose-label .eyebrow { margin: 0; font-size: .7rem; }
+.vision-purpose-label .icon { width: 25px; height: 25px; }
+.vision-purpose-card h3 { font-size: 1.9rem; line-height: 1.22; margin-bottom: 16px; max-width: 850px; }
+.vision-purpose-card p { font-size: 1rem; line-height: 1.6; margin: 0; max-width: 1000px; }
+.vision-purpose-card p + p { margin-top: 14px; }
+.vision-direct-promise { color: var(--blue); }
+.vision-purpose-card .vision-bank-power { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--blue); }
+@media(max-width:1100px) {
+  .simple-vision-hero-grid { gap: 30px; }
+  .vision-bank-strip p { padding-left: 15px; max-width: 580px; }
+  .vision-purpose-card h3 { font-size: 1.8rem; }
+  .vision-scale-card { padding: 22px 18px; gap: 12px; }
+}
+@media(max-width:800px) {
+  .simple-vision-hero-grid { grid-template-columns: 1.25fr 1fr; gap: 20px; }
+  .simple-vision-hero h2 { font-size: 2.2rem; }
+  .simple-vision-hero p { font-size: 1rem; }
+  .vision-connection { height: 230px; }
+  .vision-scale-card { display: block; }
+  .vision-scale-card .vision-card-icon { float: left; width: 39px; height: 39px; margin-right: 12px; }
+  .vision-scale-card h3 { font-size: 2rem; }
+  .vision-scale-card p { clear: both; }
+  .vision-bank-strip { gap: 14px; }
+  .vision-bank-strip h3 { font-size: 1.25rem; }
+  .vision-bank-strip p { font-size: .85rem; }
+  .vision-purpose-card { padding: 24px; }
+}
+@media(max-width:600px) {
+  .simple-vision-hero { padding-block: 32px 20px; }
+  .simple-vision-hero-grid { grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .simple-vision-hero h2 { font-size: 2.3rem; }
+  .simple-vision-hero p { font-size: 1.06rem; }
+  .vision-connection { width: 310px; max-width: 100%; height: 235px; }
+  .simple-vision-content { padding-block: 26px 34px; }
+  .vision-problems-label { font-size: .67rem; }
+  .vision-scale-grid { grid-template-columns: 1fr; gap: 16px; }
+  .vision-scale-card { display: flex; padding: 23px 20px; gap: 14px; }
+  .vision-scale-card .vision-card-icon { float: none; margin: 0; }
+  .vision-scale-card h3 { font-size: 2.08rem; }
+  .vision-scale-card h4 { font-size: .82rem; }
+  .vision-scale-card p { font-size: .95rem; }
+  .vision-bank-strip { flex-wrap: wrap; padding: 22px 20px; }
+  .vision-bank-strip h3 { font-size: 1.55rem; }
+  .vision-bank-strip p { flex-basis: 100%; margin: 0; padding: 0; font-size: .96rem; }
+  .vision-purpose-card { padding: 25px 22px; }
+  .vision-purpose-card h3 { font-size: 1.7rem; }
+}
+@media print { .simple-vision-hero { print-color-adjust: exact; } .vision-scale-card,.vision-bank-strip,.vision-purpose-card { break-inside: avoid; } }

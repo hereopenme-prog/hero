@@ -16,6 +16,7 @@
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:admin": "npm run dev --workspace=apps/admin",
     "dev:mobile": "npm run start --workspace=apps/mobile",
+    "start:web": "npm run start --workspace=apps/web",
     "build": "npm run build --workspaces",
     "build:api": "npm run build --workspace=apps/api",
     "build:web": "npm run build --workspace=apps/web",
@@ -35,7 +36,7 @@
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=22.0.0",
     "npm": ">=9.0.0"
   }
 }

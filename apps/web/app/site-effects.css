@@ -1,0 +1,56 @@
+/* A quiet motion layer: original content and layout remain fully visible. */
+:root { --fx-light:#00a66b0a; --fx-shadow:#084c3212; }
+html[data-theme='dark'] { --fx-light:#00e28a09; --fx-shadow:#00000028; }
+.site-header { background:color-mix(in srgb,var(--bg) 93%,transparent); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); transition:box-shadow .2s ease,border-color .2s ease; }
+.site-header.header-scrolled { box-shadow:0 6px 24px var(--fx-shadow); }
+.site-header::after { content:''; position:absolute; bottom:-1px; left:0; width:100%; height:2px; background:linear-gradient(90deg,#007c4b,#00c786,#165aac); transform:scaleX(var(--scroll-progress,0)); transform-origin:left; pointer-events:none; }
+.nav-links a { position:relative; transition:color .2s ease; }
+.nav-links a::after { content:''; position:absolute; height:2px; border-radius:3px; bottom:-8px; left:0; right:0; background:var(--blue); transform:scaleX(0); transform-origin:left; transition:transform .22s ease; }
+.nav-links a[aria-current='location'] { color:var(--blue); }
+.nav-links a[aria-current='location']::after { transform:scaleX(1); }
+.original-hero-inner { position:relative; z-index:1; }
+.original-hero::before { content:''; position:absolute; width:1000px; height:650px; max-width:120vw; top:0; left:38%; border:1px solid #4ddca51c; border-radius:50%; transform:rotate(-28deg); box-shadow:0 0 0 70px #4ddca506,0 0 0 140px #4ddca504; pointer-events:none; }
+.original-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 75% 35%,#00e28a14,transparent 58%); pointer-events:none; animation:hero-light-arrival 3.6s ease-out both; }
+.original-hero h1 em { background:linear-gradient(100deg,#00e28a 10%,#a1f4d5 50%,#00e28a 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.original-hero-copy { animation:hero-copy-arrival .8s cubic-bezier(.2,.75,.2,1) backwards; }
+.original-art-graphic { transition:box-shadow .3s ease; }
+.section-label { background:linear-gradient(120deg,var(--soft-green),var(--panel)); border-color:color-mix(in srgb,var(--blue) 18%,var(--line)); box-shadow:0 4px 14px var(--fx-shadow); }
+.section-label::before,.section-label::after { content:''; flex:0 0 16px; height:1px; background:currentColor; opacity:.4; }
+.section-label::before { margin-right:12px; }.section-label::after { margin-left:12px; }
+.solution-intro,.merchant-value-overview { background:radial-gradient(ellipse at 50% 40%,var(--fx-light),transparent 65%),var(--bg); }
+.how-simple { background:radial-gradient(ellipse at 20% 45%,var(--fx-light),transparent 55%),var(--surface); }
+.dimension-bank,.dimension-small,.audience-card,.vision-scale-card,.vision-purpose-card { box-shadow:0 6px 24px var(--fx-shadow); transition:box-shadow .25s ease,border-color .25s ease; }
+.dimension-bank .item-icon,.dimension-small .item-icon,.audience-card .item-icon,.vision-card-icon { box-shadow:inset 0 1px 0 #ffffff70; transition:transform .22s ease,box-shadow .22s ease; }
+.simple-vision-hero,.device-band { position:relative; isolation:isolate; }
+.simple-vision-hero::before,.device-band::before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(ellipse at 85% 15%,#00e28a19,transparent 58%); }
+.contact-form { border-color:color-mix(in srgb,var(--blue) 20%,var(--line)); box-shadow:0 20px 55px var(--fx-shadow); }
+.contact-form input,.contact-form textarea { transition:border-color .18s ease,box-shadow .18s ease; }
+.contact-form input:focus,.contact-form textarea:focus { border-color:var(--blue); box-shadow:0 0 0 4px var(--soft-green); }
+.button,.original-hero-actions a,.contact-submit { box-shadow:0 4px 12px var(--fx-shadow); }
+.button .icon,.original-hero-actions a .icon,.comparison-next .icon,.contact-link .icon:last-child { transition:transform .22s ease; }
+.faq-list summary { transition:color .2s ease,background-color .2s ease; }
+.faq-list details[open] summary { color:var(--blue); }
+.faq-list details[open]>p { animation:answer-arrival .3s ease-out; }
+.fx-entered { animation:section-arrival .65s cubic-bezier(.2,.75,.2,1) var(--fx-delay,0ms) backwards; }
+@keyframes hero-light-arrival { from { opacity:.25; transform:translateX(25px); } to { opacity:1; transform:none; } }
+@keyframes hero-copy-arrival { from { opacity:.75; transform:translateY(12px); } to { opacity:1; transform:none; } }
+@keyframes section-arrival { from { opacity:.78; transform:translateY(14px); } to { opacity:1; transform:none; } }
+@keyframes answer-arrival { from { opacity:.65; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .nav-links a:hover::after { transform:scaleX(1); }
+  .original-art-graphic:hover { box-shadow:0 25px 65px #00c7861a,0 12px 28px #0003; }
+  .dimension-bank:hover,.dimension-small:hover,.audience-card:hover,.vision-scale-card:hover,.vision-purpose-card:hover { border-color:color-mix(in srgb,var(--blue) 35%,var(--line)); box-shadow:0 12px 32px var(--fx-shadow); }
+  .item:hover>.item-icon { transform:translateY(-2px) rotate(-3deg); }
+  .button:hover .icon,.original-hero-actions a:hover .icon,.comparison-next:hover .icon,.contact-link:hover .icon:last-child { transform:translateX(4px); }
+  .faq-list summary:hover { color:var(--blue); background:var(--soft-green); }
+}
+@media(max-width:1000px) {
+  .nav-links a::after { bottom:6px; right:auto; width:26px; }
+  .nav-links a[aria-current='location'] { background:var(--soft-green); border-radius:6px; }
+  .original-hero::before { left:10%; top:15%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .original-hero::after,.original-hero-copy,.fx-entered,.faq-list details[open]>p { animation:none !important; }
+  .site-header,.nav-links a,.nav-links a::after,.original-art-graphic,.dimension-bank,.dimension-small,.audience-card,.vision-scale-card,.vision-purpose-card,.item-icon,.vision-card-icon,.contact-form input,.contact-form textarea,.button .icon,.original-hero-actions a .icon,.comparison-next .icon,.contact-link .icon,.faq-list summary { transition:none !important; }
+}
+@media print { .site-header::after,.original-hero::before,.original-hero::after { display:none; } .fx-entered,.original-hero-copy { animation:none; } }

@@ -1,0 +1,145 @@
+/* Keep the approved image composition at every width; details are optional on small screens. */
+.solution-intro { padding: 34px 0 30px; background: var(--bg); scroll-margin-top: -22px; }
+.solution-artwork { margin: 0; }
+.solution-artwork>a { display: block; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #f6faff; }
+.solution-artwork img { display: block; width: 100%; height: auto; }
+.solution-artwork figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px 20px; font-size: .78rem; color: var(--muted); line-height: 1.5; padding-top: 12px; }
+.solution-artwork figcaption a { color: var(--blue); display: inline-flex; gap: 7px; align-items: center; flex-shrink: 0; font-weight: 600; }
+.solution-artwork figcaption .icon { width: 15px; height: 15px; }
+.solution-details { display: none; }
+
+.merchant-value-overview { padding: 32px 0; background: var(--bg); scroll-margin-top: -22px; }
+.merchant-value-artwork { width: min(100%,1100px); margin-inline: auto; }
+.merchant-value-artwork figcaption>div { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+
+/* A real phone silhouette with live, accessible HTML controls. */
+.how-simple { padding: 38px 0 28px; background: var(--surface); border-block: 1px solid var(--line); scroll-margin-top: -22px; }
+.how-simple-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 24px; }
+.how-simple-heading .eyebrow { margin-bottom: 10px; }
+.how-simple-heading h2 { margin: 0; font-size: clamp(2rem,3vw,2.65rem); }
+.how-simple-heading>p { margin: 0; font-size: .96rem; line-height: 1.6; }
+.how-simple-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 60px; max-width: 980px; margin-inline: auto; }
+.merchant-phone-demo { text-align: center; }
+.phone-instruction { display: flex; align-items: center; justify-content: center; gap: 7px; color: var(--ink); font-size: .82rem; line-height: 1.5; margin: 0 0 13px; }
+.phone-instruction>.icon { width: 19px; height: 22px; flex-shrink: 0; color: var(--blue); }
+.merchant-phone { position: relative; width: 262px; aspect-ratio: 320/620; margin-inline: auto; filter: drop-shadow(0 16px 19px #122b4514); }
+.phone-frame { display: block; width: 100%; height: 100%; }
+.merchant-phone-screen { position: absolute; top: 9.2%; left: 11.5%; right: 11.5%; bottom: 8%; display: flex; flex-direction: column; color: #15291e; text-align: left; }
+.phone-app-heading { display: flex; align-items: center; gap: 7px; font-size: .81rem; font-weight: 800; line-height: 1.1; }
+.phone-app-heading .brand-mark { width: 29px; height: 29px; font-size: 19px; border-radius: 50%; flex-shrink: 0; }
+.phone-app-heading small { display: block; font-size: .5rem; letter-spacing: .1em; font-weight: 600; margin-top: 4px; color: #506a5a; }
+.phone-shop-heading { margin-top: 22px; }
+.phone-shop-heading h3 { margin: 0 0 4px; font-size: 1.25rem; color: #15291e; }
+.phone-shop-heading p { font-size: .7rem; line-height: 1.4; color: #506a5a; margin: 0; }
+.phone-shop-status { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; flex: 1; min-height: 115px; margin: 15px 0; border: 1px solid #d7eadd; border-radius: 15px; background: #eff9f2; color: #006535; }
+.phone-shop-status>.icon { width: 29px; height: 29px; margin-bottom: 2px; }
+.phone-shop-status>span { font-size: .66rem; color: #506a5a; }
+.phone-shop-status>strong { font-family: 'Here Open Display',Arial,sans-serif; font-size: 1.8rem; line-height: 1.1; }
+.phone-shop-status>small { font-size: .66rem; font-weight: 600; }
+.phone-shop-status.closed { background: #fff4ee; border-color: #f0d7c7; color: #a63b13; }
+.phone-shop-controls { display: grid; gap: 8px; }
+.phone-shop-controls button { position: relative; min-height: 44px; width: 100%; border: 1px solid #cbd9cf; background: #fff; border-radius: 10px; color: #355744; display: flex; align-items: center; gap: 9px; padding: 10px 12px; font-size: .86rem; font-weight: 700; }
+.phone-shop-controls button .icon { width: 19px; height: 19px; }
+.phone-shop-controls button .icon:last-child { margin-left: auto; visibility: hidden; }
+.phone-shop-controls button.is-selected { background: #006535; border-color: #006535; color: white; }
+.phone-shop-controls button:last-child.is-selected { background: #a63b13; border-color: #a63b13; }
+.phone-shop-controls button.is-selected .icon:last-child { visibility: visible; }
+.phone-shop-controls button:hover { box-shadow: 0 0 0 2px #6ea88845; }
+.phone-shop-controls button:focus-visible { outline: 3px solid #006535; outline-offset: 3px; }
+.phone-shop-controls button { min-height: 54px; }
+.phone-shop-controls button.is-suggested { border: 2px solid #006535; background: #f4fcf7; padding-right: 62px; }
+.tap-indicator { position: absolute; right: 9px; top: 50%; width: 44px; height: 50px; transform: translateY(-45%); pointer-events: none; overflow: visible; filter: drop-shadow(0 2px 1px #063f2c25); }
+.tap-highlight { fill: #b8efd0; }
+.tap-rays { fill: none; stroke: #006535; stroke-width: 2.5; stroke-linecap: round; }
+.tap-hand { fill: #ffe1b7; stroke: #063f2c; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.tap-fingers { fill: none; }
+.tap-ring { fill: none; stroke: #006535; stroke-width: 2; opacity: 0; transform-origin: 18px 10px; }
+.merchant-phone-demo.is-visible .tap-hand { animation: tap-hand-press 1.6s ease-in-out 3; }
+.merchant-phone-demo.is-visible .tap-ring { animation: tap-contact-ring 1.6s ease-out 3; }
+@keyframes tap-hand-press { 0%,65%,100% { transform: translateY(-3px); } 25%,40% { transform: translateY(2px); } }
+@keyframes tap-contact-ring { 0%,20% { opacity: 0; transform: scale(.65); } 30% { opacity: .65; transform: scale(.8); } 65%,100% { opacity: 0; transform: scale(1.8); } }
+@media (prefers-reduced-motion: reduce) { .merchant-phone-demo.is-visible .tap-hand,.merchant-phone-demo.is-visible .tap-ring { animation: none; } }
+.phone-update-note { display: flex; align-items: center; justify-content: center; gap: 5px; font-size: .58rem; line-height: 1.4; margin: 13px 0 0; color: #506a5a; }
+.phone-update-note .icon { width: 13px; height: 13px; }
+.phone-demo-note { font-size: .75rem; margin: 8px 0 0; color: var(--muted); line-height: 1.5; }
+.shop-mode-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 30px; background: var(--soft-green); color: var(--blue); border: 1px solid var(--line); font-size: .82rem; font-weight: 700; }
+.shop-mode-badge>.icon { width: 18px; height: 18px; }
+.shop-mode-badge.closed { color: #a63b13; background: #fff1e9; border-color: #f0d7c7; }
+.phone-results-heading h3 { margin: 17px 0 7px; font-size: 1.8rem; line-height: 1.25; }
+.simple-workflow { list-style: none; padding: 0; margin: 0; }
+.simple-workflow li { display: flex; align-items: start; gap: 15px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.workflow-step-number { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; background: var(--panel); color: var(--blue); border: 1px solid var(--line); font-size: .82rem; font-weight: 700; }
+.simple-workflow h4 { font-size: 1.09rem; margin: 2px 0 7px; line-height: 1.3; }
+.simple-workflow p { font-size: .96rem; line-height: 1.6; margin: 0; }
+.live-motion { display: inline-flex; align-items: center; gap: 7px; color: var(--blue); font-size: .86rem; font-weight: 600; margin-top: 11px; padding: 8px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft-green); }
+.live-motion>.icon { width: 17px; height: 17px; }
+.simple-workflow-note { display: flex; gap: 9px; align-items: start; margin: 20px 0 0; color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.simple-workflow-note>.icon { flex-shrink: 0; width: 19px; height: 19px; color: var(--blue); }
+.how-simple .safety-strip { margin-top: 24px; padding: 18px 24px; border-radius: 14px; }
+.how-simple .safety-strip h3 { font-size: 1.13rem; }
+.how-simple .safety-strip p { font-size: .87rem; }
+.how-simple .fine-print { margin-bottom: 0; }
+
+@media (max-width: 1000px) {
+  .how-simple-grid { gap: 35px; grid-template-columns: .9fr 1.1fr; }
+  .how-simple-heading>p { max-width: 340px; font-size: .86rem; }
+}
+@media (max-width: 1000px) {
+  .solution-intro { padding-block: 36px; }
+  .solution-artwork figcaption { font-size: .77rem; }
+  .solution-details { display: block; margin-top: 12px; border-block: 1px solid var(--line); }
+  .solution-details>summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; min-height: 48px; font-size: .9rem; font-weight: 600; color: var(--blue); cursor: pointer; list-style: none; }
+  .solution-details>summary::-webkit-details-marker { display: none; }
+  .solution-details>summary>.icon { width: 19px; height: 19px; }
+  .solution-details[open]>summary>.icon { transform: rotate(45deg); }
+  .solution-feature-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 24px; }
+  .solution-feature-list article { display: flex; align-items: start; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .solution-feature-list .item-icon { width: 34px; height: 36px; color: var(--blue); border: 0; background: var(--soft-green); }
+  .solution-feature-list .icon { width: 22px; height: 22px; }
+  .solution-feature-list h3 { font-size: 1rem; line-height: 1.35; margin: 0 0 7px; }
+  .solution-feature-list p { font-size: .94rem; line-height: 1.6; margin: 0; }
+  .solution-details-summary { padding-block: 20px; border-top: 1px solid var(--line); }
+  .solution-details-summary p { font-size: .94rem; line-height: 1.65; margin: 0 0 14px; }
+  .solution-details-summary p:last-child { margin-bottom: 0; color: var(--ink); font-weight: 600; }
+}
+@media (max-width: 800px) {
+  .how-simple-heading { display: block; }
+  .how-simple-heading>p { max-width: none; font-size: .96rem; margin-top: 14px; }
+  .how-simple-grid { grid-template-columns: 1fr; gap: 30px; }
+  .merchant-phone { width: 286px; }
+  .phone-app-heading { font-size: .91rem; }
+  .phone-app-heading small { font-size: .55rem; }
+  .phone-shop-heading h3 { font-size: 1.4rem; }
+  .phone-shop-heading p { font-size: .76rem; }
+  .phone-shop-status>span,.phone-shop-status>small { font-size: .74rem; }
+  .phone-shop-status>strong { font-size: 2rem; }
+  .phone-shop-controls button { font-size: .96rem; min-height: 54px; }
+  .phone-update-note { font-size: .64rem; }
+  .phone-instruction { font-size: .87rem; }
+  .phone-results { width: min(100%,540px); margin-inline: auto; }
+}
+@media (max-width: 500px) {
+  .solution-artwork>a { border-radius: 11px; }
+  .solution-artwork figcaption { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .solution-artwork figcaption>a { display: flex; width: fit-content; min-height: 44px; }
+  .merchant-value-artwork figcaption>div { margin-top: 4px; gap: 4px 20px; flex-direction: row; align-items: center; }
+  .merchant-value-artwork figcaption>div>a { min-height: 38px; }
+  .solution-feature-list { grid-template-columns: minmax(0,1fr); }
+  .how-simple { padding-block: 38px; }
+  .how-simple-heading h2 { font-size: 2rem; }
+  .phone-instruction { font-size: .8rem; gap: 6px; }
+  .merchant-phone { width: min(286px,100%); }
+  .simple-workflow h4 { font-size: 1.06rem; }
+  .simple-workflow p { font-size: .96rem; }
+  .phone-results-heading h3 { font-size: 1.65rem; }
+  .how-simple .safety-strip { align-items: start; padding: 20px 16px; gap: 12px; }
+  .how-simple .safety-strip h3 { font-size: 1.07rem; }
+}
+@media print {
+  .tap-indicator { display: none; }
+  .solution-intro,.how-simple { padding-block: 20px; }
+  .solution-details { display: none; }
+  .solution-artwork figcaption>a { display: none; }
+  .how-simple-grid { grid-template-columns: 1fr 1.2fr; gap: 30px; }
+  .merchant-phone { width: 240px; }
+}
